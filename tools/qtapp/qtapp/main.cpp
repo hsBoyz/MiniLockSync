@@ -3,6 +3,8 @@
 
 #include "qtapp.h"
 
+//Test
+//Test2
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +18,8 @@ int main(int argc, char *argv[])
     }
 	
 	QApplication::setQuitOnLastWindowClosed(false);
+
+
 
 	qtApp w;
 	w.show();
