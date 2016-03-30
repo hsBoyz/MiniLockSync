@@ -3,10 +3,6 @@
 
 #include "qtapp.h"
 
-//Test
-//Test2lkgs<v<v<s egg
-//test3
-
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
