@@ -1,0 +1,6 @@
+#ifndef TUNIT_GENERATE_IDENTIFICATIONNUMBER_H
+#define TUNIT_GENERATE_IDENTIFICATIONNUMBER_H
+
+extern void TUnit_Generate_IdentificationNumber();
+
+#endif

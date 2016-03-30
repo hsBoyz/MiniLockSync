@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qtApp", "qtapp\qtApp.vcxproj", "{E2CC28BF-A2E0-4192-BC1B-8F6E62F29103}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "uCryptLib", "..\ucryptlib\ucryptlib\ucryptlib\uCryptLib.vcxproj", "{EE6340C2-CCDF-4B9D-A048-DF9103959A03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2CC28BF-A2E0-4192-BC1B-8F6E62F29103}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E2CC28BF-A2E0-4192-BC1B-8F6E62F29103}.Debug|Win32.Build.0 = Debug|Win32
+		{E2CC28BF-A2E0-4192-BC1B-8F6E62F29103}.Release|Win32.ActiveCfg = Release|Win32
+		{E2CC28BF-A2E0-4192-BC1B-8F6E62F29103}.Release|Win32.Build.0 = Release|Win32
+		{EE6340C2-CCDF-4B9D-A048-DF9103959A03}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EE6340C2-CCDF-4B9D-A048-DF9103959A03}.Debug|Win32.Build.0 = Debug|Win32
+		{EE6340C2-CCDF-4B9D-A048-DF9103959A03}.Release|Win32.ActiveCfg = Release|Win32
+		{EE6340C2-CCDF-4B9D-A048-DF9103959A03}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

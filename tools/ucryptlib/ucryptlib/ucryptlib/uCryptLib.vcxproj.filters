@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\rapidjson">
+      <UniqueIdentifier>{0daaa662-c39a-458f-847f-3abc97fad7f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\rapidjson\error">
+      <UniqueIdentifier>{947e2432-48c0-4fc0-8c99-059d5602e6ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\rapidjson\internal">
+      <UniqueIdentifier>{b3c4f1a1-50cb-42e0-abf7-5bfde347e304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\rapidjson\msinttypes">
+      <UniqueIdentifier>{bf9c3004-a2df-433f-b732-be5fd024f6ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{d24a1a34-5077-4a24-bd35-c415b1fbf23f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scrypt">
+      <UniqueIdentifier>{7c4d525d-8ec1-484a-a201-df63906b6f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scrypt\sys">
+      <UniqueIdentifier>{c0c4c0a9-9229-438c-adde-794f872b9604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="blake2">
+      <UniqueIdentifier>{317cef66-8b74-45e3-bc15-4747c54633d1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="uCryptLib.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="scrypt\crypto_scrypt-sse.c">
+      <Filter>scrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="scrypt\mman.c">
+      <Filter>scrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="scrypt\sha256.c">
+      <Filter>scrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="blake2\blake2b.c">
+      <Filter>blake2</Filter>
+    </ClCompile>
+    <ClCompile Include="blake2\blake2bp.c">
+      <Filter>blake2</Filter>
+    </ClCompile>
+    <ClCompile Include="blake2\blake2s.c">
+      <Filter>blake2</Filter>
+    </ClCompile>
+    <ClCompile Include="blake2\blake2sp.c">
+      <Filter>blake2</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\rapidjson\allocators.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\document.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\encodedstream.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\encodings.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\filereadstream.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\filestream.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\filewritestream.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\memorybuffer.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\memorystream.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\prettywriter.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\rapidjson.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\reader.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\stringbuffer.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\writer.h">
+      <Filter>Headerdateien\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\msinttypes\inttypes.h">
+      <Filter>Headerdateien\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\msinttypes\stdint.h">
+      <Filter>Headerdateien\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\biginteger.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\diyfp.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\dtoa.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\ieee754.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\itoa.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\meta.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\pow10.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\stack.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\strfunc.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\internal\strtod.h">
+      <Filter>Headerdateien\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\error\en.h">
+      <Filter>Headerdateien\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rapidjson\error\error.h">
+      <Filter>Headerdateien\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\sys\mman.h">
+      <Filter>scrypt\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\config.h">
+      <Filter>scrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\crypto_scrypt.h">
+      <Filter>scrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\inttypes.h">
+      <Filter>scrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\scrypt_platform.h">
+      <Filter>scrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\sha256.h">
+      <Filter>scrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="scrypt\sysendian.h">
+      <Filter>scrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2b-load-sse2.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2b-load-sse41.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2b-round.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2-config.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2-impl.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2-kat.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2s-load-sse2.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2s-load-sse41.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2s-load-xop.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="blake2\blake2s-round.h">
+      <Filter>blake2</Filter>
+    </ClInclude>
+    <ClInclude Include="uCryptLib.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\libsodium.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="libs\libsodium.exp">
+      <Filter>libs</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libs\libsodium.lib">
+      <Filter>libs</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
