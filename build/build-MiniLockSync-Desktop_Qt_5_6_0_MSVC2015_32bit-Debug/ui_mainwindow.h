@@ -43,6 +43,7 @@ public:
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
     QPushButton *cmdEnde;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -98,6 +99,9 @@ public:
         cmdEnde = new QPushButton(centralWidget);
         cmdEnde->setObjectName(QStringLiteral("cmdEnde"));
         cmdEnde->setGeometry(QRect(270, 480, 91, 31));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(390, 480, 81, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -121,6 +125,7 @@ public:
         label->setText(QApplication::translate("MainWindow", "Bitte zu verschl\303\274sselnden Speicherort angeben:", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Ausgew\303\244hltes Verzeichniss hinzuf\303\274gen", 0));
         cmdEnde->setText(QApplication::translate("MainWindow", "Ende", 0));
+        pushButton_2->setText(QApplication::translate("MainWindow", "PushButton", 0));
     } // retranslateUi
 
 };
