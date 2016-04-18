@@ -28,6 +28,11 @@ FileWindow::FileWindow(QWidget *parent) :
 
     ui->listView_2->setModel(filemodel_2);
     ui->listView_2->setRootIndex(filemodel_2->index(sPath2));
+
+
+
+    ui->label->setText(setman->getKeyAtPosition("directory", 1));
+    ui->label_2->setText(setman->getKeyAtPosition("directory", 0));
 }
 
 FileWindow::~FileWindow()
