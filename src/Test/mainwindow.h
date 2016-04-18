@@ -53,7 +53,7 @@ private:
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
 
-
+    Settingsmanager *settingsManager;
 };
 
 #endif // MAINWINDOW_H

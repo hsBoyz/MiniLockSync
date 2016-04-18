@@ -3,6 +3,7 @@
 #include "filewindow.h"
 #include <QtGui>
 #include <QAction>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setHorizontalHeaderLabels(title);
 
-
+    settingsManager = new Settingsmanager();
 
 }
 
@@ -100,8 +101,18 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_btn_ok_dir_clicked()
 {
+    int rowCount = ui->tableWidget->rowCount();
+    for (int i = 0; i < rowCount; i++) {
+        QString path, name;
+        path = ui->tableWidget->item(i, 0)->text();
+        name = ui->tableWidget->item(i, 1)->text();
+
+        //Adding name for getting the full path including selected folder
+        settingsManager->saveSettings("directory", name, path + "/" + name);
+
+    }
+
     fileWindow = new FileWindow(this);
     fileWindow->show();
     //this->hide();
-    //ui->tableWidget->
 }
