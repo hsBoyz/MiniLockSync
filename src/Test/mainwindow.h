@@ -24,6 +24,7 @@ protected:
     void closeEvent(QCloseEvent *event);
 
 public:
+    Ui::MainWindow *ui;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
@@ -38,7 +39,7 @@ private slots:
     void on_btn_ok_dir_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    //Ui::MainWindow *ui;
 
 
     QFileSystemModel *dirmodel;

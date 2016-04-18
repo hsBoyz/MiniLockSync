@@ -9,10 +9,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QWidget::setWindowTitle("Einstellungen");
+
 
     createActions();
     createTrayIcon();
     trayIcon->show();
+
 
     QString sPath = "C:/";
     dirmodel = new QFileSystemModel (this);
@@ -60,9 +63,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::createActions()
 {
-    restoreAction = new QAction(tr("&restore"), this);
+    restoreAction = new QAction(tr("&Einstellungen"), this);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
-    quitAction = new QAction(tr("&exit"), this);
+    quitAction = new QAction(tr("&Beenden"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
@@ -99,6 +102,6 @@ void MainWindow::on_btn_ok_dir_clicked()
 {
     fileWindow = new FileWindow(this);
     fileWindow->show();
-
-
+    //this->hide();
+    //ui->tableWidget->
 }
