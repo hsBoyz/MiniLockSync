@@ -1,11 +1,18 @@
- #include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "filewindow.h"
+#include <QtGui>
+#include <QAction>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    createActions();
+    createTrayIcon();
+    trayIcon->show();
 
     QString sPath = "C:/";
     dirmodel = new QFileSystemModel (this);
@@ -20,12 +27,57 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setHorizontalHeaderLabels(title);
 
 
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::changeEvent(QEvent * evt) {
+    switch(evt->type())
+    {
+        case QEvent::LanguageChange :
+            this->ui->retranslateUi(this);
+            break;
+        case QEvent::WindowStateChange:
+        {
+            if (isMinimized()) {
+                this->hide();
+            }
+        }
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (trayIcon->isVisible()) {
+        hide();
+        event->ignore();
+    }
+}
+
+void MainWindow::createActions()
+{
+    restoreAction = new QAction(tr("&restore"), this);
+    connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    quitAction = new QAction(tr("&exit"), this);
+    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+}
+
+void MainWindow::createTrayIcon()
+{
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction(restoreAction);
+    trayIconMenu->addSeparator();
+    trayIconMenu->addAction(quitAction);
+    trayIcon = new QSystemTrayIcon(this);
+    QIcon icon(":/icon/MiniLock_15x15.png");
+    trayIcon->setIcon(icon);
+    trayIcon->setContextMenu(trayIconMenu);
+}
+
 
 void MainWindow::on_treeView_clicked(const QModelIndex &index)
 {
@@ -39,5 +91,14 @@ void MainWindow::on_pushButton_clicked()
     ui->tableWidget->insertRow(ui->tableWidget->rowCount());
     ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(dirmodel->fileInfo(ui->treeView->currentIndex()).absolutePath()));
     ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(dirmodel->fileInfo(ui->treeView->currentIndex()).baseName()));
+
+}
+
+
+void MainWindow::on_btn_ok_dir_clicked()
+{
+    fileWindow = new FileWindow(this);
+    fileWindow->show();
+
 
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1145</width>
-    <height>693</height>
+    <width>1140</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -83,13 +83,26 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="btn_ok_dir">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>480</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ok</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1145</width>
+     <width>1140</width>
      <height>21</height>
     </rect>
    </property>
