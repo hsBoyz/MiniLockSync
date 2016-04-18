@@ -14,7 +14,7 @@ FileWindow::FileWindow(QWidget *parent) :
     setman = new Settingsmanager();
 
     filemodel_1 = new QFileSystemModel(this);
-    filemodel_1->setFilter(QDir::NoDotAndDotDot | QDir::Files);
+    //filemodel_1->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     QString sPath1 = setman->returnSetting("directory", setman->getKeyAtPosition("directory", 0));
     filemodel_1->setRootPath(sPath1);
 
@@ -22,7 +22,7 @@ FileWindow::FileWindow(QWidget *parent) :
     ui->listView->setRootIndex(filemodel_1->index(sPath1));
 
     filemodel_2 = new QFileSystemModel(this);
-    filemodel_2->setFilter(QDir::NoDotAndDotDot | QDir::Files);
+    //filemodel_2->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     QString sPath2 = setman->returnSetting("directory", setman->getKeyAtPosition("directory", 1));
     filemodel_2->setRootPath(sPath2);
 
