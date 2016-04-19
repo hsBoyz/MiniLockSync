@@ -1,7 +1,18 @@
-﻿  main.cpp
+﻿  "C:\Qt\Qt5.6.0\5.6\msvc2015\bin\moc.exe" Moc'ing qtapp.h...
+  Uic'ing qtapp.ui...
+  Rcc'ing qtapp.qrc...
+  qrc_qtapp.cpp
+  moc_qtapp.cpp
   Import Symbols
   Compiler Message: RELEASE
   Compiler Message: Unicode not defined
-main.cpp(21): error C3867: "QMessageLogger::debug": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
-main.cpp(21): error C2297: "<<": Ungültig, da der rechte Operand vom Typ "const char [5]" ist
-main.cpp(21): warning C4552: "<<": Operator hat keine Auswirkungen; Operator mit Nebeneffekt erwartet
+  main.cpp
+  Import Symbols
+  Compiler Message: RELEASE
+  Compiler Message: Unicode not defined
+  qtapp.cpp
+  Import Symbols
+  Compiler Message: RELEASE
+  Compiler Message: Unicode not defined
+  Generating Code...
+  qtApp.vcxproj -> C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\qtapp\Win32\Release\qtApp.exe

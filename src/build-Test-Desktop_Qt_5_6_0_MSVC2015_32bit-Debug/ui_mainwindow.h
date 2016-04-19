@@ -35,13 +35,14 @@ public:
     QWidget *centralWidget;
     QLabel *label;
     QTableWidget *tableWidget;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QTreeView *treeView;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
+    QPushButton *btn_ok_dir;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -50,7 +51,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1145, 693);
+        MainWindow->resize(1140, 700);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label = new QLabel(centralWidget);
@@ -60,15 +61,15 @@ public:
         tableWidget = new QTableWidget(centralWidget);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(270, 270, 761, 192));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(270, 20, 761, 227));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(270, 20, 761, 227));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        treeView = new QTreeView(widget);
+        treeView = new QTreeView(layoutWidget);
         treeView->setObjectName(QStringLiteral("treeView"));
 
         verticalLayout_2->addWidget(treeView);
@@ -79,7 +80,7 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         verticalLayout->addWidget(pushButton);
@@ -94,10 +95,13 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout);
 
+        btn_ok_dir = new QPushButton(centralWidget);
+        btn_ok_dir->setObjectName(QStringLiteral("btn_ok_dir"));
+        btn_ok_dir->setGeometry(QRect(270, 480, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1145, 21));
+        menuBar->setGeometry(QRect(0, 0, 1140, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -116,6 +120,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         label->setText(QApplication::translate("MainWindow", "Bitte zu verschl\303\274sselnden Speicherort angeben:", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Ausgew\303\244hltes Verzeichniss hinzuf\303\274gen", 0));
+        btn_ok_dir->setText(QApplication::translate("MainWindow", "Ok", 0));
     } // retranslateUi
 
 };
