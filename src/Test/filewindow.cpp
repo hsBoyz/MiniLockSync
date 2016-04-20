@@ -44,25 +44,22 @@ void FileWindow::setFileModels() {
     previousDirPath.clear();
 
     /*
-    QStringList title;
-    title << "Name" << "Type" << "Size" << "Date Modified";
-    ui->tableWidget->setColumnCount(4);
-    ui->tableWidget->setColumnWidth(0,170);
-    ui->tableWidget->setColumnWidth(1,70);
-    ui->tableWidget->setColumnWidth(2,70);
-    ui->tableWidget->setColumnWidth(3,120);
-    ui->tableWidget->setHorizontalHeaderLabels(title);
+     *
+     *
+     * NO dynamic implementation yet. sPath2 getKeyAtPosition
+     *
+     *
+     *
     */
-
     filemodel_2 = new QFileSystemModel(this);
-    QString sPath2 = setman->returnSetting("directory", setman->getKeyAtPosition("directory", 1));
+    QString sPath2 = setman->returnSetting("directory", setman->getKeyAtPosition("directory", 0));
     filemodel_2->setRootPath(sPath2);
 
     ui->listView_2->setModel(filemodel_2);
     ui->listView_2->setRootIndex(filemodel_2->index(sPath2));
     currentDirPath = sPath2;
 
-    ui->label->setText(setman->getKeyAtPosition("directory", 1));
+    ui->label->setText(setman->getKeyAtPosition("directory", 0));
     //ui->label_2->setText(setman->getKeyAtPosition("directory", 0));
     ui->label_2->setText("Drag&Drop files to save in current dir");
 }

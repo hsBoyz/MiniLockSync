@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -26,76 +27,78 @@ QT_BEGIN_NAMESPACE
 class Ui_FileWindow
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QListView *listView_2;
-    QListView *listView;
-    QWidget *widget2;
+    QListWidget *listWidget;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label;
     QLabel *label_2;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_6;
 
     void setupUi(QDialog *FileWindow)
     {
         if (FileWindow->objectName().isEmpty())
             FileWindow->setObjectName(QStringLiteral("FileWindow"));
         FileWindow->resize(1140, 700);
-        widget = new QWidget(FileWindow);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(60, 530, 761, 41));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(FileWindow);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(60, 530, 761, 41));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget);
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
 
         horizontalLayout->addWidget(pushButton_2);
 
-        pushButton_3 = new QPushButton(widget);
+        pushButton_3 = new QPushButton(layoutWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setEnabled(true);
 
         horizontalLayout->addWidget(pushButton_3);
 
-        pushButton_4 = new QPushButton(widget);
+        pushButton_4 = new QPushButton(layoutWidget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
 
         horizontalLayout->addWidget(pushButton_4);
 
-        widget1 = new QWidget(FileWindow);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(60, 120, 931, 381));
-        horizontalLayout_2 = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(FileWindow);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(60, 150, 931, 351));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        listView_2 = new QListView(widget1);
+        listView_2 = new QListView(layoutWidget1);
         listView_2->setObjectName(QStringLiteral("listView_2"));
 
         horizontalLayout_2->addWidget(listView_2);
 
-        listView = new QListView(widget1);
-        listView->setObjectName(QStringLiteral("listView"));
+        listWidget = new QListWidget(layoutWidget1);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
 
-        horizontalLayout_2->addWidget(listView);
+        horizontalLayout_2->addWidget(listWidget);
 
-        widget2 = new QWidget(FileWindow);
-        widget2->setObjectName(QStringLiteral("widget2"));
-        widget2->setGeometry(QRect(60, 60, 931, 51));
-        horizontalLayout_3 = new QHBoxLayout(widget2);
+        layoutWidget2 = new QWidget(FileWindow);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(60, 60, 931, 51));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget2);
+        label = new QLabel(layoutWidget2);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
         font.setPointSize(20);
@@ -103,12 +106,24 @@ public:
 
         horizontalLayout_3->addWidget(label);
 
-        label_2 = new QLabel(widget2);
+        label_2 = new QLabel(layoutWidget2);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
 
         horizontalLayout_3->addWidget(label_2);
 
+        pushButton_5 = new QPushButton(FileWindow);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(60, 130, 75, 23));
+        pushButton_6 = new QPushButton(FileWindow);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(450, 130, 75, 23));
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        label_2->raise();
+        pushButton_5->raise();
+        pushButton_6->raise();
 
         retranslateUi(FileWindow);
 
@@ -124,6 +139,8 @@ public:
         pushButton_4->setText(QApplication::translate("FileWindow", "PrintGroupsToConsole", 0));
         label->setText(QString());
         label_2->setText(QString());
+        pushButton_5->setText(QApplication::translate("FileWindow", "Back", 0));
+        pushButton_6->setText(QApplication::translate("FileWindow", "Change view", 0));
     } // retranslateUi
 
 };
