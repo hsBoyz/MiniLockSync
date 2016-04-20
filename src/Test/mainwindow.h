@@ -29,6 +29,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void initializeLists();
     void changeEvent(QEvent* evt);
     void on_treeView_clicked(const QModelIndex &index);
 

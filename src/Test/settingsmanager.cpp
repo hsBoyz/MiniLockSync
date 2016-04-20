@@ -4,7 +4,7 @@
 
 Settingsmanager::Settingsmanager()
 {
-    qDebug() << "Ctor erstellt";
+
 }
 
 void Settingsmanager::saveSettings(QString group, QString key, QString value) {

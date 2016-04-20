@@ -12,23 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QWidget::setWindowTitle("Einstellungen");
 
-
+    initializeLists();
     createActions();
     createTrayIcon();
     trayIcon->show();
-
-
-    QString sPath = "C:/";
-    dirmodel = new QFileSystemModel (this);
-    dirmodel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
-    dirmodel->setRootPath(sPath);
-
-    ui->treeView->setModel(dirmodel);
-
-    QStringList title;
-    title << "Pfad" << "Name";
-    ui->tableWidget->setColumnCount(2);
-    ui->tableWidget->setHorizontalHeaderLabels(title);
 
     settingsManager = new Settingsmanager();
 
@@ -37,6 +24,23 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::initializeLists() {
+    QString sPath = "C:/";
+    dirmodel = new QFileSystemModel (this);
+    dirmodel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
+    dirmodel->setRootPath(sPath);
+
+
+    ui->treeView->setModel(dirmodel);
+    ui->treeView->setColumnWidth(0,300);
+
+
+    QStringList title;
+    title << "Pfad" << "Name";
+    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setHorizontalHeaderLabels(title);
 }
 
 void MainWindow::changeEvent(QEvent * evt) {
@@ -81,7 +85,6 @@ void MainWindow::createTrayIcon()
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 }
-
 
 void MainWindow::on_treeView_clicked(const QModelIndex &index)
 {
