@@ -16,6 +16,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
@@ -27,7 +28,10 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QTextBrowser *textBrowser;
+    QTextBrowser *Title;
+    QPushButton *pushManage;
+    QPushButton *pushAdd;
+    QPushButton *pushSettings;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -39,9 +43,18 @@ public:
         MainWindow->resize(800, 600);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        textBrowser = new QTextBrowser(centralWidget);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        textBrowser->setGeometry(QRect(240, 20, 291, 51));
+        Title = new QTextBrowser(centralWidget);
+        Title->setObjectName(QStringLiteral("Title"));
+        Title->setGeometry(QRect(240, 20, 291, 51));
+        pushManage = new QPushButton(centralWidget);
+        pushManage->setObjectName(QStringLiteral("pushManage"));
+        pushManage->setGeometry(QRect(60, 140, 151, 61));
+        pushAdd = new QPushButton(centralWidget);
+        pushAdd->setObjectName(QStringLiteral("pushAdd"));
+        pushAdd->setGeometry(QRect(60, 250, 151, 61));
+        pushSettings = new QPushButton(centralWidget);
+        pushSettings->setObjectName(QStringLiteral("pushSettings"));
+        pushSettings->setGeometry(QRect(60, 360, 151, 61));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -62,11 +75,14 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        textBrowser->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Title->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; font-style:italic;\">MiniLockSync</span></p></body></html>", 0));
+        pushManage->setText(QApplication::translate("MainWindow", "Manage Cloud Service", 0));
+        pushAdd->setText(QApplication::translate("MainWindow", "Add Cloud Service", 0));
+        pushSettings->setText(QApplication::translate("MainWindow", "Settings", 0));
     } // retranslateUi
 
 };

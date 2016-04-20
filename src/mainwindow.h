@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void pushManageClicked();
 };
 
 #endif // MAINWINDOW_H
