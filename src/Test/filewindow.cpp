@@ -30,13 +30,6 @@ FileWindow::~FileWindow()
 }
 
 void FileWindow::setListWidget() {
-    //filemodel_1 = new QFileSystemModel(this);
-    //QString sPath1 = setman->returnSetting("directory", setman->getKeyAtPosition("directory", 0));
-    //filemodel_1->setRootPath(sPath1);
-
-    //ui->listWidget->setRootIndex(filemodel_1->index(sPath1));
-    //ui->listWidget->
-
 
 }
 
@@ -60,19 +53,12 @@ void FileWindow::setFileModels() {
     currentDirPath = sPath2;
 
     ui->label->setText(setman->getKeyAtPosition("directory", 0));
-    //ui->label_2->setText(setman->getKeyAtPosition("directory", 0));
-    ui->label_2->setText("Drag&Drop files to save in current dir");
+
 }
 
 void FileWindow::dragEnterEvent(QDragEnterEvent *e)
 {
     e->acceptProposedAction();
-    /*
-    if (e->mimeData()->hasUrls()) {
-        e->acceptProposedAction();
-    }
-    */
-
 }
 
 void FileWindow::dragLeaveEvent(QDragEnterEvent *e)
@@ -189,4 +175,8 @@ void FileWindow::on_removeFile_clicked()
 void FileWindow::on_listView_2_clicked(const QModelIndex &index)
 {
     selectedDirPath = filemodel_2->fileInfo(index).absoluteFilePath();
+}
+
+void FileWindow::copyDirectory(){
+
 }

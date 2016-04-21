@@ -32,6 +32,8 @@ private slots:
     void dragMoveEvent(QDragEnterEvent *e);
     void dropEvent(QDropEvent *e);
 
+    void copyDirectory();
+
     void on_listView_2_doubleClicked(const QModelIndex &index);
     void on_pushButton_5_clicked();
     void on_listView_2_activated(const QModelIndex &index);

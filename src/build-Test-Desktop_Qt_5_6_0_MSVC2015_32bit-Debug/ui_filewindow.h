@@ -18,7 +18,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -36,13 +35,14 @@ public:
     QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QListView *listView_2;
-    QListWidget *listWidget;
+    QListView *listView_saftyCopy;
     QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label;
-    QLabel *label_2;
+    QLabel *label_3;
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
+    QPushButton *removeFile;
 
     void setupUi(QDialog *FileWindow)
     {
@@ -84,46 +84,48 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         listView_2 = new QListView(layoutWidget1);
         listView_2->setObjectName(QStringLiteral("listView_2"));
+        listView_2->setAcceptDrops(false);
 
         horizontalLayout_2->addWidget(listView_2);
 
-        listWidget = new QListWidget(layoutWidget1);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listView_saftyCopy = new QListView(layoutWidget1);
+        listView_saftyCopy->setObjectName(QStringLiteral("listView_saftyCopy"));
 
-        horizontalLayout_2->addWidget(listWidget);
+        horizontalLayout_2->addWidget(listView_saftyCopy);
 
         layoutWidget2 = new QWidget(FileWindow);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(60, 60, 931, 51));
+        layoutWidget2->setGeometry(QRect(60, 50, 931, 61));
         horizontalLayout_3 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(layoutWidget2);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
-        font.setPointSize(20);
+        font.setPointSize(16);
         label->setFont(font);
+        label->setAlignment(Qt::AlignCenter);
+        label->setWordWrap(true);
 
         horizontalLayout_3->addWidget(label);
 
-        label_2 = new QLabel(layoutWidget2);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setFont(font);
+        label_3 = new QLabel(layoutWidget2);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setFont(font);
+        label_3->setAlignment(Qt::AlignCenter);
+        label_3->setWordWrap(true);
 
-        horizontalLayout_3->addWidget(label_2);
+        horizontalLayout_3->addWidget(label_3);
 
         pushButton_5 = new QPushButton(FileWindow);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(60, 130, 75, 23));
         pushButton_6 = new QPushButton(FileWindow);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(450, 130, 75, 23));
-        layoutWidget->raise();
-        layoutWidget->raise();
-        layoutWidget->raise();
-        label_2->raise();
-        pushButton_5->raise();
-        pushButton_6->raise();
+        pushButton_6->setGeometry(QRect(140, 130, 91, 23));
+        removeFile = new QPushButton(FileWindow);
+        removeFile->setObjectName(QStringLiteral("removeFile"));
+        removeFile->setGeometry(QRect(60, 590, 131, 23));
 
         retranslateUi(FileWindow);
 
@@ -138,9 +140,10 @@ public:
         pushButton_3->setText(QApplication::translate("FileWindow", "RemoveAllKeys", 0));
         pushButton_4->setText(QApplication::translate("FileWindow", "PrintGroupsToConsole", 0));
         label->setText(QString());
-        label_2->setText(QString());
+        label_3->setText(QApplication::translate("FileWindow", "Sicherungskopien", 0));
         pushButton_5->setText(QApplication::translate("FileWindow", "Back", 0));
         pushButton_6->setText(QApplication::translate("FileWindow", "Change view", 0));
+        removeFile->setText(QApplication::translate("FileWindow", "removeSelectedFile", 0));
     } // retranslateUi
 
 };

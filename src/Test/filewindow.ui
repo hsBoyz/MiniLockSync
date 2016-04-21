@@ -67,10 +67,14 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="QListView" name="listView_2"/>
+     <widget class="QListView" name="listView_2">
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QListWidget" name="listWidget"/>
+     <widget class="QListView" name="listView_saftyCopy"/>
     </item>
    </layout>
   </widget>
@@ -78,9 +82,9 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>60</y>
+     <y>50</y>
      <width>931</width>
-     <height>51</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -88,23 +92,35 @@
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>16</pointsize>
        </font>
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>16</pointsize>
        </font>
       </property>
       <property name="text">
-       <string/>
+       <string>Sicherungskopien</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -126,9 +142,9 @@
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
-     <x>450</x>
+     <x>140</x>
      <y>130</y>
-     <width>75</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>

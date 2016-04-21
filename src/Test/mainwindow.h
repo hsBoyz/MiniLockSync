@@ -39,6 +39,9 @@ private slots:
 
     void on_btn_ok_dir_clicked();
 
+
+    void on_pushButton_saveDir_clicked();
+
 private:
     //Ui::MainWindow *ui;
     QString TAG = "MAINWINDOW";

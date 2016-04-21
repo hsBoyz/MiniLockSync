@@ -117,6 +117,16 @@ void MainWindow::on_pushButton_clicked()
 }
 
 
+void MainWindow::on_pushButton_saveDir_clicked()
+{
+    QString sPath = dirmodel->fileInfo(ui->treeView->currentIndex()).absolutePath() + "/" + dirmodel->fileInfo(ui->treeView->currentIndex()).baseName();
+    ui->tableWidget_saveDir->insertRow(ui->tableWidget->rowCount());
+    ui->tableWidget_saveDir->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(dirmodel->fileInfo(ui->treeView->currentIndex()).absolutePath()));
+    ui->tableWidget_saveDir->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(dirmodel->fileInfo(ui->treeView->currentIndex()).baseName()));
+
+}
+
+
 void MainWindow::on_btn_ok_dir_clicked()
 {
     int rowCount = ui->tableWidget->rowCount();
