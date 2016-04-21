@@ -1,6 +1,8 @@
 #include "settingsmanager.h"
 #include <QSettings>
 #include <QDebug>
+#include <QDir>
+
 
 Settingsmanager::Settingsmanager()
 {
@@ -14,18 +16,18 @@ void Settingsmanager::saveSettings(QString group, QString key, QString value) {
 
     setting.endGroup();
 
-    qDebug() << "saved";
+    qDebug() << TAG + " saveSettings: " + "saved";
 }
 
-
-void Settingsmanager::loadSettings(QString group, QString key) {
+QStringList Settingsmanager::loadSettings(QString group) {
     QSettings setting(myApp, mySetting);
+    QStringList keys;
+
     setting.beginGroup(group);
-
-
-    qDebug() << setting.value(key).toString();
-
+    keys = setting.allKeys();
     setting.endGroup();
+
+    return keys;
 }
 
 QString Settingsmanager::returnSetting(QString group, QString key) {
@@ -45,7 +47,7 @@ void Settingsmanager::removeKey(QString group, QString keyToRemove) {
 
     if (setting.allKeys().length() == 0){
         setting.remove("");
-        qDebug() << "Group " + group + " removed";
+        qDebug() << TAG + ": Group " + group + " removed";
     }
 
     setting.endGroup();
@@ -60,7 +62,7 @@ void Settingsmanager::printGroups() {
         setting.beginGroup(grp);
         QStringList keyList = setting.allKeys();
         foreach(QString key, keyList) {
-            qDebug() << key;
+            qDebug() << TAG + " printGroups: " + key;
             //this->removeKey(grp, key);
         }
         setting.endGroup();
@@ -76,7 +78,7 @@ void Settingsmanager::removeAllKeys() {
         setting.beginGroup(grp);
         QStringList keyList = setting.allKeys();
         foreach(QString key, keyList) {
-            qDebug() << key;
+            qDebug() << TAG + " " + key;
             this->removeKey(grp, key);
         }
         setting.endGroup();
@@ -90,4 +92,17 @@ QString Settingsmanager::getKeyAtPosition(QString group, int position) {
     setting.endGroup();
 
     return keyList[position];
+}
+
+bool Settingsmanager::keyExists(QString group, QString key) {
+    QSettings setting(myApp, mySetting);
+    setting.beginGroup(group);
+    if (setting.contains(key)){
+        setting.endGroup();
+        return true;
+    }
+    else {
+        setting.endGroup();
+        return false;
+    }
 }

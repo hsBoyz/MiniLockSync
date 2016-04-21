@@ -136,12 +136,19 @@
     <string>Change view</string>
    </property>
   </widget>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>label_2</zorder>
-  <zorder>pushButton_5</zorder>
-  <zorder>pushButton_6</zorder>
+  <widget class="QPushButton" name="removeFile">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>590</y>
+     <width>131</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>removeSelectedFile</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -12,12 +12,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QWidget::setWindowTitle("Einstellungen");
 
+    settingsManager = new Settingsmanager();
     initializeLists();
     createActions();
     createTrayIcon();
     trayIcon->show();
 
-    settingsManager = new Settingsmanager();
+
 
 }
 
@@ -41,7 +42,21 @@ void MainWindow::initializeLists() {
     title << "Pfad" << "Name";
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setHorizontalHeaderLabels(title);
+    ui->tableWidget->setColumnWidth(0, 300);
+
+    if (!settingsManager->loadSettings("directory").isEmpty()) {
+        QStringList keys = settingsManager->loadSettings("directory");
+        foreach (QString key, keys) {
+            QDir dir = (settingsManager->returnSetting("directory", key));
+            ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(dir.absolutePath()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(dir.dirName()));
+        }
+    }
+
+
 }
+
 
 void MainWindow::changeEvent(QEvent * evt) {
     switch(evt->type())
@@ -111,7 +126,10 @@ void MainWindow::on_btn_ok_dir_clicked()
         name = ui->tableWidget->item(i, 1)->text();
 
         //Adding name for getting the full path including selected folder
-        settingsManager->saveSettings("directory", name, path + "/" + name);
+        if (!settingsManager->keyExists("directory", name)) {
+            qDebug() << TAG + " ok_dir_clicked if";
+            settingsManager->saveSettings("directory", name, path + "/" + name);
+        }
 
     }
 

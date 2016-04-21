@@ -37,8 +37,13 @@ private slots:
     void on_listView_2_activated(const QModelIndex &index);
     void on_pushButton_6_clicked();
 
+    void on_removeFile_clicked();
+
+    void on_listView_2_clicked(const QModelIndex &index);
+
 private:
     Ui::FileWindow *ui;
+    QString TAG = "FILEWINDOW";
 
     QFileSystemModel *filemodel_1;
     QFileSystemModel *filemodel_2;
@@ -46,6 +51,7 @@ private:
 
     QList<QString> previousDirPath;     //List for storing the file browsing history
     QString currentDirPath;             //current path of directory for copying files
+    QString selectedDirPath = "";
 
 };
 

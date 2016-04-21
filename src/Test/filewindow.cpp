@@ -6,7 +6,7 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QDesktopServices>
-#include <QClipboard>
+#include <QMessageBox>
 
 
 FileWindow::FileWindow(QWidget *parent) :
@@ -89,8 +89,7 @@ void FileWindow::dropEvent(QDropEvent *e)
 {
     if (e->mimeData()->hasUrls()) {
         foreach (QUrl url, e->mimeData()->urls()) {
-            qDebug() << (currentDirPath + "/" + url.fileName());
-            qDebug() << QFile::copy(url.toLocalFile(), (currentDirPath + "/" + url.fileName()));
+            qDebug() << TAG + " dropEvent, File copied? " << QFile::copy(url.toLocalFile(), (currentDirPath + "/" + url.fileName()));
         }
     }
 }
@@ -104,7 +103,7 @@ void FileWindow::on_pushButton_clicked()
 void FileWindow::on_pushButton_2_clicked()
 {
     //load
-    setman->loadSettings("Test", "key");
+    setman->loadSettings("Test");
 }
 
 void FileWindow::on_pushButton_3_clicked()
@@ -135,6 +134,7 @@ void FileWindow::on_listView_2_activated(const QModelIndex &index)
 {
     currentDirPath = filemodel_2->fileInfo(index).absoluteFilePath();
     previousDirPath.append(filemodel_2->fileInfo(index).absolutePath());
+
 }
 
 
@@ -144,6 +144,8 @@ void FileWindow::on_pushButton_5_clicked()
         ui->listView_2->setRootIndex(filemodel_2->index(previousDirPath.last()));
         previousDirPath.removeLast();
     }
+    selectedDirPath = "";
+
 }
 
 void FileWindow::on_pushButton_6_clicked()
@@ -155,4 +157,36 @@ void FileWindow::on_pushButton_6_clicked()
         ui->listView_2->setViewMode(QListView::IconMode);
     }
 
+}
+
+void FileWindow::on_removeFile_clicked()
+{
+    qDebug() << TAG << " removeFile: selectedDirPath: " << selectedDirPath;
+
+    QMessageBox msgBox;
+    msgBox.setText("File will be deleted.");
+    msgBox.setInformativeText("Do you want to delete the File?");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+
+    if (selectedDirPath != "") {
+        int returnValue = msgBox.exec();
+
+        switch (returnValue) {
+            case QMessageBox::Ok:
+                QFile::remove(selectedDirPath);
+                break;
+            case QMessageBox::Cancel:
+                // Cancel was clicked
+                break;
+            default:
+                // should never be reached
+                break;
+          }
+    }
+}
+
+void FileWindow::on_listView_2_clicked(const QModelIndex &index)
+{
+    selectedDirPath = filemodel_2->fileInfo(index).absoluteFilePath();
 }

@@ -41,6 +41,7 @@ private slots:
 
 private:
     //Ui::MainWindow *ui;
+    QString TAG = "MAINWINDOW";
 
 
     QFileSystemModel *dirmodel;
