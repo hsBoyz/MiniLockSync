@@ -26,7 +26,13 @@ protected:
 public:
     Ui::MainWindow *ui;
     explicit MainWindow(QWidget *parent = 0);
+
+    static QString settingsKeyForPaths;
+    static QString settingsKeyForSaveDir;
+
+
     ~MainWindow();
+
 
 private slots:
     void initializeLists();
@@ -44,7 +50,8 @@ private slots:
 
 private:
     //Ui::MainWindow *ui;
-    QString TAG = "MAINWINDOW";
+    QString TAG = "MAINWINDOW ";
+
 
 
     QFileSystemModel *dirmodel;

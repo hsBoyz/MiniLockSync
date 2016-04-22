@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 static const unsigned char qt_resource_data[] = {
-  // C:/Users/Manuel Tutsch/OneDrive/Programmieren/QT/MiniLockSync/src/Test/MiniLock_15x15.png
+  // C:/Users/Manuel Tutsch/Desktop/MiniLockSync/src/Test/MiniLock_15x15.png
   0x0,0x0,0xb,0xaf,
   0x89,
   0x50,0x4e,0x47,0xd,0xa,0x1a,0xa,0x0,0x0,0x0,0xd,0x49,0x48,0x44,0x52,0x0,

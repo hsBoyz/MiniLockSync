@@ -114,7 +114,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Sicherungskopien</string>
+       <string>Sicherungskopien/Arbeitsordner</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -163,6 +163,19 @@
    </property>
    <property name="text">
     <string>removeSelectedFile</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_backSaftyCopy">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>130</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
    </property>
   </widget>
  </widget>

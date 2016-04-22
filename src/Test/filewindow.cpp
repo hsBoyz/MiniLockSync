@@ -1,5 +1,6 @@
 #include "filewindow.h"
 #include "ui_filewindow.h"
+#include "mainwindow.h"
 
 #include <QDebug>
 #include <QDragEnterEvent>
@@ -18,8 +19,9 @@ FileWindow::FileWindow(QWidget *parent) :
 
     setman = new Settingsmanager();
 
+    createCopyAndWorkDir();
     setFileModels();
-    setListWidget();
+
 
 
 }
@@ -29,12 +31,15 @@ FileWindow::~FileWindow()
     delete ui;
 }
 
-void FileWindow::setListWidget() {
-
-}
-
 void FileWindow::setFileModels() {
     previousDirPath.clear();
+
+    filemodel_saftycopy = new QFileSystemModel(this);
+    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "mainfolder");
+    filemodel_saftycopy->setRootPath(sPath1);
+
+    ui->listView_saftyCopy->setModel(filemodel_saftycopy);
+    ui->listView_saftyCopy->setRootIndex(filemodel_saftycopy->index(sPath1));
 
     /*
      *
@@ -45,14 +50,14 @@ void FileWindow::setFileModels() {
      *
     */
     filemodel_2 = new QFileSystemModel(this);
-    QString sPath2 = setman->returnSetting("directory", setman->getKeyAtPosition("directory", 0));
+    QString sPath2 = setman->returnSetting(MainWindow::settingsKeyForPaths, setman->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
     filemodel_2->setRootPath(sPath2);
 
     ui->listView_2->setModel(filemodel_2);
     ui->listView_2->setRootIndex(filemodel_2->index(sPath2));
     currentDirPath = sPath2;
 
-    ui->label->setText(setman->getKeyAtPosition("directory", 0));
+    ui->label->setText(setman->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
 
 }
 
@@ -123,6 +128,24 @@ void FileWindow::on_listView_2_activated(const QModelIndex &index)
 
 }
 
+void FileWindow::on_listView_saftyCopy_doubleClicked(const QModelIndex &index)
+{
+    if (filemodel_saftycopy->fileInfo(index).isDir()) {
+        //Step into folder
+        ui->listView_saftyCopy->setRootIndex(index);
+    }
+    else {
+        //Open document with system standard application
+        QDesktopServices::openUrl(filemodel_saftycopy->fileInfo(index).absoluteFilePath());
+    }
+}
+
+void FileWindow::on_listView_saftyCopy_activated(const QModelIndex &index)
+
+{
+    currentDirPathWorkDir = filemodel_saftycopy->fileInfo(index).absoluteFilePath();
+    previousDirPathWorkDir.append(filemodel_saftycopy->fileInfo(index).absolutePath());
+}
 
 void FileWindow::on_pushButton_5_clicked()
 {
@@ -132,6 +155,15 @@ void FileWindow::on_pushButton_5_clicked()
     }
     selectedDirPath = "";
 
+}
+
+void FileWindow::on_pushButton_backSaftyCopy_clicked()
+{
+    if (!previousDirPathWorkDir.isEmpty()) {
+        ui->listView_saftyCopy->setRootIndex(filemodel_saftycopy->index(previousDirPathWorkDir.last()));
+        previousDirPathWorkDir.removeLast();
+    }
+    selectedDirPathWorkDir = "";
 }
 
 void FileWindow::on_pushButton_6_clicked()
@@ -180,3 +212,57 @@ void FileWindow::on_listView_2_clicked(const QModelIndex &index)
 void FileWindow::copyDirectory(){
 
 }
+
+void FileWindow::createCopyAndWorkDir() {
+    QStringList keys = setman->loadSettings(MainWindow::settingsKeyForSaveDir);
+    QString setting = setman->returnSetting(MainWindow::settingsKeyForSaveDir, keys[0]);
+    QDir dir = QDir::root();
+    if (!QDir(setting + "/MiniLockSync").exists()) {
+        qDebug() << TAG << "createCopyAndWorkDir: MiniLockSync Ordner erstellt? " <<
+        dir.mkpath(setting + "/MiniLockSync");
+        setman->saveSettings(MainWindow::settingsKeyForSaveDir, "mainfolder", setting + "/MiniLockSync");
+        setting += "/MiniLockSync";
+
+        if (!QDir(setting + "/Workplace").exists()) {
+            qDebug() << TAG << "createCopyAndWorkDir: Workplace Ordner erstellt? " <<
+            dir.mkpath(setting + "/Workplace");
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
+        }
+
+        if (!QDir(setting + "/Safetycopy").exists()) {
+            qDebug() << TAG << "createCopyAndWorkDir: Safetycopy Ordner erstellt? " <<
+            dir.mkpath(setting + "/Safetycopy");
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
+        }
+    }
+    else if (QDir(setting + "/MiniLockSync").exists()){
+
+        setting += "/MiniLockSync";
+
+        if (!QDir(setting + "/Workplace").exists()) {
+            //qDebug() << TAG << "createCopyAndWorkDir else: Workplace Ordner erstellt? " <<
+            dir.mkpath(setting + "/Workplace");
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
+        }
+
+        if (!QDir(setting + "/Safetycopy").exists()) {
+            //qDebug() << TAG << "createCopyAndWorkDir else: Safetycopy Ordner erstellt? " <<
+            dir.mkpath(setting + "/Safetycopy");
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
+
+        }
+
+        if (!setman->keyExists(MainWindow::settingsKeyForSaveDir, "mainfolder")) {
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "mainfolder", setting + "/MiniLockSync");
+        }
+        if (!setman->keyExists(MainWindow::settingsKeyForSaveDir, "workplace")) {
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
+        }
+        if (!setman->keyExists(MainWindow::settingsKeyForSaveDir, "safetycopy")) {
+            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
+        }
+    }
+}
+
+
+

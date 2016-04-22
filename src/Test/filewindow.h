@@ -25,7 +25,6 @@ private slots:
     void on_pushButton_4_clicked();
 
     void setFileModels();
-    void setListWidget();
 
     void dragEnterEvent(QDragEnterEvent *e);
     void dragLeaveEvent(QDragEnterEvent *e);
@@ -33,6 +32,7 @@ private slots:
     void dropEvent(QDropEvent *e);
 
     void copyDirectory();
+    void createCopyAndWorkDir();
 
     void on_listView_2_doubleClicked(const QModelIndex &index);
     void on_pushButton_5_clicked();
@@ -43,17 +43,27 @@ private slots:
 
     void on_listView_2_clicked(const QModelIndex &index);
 
+    void on_listView_saftyCopy_activated(const QModelIndex &index);
+
+    void on_listView_saftyCopy_doubleClicked(const QModelIndex &index);
+
+    void on_pushButton_backSaftyCopy_clicked();
+
 private:
     Ui::FileWindow *ui;
-    QString TAG = "FILEWINDOW";
+    QString TAG = "FILEWINDOW ";
 
-    QFileSystemModel *filemodel_1;
     QFileSystemModel *filemodel_2;
+    QFileSystemModel *filemodel_saftycopy;
     Settingsmanager *setman;
 
     QList<QString> previousDirPath;     //List for storing the file browsing history
     QString currentDirPath;             //current path of directory for copying files
     QString selectedDirPath = "";
+
+    QList<QString> previousDirPathWorkDir;
+    QString currentDirPathWorkDir;
+    QString selectedDirPathWorkDir = "";
 
 };
 
