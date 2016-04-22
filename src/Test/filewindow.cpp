@@ -1,6 +1,7 @@
 #include "filewindow.h"
 #include "ui_filewindow.h"
 #include "mainwindow.h"
+#include "handlefiles.h"
 
 #include <QDebug>
 #include <QDragEnterEvent>
@@ -18,8 +19,10 @@ FileWindow::FileWindow(QWidget *parent) :
     setAcceptDrops(true);
 
     setman = new Settingsmanager();
+    filesHandler = new HandleFiles();
 
     createCopyAndWorkDir();
+    copyDirectory();
     setFileModels();
 
 
@@ -211,6 +214,17 @@ void FileWindow::on_listView_2_clicked(const QModelIndex &index)
 
 void FileWindow::copyDirectory(){
 
+    QString from = setman->returnSetting(MainWindow::settingsKeyForPaths, setman->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
+    QString to = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace");
+    qDebug() << TAG << "copyDirectory from: " << from;
+    qDebug() << TAG << "copyDirectory to: " << to;
+    filesHandler->copy_dir_recursive(from, to);
+
+    to = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "safetycopy");
+    filesHandler->copy_dir_recursive(from, to);
+
+
+
 }
 
 void FileWindow::createCopyAndWorkDir() {
@@ -263,6 +277,7 @@ void FileWindow::createCopyAndWorkDir() {
         }
     }
 }
+
 
 
 

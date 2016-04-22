@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QFileSystemModel>
 #include "settingsmanager.h"
+#include "handlefiles.h"
 
 
 namespace Ui {
@@ -56,6 +57,7 @@ private:
     QFileSystemModel *filemodel_2;
     QFileSystemModel *filemodel_saftycopy;
     Settingsmanager *setman;
+    HandleFiles *filesHandler;
 
     QList<QString> previousDirPath;     //List for storing the file browsing history
     QString currentDirPath;             //current path of directory for copying files
