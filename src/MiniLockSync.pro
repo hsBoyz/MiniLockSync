@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-04-20T19:26:19
+# Project created by QtCreator 2016-04-24T13:12:58
 #
 #-------------------------------------------------
 
@@ -14,10 +14,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    manage.cpp
+    stackedwindow.cpp
 
 HEADERS  += mainwindow.h \
-    manage.h
+    stackedwindow.h
 
 FORMS    += mainwindow.ui \
-    manage.ui
+    stackedwindow.ui
