@@ -2,6 +2,7 @@
 #define STACKEDWINDOW_H
 
 #include <QStackedWidget>
+#include <QFileSystemModel>
 
 #include <QWidget>
 #include <QMainWindow>
@@ -37,22 +38,25 @@ public:
     ~StackedWindow();
 
 private:
-
+    QFileSystemModel *fileBrowserModel;
 
     QAction *act2,*act4;
 
+    void initializeFileBrowser();
+
 private slots:
-    void pushManageClicked();
-    void pushSettingsClicked();
     void pushZurueckManageClicked();
     void pushZurueckSettingsClicked();
-
     void pushDropboxClicked();
     void pushICloudClicked();
     void pushZurueckDropboxClicked();
     void pushZurueckICloudClicked();
 
     void pushAddClicked();
+
+public slots:
+    void pushSettingsClicked();
+    void pushManageClicked();
 
 };
 

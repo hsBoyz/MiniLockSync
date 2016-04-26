@@ -1,13 +1,14 @@
 #include "steerer.h"
 #include "ui_steerer.h"
 #include "ui_stackedwindow.h"
-#include "stackedwindow.h"
+//#include "stackedwindow.h"
 
 Steerer::Steerer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Steerer)
 {
     ui->setupUi(this);
+    stackedwin = new StackedWindow();
 }
 
 Steerer::~Steerer()
@@ -43,7 +44,7 @@ void Steerer::createTrayIcon()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
     trayIcon = new QSystemTrayIcon(this);
-    QIcon icon(":/icon/MiniLock_15x15.png");
+    QIcon icon(":/icons/images/MiniLock_15x15.png");
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 }
@@ -52,13 +53,15 @@ void Steerer::showSettings()
 {
     //MainWindow *w = new MainWindow();
     //w->show();
-    StackedWindow *stackedwin = new StackedWindow();
+
     //stackedwin->show();
-    stackedwin->ui->Settings->show();
+    //stackedwin->ui->Settings->show();
+    stackedwin->show();
+    stackedwin->pushSettingsClicked();
 }
 
 void Steerer::openFileWindow()
 {
-    //FileWindow *w = new FileWindow();
-    //w->show();
+    stackedwin->show();
+    stackedwin->pushManageClicked();
 }
