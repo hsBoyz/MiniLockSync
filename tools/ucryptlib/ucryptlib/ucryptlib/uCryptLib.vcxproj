@@ -78,7 +78,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>COMPILE_UCRYPTOLIB;WIN32;NDEBUG;_WINDOWS;_USRDLL;UCRYPTLIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\uCryptLib\uCryptLib\blake2;$(SolutionDir)\uCryptLib\uCryptLib\rapidjson;$(SolutionDir)\uCryptLib\uCryptLib\sodium;$(SolutionDir)\uCryptLib\uCryptLib\scrypt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\ucryptlib\ucryptlib\ucryptlib;C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\ucryptlib\ucryptlib\ucryptlib\blake2;C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\ucryptlib\ucryptlib\ucryptlib\rapidjson;C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\ucryptlib\ucryptlib\ucryptlib\sodium;C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\ucryptlib\ucryptlib\ucryptlib\scrypt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>

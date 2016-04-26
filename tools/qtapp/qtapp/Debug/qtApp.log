@@ -1,16 +1,10 @@
 ﻿  Moc'ing qtapp.h...
+  Uic'ing qtapp.ui...
+  Rcc'ing qtapp.qrc...
   moc_qtapp.cpp
-  Import Symbols
-  Compiler Message: DEBUG
-  Compiler Message: Unicode will be defined
+c:\users\manuel tutsch\onedrive\programmieren\qt\minilocksync\tools\qtapp\qtapp\generatedfiles\debug\../../qtapp.h(7): fatal error C1083: Cannot open include file: 'uCryptLib.h': No such file or directory
   main.cpp
-  Import Symbols
-  Compiler Message: DEBUG
-  Compiler Message: Unicode will be defined
+c:\users\manuel tutsch\onedrive\programmieren\qt\minilocksync\tools\qtapp\qtapp\qtapp.h(7): fatal error C1083: Cannot open include file: 'uCryptLib.h': No such file or directory
   qtapp.cpp
-  Import Symbols
-  Compiler Message: DEBUG
-  Compiler Message: Unicode will be defined
-  Code wird generiert...
-  qrc_qtapp.cpp
-  qtApp.vcxproj -> E:\Benutzer\Manuel\OneDrive\Programmieren\QT\qtapp\Win32\Debug\qtApp.exe
+qtapp.cpp(1): fatal error C1083: Cannot open include file: 'uCryptLib.h': No such file or directory
+  Generating Code...
