@@ -50,6 +50,9 @@ private slots:
     void pushICloudClicked();
     void pushZurueckDropboxClicked();
     void pushZurueckICloudClicked();
+
+    void pushAddClicked();
+
 };
 
 #endif // STACKEDWINDOW_H

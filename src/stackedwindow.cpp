@@ -18,6 +18,8 @@ StackedWindow::StackedWindow(QWidget *parent) :
     connect (ui->pushICloud, SIGNAL(clicked(bool)), SLOT(pushICloudClicked()));
     connect (ui->pushZurueckDropbox, SIGNAL(clicked(bool)), SLOT(pushZurueckDropboxClicked()));
     connect (ui->pushZurueckICloud, SIGNAL(clicked(bool)), SLOT(pushZurueckICloudClicked()));
+
+    connect (ui->pushAdd, SIGNAL(clicked(bool)), SLOT(pushAddClicked()));
 }
 
 StackedWindow::~StackedWindow()
@@ -63,4 +65,10 @@ void StackedWindow::pushZurueckDropboxClicked(){
 void StackedWindow::pushZurueckICloudClicked(){
     ui->Manage->show();
     ui->ICloud->hide();
+}
+
+void StackedWindow::pushAddClicked()
+{
+    ui->AddCloud->show();
+    ui->Settings->hide();
 }
