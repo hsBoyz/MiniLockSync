@@ -27,6 +27,16 @@ StackedWindow::~StackedWindow()
     delete ui;
 }
 
+/*
+ *
+ *
+ *
+ * Button slot functions
+ *
+ *
+ *
+ */
+
 void StackedWindow::pushManageClicked(){
     ui->Manage->show();
     ui->Main->hide();
@@ -72,3 +82,40 @@ void StackedWindow::pushAddClicked()
     ui->AddCloud->show();
     ui->Settings->hide();
 }
+
+/*
+ *
+ *
+ *
+ *General functions
+ *
+ *
+ *
+ */
+
+void StackedWindow::initializeFileBrowser()
+{
+    QString sPath = "C:/";
+    fileBrowserModel = new QFileSystemModel (this);
+    fileBrowserModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
+    fileBrowserModel->setRootPath(sPath);
+
+
+    ui->treeView_fileBrowser->setModel(fileBrowserModel);
+    ui->treeView_fileBrowser->setColumnWidth(0,300);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

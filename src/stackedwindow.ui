@@ -281,7 +281,7 @@ p, li { white-space: pre-wrap; }
    </widget>
   </widget>
   <widget class="QWidget" name="AddCloud">
-   <widget class="QTreeView" name="treeView">
+   <widget class="QTreeView" name="treeView_fileBrowser">
     <property name="geometry">
      <rect>
       <x>20</x>
