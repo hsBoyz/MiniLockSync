@@ -63,6 +63,5 @@ void Steerer::showSettings()
 void Steerer::openFileWindow()
 {
     stackedwin->show();
-    //stackedwin->pushManageClicked();
-    stackedwin->ui->Dropbox->show();
+    stackedwin->pushManageClicked();
 }
