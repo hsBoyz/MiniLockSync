@@ -64,7 +64,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_dir">
        <property name="text">
         <string>Zu verschlüsselnden Ort hinzufügen</string>
        </property>

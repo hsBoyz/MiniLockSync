@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 protected:
-    void closeEvent(QCloseEvent *event);
+    //void closeEvent(QCloseEvent *event);
 
 public:
     Ui::MainWindow *ui;
@@ -39,14 +39,11 @@ private slots:
     void changeEvent(QEvent* evt);
     void on_treeView_clicked(const QModelIndex &index);
 
-    void on_pushButton_clicked();
-
-
-
+    void on_pushButton_dir_clicked();
     void on_btn_ok_dir_clicked();
-
-
     void on_pushButton_saveDir_clicked();
+
+    void copyDirectory();
 
 private:
     //Ui::MainWindow *ui;
@@ -57,13 +54,8 @@ private:
     QFileSystemModel *dirmodel;
     QFileSystemModel *filemodel;
     FileWindow *fileWindow;
+    HandleFiles *filesHandler;
 
-    void createActions();
-    void createTrayIcon();
-    QAction *restoreAction;
-    QAction *quitAction;
-    QSystemTrayIcon *trayIcon;
-    QMenu *trayIconMenu;
 
     Settingsmanager *settingsManager;
 };

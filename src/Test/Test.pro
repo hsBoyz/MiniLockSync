@@ -16,16 +16,22 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     filewindow.cpp \
     settingsmanager.cpp \
-    handlefiles.cpp
+    handlefiles.cpp \
+    steerer.cpp \
+    watcher.cpp
 
 HEADERS  += mainwindow.h \
     dialog.h \
     filewindow.h \
     settingsmanager.h \
-    handlefiles.h
+    handlefiles.h \
+    steerer.h \
+    watcher.h
 
 FORMS    += mainwindow.ui \
-    filewindow.ui
+    filewindow.ui \
+    steerer.ui \
+    steerer2.ui
 
 RESOURCES += \
     icon.qrc

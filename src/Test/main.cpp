@@ -1,5 +1,6 @@
 #include "mainwindow.h"
-#include "settingsmanager.h"
+#include "steerer.h"
+#include "watcher.h"
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
@@ -9,43 +10,25 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setQuitOnLastWindowClosed(false);
 
-    MainWindow w;
-    w.show();
-
-    QDir mDir("E:/Benutzer/Manuel/Desktop");
-
-
-    /*
-    foreach (QFileInfo mItm, mDir.drives())
-    {
-        qDebug() << mItm.absoluteFilePath();
-    }
-    */
+    Steerer *w = new Steerer();
+    w->start();
 
 
-    /*
+    //MainWindow w;
+    //w.show();
 
-    QString mPath = "E:/Benutzer/Manuel/Desktop/Test";
+    QFileSystemWatcher watcher;
+    Settingsmanager *setman = new Settingsmanager();
+    Watcher *watch = new Watcher();
 
-    if (!mDir.exists(mPath))
-    {
-        mDir.mkpath(mPath);
-        qDebug() << "Created";
-    }
-    else {
-        qDebug() << "Already exists";
-    }
-    */
-    /*
-    foreach (QFileInfo mItm, mDir.entryInfoList())
-    {
-        //qDebug() << mItm.absoluteFilePath();
-        if (mItm.isDir())   qDebug() << "Dir: " << mItm.absoluteFilePath();
-        if (mItm.isFile())  qDebug() << "File: " << mItm.absoluteFilePath();
+    watcher.addPath(setman->returnSetting("directory", setman->getKeyAtPosition("directory", 0)));
 
-    }
-    */
+    QObject::connect(&watcher, SIGNAL(directoryChanged(QString)), watch, SLOT(showModified(QString)));
+
+
+
 
     return a.exec();
 }

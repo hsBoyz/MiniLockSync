@@ -17,13 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget::setWindowTitle("Einstellungen");
 
     settingsManager = new Settingsmanager();
+    filesHandler = new HandleFiles();
     initializeLists();
-    createActions();
-    createTrayIcon();
-    trayIcon->show();
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -95,6 +90,8 @@ void MainWindow::changeEvent(QEvent * evt) {
     }
 }
 
+
+/*
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (trayIcon->isVisible()) {
@@ -102,26 +99,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
 }
-
-void MainWindow::createActions()
-{
-    restoreAction = new QAction(tr("&Einstellungen"), this);
-    connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
-    quitAction = new QAction(tr("&Beenden"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-}
-
-void MainWindow::createTrayIcon()
-{
-    trayIconMenu = new QMenu(this);
-    trayIconMenu->addAction(restoreAction);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(quitAction);
-    trayIcon = new QSystemTrayIcon(this);
-    QIcon icon(":/icon/MiniLock_15x15.png");
-    trayIcon->setIcon(icon);
-    trayIcon->setContextMenu(trayIconMenu);
-}
+*/
 
 void MainWindow::on_treeView_clicked(const QModelIndex &index)
 {
@@ -129,7 +107,7 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
     //ui->listWidget->addItem(sPath);
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButton_dir_clicked()
 {
     QString sPath = dirmodel->fileInfo(ui->treeView->currentIndex()).absolutePath() + "/" + dirmodel->fileInfo(ui->treeView->currentIndex()).baseName();
     ui->tableWidget->insertRow(ui->tableWidget->rowCount());
@@ -175,7 +153,28 @@ void MainWindow::on_btn_ok_dir_clicked()
         settingsManager->saveSettings(settingsKeyForSaveDir, name, path + "/" + name);
     }
 
+
+
+
+    filesHandler->createCopyAndWorkDir();
+    copyDirectory();
+
     fileWindow = new FileWindow(this);
     fileWindow->show();
-    //this->hide();
+
+    this->hide();
 }
+
+
+void MainWindow::copyDirectory(){
+
+    QString from = settingsManager->returnSetting(MainWindow::settingsKeyForPaths, settingsManager->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
+    QString to = settingsManager->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace");
+    qDebug() << TAG << "copyDirectory from: " << from;
+    qDebug() << TAG << "copyDirectory to: " << to;
+    filesHandler->copy_dir_recursive(from, to);
+
+    to = settingsManager->returnSetting(MainWindow::settingsKeyForSaveDir, "safetycopy");
+    filesHandler->copy_dir_recursive(from, to);
+}
+

@@ -19,10 +19,10 @@ FileWindow::FileWindow(QWidget *parent) :
     setAcceptDrops(true);
 
     setman = new Settingsmanager();
-    filesHandler = new HandleFiles();
+    //filesHandler = new HandleFiles();
 
-    createCopyAndWorkDir();
-    copyDirectory();
+    //createCopyAndWorkDir();
+    //copyDirectory();
     setFileModels();
 
 
@@ -38,7 +38,8 @@ void FileWindow::setFileModels() {
     previousDirPath.clear();
 
     filemodel_saftycopy = new QFileSystemModel(this);
-    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "mainfolder");
+    //QString sPath1 = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "mainfolder");      //This displays workplace and savetycopy
+    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace");
     filemodel_saftycopy->setRootPath(sPath1);
 
     ui->listView_saftyCopy->setModel(filemodel_saftycopy);
@@ -56,9 +57,14 @@ void FileWindow::setFileModels() {
     QString sPath2 = setman->returnSetting(MainWindow::settingsKeyForPaths, setman->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
     filemodel_2->setRootPath(sPath2);
 
+    qDebug() << TAG << "setfilesmodels Path " << sPath2;
+
+
     ui->listView_2->setModel(filemodel_2);
     ui->listView_2->setRootIndex(filemodel_2->index(sPath2));
     currentDirPath = sPath2;
+
+
 
     ui->label->setText(setman->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
 
@@ -81,9 +87,16 @@ void FileWindow::dragMoveEvent(QDragEnterEvent *e)
 
 void FileWindow::dropEvent(QDropEvent *e)
 {
+    QString path = returnDirectoryCleanedPath(currentDirPath);
     if (e->mimeData()->hasUrls()) {
         foreach (QUrl url, e->mimeData()->urls()) {
-            qDebug() << TAG + " dropEvent, File copied? " << QFile::copy(url.toLocalFile(), (currentDirPath + "/" + url.fileName()));
+            qDebug() << path;
+            qDebug() << setman->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace") + "/" + path + "/" + url.fileName();
+            qDebug() << TAG + " dropEvent, File copied? " << QFile::copy(url.toLocalFile(), (setman->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace")
+                                                                                                                                  + "/" + path + "/" + url.fileName()));
+            qDebug() << TAG + " dropEvent, File copied to workdir? " << QFile::copy(url.toLocalFile(),
+                                (setman->returnSetting(MainWindow::settingsKeyForPaths, setman->getKeyAtPosition("directory", 0)) + "/" + path + "/" + url.fileName()));
+
         }
     }
 }
@@ -190,12 +203,16 @@ void FileWindow::on_removeFile_clicked()
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
-    if (selectedDirPath != "") {
+    QString path = returnDirectoryCleanedPath(selectedDirPath);
+
+    if (path != "") {
         int returnValue = msgBox.exec();
 
         switch (returnValue) {
             case QMessageBox::Ok:
-                QFile::remove(selectedDirPath);
+                QFile::remove(setman->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace") + "/" + path);
+                QFile::remove(setman->returnSetting(MainWindow::settingsKeyForSaveDir, "safetycopy") + "/" + path);
+                QFile::remove(setman->returnSetting(MainWindow::settingsKeyForPaths, setman->getKeyAtPosition("directory", 0)) + "/" + path);
                 break;
             case QMessageBox::Cancel:
                 // Cancel was clicked
@@ -210,74 +227,25 @@ void FileWindow::on_removeFile_clicked()
 void FileWindow::on_listView_2_clicked(const QModelIndex &index)
 {
     selectedDirPath = filemodel_2->fileInfo(index).absoluteFilePath();
-}
-
-void FileWindow::copyDirectory(){
-
-    QString from = setman->returnSetting(MainWindow::settingsKeyForPaths, setman->getKeyAtPosition(MainWindow::settingsKeyForPaths, 0));
-    QString to = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "workplace");
-    qDebug() << TAG << "copyDirectory from: " << from;
-    qDebug() << TAG << "copyDirectory to: " << to;
-    filesHandler->copy_dir_recursive(from, to);
-
-    to = setman->returnSetting(MainWindow::settingsKeyForSaveDir, "safetycopy");
-    filesHandler->copy_dir_recursive(from, to);
-
-
 
 }
 
-void FileWindow::createCopyAndWorkDir() {
-    QStringList keys = setman->loadSettings(MainWindow::settingsKeyForSaveDir);
-    QString setting = setman->returnSetting(MainWindow::settingsKeyForSaveDir, keys[0]);
-    QDir dir = QDir::root();
-    if (!QDir(setting + "/MiniLockSync").exists()) {
-        qDebug() << TAG << "createCopyAndWorkDir: MiniLockSync Ordner erstellt? " <<
-        dir.mkpath(setting + "/MiniLockSync");
-        setman->saveSettings(MainWindow::settingsKeyForSaveDir, "mainfolder", setting + "/MiniLockSync");
-        setting += "/MiniLockSync";
+void FileWindow::on_listView_saftyCopy_clicked(const QModelIndex &index)
+{
+    selectedDirPath = filemodel_saftycopy->fileInfo(index).absoluteFilePath();
+}
 
-        if (!QDir(setting + "/Workplace").exists()) {
-            qDebug() << TAG << "createCopyAndWorkDir: Workplace Ordner erstellt? " <<
-            dir.mkpath(setting + "/Workplace");
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
-        }
+QString FileWindow::returnDirectoryCleanedPath(QString path) {
+    int layers;
+    QString returnPath;
 
-        if (!QDir(setting + "/Safetycopy").exists()) {
-            qDebug() << TAG << "createCopyAndWorkDir: Safetycopy Ordner erstellt? " <<
-            dir.mkpath(setting + "/Safetycopy");
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
-        }
+    //count folder-layers user moved in for getting path later
+    if (path.contains("Workplace")) {
+       layers = previousDirPathWorkDir.length() + 1;
     }
-    else if (QDir(setting + "/MiniLockSync").exists()){
-
-        setting += "/MiniLockSync";
-
-        if (!QDir(setting + "/Workplace").exists()) {
-            //qDebug() << TAG << "createCopyAndWorkDir else: Workplace Ordner erstellt? " <<
-            dir.mkpath(setting + "/Workplace");
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
-        }
-
-        if (!QDir(setting + "/Safetycopy").exists()) {
-            //qDebug() << TAG << "createCopyAndWorkDir else: Safetycopy Ordner erstellt? " <<
-            dir.mkpath(setting + "/Safetycopy");
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
-
-        }
-
-        if (!setman->keyExists(MainWindow::settingsKeyForSaveDir, "mainfolder")) {
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "mainfolder", setting + "/MiniLockSync");
-        }
-        if (!setman->keyExists(MainWindow::settingsKeyForSaveDir, "workplace")) {
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
-        }
-        if (!setman->keyExists(MainWindow::settingsKeyForSaveDir, "safetycopy")) {
-            setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
-        }
+    else {
+       layers = previousDirPath.length() + 1;
     }
+
+    return returnPath = path.section("/", -layers);
 }
-
-
-
-
