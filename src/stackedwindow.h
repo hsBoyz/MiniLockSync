@@ -33,10 +33,11 @@ class StackedWindow : public QStackedWidget
 
 public:
     explicit StackedWindow(QWidget *parent = 0);
+    Ui::StackedWindow *ui;
     ~StackedWindow();
 
 private:
-    Ui::StackedWindow *ui;
+
 
     QAction *act2,*act4;
 
