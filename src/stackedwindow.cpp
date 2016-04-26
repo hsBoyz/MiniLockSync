@@ -39,6 +39,7 @@ StackedWindow::~StackedWindow()
 
 void StackedWindow::pushManageClicked(){
     ui->Manage->show();
+    initializeFileBrowser();
     ui->Main->hide();
 }
 
