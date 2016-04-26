@@ -14,10 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    stackedwindow.cpp
+    stackedwindow.cpp \
+    steerer.cpp
 
 HEADERS  += mainwindow.h \
-    stackedwindow.h
+    stackedwindow.h \
+    steerer.h
 
 FORMS    += mainwindow.ui \
-    stackedwindow.ui
+    stackedwindow.ui \
+    steerer.ui
+
+RESOURCES += \
+    resources.qrc
