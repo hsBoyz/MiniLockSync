@@ -37,6 +37,8 @@ public:
     QTextEdit* editor;
     QTextEdit* dock_editor;
 
+    static QString settingsKeyForPaths;
+
 
 
     ~MainWindow();
