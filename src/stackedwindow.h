@@ -41,13 +41,15 @@ public:
 
 private:
     QFileSystemModel *fileBrowserModel;
+    Settingsmanager *settingsmanager;
 
     QAction *act2,*act4;
-    Settingsmanager *settingsmanager;
 
     void initializeFileBrowser();
     void initializeTableWidget();
-    void saveDirectories();
+    void saveDirectories(QString name, QString path);
+    void deleteDirectories(QString name);
+    void populateTableWidget();
 
 private slots:
     void pushZurueckManageClicked();
@@ -56,10 +58,11 @@ private slots:
     void pushICloudClicked();
     void pushZurueckDropboxClicked();
     void pushZurueckICloudClicked();
-
     void pushAddClicked();
-
     void on_pushButton_addDir_clicked();
+
+
+    void on_pushButton_deleteDir_clicked();
 
 public slots:
     void pushSettingsClicked();
