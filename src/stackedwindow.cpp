@@ -20,6 +20,8 @@ StackedWindow::StackedWindow(QWidget *parent) :
     connect (ui->pushZurueckICloud, SIGNAL(clicked(bool)), SLOT(pushZurueckICloudClicked()));
 
     connect (ui->pushAdd, SIGNAL(clicked(bool)), SLOT(pushAddClicked()));
+
+    initializeFileBrowser();
 }
 
 StackedWindow::~StackedWindow()
@@ -39,6 +41,7 @@ StackedWindow::~StackedWindow()
 
 void StackedWindow::pushManageClicked(){
     ui->Manage->show();
+
     ui->Main->hide();
 }
 
