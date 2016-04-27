@@ -16,16 +16,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     stackedwindow.cpp \
     steerer.cpp \
-    settingsmanager.cpp
+    settingsmanager.cpp \
+    window.cpp
 
 HEADERS  += mainwindow.h \
     stackedwindow.h \
     steerer.h \
-    settingsmanager.h
+    settingsmanager.h \
+    window.h
 
 FORMS    += mainwindow.ui \
     stackedwindow.ui \
-    steerer.ui
+    steerer.ui \
+    window.ui
 
 RESOURCES += \
     resources.qrc

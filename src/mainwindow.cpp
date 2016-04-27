@@ -3,6 +3,8 @@
 #include "stackedwindow.h"
 #include "ui_stackedwindow.h"
 
+//#include "window.h"
+//#include "ui_window.h"
 
 #include <QApplication>
 #include <QMessageBox>
@@ -46,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Verbinde Ereignis mit Methode
     connect (ui->pushConfirm, SIGNAL(clicked()), SLOT(pushConfirmClicked()));
+    connect (ui->pushSecondInterface, SIGNAL(clicked(bool)), SLOT(on_pushSecondInterface_clicked()));
 
 }
 
@@ -111,3 +114,11 @@ void MainWindow::pushConfirmClicked(){
 
 }
 
+
+void MainWindow::on_pushSecondInterface_clicked()
+{
+    //Model approach (dealing with stack memory)
+    Window window;    //creat object stackedwindow
+    window.setModal(true);   //use object to open second window
+    window.exec();           //show second window
+}

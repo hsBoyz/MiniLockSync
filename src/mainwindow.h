@@ -22,6 +22,7 @@
 #include <QSettings>
 
 #include "stackedwindow.h"
+#include "window.h"
 
 namespace Ui {
 class MainWindow;
@@ -61,6 +62,7 @@ private:
 private slots:
     void pushConfirmClicked();
 
+    void on_pushSecondInterface_clicked();
 };
 
 #endif // MAINWINDOW_H
