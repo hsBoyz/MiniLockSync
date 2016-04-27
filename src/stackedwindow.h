@@ -47,7 +47,7 @@ private:
 
     void initializeFileBrowser();
     void initializeTableWidget();
-    void saveDirectories();
+    //void saveDirectories();
 
 private slots:
     void pushZurueckManageClicked();
@@ -57,9 +57,17 @@ private slots:
     void pushZurueckDropboxClicked();
     void pushZurueckICloudClicked();
 
-    void pushAddClicked();
+
 
     void on_pushButton_addDir_clicked();
+
+
+
+    void on_pushAddCloud_clicked();
+
+    void on_pushCPULimit_clicked();
+
+    void on_pushChangePW_clicked();
 
 public slots:
     void pushSettingsClicked();

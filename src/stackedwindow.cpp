@@ -1,6 +1,7 @@
 #include "stackedwindow.h"
 #include "ui_stackedwindow.h"
 #include "mainwindow.h"
+
 #include <QtGui>
 
 StackedWindow::StackedWindow(QWidget *parent) :
@@ -8,7 +9,7 @@ StackedWindow::StackedWindow(QWidget *parent) :
     ui(new Ui::StackedWindow)
 {
     ui->setupUi(this);
-    settingsmanager = new Settingsmanger();
+    //settingsmanager = new Settingsmanger();
 
 
     connect (ui->pushManage, SIGNAL(clicked(bool)), SLOT(pushManageClicked()));
@@ -21,7 +22,7 @@ StackedWindow::StackedWindow(QWidget *parent) :
     connect (ui->pushZurueckDropbox, SIGNAL(clicked(bool)), SLOT(pushZurueckDropboxClicked()));
     connect (ui->pushZurueckICloud, SIGNAL(clicked(bool)), SLOT(pushZurueckICloudClicked()));
 
-    connect (ui->pushAdd, SIGNAL(clicked(bool)), SLOT(pushAddClicked()));
+    connect (ui->pushAddCloud, SIGNAL(clicked(bool)), SLOT(on_pushAddCloud_clicked()));
 
     initializeFileBrowser();
     initializeTableWidget();
@@ -50,7 +51,11 @@ void StackedWindow::pushManageClicked(){
 
 void StackedWindow::pushSettingsClicked(){
     ui->Settings->show();
+    ui->welcome->show();
     ui->Main->hide();
+    ui->AddCloud->hide();
+    ui->CPU->hide();
+    ui->ChangePW->hide();
 }
 
 void StackedWindow::pushZurueckManageClicked(){
@@ -82,17 +87,35 @@ void StackedWindow::pushZurueckICloudClicked(){
     ui->Manage->show();
     ui->ICloud->hide();
 }
-
-void StackedWindow::pushAddClicked()
+void StackedWindow::on_pushAddCloud_clicked()
 {
     ui->AddCloud->show();
-    ui->Settings->hide();
+    ui->welcome->hide();
+    ui->CPU->hide();
+    ui->ChangePW->hide();
 }
+void StackedWindow::on_pushCPULimit_clicked()
+{
+    ui->CPU->show();
+    ui->welcome->hide();
+    ui->AddCloud->hide();
+    ui->ChangePW->hide();
+}
+void StackedWindow::on_pushChangePW_clicked()
+{
+    ui->ChangePW->show();
+    ui->welcome->hide();
+    ui->AddCloud->hide();
+    ui->CPU->hide();
+}
+
+
+
 
 void StackedWindow::on_pushButton_addDir_clicked()
 {
     QString sPath = fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).absolutePath() + "/" + fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).baseName();
-    saveDirectories();
+    //saveDirectories();
     ui->tableWidget->insertRow(ui->tableWidget->rowCount());
     ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).absolutePath()));
     ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).baseName()));
@@ -128,7 +151,7 @@ void StackedWindow::initializeTableWidget() {
     ui->tableWidget->setColumnWidth(0, 300);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 }
-
+/*
 void StackedWindow::saveDirectories() {
 
 
@@ -138,6 +161,11 @@ void StackedWindow::saveDirectories() {
         }
     }
 }
+
+*/
+
+
+
 
 
 

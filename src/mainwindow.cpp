@@ -3,6 +3,7 @@
 #include "stackedwindow.h"
 #include "ui_stackedwindow.h"
 
+
 #include <QApplication>
 #include <QMessageBox>
 #include <QTime>
@@ -98,13 +99,15 @@ void MainWindow::pushConfirmClicked(){
     StackedWindow stkwindow;    //creat object stackedwindow
     stkwindow.setModal(true);   //use object to open second window
     stkwindow.exec();           //show second window
-
 */
+
 
     //Model less approach (dealing with heap memory)
     stackedwin = new StackedWindow(this);
     stackedwin->show();
     ui->pushConfirm->setVisible(false);
+
+
 
 }
 
