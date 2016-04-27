@@ -1,6 +1,8 @@
 #ifndef STACKEDWINDOW_H
 #define STACKEDWINDOW_H
 
+#include <settingsmanager.h>
+
 #include <QStackedWidget>
 #include <QFileSystemModel>
 
@@ -41,8 +43,11 @@ private:
     QFileSystemModel *fileBrowserModel;
 
     QAction *act2,*act4;
+    Settingsmanager *settingsmanager;
 
     void initializeFileBrowser();
+    void initializeTableWidget();
+    void saveDirectories();
 
 private slots:
     void pushZurueckManageClicked();
@@ -53,6 +58,8 @@ private slots:
     void pushZurueckICloudClicked();
 
     void pushAddClicked();
+
+    void on_pushButton_addDir_clicked();
 
 public slots:
     void pushSettingsClicked();

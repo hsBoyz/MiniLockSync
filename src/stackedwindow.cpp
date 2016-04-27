@@ -1,12 +1,14 @@
 #include "stackedwindow.h"
 #include "ui_stackedwindow.h"
+#include "mainwindow.h"
+#include <QtGui>
 
 StackedWindow::StackedWindow(QWidget *parent) :
     QStackedWidget(parent),
     ui(new Ui::StackedWindow)
 {
     ui->setupUi(this);
-
+    settingsmanager = new Settingsmanger();
 
 
     connect (ui->pushManage, SIGNAL(clicked(bool)), SLOT(pushManageClicked()));
@@ -22,6 +24,7 @@ StackedWindow::StackedWindow(QWidget *parent) :
     connect (ui->pushAdd, SIGNAL(clicked(bool)), SLOT(pushAddClicked()));
 
     initializeFileBrowser();
+    initializeTableWidget();
 }
 
 StackedWindow::~StackedWindow()
@@ -86,6 +89,15 @@ void StackedWindow::pushAddClicked()
     ui->Settings->hide();
 }
 
+void StackedWindow::on_pushButton_addDir_clicked()
+{
+    QString sPath = fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).absolutePath() + "/" + fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).baseName();
+    saveDirectories();
+    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).absolutePath()));
+    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(fileBrowserModel->fileInfo(ui->treeView_fileBrowser->currentIndex()).baseName()));
+}
+
 /*
  *
  *
@@ -107,6 +119,26 @@ void StackedWindow::initializeFileBrowser()
     ui->treeView_fileBrowser->setModel(fileBrowserModel);
     ui->treeView_fileBrowser->setColumnWidth(0,300);
 }
+
+void StackedWindow::initializeTableWidget() {
+    QStringList title;
+    title << "Pfad" << "Name";
+    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setHorizontalHeaderLabels(title);
+    ui->tableWidget->setColumnWidth(0, 300);
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+}
+
+void StackedWindow::saveDirectories() {
+
+
+        //Adding name for getting the full path including selected folder
+        if (!settingsmanager->keyExists(MainWindow::settingsKeyForPaths, name)) {
+            settingsmanager->saveSettings(MainWindow::settingsKeyForPaths, name, path + "/" + name);
+        }
+    }
+}
+
 
 
 

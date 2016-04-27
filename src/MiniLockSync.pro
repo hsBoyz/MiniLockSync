@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     stackedwindow.cpp \
-    steerer.cpp
+    steerer.cpp \
+    settingsmanager.cpp
 
 HEADERS  += mainwindow.h \
     stackedwindow.h \
-    steerer.h
+    steerer.h \
+    settingsmanager.h
 
 FORMS    += mainwindow.ui \
     stackedwindow.ui \

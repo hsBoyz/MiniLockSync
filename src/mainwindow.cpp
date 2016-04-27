@@ -11,6 +11,7 @@
 #include <QFontComboBox>
 #include <QCloseEvent>
 
+QString MainWindow::settingsKeyForPaths = "directory";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
