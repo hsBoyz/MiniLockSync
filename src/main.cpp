@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "stackedwindow.h"
 #include "steerer.h"
 #include <QApplication>
 

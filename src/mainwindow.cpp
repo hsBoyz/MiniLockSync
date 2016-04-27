@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "stackedwindow.h"
-#include "ui_stackedwindow.h"
 
 //#include "window.h"
 //#include "ui_window.h"
@@ -15,6 +13,8 @@
 #include <QCloseEvent>
 
 QString MainWindow::settingsKeyForPaths = "directory";
+QString MainWindow::settingsKeyForWorkDirPath = "workdirectory";
+QString MainWindow::settingsKeyForSaveDirPath = "savedirectory";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -106,10 +106,6 @@ void MainWindow::pushConfirmClicked(){
 
 
     //Model less approach (dealing with heap memory)
-    stackedwin = new StackedWindow(this);
-    stackedwin->show();
-    ui->pushConfirm->setVisible(false);
-
 
 
 }

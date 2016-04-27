@@ -1,14 +1,12 @@
 #include "steerer.h"
 #include "ui_steerer.h"
-#include "ui_stackedwindow.h"
-//#include "stackedwindow.h"
 
 Steerer::Steerer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Steerer)
 {
     ui->setupUi(this);
-    stackedwin = new StackedWindow();
+
 }
 
 Steerer::~Steerer()
@@ -54,14 +52,11 @@ void Steerer::showSettings()
     //MainWindow *w = new MainWindow();
     //w->show();
 
-    //stackedwin->show();
-    //stackedwin->ui->Settings->show();
-    stackedwin->show();
-    stackedwin->pushSettingsClicked();
+
+
 }
 
 void Steerer::openFileWindow()
 {
-    stackedwin->show();
-    stackedwin->pushManageClicked();
+
 }

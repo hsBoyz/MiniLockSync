@@ -70,7 +70,7 @@ void Settingsmanager::printGroups() {
     }
 }
 */
-/*
+
 void Settingsmanager::removeAllKeys() {
     QSettings setting(myApp, mySetting);
     QStringList list = setting.childGroups();
@@ -86,7 +86,7 @@ void Settingsmanager::removeAllKeys() {
         setting.endGroup();
     }
 }
-*/
+
 
 QString Settingsmanager::getKeyAtPosition(QString group, int position) {
     QSettings setting(myApp, mySetting);

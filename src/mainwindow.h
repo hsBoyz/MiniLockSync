@@ -21,7 +21,6 @@
 #include <QDockWidget>
 #include <QSettings>
 
-#include "stackedwindow.h"
 #include "window.h"
 
 namespace Ui {
@@ -39,6 +38,8 @@ public:
     QTextEdit* dock_editor;
 
     static QString settingsKeyForPaths;
+    static QString settingsKeyForWorkDirPath;
+    static QString settingsKeyForSaveDirPath;
 
 
 
@@ -53,8 +54,6 @@ protected:
 
 private:
     Ui::MainWindow *ui;
-
-    StackedWindow *stackedwin;
 
     QAction *act2,*act4;
 

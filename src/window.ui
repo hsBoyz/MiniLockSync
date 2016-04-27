@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>700</height>
+    <width>1130</width>
+    <height>840</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>100</x>
      <y>70</y>
-     <width>671</width>
-     <height>551</height>
+     <width>971</width>
+     <height>711</height>
     </rect>
    </property>
    <property name="title">
@@ -31,7 +31,7 @@
       <x>0</x>
       <y>50</y>
       <width>141</width>
-      <height>171</height>
+      <height>311</height>
      </rect>
     </property>
     <property name="title">
@@ -60,6 +60,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushManageSaveDir">
+       <property name="text">
+        <string>Manage Save/Work Dir</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushCPULimitation">
        <property name="text">
         <string>CPU-Limitation</string>
@@ -80,8 +87,8 @@
      <rect>
       <x>150</x>
       <y>50</y>
-      <width>471</width>
-      <height>481</height>
+      <width>791</width>
+      <height>551</height>
      </rect>
     </property>
     <property name="title">
@@ -92,12 +99,12 @@
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>451</width>
-       <height>466</height>
+       <width>761</width>
+       <height>531</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="Home">
       <widget class="QTextBrowser" name="textBrowser_5">
@@ -153,7 +160,49 @@ p, li { white-space: pre-wrap; }
         <widget class="QTableWidget" name="tableWidget"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_10">
+        <widget class="QPushButton" name="pushButton_deleteDir">
+         <property name="text">
+          <string>Delete</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="ManageWorkSaveDir">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTreeView" name="treeView_dirBrowser"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="pushButton_addWorkDir">
+           <property name="text">
+            <string>Add work directory</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_addSaveDir">
+           <property name="text">
+            <string>Add save directory</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QTableWidget" name="tableWidget_dir"/>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tableWidget_save"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_deleteDir_2">
          <property name="text">
           <string>Delete</string>
          </property>
