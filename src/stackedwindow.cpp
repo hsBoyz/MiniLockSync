@@ -8,7 +8,7 @@ StackedWindow::StackedWindow(QWidget *parent) :
     ui(new Ui::StackedWindow)
 {
     ui->setupUi(this);
-    settingsmanager = new Settingsmanger();
+    //settingsmanager = new Settingsmanger();
 
 
     connect (ui->pushManage, SIGNAL(clicked(bool)), SLOT(pushManageClicked()));
@@ -129,6 +129,7 @@ void StackedWindow::initializeTableWidget() {
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 }
 
+/*
 void StackedWindow::saveDirectories() {
 
 
@@ -138,6 +139,7 @@ void StackedWindow::saveDirectories() {
         }
     }
 }
+*/
 
 
 
