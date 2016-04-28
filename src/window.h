@@ -7,6 +7,7 @@
 #include <QFileSystemModel>
 #include <QTableWidget>
 
+
 namespace Ui {
 class Window;
 }
@@ -49,12 +50,13 @@ private slots:
 
     void on_pushButton_confirm_clicked();
 
+
 private:
     Ui::Window *ui;
 
+
     QFileSystemModel *fileBrowserModel;
     Settingsmanager *settingsmanager;
-
 
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);

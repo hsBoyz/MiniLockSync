@@ -30,6 +30,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Window
 {
 public:
+    QAction *actionQuit;
     QGroupBox *groupBox;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_3;
@@ -71,10 +72,15 @@ public:
     {
         if (Window->objectName().isEmpty())
             Window->setObjectName(QStringLiteral("Window"));
-        Window->resize(1123, 691);
+        Window->resize(1161, 691);
+        Window->setContextMenuPolicy(Qt::DefaultContextMenu);
+        actionQuit = new QAction(Window);
+        actionQuit->setObjectName(QStringLiteral("actionQuit"));
+        QIcon icon;
+        icon.addFile(QStringLiteral("images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionQuit->setIcon(icon);
         groupBox = new QGroupBox(Window);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(100, 70, 971, 711));
         groupBox_2 = new QGroupBox(groupBox);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         groupBox_2->setGeometry(QRect(0, 50, 141, 311));
@@ -228,6 +234,11 @@ public:
     void retranslateUi(QMainWindow *Window)
     {
         Window->setWindowTitle(QApplication::translate("Window", "Dialog", 0));
+        actionQuit->setText(QApplication::translate("Window", "Quit", 0));
+#ifndef QT_NO_TOOLTIP
+        actionQuit->setToolTip(QApplication::translate("Window", "Quit Application", 0));
+#endif // QT_NO_TOOLTIP
+        actionQuit->setShortcut(QApplication::translate("Window", "Ctrl+E", 0));
         groupBox->setTitle(QApplication::translate("Window", "GroupBox", 0));
         groupBox_2->setTitle(QApplication::translate("Window", "GroupBox", 0));
         pushHome->setText(QApplication::translate("Window", "Home", 0));
@@ -240,12 +251,12 @@ public:
         textBrowser_5->setHtml(QApplication::translate("Window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Willkommen blabla, ...</span></p></body></html>", 0));
         textBrowser->setHtml(QApplication::translate("Window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Cloud Service</span></p></body></html>", 0));
         pushButton_addDir->setText(QApplication::translate("Window", "Add", 0));
         pushButton_deleteDir->setText(QApplication::translate("Window", "Delete", 0));
@@ -256,12 +267,12 @@ public:
         textBrowser_3->setHtml(QApplication::translate("Window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">CPU-Limitation</span></p></body></html>", 0));
         textBrowser_4->setHtml(QApplication::translate("Window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Change Password</span></p></body></html>", 0));
     } // retranslateUi
 

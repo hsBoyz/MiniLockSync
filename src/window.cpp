@@ -34,6 +34,7 @@ Window::~Window()
 }
 
 
+
 /*
  *
  *
@@ -318,6 +319,8 @@ QList<QString> Window::returnSelectedPath() {
     }
     return path;
 }
+
+
 
 
 
