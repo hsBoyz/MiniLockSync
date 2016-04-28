@@ -1,5 +1,6 @@
-﻿  main.cpp
+﻿  login.cpp
   Import Symbols
   Compiler Message: DEBUG
   Compiler Message: Unicode not defined
-  MiniLockSync.vcxproj -> C:\Users\Eugen\MiniLockSync\src\Debug\MiniLockSync.exe
+login.cpp(102): warning C4100: 'event': unreferenced formal parameter
+  MiniLockSync.vcxproj -> C:\Users\Manuel Tutsch\Desktop\MiniLockSync\src\Debug\MiniLockSync.exe

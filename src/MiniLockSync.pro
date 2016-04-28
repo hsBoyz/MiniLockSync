@@ -5,18 +5,22 @@
 TEMPLATE = app
 TARGET = MiniLockSync
 DESTDIR = ./Debug
-CONFIG += debug
+CONFIG += debug \
+qt
+
+QT += widgets \
+
 DEFINES += _WINDOWS WIN64 QT_WIDGETS_LIB QT_DLL
 INCLUDEPATH += . \
-    ./../../../../qt2/5.6/msvc2015_64/include \
-    ./../../../../qt2/5.6/msvc2015_64/include/QtWidgets \
-    ./../../../../qt2/5.6/msvc2015_64/include/QtGui \
-    ./../../../../qt2/5.6/msvc2015_64/include/QtANGLE \
-    ./../../../../qt2/5.6/msvc2015_64/include/QtCore \
-    ./debug \
-    ./../../../../qt2/5.6/msvc2015_64/mkspecs/win32-msvc2015 \
-    ./GeneratedFiles \
-    ../../tools/ucryptlib/ucryptlib/ucryptlib
+    ./../../../../../QT/QT5.6.0/5.6/msvc2015/include \
+   ./../../../../../QT/QT5.6.0/5.6/msvc2015/include/QtWidgets \
+  ./../../../../../QT/QT5.6.0/5.6/msvc2015/include/QtGui \
+ ./../../../../../QT/QT5.6.0/5.6/msvc2015/include/QtANGLE \
+./../../../../../QT/QT5.6.0/5.6/msvc2015/include/QtCore \
+./debug \
+./../../../../qt2/5.6/msvc2015_64/mkspecs/win32-msvc2015 \
+./GeneratedFiles \
+../../tools/ucryptlib/ucryptlib/ucryptlib
 LIBS += -L"../../../../../utils/postgresql/pgsql/lib" \
     -L"../../../../../utils/my_sql/my_sql/lib" \
     -L"../../tools/ucryptlib/libs" \

@@ -34,9 +34,10 @@ void login::loginButton_click()
 	// check for entropy
 	std::string password = ui.passwdLineEdit->text().toStdString();
 
-	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
+	 //double bitEntropy = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
+	
 	if ((bitEntropy * password.size()) < 200)
 	{
 		QMessageBox::information(this, tr("Password too weak"),
@@ -67,6 +68,7 @@ void login::loginButton_click()
 		ui.yourIdLineEdit->setText(identificationNumber);
 		
 	}
+	
 
 }
 void login::startButton_click()
