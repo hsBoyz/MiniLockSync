@@ -1,13 +1,14 @@
 #include "handlefiles.h"
 #include "settingsmanager.h"
 #include "mainwindow.h"
+#include <QDebug>
 
 Handlefiles::Handlefiles()
 {
 
 }
 
-bool HandleFiles::copy_dir_recursive(QString fromDir, QString toDir)
+bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
 {
     QDir dir;
     dir.setPath(fromDir);
@@ -59,7 +60,7 @@ bool HandleFiles::copy_dir_recursive(QString fromDir, QString toDir)
 }
 
 
-void HandleFiles::createCopyAndWorkDir() {
+void Handlefiles::createCopyAndWorkDir() {
     Settingsmanager *setman = new Settingsmanager();
     QStringList keys = setman->loadSettings(MainWindow::settingsKeyForSaveDirPath);
     QString setting = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, keys[0]);
