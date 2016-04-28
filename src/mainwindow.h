@@ -34,8 +34,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-    QTextEdit* editor;
-    QTextEdit* dock_editor;
 
     static QString settingsKeyForPaths;
     static QString settingsKeyForWorkDirPath;
@@ -47,7 +45,7 @@ public:
 
 
 public slots:
-    void search();
+
 
 protected:
      void contextMenuEvent(QContextMenuEvent *event);
@@ -55,7 +53,7 @@ protected:
 private:
     Ui::MainWindow *ui;
 
-    QAction *act2,*act4;
+    QAction *act1,*act2,*act3,*act4;
 
 
 private slots:

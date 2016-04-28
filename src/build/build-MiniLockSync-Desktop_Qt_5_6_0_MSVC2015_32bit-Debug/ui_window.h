@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextBrowser>
@@ -31,6 +32,7 @@ class Ui_Window
 {
 public:
     QGroupBox *groupBox;
+    QHBoxLayout *horizontalLayout_3;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_3;
     QPushButton *pushHome;
@@ -39,7 +41,9 @@ public:
     QPushButton *pushManageSaveDir;
     QPushButton *pushCPULimitation;
     QPushButton *pushChangePassword;
+    QSpacerItem *verticalSpacer;
     QGroupBox *groupBox_3;
+    QVBoxLayout *verticalLayout_4;
     QStackedWidget *stackedWidget;
     QWidget *Home;
     QTextBrowser *textBrowser_5;
@@ -71,14 +75,15 @@ public:
     {
         if (Window->objectName().isEmpty())
             Window->setObjectName(QStringLiteral("Window"));
-        Window->resize(1127, 691);
+        Window->resize(1191, 691);
         Window->setContextMenuPolicy(Qt::DefaultContextMenu);
         groupBox = new QGroupBox(Window);
         groupBox->setObjectName(QStringLiteral("groupBox"));
+        horizontalLayout_3 = new QHBoxLayout(groupBox);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         groupBox_2 = new QGroupBox(groupBox);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         groupBox_2->setEnabled(true);
-        groupBox_2->setGeometry(QRect(0, 50, 141, 311));
         verticalLayout_3 = new QVBoxLayout(groupBox_2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         pushHome = new QPushButton(groupBox_2);
@@ -111,17 +116,24 @@ public:
 
         verticalLayout_3->addWidget(pushChangePassword);
 
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer);
+
+
+        horizontalLayout_3->addWidget(groupBox_2);
+
         groupBox_3 = new QGroupBox(groupBox);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(150, 50, 791, 551));
+        verticalLayout_4 = new QVBoxLayout(groupBox_3);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         stackedWidget = new QStackedWidget(groupBox_3);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(20, 20, 761, 531));
         Home = new QWidget();
         Home->setObjectName(QStringLiteral("Home"));
         textBrowser_5 = new QTextBrowser(Home);
         textBrowser_5->setObjectName(QStringLiteral("textBrowser_5"));
-        textBrowser_5->setGeometry(QRect(60, 40, 291, 261));
+        textBrowser_5->setGeometry(QRect(180, 80, 291, 261));
         stackedWidget->addWidget(Home);
         CloudService = new QWidget();
         CloudService->setObjectName(QStringLiteral("CloudService"));
@@ -216,6 +228,12 @@ public:
         textBrowser_4->setObjectName(QStringLiteral("textBrowser_4"));
         textBrowser_4->setGeometry(QRect(140, 20, 141, 31));
         stackedWidget->addWidget(ChangePasword);
+
+        verticalLayout_4->addWidget(stackedWidget);
+
+
+        horizontalLayout_3->addWidget(groupBox_3);
+
         Window->setCentralWidget(groupBox);
 
         retranslateUi(Window);
@@ -228,16 +246,16 @@ public:
 
     void retranslateUi(QMainWindow *Window)
     {
-        Window->setWindowTitle(QApplication::translate("Window", "Dialog", 0));
-        groupBox->setTitle(QApplication::translate("Window", "GroupBox", 0));
-        groupBox_2->setTitle(QApplication::translate("Window", "GroupBox", 0));
+        Window->setWindowTitle(QApplication::translate("Window", "MiniLockSync", 0));
+        groupBox->setTitle(QString());
+        groupBox_2->setTitle(QString());
         pushHome->setText(QApplication::translate("Window", "Home", 0));
         pushCloudService->setText(QApplication::translate("Window", "Cloud Service", 0));
         pushManageCloud->setText(QApplication::translate("Window", "Manage Cloud Service", 0));
         pushManageSaveDir->setText(QApplication::translate("Window", "Manage Save/Work Dir", 0));
         pushCPULimitation->setText(QApplication::translate("Window", "CPU-Limitation", 0));
         pushChangePassword->setText(QApplication::translate("Window", "Change Password", 0));
-        groupBox_3->setTitle(QApplication::translate("Window", "GroupBox", 0));
+        groupBox_3->setTitle(QString());
         textBrowser_5->setHtml(QApplication::translate("Window", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
