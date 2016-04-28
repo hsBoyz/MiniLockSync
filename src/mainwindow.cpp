@@ -113,8 +113,14 @@ void MainWindow::pushConfirmClicked(){
 
 void MainWindow::on_pushSecondInterface_clicked()
 {
+    /*
     //Model approach (dealing with stack memory)
     Window window;    //creat object stackedwindow
-    window.setModal(true);   //use object to open second window
+    window.setModal(false);   //use object to open second window
     window.exec();           //show second window
+    //window.show();
+    */
+
+    Window *window = new Window();
+        window->show();
 }

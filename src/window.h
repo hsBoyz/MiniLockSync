@@ -3,7 +3,7 @@
 
 #include "settingsmanager.h"
 #include "mainwindow.h"
-#include <QDialog>
+#include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
 
@@ -11,7 +11,7 @@ namespace Ui {
 class Window;
 }
 
-class Window : public QDialog
+class Window : public QMainWindow
 {
     Q_OBJECT
 

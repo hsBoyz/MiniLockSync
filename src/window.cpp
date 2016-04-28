@@ -4,7 +4,7 @@
 #include <QMessageBox>
 
 Window::Window(QWidget *parent) :
-    QDialog(parent),
+    QMainWindow(parent),
     ui(new Ui::Window)
 {
     ui->setupUi(this);
