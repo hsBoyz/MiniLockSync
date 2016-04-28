@@ -104,7 +104,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="Home">
       <widget class="QTextBrowser" name="textBrowser_5">
@@ -163,6 +163,13 @@ p, li { white-space: pre-wrap; }
         <widget class="QPushButton" name="pushButton_deleteDir">
          <property name="text">
           <string>Delete</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_confirm">
+         <property name="text">
+          <string>Confirm</string>
          </property>
         </widget>
        </item>

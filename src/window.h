@@ -47,6 +47,8 @@ private slots:
 
     void on_pushButton_deleteDir_2_clicked();
 
+    void on_pushButton_confirm_clicked();
+
 private:
     Ui::Window *ui;
 

@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     steerer.cpp \
     settingsmanager.cpp \
-    window.cpp
+    window.cpp \
+    handlefiles.cpp
 
 HEADERS  += mainwindow.h \
     steerer.h \
     settingsmanager.h \
-    window.h
+    window.h \
+    handlefiles.h
 
 FORMS    += mainwindow.ui \
     steerer.ui \

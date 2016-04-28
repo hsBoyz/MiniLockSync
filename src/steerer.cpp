@@ -1,5 +1,6 @@
 #include "steerer.h"
 #include "ui_steerer.h"
+#include "window.h"
 
 Steerer::Steerer(QWidget *parent) :
     QWidget(parent),
@@ -49,11 +50,8 @@ void Steerer::createTrayIcon()
 
 void Steerer::showSettings()
 {
-    //MainWindow *w = new MainWindow();
-    //w->show();
-
-
-
+    Window *w = new Window();
+    w->show();
 }
 
 void Steerer::openFileWindow()

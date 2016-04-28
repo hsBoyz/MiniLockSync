@@ -224,6 +224,11 @@ void Window::on_pushButton_deleteDir_2_clicked()
     }
 }
 
+void Window::on_pushButton_confirm_clicked()
+{
+
+}
+
 /*
  *
  *
@@ -313,6 +318,7 @@ QList<QString> Window::returnSelectedPath() {
     }
     return path;
 }
+
 
 
 
