@@ -30,7 +30,6 @@ QT_BEGIN_NAMESPACE
 class Ui_Window
 {
 public:
-    QAction *actionQuit;
     QGroupBox *groupBox;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_3;
@@ -72,17 +71,13 @@ public:
     {
         if (Window->objectName().isEmpty())
             Window->setObjectName(QStringLiteral("Window"));
-        Window->resize(1161, 691);
+        Window->resize(1127, 691);
         Window->setContextMenuPolicy(Qt::DefaultContextMenu);
-        actionQuit = new QAction(Window);
-        actionQuit->setObjectName(QStringLiteral("actionQuit"));
-        QIcon icon;
-        icon.addFile(QStringLiteral("images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionQuit->setIcon(icon);
         groupBox = new QGroupBox(Window);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox_2 = new QGroupBox(groupBox);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setEnabled(true);
         groupBox_2->setGeometry(QRect(0, 50, 141, 311));
         verticalLayout_3 = new QVBoxLayout(groupBox_2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -234,11 +229,6 @@ public:
     void retranslateUi(QMainWindow *Window)
     {
         Window->setWindowTitle(QApplication::translate("Window", "Dialog", 0));
-        actionQuit->setText(QApplication::translate("Window", "Quit", 0));
-#ifndef QT_NO_TOOLTIP
-        actionQuit->setToolTip(QApplication::translate("Window", "Quit Application", 0));
-#endif // QT_NO_TOOLTIP
-        actionQuit->setShortcut(QApplication::translate("Window", "Ctrl+E", 0));
         groupBox->setTitle(QApplication::translate("Window", "GroupBox", 0));
         groupBox_2->setTitle(QApplication::translate("Window", "GroupBox", 0));
         pushHome->setText(QApplication::translate("Window", "Home", 0));

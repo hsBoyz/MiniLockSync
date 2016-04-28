@@ -17,13 +17,22 @@ class Window : public QMainWindow
     Q_OBJECT
 
 
-public slots:
-
 
 
 public:
     explicit Window(QWidget *parent = 0);
+
+    QAction *act1, *act2, *act3, *act4;
+
     ~Window();
+
+public slots:
+
+
+
+protected:
+     void contextMenuEvent(QContextMenuEvent *event);
+
 
 private slots:
 

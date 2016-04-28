@@ -8,6 +8,20 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+//----------------------------------------------------------
+    // Das komplette Menü zum Hauptprogramm
+        QMenu *fileMenu = new QMenu(tr("&File"), this);
+        menuBar()->addMenu(fileMenu);
+        act3 = fileMenu->addAction(
+                    QIcon(QString("%1%2").arg(QCoreApplication::applicationDirPath()).arg("/images/cancel.png"))   ,
+                    tr("Quit"),
+           qApp, SLOT(quit()),
+           QKeySequence(tr("Ctrl+Q", "File|Quit")) );
+        act3->setStatusTip(tr("Quit Program"));
+        QMenu *workMenu = new QMenu(
+           tr("&Edit"), this);
+        menuBar()->addMenu(workMenu);
+//--------------------------------------------------------
 
     settingsmanager = new Settingsmanager();
 
@@ -32,8 +46,16 @@ Window::~Window()
 {
     delete ui;
 }
-
-
+// Kontextmenü verwenden contextMenuEvent
+// ist eine virtuelle Methode
+void Window::contextMenuEvent(
+    QContextMenuEvent *event) {
+   QMenu *menu = new QMenu(this);
+   //menu->addAction(act1);
+   //menu->addAction(act2);
+   menu->addAction(act3);
+   menu->exec(event->globalPos());
+}
 
 /*
  *

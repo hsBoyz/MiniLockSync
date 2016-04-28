@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1161</width>
+    <width>1127</width>
     <height>691</height>
    </rect>
   </property>
@@ -21,6 +21,9 @@
     <string>GroupBox</string>
    </property>
    <widget class="QGroupBox" name="groupBox_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -253,21 +256,6 @@ p, li { white-space: pre-wrap; }
     </widget>
    </widget>
   </widget>
-  <action name="actionQuit">
-   <property name="icon">
-    <iconset>
-     <normaloff>images/cancel.png</normaloff>images/cancel.png</iconset>
-   </property>
-   <property name="text">
-    <string>Quit</string>
-   </property>
-   <property name="toolTip">
-    <string>Quit Application</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+E</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>
