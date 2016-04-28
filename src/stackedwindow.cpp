@@ -74,7 +74,7 @@ void StackedWindow::pushZurueckDropboxClicked(){
 
 void StackedWindow::pushZurueckICloudClicked(){
     ui->Manage->show();
-    ui->ICloud->hide();
+
 }
 
 void StackedWindow::pushAddClicked()

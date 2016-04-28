@@ -19,7 +19,9 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -54,6 +56,11 @@ public:
     QPushButton *pushChange;
     QPushButton *pushCPU;
     QLabel *label;
+    QWidget *AddCloud;
+    QTreeView *treeView_fileBrowser;
+    QPushButton *pushButton;
+    QPushButton *pushButton_10;
+    QTableWidget *tableWidget;
     QWidget *Dropbox;
     QPushButton *pushZurueckDropbox;
     QTextBrowser *textBrowser_4;
@@ -93,7 +100,7 @@ public:
         groupBox->setGeometry(QRect(50, 160, 371, 331));
         gridLayoutWidget = new QWidget(groupBox);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(30, 30, 301, 286));
+        gridLayoutWidget->setGeometry(QRect(30, 30, 301, 345));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -175,6 +182,21 @@ public:
         font.setWeight(50);
         label->setFont(font);
         StackedWindow->addWidget(Settings);
+        AddCloud = new QWidget();
+        AddCloud->setObjectName(QStringLiteral("AddCloud"));
+        treeView_fileBrowser = new QTreeView(AddCloud);
+        treeView_fileBrowser->setObjectName(QStringLiteral("treeView_fileBrowser"));
+        treeView_fileBrowser->setGeometry(QRect(20, 30, 431, 192));
+        pushButton = new QPushButton(AddCloud);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(20, 240, 93, 28));
+        pushButton_10 = new QPushButton(AddCloud);
+        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
+        pushButton_10->setGeometry(QRect(20, 490, 93, 28));
+        tableWidget = new QTableWidget(AddCloud);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setGeometry(QRect(20, 280, 431, 192));
+        StackedWindow->addWidget(AddCloud);
         Dropbox = new QWidget();
         Dropbox->setObjectName(QStringLiteral("Dropbox"));
         pushZurueckDropbox = new QPushButton(Dropbox);
@@ -202,7 +224,7 @@ public:
 
         retranslateUi(StackedWindow);
 
-        StackedWindow->setCurrentIndex(0);
+        StackedWindow->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(StackedWindow);
@@ -240,11 +262,13 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" dir='rtl' style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; font-style:italic;\">MiniLockSync</span></p></body></html>", 0));
-        pushAdd->setText(QApplication::translate("StackedWindow", "Add Cloud Service", 0));
+        pushAdd->setText(QApplication::translate("StackedWindow", "Manage Cloud Service", 0));
         pushZurueckSettings->setText(QApplication::translate("StackedWindow", "zur\303\274ck", 0));
         pushChange->setText(QApplication::translate("StackedWindow", "Change Password", 0));
         pushCPU->setText(QApplication::translate("StackedWindow", "CPU-Limitation", 0));
         label->setText(QApplication::translate("StackedWindow", "Version 1.0.2", 0));
+        pushButton->setText(QApplication::translate("StackedWindow", "Add", 0));
+        pushButton_10->setText(QApplication::translate("StackedWindow", "Delete", 0));
         pushZurueckDropbox->setText(QApplication::translate("StackedWindow", "zur\303\274ck", 0));
         textBrowser_4->setHtml(QApplication::translate("StackedWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
