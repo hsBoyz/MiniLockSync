@@ -97,7 +97,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="Home">
           <widget class="QTextBrowser" name="textBrowser_5">
@@ -205,6 +205,13 @@ p, li { white-space: pre-wrap; }
             <widget class="QPushButton" name="pushButton_deleteDir_2">
              <property name="text">
               <string>Delete</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_setdefaultopenaction">
+             <property name="text">
+              <string>Set as default open action</string>
              </property>
             </widget>
            </item>

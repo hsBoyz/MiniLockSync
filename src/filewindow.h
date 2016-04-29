@@ -2,6 +2,8 @@
 #define FILEWINDOW_H
 
 #include <QMainWindow>
+#include <QFileSystemModel>
+#include <settingsmanager.h>
 
 namespace Ui {
 class FileWindow;
@@ -15,8 +17,28 @@ public:
     explicit FileWindow(QWidget *parent = 0);
     ~FileWindow();
 
+private slots:
+    void setFileModels();
+
+    void dragEnterEvent(QDragEnterEvent *e);
+    void dragLeaveEvent(QDragEnterEvent *e);
+    void dragMoveEvent(QDragEnterEvent *e);
+    void dropEvent(QDropEvent *e);
+
+    void on_pushButton_back_clicked();
+    void on_listView_activated(const QModelIndex &index);
+    void on_listView_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::FileWindow *ui;
+
+    QFileSystemModel *filemodel;
+    Settingsmanager *setman;
+
+    QString keyOfCurrentFileBrowser;    //Necessary to load different filewindows, e.g. for each encrypted folder
+    QList<QString> previousDirPath;     //List for storing the file browsing history
+    QString currentDirPath;             //current path of directory for copying files
+    QString selectedDirPath = "";
 };
 
 #endif // FILEWINDOW_H

@@ -16,6 +16,8 @@ QString MainWindow::settingsKeyForPaths = "directory";
 QString MainWindow::settingsKeyForWorkDirPath = "workdirectory";
 QString MainWindow::settingsKeyForSaveDirPath = "savedirectory";
 
+QString MainWindow::settingsKeyGeneralSettings = "general";
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
