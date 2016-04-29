@@ -1,7 +1,6 @@
 #ifndef STEERER_H
 #define STEERER_H
 
-#include "stackedwindow.h"
 
 #include <QWidget>
 #include <QMenu>
@@ -40,7 +39,7 @@ private:
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
 
-    StackedWindow *stackedwin;
+
 
 };
 

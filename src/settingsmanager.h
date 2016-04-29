@@ -19,7 +19,7 @@ public:
     QString returnSetting(QString group, QString key);
     void removeKey(QString group, QString keyToRemove);
     QString getKeyAtPosition(QString group, int position);
-    //void removeAllKeys();
+    void removeAllKeys();
     //void printGroups();
     bool keyExists(QString group, QString key);
 };
