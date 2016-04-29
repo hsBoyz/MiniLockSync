@@ -90,5 +90,5 @@ void MainWindow::on_pushSecondInterface_clicked()
     */
 
     Window *window = new Window();
-        window->show();
+    window->show();
 }

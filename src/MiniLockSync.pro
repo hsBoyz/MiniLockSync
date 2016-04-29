@@ -17,17 +17,20 @@ SOURCES += main.cpp\
     steerer.cpp \
     settingsmanager.cpp \
     window.cpp \
-    handlefiles.cpp
+    handlefiles.cpp \
+    filewindow.cpp
 
 HEADERS  += mainwindow.h \
     steerer.h \
     settingsmanager.h \
     window.h \
-    handlefiles.h
+    handlefiles.h \
+    filewindow.h
 
 FORMS    += mainwindow.ui \
     steerer.ui \
-    window.ui
+    window.ui \
+    filewindow.ui
 
 RESOURCES += \
     resources.qrc
