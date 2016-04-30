@@ -174,6 +174,12 @@ void Window::on_pushButton_addWorkDir_clicked()
     else {
         saveDirectories(MainWindow::settingsKeyForWorkDirPath, path.value(1), path.value(0));
 
+        //Setup the default value key for contextmenu tray icon open action on first start
+        //once default path is set in settings, new path is set in Window::on_pushButton_setdefaultopenaction_clicked
+        if (!settingsmanager->keyExists(MainWindow::settingsKeyGeneralSettings, "defaultopendir")) {
+            saveDirectories(MainWindow::settingsKeyGeneralSettings, "defaultopendir", path.value(0));
+        }
+
         ui->tableWidget_dir->insertRow(ui->tableWidget->rowCount());
 
         ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 0, new QTableWidgetItem(path.value(0)));
@@ -193,11 +199,6 @@ void Window::on_pushButton_addSaveDir_clicked()
     else {
         saveDirectories(MainWindow::settingsKeyForSaveDirPath, path.value(1), path.value(0));
 
-        //Setup the default value key for contextmenu tray icon open action on first start
-        //once default path is set in settings, new path is set in Window::on_pushButton_setdefaultopenaction_clicked
-        if (!settingsmanager->keyExists(MainWindow::settingsKeyGeneralSettings, "defaultopendir")) {
-            saveDirectories(MainWindow::settingsKeyGeneralSettings, "defaultopendir", path.value(0));
-        }
 
         ui->tableWidget_save->insertRow(ui->tableWidget->rowCount());
 
