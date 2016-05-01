@@ -23,7 +23,6 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
 
         if (QFile::exists(to))
         {
-            qDebug() << TAG << "copy_dir_recursive: File already exists";
             //Display Warning
             /*
             if (QFile::remove(to) == false)

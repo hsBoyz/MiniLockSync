@@ -401,16 +401,23 @@ void Window::copyDirectory(){
      *
      */
 
-    //This stores all directories which user has specified to encrypt
+    //get all directories which user has specified to encrypt
     QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
     //Load first, and in this case only, key from specified working direcotries
     QString to = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, settingsmanager->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0));
     QString toSaveDir = settingsmanager->returnSetting(MainWindow::settingsKeyForSaveDirPath, settingsmanager->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0));
-    bool onlyOneDirToEncrypt = true;
 
+    /*
+     * OLD VERSION:
+     * In case of only one directory is specified to encrypt
+     * dont create a parent folder
+     */
+    //bool onlyOneDirToEncrypt = true;
+    /*
     if (settingsmanager->loadSettings(MainWindow::settingsKeyForPaths).length() > 1) {
         onlyOneDirToEncrypt = false;
     }
+    */
 
     foreach (QString nameOfDir, dirsToEncryp) {
         /*
@@ -418,17 +425,19 @@ void Window::copyDirectory(){
          */
         QString from = settingsmanager->returnSetting(MainWindow::settingsKeyForPaths, nameOfDir);
 
+        /*
         if (onlyOneDirToEncrypt) {
             filesHandler->copy_dir_recursive (from, to);
             filesHandler->copy_dir_recursive (from, toSaveDir);
         }
-        else {
+        */
+        //else {
             QString toNew = filesHandler->createDir(to, nameOfDir);
             QString toSaveDirNew = filesHandler->createDir(toSaveDir, nameOfDir);
 
             filesHandler->copy_dir_recursive(from, toNew);
             filesHandler->copy_dir_recursive(from, toSaveDirNew);
-        }
+        //}
     }
 }
 
