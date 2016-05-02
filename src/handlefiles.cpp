@@ -2,6 +2,7 @@
 #include "settingsmanager.h"
 #include "mainwindow.h"
 #include <QDebug>
+#include <QMessageBox>
 
 Handlefiles::Handlefiles()
 {
@@ -10,6 +11,10 @@ Handlefiles::Handlefiles()
 
 bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
 {
+    QMessageBox msgBox;
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+
     QDir dir;
     dir.setPath(fromDir);
 
@@ -23,6 +28,22 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
 
         if (QFile::exists(to))
         {
+            /*
+            msgBox.setInformativeText("File " + to + " already exists. Do you want to override it?");
+
+            switch (msgBox.exec()) {
+                case QMessageBox::Ok:
+                    QFile::remove(to);
+                    QFile::copy(from, to);
+                    break;
+                case QMessageBox::Cancel:
+                    // Cancel was clicked
+                    break;
+                default:
+                    // should never be reached
+                    break;
+              }
+              */
             //Display Warning
             /*
             if (QFile::remove(to) == false)
@@ -58,7 +79,13 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
     return true;
 }
 
+bool Handlefiles::delete_dir_recursive(QString dirDelete)
+{
+    QDir dir;
+    dir.setPath(dirDelete);
 
+    return dir.removeRecursively();
+}
 
 QString Handlefiles::createDir(QString path, QString folderName) {
 
@@ -72,6 +99,8 @@ QString Handlefiles::createDir(QString path, QString folderName) {
     }
     return path + QDir::separator() + folderName;
 }
+
+
 
 /**
  * @brief Handlefiles::createCopyAndWorkDir

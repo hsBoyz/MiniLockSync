@@ -79,20 +79,19 @@ void FileWindow::dragMoveEvent(QDragMoveEvent *e)
 
 void FileWindow::dropEvent(QDropEvent *e)
 {
-    //first value stores root folder, second value stores path of foldernames of the different direcotries
-    //which are added to encrypt
+    //copy droped files to folder which is shown currently
     QString copyTo = currentDirPath;
     QString dirCleanedPath;
     QString nameOfEncryptedFolder;
     QString relativePath;
 
-    if (copyTo == "") {
+    //dont allow to copy a file/dir into working directory root folder
+    if (copyTo == setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath")) {
         QMessageBox msgBox;
         msgBox.setInformativeText("You cannot copy into the root folder.");
         msgBox.exec();
     }
     else {
-
         dirCleanedPath = returnDirectoryCleanedPath(copyTo);
         nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
         relativePath = returnRelativPath(dirCleanedPath);
@@ -101,26 +100,9 @@ void FileWindow::dropEvent(QDropEvent *e)
             foreach (QUrl url, e->mimeData()->urls()) {
                 QString localPath = url.toLocalFile();
                 QFileInfo fileInfo(localPath);
-
                 copyDropFiles(url.toLocalFile(), nameOfEncryptedFolder, relativePath, fileInfo);
-                /*
-                if(fileInfo.isFile()) {
-                    copyDropFiles(url.toLocalFile(), nameOfEncryptedFolder, relativePath, url.fileName());
-                }
-                else if (fileInfo.isDir()) {
-                    qDebug() << fileInfo.baseName();
-                    //fileshandler->createDir()
-                    //copyDropFiles(url.toLocalFile(), nameOfEncryptedFolder, relativePath, url.fileName());
-                }
-                */
-
             }
         }
-
-
-        //listview updaten!!!!!
-        //ui->listView->viewport()->update();
-
     }
 }
 
@@ -131,15 +113,13 @@ void FileWindow::on_listView_clicked(const QModelIndex &index)
 
 void FileWindow::on_pushButton_deleteFile_clicked()
 {
-    qDebug() << "Filewindow on_pushButton_deleteFile_clicked: " << " removeFile: selectedDirPath: " << selectedDirPath;
-
     QString dirCleanedPath;
     QString nameOfEncryptedFolder;
     QString relativePath;
 
     QMessageBox msgBox;
-    msgBox.setText("File will be deleted.");
-    msgBox.setInformativeText("Do you want to delete the File?");
+    msgBox.setText("File/Dir will be deleted.");
+    msgBox.setInformativeText("Do you want to delete the File/DirectoryS?");
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
@@ -147,12 +127,14 @@ void FileWindow::on_pushButton_deleteFile_clicked()
     nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     relativePath = returnRelativPath(dirCleanedPath);
 
+    QFileInfo fileInfo(selectedDirPath);
+
     if (selectedDirPath != "") {
         int returnValue = msgBox.exec();
 
         switch (returnValue) {
             case QMessageBox::Ok:
-                deleteFile(nameOfEncryptedFolder, relativePath);
+                deleteFile(nameOfEncryptedFolder, relativePath, fileInfo);
                 break;
             case QMessageBox::Cancel:
                 // Cancel was clicked
@@ -221,43 +203,73 @@ QString FileWindow::returnDirNameFromString(QString path) {
 }
 
 void FileWindow::copyDropFiles(QString from, QString folderName, QString relativePath, QFileInfo fileinfo) {
-
+    //Specify paths of working directory, saftycopy directory and cloud service directory
     QString toCloudDir = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + relativePath;
     QString toWorkDir = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
             + QDir::separator() + folderName + relativePath;
     QString toSaveDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
             + QDir::separator() + folderName + relativePath;
 
+    fileExists(toWorkDir, fileinfo);
 
     if(fileinfo.isFile()) {
-        //copy file to encrypted directory e.g. onedrive, dropbox
-        QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName());
-        //copy file to safetycopy directory
-        QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName());
-        //copy file to workdirectory
-        QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName());
+        QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
     }
     else if (fileinfo.isDir()) {
         //Create folder with name from root folder which should be copied
-        fileshandler->createDir(toCloudDir, fileinfo.baseName());
-        fileshandler->createDir(toSaveDir, fileinfo.baseName());
-        fileshandler->createDir(toWorkDir, fileinfo.baseName());
+        fileshandler->createDir(toCloudDir, fileinfo.baseName() + "."  + fileinfo.suffix());
+        fileshandler->createDir(toSaveDir, fileinfo.baseName() + "."  + fileinfo.suffix());
+        fileshandler->createDir(toWorkDir, fileinfo.baseName() + "."  + fileinfo.suffix());
 
-        fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName());
-        fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName());
-        fileshandler->copy_dir_recursive(from, toSaveDir + QDir::separator() + fileinfo.baseName());
+        fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "." + fileinfo.suffix());
+        fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        fileshandler->copy_dir_recursive(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
     }
 
 }
 
-void FileWindow::deleteFile(QString folderName, QString relativePath) {
-    //delete file at encrypted directory e.g. onedrive, dropbox
-    QFile::remove(setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath);
-    //delete file at safetycopy directory
-    QFile::remove(setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
-                + QDir::separator() + folderName + QDir::separator() + relativePath);
-    //delete file at workdirectory
-    QFile::remove(setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
-                + QDir::separator() + folderName + QDir::separator() + relativePath);
+void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
+    QMessageBox msgBox;
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    msgBox.setInformativeText("File " + path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix() + " already exists. Please rename it.");
+    msgBox.exec();
+    /*
+    if (QFile::exists(path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix())) {
+        switch (msgBox.exec()) {
+            case QMessageBox::Ok:
+                QFile::remove(path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix());
+                break;
+            case QMessageBox::Cancel:
+                // Cancel was clicked
+                break;
+            default:
+                // should never be reached
+                break;
+          }
+    }
+    */
 }
 
+void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo) {
+
+    //Specify paths of working directory, saftycopy directory and cloud service directory
+    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
+    QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
+            + QDir::separator() + folderName + QDir::separator() + relativePath;
+    QString deleteSaveDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
+            + QDir::separator() + folderName + QDir::separator() + relativePath;
+
+    if (fileInfo.isDir()) {
+        fileshandler->delete_dir_recursive(deleteCloudDir);
+        fileshandler->delete_dir_recursive(deleteWorkDir);
+        fileshandler->delete_dir_recursive(deleteSaveDir);
+    }
+    else {
+        QFile::remove(deleteCloudDir);
+        QFile::remove(deleteWorkDir);
+        QFile::remove(deleteSaveDir);
+    }
+}

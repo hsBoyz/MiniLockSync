@@ -12,6 +12,7 @@ public:
 
 
     bool copy_dir_recursive(QString fromDir, QString toDir);
+    bool delete_dir_recursive(QString dirDelete);
     void createCopyAndWorkDir(QString group);
     QString createDir(QString path, QString folderName);
 };

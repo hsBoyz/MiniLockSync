@@ -24,7 +24,8 @@ private slots:
     QString returnDirNameFromString(QString path);
     QString returnRelativPath(QString path);
     void copyDropFiles(QString from, QString folderName, QString relativePath, QFileInfo fileinfo);
-    void deleteFile(QString folderName, QString relativePath);
+    void fileExists(QString path, QFileInfo fileInfo);
+    void deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo);
 
     void dragEnterEvent(QDragEnterEvent *e);
     void dragLeaveEvent(QDragLeaveEvent *e);
