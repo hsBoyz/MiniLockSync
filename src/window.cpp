@@ -27,7 +27,7 @@ Window::Window(QWidget *parent) :
 
     //Verbinde Ereignis mit Methode
     connect (ui->pushHome, SIGNAL(clicked(bool)), SLOT(on_pushHome_clicked()));
-    connect (ui->pushCloudService, SIGNAL(clicked(bool)), SLOT(on_pushCloudService_clicked()));
+    connect (ui->pushCloudService, SIGNAL(activated(int)), SLOT(setCurrentIndex(int)));
     connect (ui->pushManageCloud, SIGNAL(clicked(bool)), SLOT(on_pushManageCloud_clicked()));
     connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), SLOT(on_pushManageSaveDir_clicked()));
     connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), SLOT(on_pushCPULimitation_clicked()));
@@ -75,6 +75,7 @@ void Window::on_pushHome_clicked()
     ui->ManageWorkSaveDir->hide();
     ui->CPULimitation->hide();
     ui->ChangePasword->hide();
+
 }
 void Window::on_pushCloudService_clicked()
 {
