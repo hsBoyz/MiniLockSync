@@ -1,0 +1,32 @@
+﻿  Moc'ing filewindow.h...
+  Moc'ing mainwindow.h...
+  Moc'ing login.hpp...
+  Moc'ing steerer.h...
+  Moc'ing window.h...
+  Uic'ing login.ui...
+  moc_filewindow.cpp
+  moc_login.cpp
+  Import Symbols
+  Compiler Message: DEBUG
+  Compiler Message: Unicode not defined
+  moc_mainwindow.cpp
+  moc_steerer.cpp
+  moc_window.cpp
+  filewindow.cpp
+  handlefiles.cpp
+  login.cpp
+  Import Symbols
+  Compiler Message: DEBUG
+  Compiler Message: Unicode not defined
+login.cpp(103): warning C4100: 'event': unreferenced formal parameter
+  main.cpp
+  Import Symbols
+  Compiler Message: DEBUG
+  Compiler Message: Unicode not defined
+  mainwindow.cpp
+  settingsmanager.cpp
+  steerer.cpp
+  window.cpp
+  Generating Code...
+  qrc_resources.cpp
+  MiniLockSync.vcxproj -> C:\Users\Eugen\MiniLockSync\src\debug\MiniLockSync.exe

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiniLockSync", "MiniLockSync.vcxproj", "{D7004D00-CEBB-3C36-AAC2-C5AB6FD84BC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7004D00-CEBB-3C36-AAC2-C5AB6FD84BC1}.Debug|x86.ActiveCfg = Debug|Win32
+		{D7004D00-CEBB-3C36-AAC2-C5AB6FD84BC1}.Debug|x86.Build.0 = Debug|Win32
+		{D7004D00-CEBB-3C36-AAC2-C5AB6FD84BC1}.Release|x86.ActiveCfg = Release|Win32
+		{D7004D00-CEBB-3C36-AAC2-C5AB6FD84BC1}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
