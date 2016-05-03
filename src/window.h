@@ -77,7 +77,7 @@ private:
     void deleteDirectories(QString name);
     void populateTableWidget(QString group, QTableWidget *widget);
     QList<QString> returnSelectedPath();
-    void Window::copyDirectory();
+    void copyDirectory();
 
 };
 
