@@ -14,16 +14,23 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    stackedwindow.cpp \
-    steerer.cpp
+    steerer.cpp \
+    settingsmanager.cpp \
+    window.cpp \
+    handlefiles.cpp \
+    filewindow.cpp
 
 HEADERS  += mainwindow.h \
-    stackedwindow.h \
-    steerer.h
+    steerer.h \
+    settingsmanager.h \
+    window.h \
+    handlefiles.h \
+    filewindow.h
 
 FORMS    += mainwindow.ui \
-    stackedwindow.ui \
-    steerer.ui
+    steerer.ui \
+    window.ui \
+    filewindow.ui
 
 RESOURCES += \
     resources.qrc
