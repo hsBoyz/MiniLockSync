@@ -26,12 +26,15 @@ Window::Window(QWidget *parent) :
     settingsmanager = new Settingsmanager();
 
     //Verbinde Ereignis mit Methode
-    connect (ui->pushHome, SIGNAL(clicked(bool)), SLOT(on_pushHome_clicked()));
-    connect (ui->pushCloudService, SIGNAL(activated(int)), SLOT(setCurrentIndex(int)));
-    connect (ui->pushManageCloud, SIGNAL(clicked(bool)), SLOT(on_pushManageCloud_clicked()));
-    connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), SLOT(on_pushManageSaveDir_clicked()));
-    connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), SLOT(on_pushCPULimitation_clicked()));
-    connect (ui->pushChangePassword, SIGNAL(clicked(bool)), SLOT(on_pushChangePassword_clicked()));
+
+    connect (ui->pushHome, SIGNAL(on_pushHome_clicked()),this, SLOT(setCurrentIndex(int)));
+    connect (ui->pushCloudService, SIGNAL(on_pushCloudService_clicked()), SLOT(setCurrentIndex(int)));
+    connect (ui->pushManageCloud, SIGNAL(on_pushManageCloud_clicked()), SLOT(setCurrentIndex(int)));
+    connect (ui->pushManageSaveDir, SIGNAL(on_pushManageSaveDir_clicked()), SLOT(setCurrentIndex(int)));
+    connect (ui->pushCPULimitation, SIGNAL(on_pushCPULimitation_clicked()), SLOT(setCurrentIndex(int)));
+    connect (ui->pushChangePassword, SIGNAL(on_pushChangePassword_clicked()), SLOT(setCurrentIndex(int)));
+
+
 
     initializeFileBrowser();
     initializeTableWidget(ui->tableWidget);
@@ -67,64 +70,33 @@ void Window::contextMenuEvent(
  *
  */
 
-void Window::on_pushHome_clicked()
+void Window::on_pushHome_clicked(int index)
 {
-    ui->Home->show();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
-
+    ui->stackedWidget->setCurrentIndex(1);
 }
-void Window::on_pushCloudService_clicked()
+void Window::on_pushCloudService_clicked(int index)
 {
-    ui->CloudService->show();
-    ui->Home->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+    ui->stackedWidget->setCurrentIndex(index);
 }
 
-void Window::on_pushManageCloud_clicked()
+void Window::on_pushManageCloud_clicked(int index)
 {
-    ui->ManageCloud->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+    ui->stackedWidget->setCurrentIndex(index);
 }
 
-void Window::on_pushManageSaveDir_clicked()
+void Window::on_pushManageSaveDir_clicked(int index)
 {
-    ui->ManageWorkSaveDir->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+    ui->stackedWidget->setCurrentIndex(index);
 }
 
-void Window::on_pushCPULimitation_clicked()
+void Window::on_pushCPULimitation_clicked(int index)
 {
-    ui->CPULimitation->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->ChangePasword->hide();
+    ui->stackedWidget->setCurrentIndex(index);
 }
 
-void Window::on_pushChangePassword_clicked()
+void Window::on_pushChangePassword_clicked(int index)
 {
-    ui->ChangePasword->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
+    ui->stackedWidget->setCurrentIndex(index);
 }
 
 void Window::on_pushButton_addDir_clicked()
