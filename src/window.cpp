@@ -24,6 +24,7 @@ Window::Window(QWidget *parent) :
 //--------------------------------------------------------
 
     settingsmanager = new Settingsmanager();
+    filesHandler = new Handlefiles();
 
 
     //Verbinde Ereignis mit Methode
@@ -175,6 +176,12 @@ void Window::on_pushButton_addWorkDir_clicked()
     else {
         saveDirectories(MainWindow::settingsKeyForWorkDirPath, path.value(1), path.value(0));
 
+        //Setup the default value key for contextmenu tray icon open action on first start
+        //once default path is set in settings, new path is set in Window::on_pushButton_setdefaultopenaction_clicked
+        if (!settingsmanager->keyExists(MainWindow::settingsKeyGeneralSettings, "defaultopendir")) {
+            saveDirectories(MainWindow::settingsKeyGeneralSettings, "defaultopendir", path.value(0));
+        }
+
         ui->tableWidget_dir->insertRow(ui->tableWidget->rowCount());
 
         ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 0, new QTableWidgetItem(path.value(0)));
@@ -193,6 +200,7 @@ void Window::on_pushButton_addSaveDir_clicked()
     }
     else {
         saveDirectories(MainWindow::settingsKeyForSaveDirPath, path.value(1), path.value(0));
+
 
         ui->tableWidget_save->insertRow(ui->tableWidget->rowCount());
 
@@ -251,6 +259,33 @@ void Window::on_pushButton_deleteDir_2_clicked()
 
 void Window::on_pushButton_confirm_clicked()
 {
+    //filesHandler->createDir(MainWindow::settingsKeyForWorkDirPath);
+    copyDirectory();
+}
+
+void Window::on_pushButton_setdefaultopenaction_clicked()
+{
+    /*
+     * set path of default directory in settings. first initialized in
+     * Window::on_pushButton_addWorkDir_clicked()
+     *
+     */
+
+    QItemSelectionModel *select = ui->tableWidget_dir->selectionModel();
+    QModelIndexList list = select->selectedIndexes();
+
+    //more than 1 tablewidget_dir item is selected
+    if (list.length() > 1) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("You can only set one path to default open action.");
+        msgBox.exec();
+    }
+
+    else {
+        int row = list.value(0).row();
+        QString path = ui->tableWidget_dir->item(row, 0)->text();
+        saveDirectories(MainWindow::settingsKeyGeneralSettings, "defaultopenpath", path);
+    }
 
 }
 
@@ -295,6 +330,24 @@ void Window::saveDirectories(QString group, QString name, QString path) {
     //Adding name for getting the full path including selected folder
     if (!settingsmanager->keyExists(group, name)) {
        settingsmanager->saveSettings(group, name, path);
+    }
+    else {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("Vorheriger Eintrag wird überschrieben.");
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        switch (msgBox.exec()) {
+            case QMessageBox::Ok:
+                settingsmanager->removeKey(group, name);
+                settingsmanager->saveSettings(group, name, path);
+                break;
+            case QMessageBox::Cancel:
+                // Cancel was clicked
+                break;
+            default:
+                // should never be reached
+                break;
+          }
     }
 }
 
@@ -343,6 +396,53 @@ QList<QString> Window::returnSelectedPath() {
     }
     return path;
 }
+
+void Window::copyDirectory(){
+    /*
+     * this implementation assumes that every directory which should be encrypted are stored to the same workdirectory
+     *
+     */
+
+    //get all directories which user has specified to encrypt
+    QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
+    //Load first, and in this case only, key from specified working direcotries
+    QString to = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, settingsmanager->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0));
+    QString toSaveDir = settingsmanager->returnSetting(MainWindow::settingsKeyForSaveDirPath, settingsmanager->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0));
+
+    /*
+     * OLD VERSION:
+     * In case of only one directory is specified to encrypt
+     * dont create a parent folder
+     */
+    //bool onlyOneDirToEncrypt = true;
+    /*
+    if (settingsmanager->loadSettings(MainWindow::settingsKeyForPaths).length() > 1) {
+        onlyOneDirToEncrypt = false;
+    }
+    */
+
+    foreach (QString nameOfDir, dirsToEncryp) {
+        /*
+         * Dont copy if folder already exists, which means copy was done before
+         */
+        QString from = settingsmanager->returnSetting(MainWindow::settingsKeyForPaths, nameOfDir);
+
+        /*
+        if (onlyOneDirToEncrypt) {
+            filesHandler->copy_dir_recursive (from, to);
+            filesHandler->copy_dir_recursive (from, toSaveDir);
+        }
+        */
+        //else {
+            QString toNew = filesHandler->createDir(to, nameOfDir);
+            QString toSaveDirNew = filesHandler->createDir(toSaveDir, nameOfDir);
+
+            filesHandler->copy_dir_recursive(from, toNew);
+            filesHandler->copy_dir_recursive(from, toSaveDirNew);
+        //}
+    }
+}
+
 
 
 

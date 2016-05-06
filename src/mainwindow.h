@@ -38,8 +38,7 @@ public:
     static QString settingsKeyForPaths;
     static QString settingsKeyForWorkDirPath;
     static QString settingsKeyForSaveDirPath;
-
-
+    static QString settingsKeyGeneralSettings;
 
     ~MainWindow();
 
@@ -54,6 +53,7 @@ private:
     Ui::MainWindow *ui;
 
     QAction *act1,*act2,*act3,*act4;
+
 
 
 private slots:

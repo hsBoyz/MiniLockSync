@@ -45,6 +45,8 @@ void Settingsmanager::removeKey(QString group, QString keyToRemove) {
     setting.beginGroup(group);
     setting.remove(keyToRemove);
 
+    qDebug() << TAG + "removeKey: Key " + keyToRemove + " removed";
+
     if (setting.allKeys().length() == 0){
         setting.remove("");
         qDebug() << TAG + ": Group " + group + " removed";

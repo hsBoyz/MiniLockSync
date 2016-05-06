@@ -3,6 +3,7 @@
 
 #include "settingsmanager.h"
 #include "mainwindow.h"
+#include "handlefiles.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
@@ -61,12 +62,15 @@ private slots:
     void on_pushButton_confirm_clicked();
 
 
+    void on_pushButton_setdefaultopenaction_clicked();
+
 private:
     Ui::Window *ui;
 
 
     QFileSystemModel *fileBrowserModel;
     Settingsmanager *settingsmanager;
+    Handlefiles *filesHandler;
 
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);
@@ -74,7 +78,7 @@ private:
     void deleteDirectories(QString name);
     void populateTableWidget(QString group, QTableWidget *widget);
     QList<QString> returnSelectedPath();
-
+    void Window::copyDirectory();
 
 };
 
