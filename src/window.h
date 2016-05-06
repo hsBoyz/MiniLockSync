@@ -7,6 +7,7 @@
 #include <QFileSystemModel>
 #include <QTableWidget>
 
+static int currentIndex = 0; // Global
 
 namespace Ui {
 class Window;
@@ -36,15 +37,15 @@ protected:
 
 private slots:
 
-    void on_pushHome_clicked(int index);
+    void on_pushHome_clicked();
 
-    void on_pushCloudService_clicked(int index);
+    void on_pushCloudService_clicked();
 
-    void on_pushManageCloud_clicked(int index);
+    void on_pushManageCloud_clicked();
 
-    void on_pushCPULimitation_clicked(int index);
+    void on_pushCPULimitation_clicked();
 
-    void on_pushChangePassword_clicked(int index);
+    void on_pushChangePassword_clicked();
 
     void on_pushButton_addDir_clicked();
     void on_pushButton_deleteDir_clicked();
@@ -53,7 +54,7 @@ private slots:
 
     void on_pushButton_addSaveDir_clicked();
 
-    void on_pushManageSaveDir_clicked(int index);
+    void on_pushManageSaveDir_clicked();
 
     void on_pushButton_deleteDir_2_clicked();
 

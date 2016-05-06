@@ -25,14 +25,14 @@ Window::Window(QWidget *parent) :
 
     settingsmanager = new Settingsmanager();
 
-    //Verbinde Ereignis mit Methode
 
-    connect (ui->pushHome, SIGNAL(on_pushHome_clicked()),this, SLOT(setCurrentIndex(int)));
-    connect (ui->pushCloudService, SIGNAL(on_pushCloudService_clicked()), SLOT(setCurrentIndex(int)));
-    connect (ui->pushManageCloud, SIGNAL(on_pushManageCloud_clicked()), SLOT(setCurrentIndex(int)));
-    connect (ui->pushManageSaveDir, SIGNAL(on_pushManageSaveDir_clicked()), SLOT(setCurrentIndex(int)));
-    connect (ui->pushCPULimitation, SIGNAL(on_pushCPULimitation_clicked()), SLOT(setCurrentIndex(int)));
-    connect (ui->pushChangePassword, SIGNAL(on_pushChangePassword_clicked()), SLOT(setCurrentIndex(int)));
+    //Verbinde Ereignis mit Methode
+    connect (ui->pushHome, SIGNAL(clicked(bool)), this, SLOT(on_pushHome_clicked()));
+    connect (ui->pushCloudService, SIGNAL(clicked(bool)), this, SLOT(on_pushCloudService_clicked()));
+    connect (ui->pushManageCloud, SIGNAL(clicked(bool)), this, SLOT(on_pushManageCloud_clicked()));
+    connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), this, SLOT(on_pushManageSaveDir_clicked()));
+    connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), this, SLOT(on_pushCPULimitation_clicked()));
+    connect (ui->pushChangePassword, SIGNAL(clicked(bool)), this, SLOT(on_pushChangePassword_clicked()));
 
 
 
@@ -43,6 +43,10 @@ Window::Window(QWidget *parent) :
     populateTableWidget(MainWindow::settingsKeyForPaths, ui->tableWidget);
     populateTableWidget(MainWindow::settingsKeyForWorkDirPath, ui->tableWidget_dir);
     populateTableWidget(MainWindow::settingsKeyForSaveDirPath, ui->tableWidget_save);
+
+
+
+
 }
 
 Window::~Window()
@@ -70,33 +74,58 @@ void Window::contextMenuEvent(
  *
  */
 
-void Window::on_pushHome_clicked(int index)
+void Window::on_pushHome_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(0); // Home
+          }
 }
-void Window::on_pushCloudService_clicked(int index)
+void Window::on_pushCloudService_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(index);
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(1); // CloudService
+          }
 }
 
-void Window::on_pushManageCloud_clicked(int index)
+void Window::on_pushManageCloud_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(index);
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(2); // Manage Cloud
+          }
 }
 
-void Window::on_pushManageSaveDir_clicked(int index)
+void Window::on_pushManageSaveDir_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(index);
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(3); // Manage Save Dir
+          }
 }
 
-void Window::on_pushCPULimitation_clicked(int index)
+void Window::on_pushCPULimitation_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(index);
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(4); // CPU Limitation
+          }
 }
 
-void Window::on_pushChangePassword_clicked(int index)
+void Window::on_pushChangePassword_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(index);
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(5); // Change PW
+          }
 }
 
 void Window::on_pushButton_addDir_clicked()
