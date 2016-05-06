@@ -151,7 +151,7 @@ void Window::on_pushButton_addDir_clicked()
 
     if (path.value(0) == "error") {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Path cant be root of a directory. Please choose a folder.");
+        msgBox.setInformativeText(tr("Path cant be root of a directory. Please choose a folder."));
         msgBox.exec();
     }
     else {
@@ -170,7 +170,7 @@ void Window::on_pushButton_addWorkDir_clicked()
 
     if (path.value(0) == "error") {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Path cant be root of a directory. Please choose a folder.");
+        msgBox.setInformativeText(tr("Path cant be root of a directory. Please choose a folder."));
         msgBox.exec();
     }
     else {
@@ -195,7 +195,7 @@ void Window::on_pushButton_addSaveDir_clicked()
 
     if (path.value(0) == "error") {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Path cant be root of a directory. Please choose a folder.");
+        msgBox.setInformativeText(tr("Path cant be root of a directory. Please choose a folder."));
         msgBox.exec();
     }
     else {
@@ -252,7 +252,7 @@ void Window::on_pushButton_deleteDir_2_clicked()
     }
     else {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Please select path to delete.");
+        msgBox.setInformativeText(tr("Please select path to delete."));
         msgBox.exec();
     }
 }
@@ -277,7 +277,7 @@ void Window::on_pushButton_setdefaultopenaction_clicked()
     //more than 1 tablewidget_dir item is selected
     if (list.length() > 1) {
         QMessageBox msgBox;
-        msgBox.setInformativeText("You can only set one path to default open action.");
+        msgBox.setInformativeText(tr("You can only set one path to default open action."));
         msgBox.exec();
     }
 
@@ -333,7 +333,7 @@ void Window::saveDirectories(QString group, QString name, QString path) {
     }
     else {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Vorheriger Eintrag wird überschrieben.");
+        msgBox.setInformativeText(tr("Last Entry will be overwritten."));
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
         switch (msgBox.exec()) {
