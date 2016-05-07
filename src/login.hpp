@@ -9,6 +9,9 @@ class login : public QWidget {
 
 public:
 	login(QWidget * parent = Q_NULLPTR);
+
+    uCrypt::uCryptLib getMainSession();
+
 	~login();
 
 protected:
@@ -22,6 +25,6 @@ protected:
 
 private:
 	Ui::login ui;
-	uCrypt::uCryptLib mainSession;
+    uCrypt::uCryptLib mainSession;
 	bool isInitialized;
 };
