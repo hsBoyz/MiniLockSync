@@ -34,3 +34,7 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     resources.qrc
+
+TRANSLATIONS = MiniLockSync_de.ts
+
+DEFINES += QT_NO_CAST_FROM_ASCII

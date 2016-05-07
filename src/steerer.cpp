@@ -29,11 +29,11 @@ void Steerer::start()
 
 void Steerer::createActions()
 {
-    settingsAction = new QAction(tr("&Einstellungen"), this);
+    settingsAction = new QAction(tr("&Settings"), this);
     connect(settingsAction, SIGNAL(triggered()), this, SLOT(showSettings()));
-    quitAction = new QAction(tr("&Beenden"), this);
+    quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-    openAction = new QAction(tr("Öffnen"), this);
+    openAction = new QAction(tr("Open"), this);
     connect(openAction, SIGNAL(triggered()), this, SLOT(openFileWindow()));
 }
 

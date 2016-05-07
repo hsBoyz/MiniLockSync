@@ -234,7 +234,7 @@ void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
     QMessageBox msgBox;
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
-    msgBox.setInformativeText("File " + path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix() + " already exists. Please rename it.");
+    msgBox.setInformativeText(tr("File ") + path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix() + tr(" already exists. Please rename it."));
     msgBox.exec();
     /*
     if (QFile::exists(path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix())) {
