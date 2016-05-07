@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QTranslator editTranslator;
     QString filename;
     filename = QString("MiniLockSync_%1").arg(QLocale::system().name());
-    editTranslator.load(filename, qApp->applicationDirPath());
+    editTranslator.load(filename, qApp->applicationDirPath()); ///!!!!!!!!!!!!!!!!!! ToDo
     a.installTranslator(&editTranslator);
 
 
