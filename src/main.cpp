@@ -5,6 +5,11 @@
 #include "mainwindow.h"
 #include "window.h"
 #include "steerer.h"
+<<<<<<< HEAD
+=======
+#include "login.hpp"
+#include <QApplication>
+>>>>>>> workDirs_Manu
 
 int main(int argc, char *argv[])
 {
@@ -20,11 +25,13 @@ int main(int argc, char *argv[])
 
     a.setQuitOnLastWindowClosed(false);
     MainWindow w;
+    login l;
+    l.show();
 
     Steerer *s = new Steerer();
     s->start();
 
-    w.show();
+    //w.show();
 
     return a.exec();
 }
