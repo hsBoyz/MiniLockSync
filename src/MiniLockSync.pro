@@ -39,11 +39,11 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     resources.qrc
 
-<<<<<<< HEAD
+
 TRANSLATIONS = MiniLockSync_de.ts
 
 DEFINES += QT_NO_CAST_FROM_ASCII
-=======
+
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Release
@@ -52,4 +52,4 @@ else:unix: LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Release
 
 INCLUDEPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
 DEPENDPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
->>>>>>> workDirs_Manu
+
