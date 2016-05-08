@@ -42,7 +42,7 @@ RESOURCES += \
 
 TRANSLATIONS = MiniLockSync_de.ts
 
-DEFINES += QT_NO_CAST_FROM_ASCII
+
 
 
 
@@ -52,4 +52,6 @@ else:unix: LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Release
 
 INCLUDEPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
 DEPENDPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
+
+
 

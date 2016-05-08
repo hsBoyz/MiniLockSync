@@ -152,7 +152,7 @@ void FileWindow::on_pushButton_encrypt_clicked()
     QFileInfo fileInfo = QFileInfo(selectedDirPath);
     login log = new login();
     uCrypt::uCryptLib mainSession = log.getMainSession();
-   qDebug() << "filewindow on_pushbutton_encrypt_clicked: "  mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0);
+   qDebug() << "filewindow on_pushbutton_encrypt_clicked: " << mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0);
 }
 
 
