@@ -13,7 +13,7 @@ Window::Window(QWidget *parent) :
         QMenu *fileMenu = new QMenu(tr("&File"), this);
         menuBar()->addMenu(fileMenu);
         act3 = fileMenu->addAction(
-                    QIcon(QString("%1%2").arg(QCoreApplication::applicationDirPath()).arg("/images/cancel.png"))   ,
+                    QIcon(":/icons/images/cancel.png")   ,
                     tr("Quit"),
            qApp, SLOT(quit()),
            QKeySequence(tr("Ctrl+Q", "File|Quit")) );
