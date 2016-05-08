@@ -5,11 +5,11 @@
 #include "mainwindow.h"
 #include "window.h"
 #include "steerer.h"
-<<<<<<< HEAD
-=======
+
+
 #include "login.hpp"
 #include <QApplication>
->>>>>>> workDirs_Manu
+
 
 int main(int argc, char *argv[])
 {
