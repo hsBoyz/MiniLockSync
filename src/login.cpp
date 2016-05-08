@@ -1,6 +1,7 @@
 ﻿#include "login.hpp"
 #include "uCryptLib.h"
 #include "mainwindow.h"
+#include "filewindow.h"
 //#include "settingsmanager.h"
 
 #include <QtGui>
@@ -47,8 +48,8 @@ void login::loginButton_click()
 	}
 	else
 	{
-		mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
-			ui.passwdLineEdit->text().toStdString());
+        mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
+            ui.passwdLineEdit->text().toStdString());
 
 		ui.passwdLineEdit->setEchoMode(QLineEdit::Password);
 
@@ -63,9 +64,9 @@ void login::loginButton_click()
 		palette->setColor(QPalette::Text, Qt::darkGray);
 
 		ui.passwdLineEdit->setPalette(*palette);
-		ui.eMailLineEdit->setPalette(*palette);
+        ui.eMailLineEdit->setPalette(*palette);
 
-		QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
+        QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
 
 		ui.yourIdLineEdit->setText(identificationNumber);
 		
@@ -82,9 +83,10 @@ void login::startButton_click()
 				"dem Login das Programm zu starten "));
 	}
 	else
-	{
-		
-		QPalette *palette = new QPalette();
+    {
+
+
+        QPalette *palette = new QPalette();
 		palette->setColor(QPalette::Base, Qt::gray);
 		palette->setColor(QPalette::Text, Qt::darkGray);
 		
@@ -106,4 +108,8 @@ void login::closeEvent(QCloseEvent *event)
 	
 		close();
 		
-	}
+}
+
+uCrypt::uCryptLib login::getMainSession() {
+    return this->mainSession;
+}
