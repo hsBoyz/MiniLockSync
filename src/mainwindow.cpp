@@ -24,20 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //----------------------------------------------------------
-        // Das komplette Menü zum Hauptprogramm
-            QMenu *fileMenu = new QMenu(tr("&File"), this);
-            menuBar()->addMenu(fileMenu);
-            act3 = fileMenu->addAction(
-                        QIcon(QString("%1%2").arg(QCoreApplication::applicationDirPath()).arg("/images/cancel.png"))   ,
-                        tr("Quit"),
-               qApp, SLOT(quit()),
-               QKeySequence(tr("Ctrl+Q", "File|Quit")) );
-            act3->setStatusTip(tr("Quit Program"));
-            QMenu *workMenu = new QMenu(
-               tr("&Edit"), this);
-            menuBar()->addMenu(workMenu);
-    //--------------------------------------------------------
 
     //Verbinde Ereignis mit Methode
     connect (ui->pushConfirm, SIGNAL(clicked()), SLOT(pushConfirmClicked()));
