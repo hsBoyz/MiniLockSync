@@ -33,6 +33,9 @@ login::~login()
 	
 }
 
+uCrypt::uCryptLib login::mainSession = uCrypt::uCryptLib();
+bool login::isInitialized = false;
+
 void login::loginButton_click()
 {
 	// check for entropy
@@ -112,4 +115,8 @@ void login::closeEvent(QCloseEvent *event)
 
 uCrypt::uCryptLib login::getMainSession() {
     return this->mainSession;
+}
+
+bool login::getIsInitialized() {
+    return this->isInitialized;
 }

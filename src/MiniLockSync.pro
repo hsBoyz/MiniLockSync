@@ -54,4 +54,3 @@ INCLUDEPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
 DEPENDPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
 
 
-
