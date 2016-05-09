@@ -14,7 +14,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     steerer.cpp \
     settingsmanager.cpp \
     window.cpp \
@@ -22,16 +21,14 @@ SOURCES += main.cpp\
     filewindow.cpp \
     login.cpp
 
-HEADERS  += mainwindow.h \
-    steerer.h \
+HEADERS  += steerer.h \
     settingsmanager.h \
     window.h \
     handlefiles.h \
     filewindow.h \
     login.hpp
 
-FORMS    += mainwindow.ui \
-    steerer.ui \
+FORMS    += steerer.ui \
     window.ui \
     filewindow.ui \
     login.ui
