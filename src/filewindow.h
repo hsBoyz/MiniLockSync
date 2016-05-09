@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <settingsmanager.h>
+#include <uCryptLib.h>
 
 namespace Ui {
 class FileWindow;
@@ -16,6 +17,7 @@ class FileWindow : public QMainWindow
 
 public:
     explicit FileWindow(QWidget *parent = 0);
+
     ~FileWindow();
 
 private slots:
@@ -39,6 +41,8 @@ private slots:
     void on_pushButton_deleteFile_clicked();
 
     void on_listView_clicked(const QModelIndex &index);
+
+    void on_pushButton_encrypt_clicked();
 
 private:
     Ui::FileWindow *ui;

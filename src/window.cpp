@@ -13,7 +13,7 @@ Window::Window(QWidget *parent) :
         QMenu *fileMenu = new QMenu(tr("&File"), this);
         menuBar()->addMenu(fileMenu);
         act3 = fileMenu->addAction(
-                    QIcon(QString("%1%2").arg(QCoreApplication::applicationDirPath()).arg("/images/cancel.png"))   ,
+                    QIcon(":/icons/images/cancel.png")   ,
                     tr("Quit"),
            qApp, SLOT(quit()),
            QKeySequence(tr("Ctrl+Q", "File|Quit")) );
@@ -26,13 +26,16 @@ Window::Window(QWidget *parent) :
     settingsmanager = new Settingsmanager();
     filesHandler = new Handlefiles();
 
+
     //Verbinde Ereignis mit Methode
-    connect (ui->pushHome, SIGNAL(clicked(bool)), SLOT(on_pushHome_clicked()));
-    connect (ui->pushCloudService, SIGNAL(clicked(bool)), SLOT(on_pushCloudService_clicked()));
-    connect (ui->pushManageCloud, SIGNAL(clicked(bool)), SLOT(on_pushManageCloud_clicked()));
-    connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), SLOT(on_pushManageSaveDir_clicked()));
-    connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), SLOT(on_pushCPULimitation_clicked()));
-    connect (ui->pushChangePassword, SIGNAL(clicked(bool)), SLOT(on_pushChangePassword_clicked()));
+    connect (ui->pushHome, SIGNAL(clicked(bool)), this, SLOT(on_pushHome_clicked()));
+    connect (ui->pushCloudService, SIGNAL(clicked(bool)), this, SLOT(on_pushCloudService_clicked()));
+    connect (ui->pushManageCloud, SIGNAL(clicked(bool)), this, SLOT(on_pushManageCloud_clicked()));
+    connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), this, SLOT(on_pushManageSaveDir_clicked()));
+    connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), this, SLOT(on_pushCPULimitation_clicked()));
+    connect (ui->pushChangePassword, SIGNAL(clicked(bool)), this, SLOT(on_pushChangePassword_clicked()));
+
+
 
     initializeFileBrowser();
     initializeTableWidget(ui->tableWidget);
@@ -41,6 +44,10 @@ Window::Window(QWidget *parent) :
     populateTableWidget(MainWindow::settingsKeyForPaths, ui->tableWidget);
     populateTableWidget(MainWindow::settingsKeyForWorkDirPath, ui->tableWidget_dir);
     populateTableWidget(MainWindow::settingsKeyForSaveDirPath, ui->tableWidget_save);
+
+
+
+
 }
 
 Window::~Window()
@@ -70,61 +77,56 @@ void Window::contextMenuEvent(
 
 void Window::on_pushHome_clicked()
 {
-    ui->Home->show();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(0); // Home
+          }
 }
 void Window::on_pushCloudService_clicked()
 {
-    ui->CloudService->show();
-    ui->Home->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(1); // CloudService
+          }
 }
 
 void Window::on_pushManageCloud_clicked()
 {
-    ui->ManageCloud->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(2); // Manage Cloud
+          }
 }
 
 void Window::on_pushManageSaveDir_clicked()
 {
-    ui->ManageWorkSaveDir->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->CPULimitation->hide();
-    ui->ChangePasword->hide();
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(3); // Manage Save Dir
+          }
 }
 
 void Window::on_pushCPULimitation_clicked()
 {
-    ui->CPULimitation->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->ChangePasword->hide();
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(4); // CPU Limitation
+          }
 }
 
 void Window::on_pushChangePassword_clicked()
 {
-    ui->ChangePasword->show();
-    ui->Home->hide();
-    ui->CloudService->hide();
-    ui->ManageCloud->hide();
-    ui->ManageWorkSaveDir->hide();
-    ui->CPULimitation->hide();
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(5); // Change PW
+          }
 }
 
 void Window::on_pushButton_addDir_clicked()
@@ -149,7 +151,7 @@ void Window::on_pushButton_addDir_clicked()
 
     if (path.value(0) == "error") {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Path cant be root of a directory. Please choose a folder.");
+        msgBox.setInformativeText(tr("Path cant be root of a directory. Please choose a folder."));
         msgBox.exec();
     }
     else {
@@ -168,7 +170,7 @@ void Window::on_pushButton_addWorkDir_clicked()
 
     if (path.value(0) == "error") {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Path cant be root of a directory. Please choose a folder.");
+        msgBox.setInformativeText(tr("Path cant be root of a directory. Please choose a folder."));
         msgBox.exec();
     }
     else {
@@ -193,7 +195,7 @@ void Window::on_pushButton_addSaveDir_clicked()
 
     if (path.value(0) == "error") {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Path cant be root of a directory. Please choose a folder.");
+        msgBox.setInformativeText(tr("Path cant be root of a directory. Please choose a folder."));
         msgBox.exec();
     }
     else {
@@ -250,7 +252,7 @@ void Window::on_pushButton_deleteDir_2_clicked()
     }
     else {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Please select path to delete.");
+        msgBox.setInformativeText(tr("Please select path to delete."));
         msgBox.exec();
     }
 }
@@ -275,7 +277,7 @@ void Window::on_pushButton_setdefaultopenaction_clicked()
     //more than 1 tablewidget_dir item is selected
     if (list.length() > 1) {
         QMessageBox msgBox;
-        msgBox.setInformativeText("You can only set one path to default open action.");
+        msgBox.setInformativeText(tr("You can only set one path to default open action."));
         msgBox.exec();
     }
 
@@ -331,7 +333,7 @@ void Window::saveDirectories(QString group, QString name, QString path) {
     }
     else {
         QMessageBox msgBox;
-        msgBox.setInformativeText("Vorheriger Eintrag wird überschrieben.");
+        msgBox.setInformativeText(tr("Last Entry will be overwritten."));
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
         switch (msgBox.exec()) {

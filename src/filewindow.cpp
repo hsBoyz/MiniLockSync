@@ -1,6 +1,7 @@
 #include "filewindow.h"
 #include "ui_filewindow.h"
 #include "mainwindow.h"
+#include "login.hpp"
 #include <QDebug>
 #include <QDesktopServices>
 #include <QMessageBox>
@@ -88,7 +89,7 @@ void FileWindow::dropEvent(QDropEvent *e)
     //dont allow to copy a file/dir into working directory root folder
     if (copyTo == setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath")) {
         QMessageBox msgBox;
-        msgBox.setInformativeText("You cannot copy into the root folder.");
+        msgBox.setInformativeText(tr("You cannot copy into the root folder."));
         msgBox.exec();
     }
     else {
@@ -118,8 +119,8 @@ void FileWindow::on_pushButton_deleteFile_clicked()
     QString relativePath;
 
     QMessageBox msgBox;
-    msgBox.setText("File/Dir will be deleted.");
-    msgBox.setInformativeText("Do you want to delete the File/DirectoryS?");
+    msgBox.setText(tr("File/Dir will be deleted."));
+    msgBox.setInformativeText(tr("Do you want to delete the File/DirectoryS?"));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
@@ -145,6 +146,15 @@ void FileWindow::on_pushButton_deleteFile_clicked()
           }
     }
 }
+
+void FileWindow::on_pushButton_encrypt_clicked()
+{
+    QFileInfo fileInfo = QFileInfo(selectedDirPath);
+    login log = new login();
+    uCrypt::uCryptLib mainSession = log.getMainSession();
+   qDebug() << "filewindow on_pushbutton_encrypt_clicked: " << mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0);
+}
+
 
 
 /*
@@ -234,7 +244,7 @@ void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
     QMessageBox msgBox;
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
-    msgBox.setInformativeText("File " + path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix() + " already exists. Please rename it.");
+    msgBox.setInformativeText(tr("File ") + path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix() + tr(" already exists. Please rename it."));
     msgBox.exec();
     /*
     if (QFile::exists(path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix())) {

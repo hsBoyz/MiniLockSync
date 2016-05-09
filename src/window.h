@@ -8,6 +8,7 @@
 #include <QFileSystemModel>
 #include <QTableWidget>
 
+static int currentIndex = 0; // Global
 
 namespace Ui {
 class Window;

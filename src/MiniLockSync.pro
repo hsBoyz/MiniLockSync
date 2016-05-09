@@ -12,6 +12,7 @@ TARGET = MiniLockSync
 TEMPLATE = app
 
 
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     steerer.cpp \
@@ -19,7 +20,7 @@ SOURCES += main.cpp\
     window.cpp \
     handlefiles.cpp \
     filewindow.cpp \
-    database.cpp
+    login.cpp
 
 HEADERS  += mainwindow.h \
     steerer.h \
@@ -27,12 +28,30 @@ HEADERS  += mainwindow.h \
     window.h \
     handlefiles.h \
     filewindow.h \
-    database.h
+    login.hpp
 
 FORMS    += mainwindow.ui \
     steerer.ui \
     window.ui \
-    filewindow.ui
+    filewindow.ui \
+    login.ui
 
 RESOURCES += \
     resources.qrc
+
+
+TRANSLATIONS = MiniLockSync_de.ts
+
+
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Release
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Released
+else:unix: LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Release
+
+INCLUDEPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
+DEPENDPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
+
+
+

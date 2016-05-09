@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
         <file>images/MiniLock_15x15.png</file>
+        <file>images/cancel.png</file>
     </qresource>
 </RCC>
