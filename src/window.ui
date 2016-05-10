@@ -87,7 +87,7 @@
        <item>
         <widget class="QPushButton" name="pushManageSaveDir">
          <property name="text">
-          <string>Manage Save/Work Dir</string>
+          <string>Manage work dir/backup dir</string>
          </property>
         </widget>
        </item>
@@ -230,7 +230,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="pushButton_addDir">
              <property name="text">
-              <string>Add</string>
+              <string>Add Cloud service or directory for encoding</string>
              </property>
             </widget>
            </item>
@@ -288,7 +288,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QPushButton" name="pushButton_addSaveDir">
                <property name="text">
-                <string>Add save directory</string>
+                <string>Add backup directory</string>
                </property>
               </widget>
              </item>
@@ -317,7 +317,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="pushButton_setdefaultopenaction">
              <property name="text">
-              <string>Set as default open action</string>
+              <string>Set as default path</string>
              </property>
             </widget>
            </item>
