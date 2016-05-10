@@ -19,12 +19,14 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <random>
+#include <QSettings>
 
 	
 MainWindow *mainWindow;
 
 login::login(QWidget * parent) : QWidget(parent) {
 	ui.setupUi(this);
+    loadLogin();
 }
 
 
@@ -33,10 +35,69 @@ login::~login()
 	
 }
 
+void login::cancelButton_click()
+{
+
+    ui.passwdLineEdit->setReadOnly(false);
+    ui.eMailLineEdit->setReadOnly(false);
+    QPalette *palette = new QPalette();
+    palette->setColor(QPalette::Base, Qt::white);
+    palette->setColor(QPalette::Text, Qt::black);
+
+    ui.passwdLineEdit->setPalette(*palette);
+    ui.eMailLineEdit->setPalette(*palette);
+
+
+
+}
+
+
+
+void login::saveLogin()
+{
+    if(ui.saveLogin->isChecked())
+    {
+
+
+         QSettings setting("MyApp","mysetting");
+         setting.beginGroup("login");
+         setting.setValue("logName",this->ui.eMailLineEdit->text());
+         setting.setValue("logPassword",this->ui.passwdLineEdit->text());
+         setting.endGroup();
+
+
+
+    }
+
+
+}
+
+void login::loadLogin()
+{
+    QSettings setting("MyApp","mysetting");
+    setting.beginGroup("login");
+    QString qSzEmail = setting.value("logName").toString();
+    QString qSzPasswd = setting.value("logPassword").toString();
+    ui.eMailLineEdit->setText(qSzEmail);
+    ui.passwdLineEdit->setText(qSzPasswd);
+
+    setting.endGroup();
+
+}
+
+void login::saveLogin_click()
+
+{
+
+    saveLogin();
+
+}
+
 void login::loginButton_click()
 {
 	// check for entropy
 	std::string password = ui.passwdLineEdit->text().toStdString();
+
 
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
@@ -98,6 +159,8 @@ void login::startButton_click()
 	//	mainWindow->show();
 		Window *window = new Window();
 		window->show();
+
+
 		
 	}
 
