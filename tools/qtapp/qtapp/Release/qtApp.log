@@ -1,18 +1,5 @@
-﻿  "C:\Qt\Qt5.6.0\5.6\msvc2015\bin\moc.exe" Moc'ing qtapp.h...
-  Uic'ing qtapp.ui...
-  Rcc'ing qtapp.qrc...
-  qrc_qtapp.cpp
-  moc_qtapp.cpp
+﻿  qtapp.cpp
   Import Symbols
   Compiler Message: RELEASE
   Compiler Message: Unicode not defined
-  main.cpp
-  Import Symbols
-  Compiler Message: RELEASE
-  Compiler Message: Unicode not defined
-  qtapp.cpp
-  Import Symbols
-  Compiler Message: RELEASE
-  Compiler Message: Unicode not defined
-  Generating Code...
-  qtApp.vcxproj -> C:\Users\Manuel Tutsch\OneDrive\Programmieren\QT\MiniLockSync\tools\qtapp\Win32\Release\qtApp.exe
+  qtApp.vcxproj -> E:\Benutzer\Manuel\OneDrive\Programmieren\QT\MiniLockSync\tools\qtapp\Win32\Release\qtApp.exe

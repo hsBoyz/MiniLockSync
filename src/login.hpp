@@ -11,20 +11,25 @@ public:
 	login(QWidget * parent = Q_NULLPTR);
 
     uCrypt::uCryptLib getMainSession();
+    bool getIsInitialized();
 
 	~login();
 
 protected:
-	void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event);
 
 	public slots:
 	void loginButton_click();
+    void cancelButton_click();
+    void saveLogin_click();
+    void saveLogin();
+    void loadLogin();
 	
 	void startButton_click();
 	
 
 private:
 	Ui::login ui;
-    uCrypt::uCryptLib mainSession;
-	bool isInitialized;
+    static uCrypt::uCryptLib mainSession;
+    static bool isInitialized;
 };

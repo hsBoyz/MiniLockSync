@@ -28,8 +28,7 @@ int main(int argc, char *argv[])
     login l;
     l.show();
 
-    Steerer *s = new Steerer();
-    s->start();
+
 
     //w.show();
 
