@@ -11,6 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = MiniLockSync
 TEMPLATE = app
 
+LIBS += -lpthread -lgtest -pthread
+
 
 
 SOURCES += main.cpp\
@@ -20,7 +22,9 @@ SOURCES += main.cpp\
     window.cpp \
     handlefiles.cpp \
     filewindow.cpp \
-    login.cpp
+    login.cpp \
+    gtest_main.cpp \
+    test_login.cpp
 
 HEADERS  += mainwindow.h \
     steerer.h \
