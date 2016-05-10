@@ -15,7 +15,7 @@ public:
 	~login();
 
 protected:
-	void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event);
 
 	public slots:
 	void loginButton_click();

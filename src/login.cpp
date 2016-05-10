@@ -2,6 +2,7 @@
 #include "uCryptLib.h"
 #include "mainwindow.h"
 #include "filewindow.h"
+#include "steerer.h"
 //#include "settingsmanager.h"
 
 #include <QtGui>
@@ -63,13 +64,17 @@ void login::saveLogin()
          setting.beginGroup("login");
          setting.setValue("logName",this->ui.eMailLineEdit->text());
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
+         setting.setValue("check",this->ui.saveLogin->isChecked());
          setting.endGroup();
 
 
 
     }
-
-
+    else
+    {
+        QSettings setting("MyApp","mysetting");
+        setting.clear();
+    }
 }
 
 void login::loadLogin()
@@ -78,9 +83,13 @@ void login::loadLogin()
     setting.beginGroup("login");
     QString qSzEmail = setting.value("logName").toString();
     QString qSzPasswd = setting.value("logPassword").toString();
+
     ui.eMailLineEdit->setText(qSzEmail);
     ui.passwdLineEdit->setText(qSzPasswd);
-
+    ui.saveLogin->setChecked(true);
+   if(qSzEmail != 0)
+    loginButton_click();
+else
     setting.endGroup();
 
 }
@@ -121,8 +130,8 @@ void login::loginButton_click()
 		ui.eMailLineEdit->setReadOnly(true);
 
 		QPalette *palette = new QPalette();
-		palette->setColor(QPalette::Base, Qt::gray);
-		palette->setColor(QPalette::Text, Qt::darkGray);
+        palette->setColor(QPalette::Base, Qt::lightGray);
+        palette->setColor(QPalette::Text, Qt::darkGray);
 
 		ui.passwdLineEdit->setPalette(*palette);
         ui.eMailLineEdit->setPalette(*palette);
@@ -160,6 +169,9 @@ void login::startButton_click()
 		Window *window = new Window();
 		window->show();
 
+        Steerer *s = new Steerer();
+        s->start();
+
 
 		
 	}
@@ -168,9 +180,11 @@ void login::startButton_click()
 
 void login::closeEvent(QCloseEvent *event)
 {
-	
-		close();
-		
+
+       QWidget::closeEvent(event);
+
+
+
 }
 
 uCrypt::uCryptLib login::getMainSession() {
