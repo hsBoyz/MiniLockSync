@@ -291,7 +291,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_addDir">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -304,7 +304,7 @@ p, li { white-space: pre-wrap; }
      <string>Add</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="pushButton_deleteDir">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -325,32 +325,6 @@ p, li { white-space: pre-wrap; }
       <width>431</width>
       <height>192</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_11">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>530</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Push</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>510</y>
-      <width>120</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>GroupBox</string>
     </property>
    </widget>
   </widget>
