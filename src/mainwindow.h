@@ -21,7 +21,7 @@
 #include <QDockWidget>
 #include <QSettings>
 
-#include "stackedwindow.h"
+#include "window.h"
 
 namespace Ui {
 class MainWindow;
@@ -34,16 +34,17 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-    QTextEdit* editor;
-    QTextEdit* dock_editor;
 
-
+    static QString settingsKeyForPaths;
+    static QString settingsKeyForWorkDirPath;
+    static QString settingsKeyForSaveDirPath;
+    static QString settingsKeyGeneralSettings;
 
     ~MainWindow();
 
 
 public slots:
-    void search();
+
 
 protected:
      void contextMenuEvent(QContextMenuEvent *event);
@@ -51,14 +52,14 @@ protected:
 private:
     Ui::MainWindow *ui;
 
-    StackedWindow *stackedwin;
+    QAction *act1,*act2,*act3,*act4;
 
-    QAction *act2,*act4;
 
 
 private slots:
     void pushConfirmClicked();
 
+    void on_pushSecondInterface_clicked();
 };
 
 #endif // MAINWINDOW_H

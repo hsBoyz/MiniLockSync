@@ -1,14 +1,16 @@
+
 #include "steerer.h"
 #include "ui_steerer.h"
-#include "ui_stackedwindow.h"
-//#include "stackedwindow.h"
+#include "window.h"
+#include "filewindow.h"
+#include "settingsmanager.h"
 
 Steerer::Steerer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Steerer)
 {
     ui->setupUi(this);
-    stackedwin = new StackedWindow();
+
 }
 
 Steerer::~Steerer()
@@ -28,11 +30,11 @@ void Steerer::start()
 
 void Steerer::createActions()
 {
-    settingsAction = new QAction(tr("&Einstellungen"), this);
+    settingsAction = new QAction(tr("&Settings"), this);
     connect(settingsAction, SIGNAL(triggered()), this, SLOT(showSettings()));
-    quitAction = new QAction(tr("&Beenden"), this);
+    quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-    openAction = new QAction(tr("Öffnen"), this);
+    openAction = new QAction(tr("Open"), this);
     connect(openAction, SIGNAL(triggered()), this, SLOT(openFileWindow()));
 }
 
@@ -51,17 +53,12 @@ void Steerer::createTrayIcon()
 
 void Steerer::showSettings()
 {
-    //MainWindow *w = new MainWindow();
-    //w->show();
-
-    //stackedwin->show();
-    //stackedwin->ui->Settings->show();
-    stackedwin->show();
-    stackedwin->pushSettingsClicked();
+    Window *w = new Window();
+    w->show();
 }
 
 void Steerer::openFileWindow()
 {
-    stackedwin->show();
-    stackedwin->pushManageClicked();
+    FileWindow *f = new FileWindow();
+    f->show();
 }
