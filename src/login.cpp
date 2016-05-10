@@ -36,10 +36,10 @@ login::~login()
 	
 }
 
-<<<<<<< HEAD
+
 uCrypt::uCryptLib login::mainSession = uCrypt::uCryptLib();
 bool login::isInitialized = false;
-=======
+
 void login::cancelButton_click()
 {
 
@@ -105,7 +105,7 @@ void login::saveLogin_click()
     saveLogin();
 
 }
->>>>>>> Eugen_login
+
 
 void login::loginButton_click()
 {
