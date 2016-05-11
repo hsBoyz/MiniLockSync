@@ -51,6 +51,10 @@ login::~login()
 	
 }
 
+
+uCrypt::uCryptLib login::mainSession = uCrypt::uCryptLib();
+bool login::isInitialized = false;
+
 void login::cancelButton_click()
 {
 
@@ -126,6 +130,7 @@ void login::saveLogin_click()
 
 }
 
+
 void login::loginButton_click()
 {
 	// check for entropy
@@ -135,7 +140,7 @@ void login::loginButton_click()
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-	if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
+    if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
 	{
         QMessageBox::information(this, tr("Password to wea"),
             tr("Password should be atleast 8 characters. "));
@@ -218,11 +223,12 @@ void login::closeEvent(QCloseEvent *event)
 {
 
        QWidget::closeEvent(event);
-
-
-
 }
 
 uCrypt::uCryptLib login::getMainSession() {
     return this->mainSession;
+}
+
+bool login::getIsInitialized() {
+    return this->isInitialized;
 }

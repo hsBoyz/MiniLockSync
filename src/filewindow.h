@@ -2,6 +2,7 @@
 #define FILEWINDOW_H
 
 #include "handlefiles.h"
+#include "login.hpp"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <settingsmanager.h>
@@ -28,6 +29,7 @@ private slots:
     void copyDropFiles(QString from, QString folderName, QString relativePath, QFileInfo fileinfo);
     void fileExists(QString path, QFileInfo fileInfo);
     void deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo);
+    void checkForErrors(int result);
 
     void dragEnterEvent(QDragEnterEvent *e);
     void dragLeaveEvent(QDragLeaveEvent *e);
@@ -44,12 +46,17 @@ private slots:
 
     void on_pushButton_encrypt_clicked();
 
+    void on_pushButton_decrypt_clicked();
+
 private:
+    QString TAG = "Filewindow ";
+
     Ui::FileWindow *ui;
 
     QFileSystemModel *filemodel;
     Settingsmanager *setman;
     Handlefiles *fileshandler;
+    login *log;
 
     QString keyOfCurrentFileBrowser;    //Necessary to load different filewindows, e.g. for each encrypted folder
     QList<QString> previousDirPath;     //List for storing the file browsing history

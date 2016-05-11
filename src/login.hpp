@@ -11,6 +11,7 @@ public:
 	login(QWidget * parent = Q_NULLPTR);
 
     uCrypt::uCryptLib getMainSession();
+    bool getIsInitialized();
 
 	~login();
 
@@ -29,6 +30,6 @@ protected:
 
 private:
 	Ui::login ui;
-    uCrypt::uCryptLib mainSession;
-	bool isInitialized;
+    static uCrypt::uCryptLib mainSession;
+    static bool isInitialized;
 };

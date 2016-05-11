@@ -15,6 +15,7 @@ FileWindow::FileWindow(QWidget *parent) :
     setAcceptDrops(true);
     setman = new Settingsmanager();
     fileshandler = new Handlefiles();
+    log = new login();
     setFileModels();
 }
 
@@ -150,11 +151,28 @@ void FileWindow::on_pushButton_deleteFile_clicked()
 void FileWindow::on_pushButton_encrypt_clicked()
 {
     QFileInfo fileInfo = QFileInfo(selectedDirPath);
-    login log = new login();
-    uCrypt::uCryptLib mainSession = log.getMainSession();
-   qDebug() << "filewindow on_pushbutton_encrypt_clicked: " << mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0);
+    uCrypt::uCryptLib mainSession = log->getMainSession();
+    checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
+
+    QFileInfo fileInfo2 = QFileInfo(fileInfo.absoluteFilePath() + ".encrypted");
+
+    QString dirCleanedPath = returnDirectoryCleanedPath(currentDirPath);
+    QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
+    QString relativePath = returnRelativPath(dirCleanedPath);
+
+    copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
 }
 
+void FileWindow::on_pushButton_decrypt_clicked()
+{
+
+    QFileInfo fileInfo = QFileInfo(selectedDirPath);
+    uCrypt::uCryptLib mainSession = log->getMainSession();
+    qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << fileInfo.fileName() << " FilePath: " << fileInfo.absolutePath();
+
+    checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
+
+}
 
 
 /*
@@ -223,9 +241,21 @@ void FileWindow::copyDropFiles(QString from, QString folderName, QString relativ
     fileExists(toWorkDir, fileinfo);
 
     if(fileinfo.isFile()) {
-        QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        if(fileinfo.suffix() == "encrypted") {
+            //Dateiendung entfernen für mehr Sicherheit?
+
+            QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix());
+
+            QFile::remove(from);
+            QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
+
+        }
+        else {
+
+            QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+            QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+            QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        }
     }
     else if (fileinfo.isDir()) {
         //Create folder with name from root folder which should be copied
@@ -245,8 +275,7 @@ void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     msgBox.setInformativeText(tr("File ") + path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix() + tr(" already exists. Please rename it."));
-    msgBox.exec();
-    /*
+
     if (QFile::exists(path + QDir::separator() + fileInfo.baseName() + "."  + fileInfo.suffix())) {
         switch (msgBox.exec()) {
             case QMessageBox::Ok:
@@ -260,7 +289,7 @@ void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
                 break;
           }
     }
-    */
+
 }
 
 void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo) {
@@ -281,5 +310,76 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
         QFile::remove(deleteCloudDir);
         QFile::remove(deleteWorkDir);
         QFile::remove(deleteSaveDir);
+    }
+}
+
+
+
+void FileWindow::checkForErrors(int result)
+{
+    switch(result)
+    {
+    case 1: // Encryption Error
+        {
+            QMessageBox::critical(this, tr("General Encryption Error"),
+            tr("Something went wrong with the encryption"));
+            break;
+        }
+
+    case 2: // Decryption Error
+        {
+            QMessageBox::critical(this, tr("General Decryption Error"),
+            tr("Something went wrong with the decryption"));
+            break;
+        }
+
+    case 3: // JSON Parsing Error
+        {
+            QMessageBox::critical(this, tr("General JSON Parsing Error"),
+            tr("Library returned with the Error Code for a JSON Parsing Error!"));
+            break;
+        }
+
+    case 4: // Invalid Header Version
+        {
+            QMessageBox::critical(this, tr("Invalid Header Version"),
+            tr("Library returned with the Error Code for a Invalid Header Version!"));
+            break;
+        }
+
+    case 5: // Invalid Sender
+        {
+            QMessageBox::critical(this, tr("Invalid Sender"),
+            tr("Library returned with the Error Code for a Invalid Sender!"));
+            break;
+        }
+
+    case 6: // Invalid Recipient
+        {
+            QMessageBox::critical(this, tr("Invalid Recipient"),
+            tr("Library returned with the Error Code for a Invalid Recipient!"));
+            break;
+        }
+
+    case 7: // Invalid File Hash
+        {
+            QMessageBox::critical(this, tr("Invalid File Hash"),
+            tr("Library returned with the Error Code for a Invalid File Hash!"));
+            break;
+        }
+
+    case 0xfe: // General File Read Error
+        {
+            QMessageBox::critical(this, tr("General File Read Error"),
+            tr("Please select a file to encrypt"));
+            break;
+        }
+
+    case 0xff: // Library not initialized
+        {
+            QMessageBox::critical(this, tr("Library not initialized"),
+            tr("Library was called without beeing initialized correctly!"));
+            break;
+        }
     }
 }
