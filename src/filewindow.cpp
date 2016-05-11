@@ -160,7 +160,9 @@ void FileWindow::on_pushButton_encrypt_clicked()
     QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     QString relativePath = returnRelativPath(dirCleanedPath);
 
+
     copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+
 }
 
 void FileWindow::on_pushButton_decrypt_clicked()
@@ -244,10 +246,11 @@ void FileWindow::copyDropFiles(QString from, QString folderName, QString relativ
         if(fileinfo.suffix() == "encrypted") {
             //Dateiendung entfernen für mehr Sicherheit?
 
-            QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix());
+            if (QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix())) {
+                QFile::remove(from);
+                QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
+            }
 
-            QFile::remove(from);
-            QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
 
         }
         else {

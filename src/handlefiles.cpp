@@ -29,6 +29,18 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
         if (QFile::exists(to))
         {
             /*
+            QFileInfo fromInfo(from);
+            QFileInfo toInfo(to);
+
+            //qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified().date();
+            //qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified().;
+
+            if (fromInfo.lastModified().toMSecsSinceEpoch() > toInfo.lastModified().toMSecsSinceEpoch()) {
+                qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified();
+                qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified();
+            }
+
+            /*
             msgBox.setInformativeText("File " + to + " already exists. Do you want to override it?");
 
             switch (msgBox.exec()) {
