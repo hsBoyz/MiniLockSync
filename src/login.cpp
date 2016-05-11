@@ -21,7 +21,8 @@
 #include <QFileDialog>
 #include <random>
 #include <QSettings>
-#include <QRegExp>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 
 	
 MainWindow *mainWindow;
@@ -31,7 +32,7 @@ login::login(QWidget * parent) : QWidget(parent) {
     loadLogin();
 
 
-   // QRegExp rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
+
 
     ui.yourIdLineEdit->setReadOnly(true);
     QPalette *palette = new QPalette();
@@ -127,7 +128,19 @@ void login::saveLogin_click()
 }
 
 void login::loginButton_click()
+
+
 {
+    //regexp for checking PW complexity
+    QString qSzPasswd = ui.passwdLineEdit->text();
+    QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
+   //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
+    QRegularExpressionMatch rmatch = rx.match(qSzPasswd);
+
+
+
+
+
 	// check for entropy
 	std::string password = ui.passwdLineEdit->text().toStdString();
 
@@ -135,9 +148,39 @@ void login::loginButton_click()
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-	if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
+
+    if(rmatch.hasMatch())
+    {
+        mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
+        ui.passwdLineEdit->text().toStdString());
+
+
+
+        QString qSzPasswd = ui.passwdLineEdit->text();
+        QString qSzEmail = ui.eMailLineEdit->text();
+        QString conPW = ui.conPWlineEdit->text();
+
+        ui.passwdLineEdit->setReadOnly(true);
+        ui.eMailLineEdit->setReadOnly(true);
+        ui.conPWlineEdit->setReadOnly(true);
+
+        QPalette *palette = new QPalette();
+        palette->setColor(QPalette::Base, Qt::lightGray);
+        palette->setColor(QPalette::Text, Qt::darkGray);
+
+        ui.passwdLineEdit->setPalette(*palette);
+        ui.eMailLineEdit->setPalette(*palette);
+        ui.conPWlineEdit->setPalette(*palette);
+
+        QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
+
+        ui.yourIdLineEdit->setText(identificationNumber);
+
+}
+
+    else if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
 	{
-        QMessageBox::information(this, tr("Password to wea"),
+        QMessageBox::information(this, tr("Password too weak"),
             tr("Password should be atleast 8 characters. "));
 	}
 
@@ -150,32 +193,13 @@ void login::loginButton_click()
     }
 
 
+
 	else
 	{
-        mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
-            ui.passwdLineEdit->text().toStdString());
-
-
-
-		QString qSzPasswd = ui.passwdLineEdit->text();
-		QString qSzEmail = ui.eMailLineEdit->text();
-        QString conPW = ui.conPWlineEdit->text();
-
-		ui.passwdLineEdit->setReadOnly(true);
-		ui.eMailLineEdit->setReadOnly(true);
-        ui.conPWlineEdit->setReadOnly(true);
-
-		QPalette *palette = new QPalette();
-        palette->setColor(QPalette::Base, Qt::lightGray);
-        palette->setColor(QPalette::Text, Qt::darkGray);
-
-		ui.passwdLineEdit->setPalette(*palette);
-        ui.eMailLineEdit->setPalette(*palette);
-        ui.conPWlineEdit->setPalette(*palette);
-
-        QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
-
-		ui.yourIdLineEdit->setText(identificationNumber);
+            QMessageBox::information(this, tr("Password too weak"),
+                tr("The password should at least have one digit,"
+                   " one capital letter or one special letter"
+                   " . "));
 		
 	}
 
