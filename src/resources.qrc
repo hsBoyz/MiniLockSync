@@ -3,4 +3,7 @@
         <file>images/MiniLock_15x15.png</file>
         <file>images/cancel.png</file>
     </qresource>
+    <qresource prefix="/buttons">
+        <file>buttons/HomeButtonRounded400.png</file>
+    </qresource>
 </RCC>

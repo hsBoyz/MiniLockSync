@@ -65,8 +65,21 @@
        </property>
        <item>
         <widget class="QPushButton" name="pushHome">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
-          <string>Home</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/buttons/buttons/HomeButtonRounded400.png</normaloff>:/buttons/buttons/HomeButtonRounded400.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>70</width>
+           <height>50</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -392,6 +405,8 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
