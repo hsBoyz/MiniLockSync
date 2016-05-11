@@ -132,10 +132,10 @@ void login::loginButton_click()
 
 {
     //regexp for checking PW complexity
-    QString qSzPasswd = ui.passwdLineEdit->text();
+    QString checkPasswd = ui.passwdLineEdit->text();
     QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
    //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
-    QRegularExpressionMatch rmatch = rx.match(qSzPasswd);
+    QRegularExpressionMatch rmatch = rx.match(checkPasswd);
 
 
 
@@ -149,35 +149,15 @@ void login::loginButton_click()
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
 
-    if(rmatch.hasMatch())
+    if(rmatch.hasMatch() == 0)
     {
-        mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
-        ui.passwdLineEdit->text().toStdString());
+        QMessageBox::information(this, tr("Password too weak"),
+            tr("The password should at least have one digit,"
+               " one capital letter or one special letter"
+               " . "));
 
 
-
-        QString qSzPasswd = ui.passwdLineEdit->text();
-        QString qSzEmail = ui.eMailLineEdit->text();
-        QString conPW = ui.conPWlineEdit->text();
-
-        ui.passwdLineEdit->setReadOnly(true);
-        ui.eMailLineEdit->setReadOnly(true);
-        ui.conPWlineEdit->setReadOnly(true);
-
-        QPalette *palette = new QPalette();
-        palette->setColor(QPalette::Base, Qt::lightGray);
-        palette->setColor(QPalette::Text, Qt::darkGray);
-
-        ui.passwdLineEdit->setPalette(*palette);
-        ui.eMailLineEdit->setPalette(*palette);
-        ui.conPWlineEdit->setPalette(*palette);
-
-        QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
-
-        ui.yourIdLineEdit->setText(identificationNumber);
-
-}
-
+    }
     else if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
 	{
         QMessageBox::information(this, tr("Password too weak"),
@@ -192,16 +172,43 @@ void login::loginButton_click()
 
     }
 
+    else if(ui.eMailLineEdit->text() == NULL)
+    {
+        QMessageBox::information(this, tr("Wrong Login"),
+            tr("PLease enter your login. "));
+
+    }
 
 
-	else
-	{
-            QMessageBox::information(this, tr("Password too weak"),
-                tr("The password should at least have one digit,"
-                   " one capital letter or one special letter"
-                   " . "));
-		
-	}
+     else
+    {
+         mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
+         ui.passwdLineEdit->text().toStdString());
+
+
+
+         QString qSzPasswd = ui.passwdLineEdit->text();
+         QString qSzEmail = ui.eMailLineEdit->text();
+         QString conPW = ui.conPWlineEdit->text();
+
+         ui.passwdLineEdit->setReadOnly(true);
+         ui.eMailLineEdit->setReadOnly(true);
+         ui.conPWlineEdit->setReadOnly(true);
+
+         QPalette *palette = new QPalette();
+         palette->setColor(QPalette::Base, Qt::lightGray);
+         palette->setColor(QPalette::Text, Qt::darkGray);
+
+         ui.passwdLineEdit->setPalette(*palette);
+         ui.eMailLineEdit->setPalette(*palette);
+         ui.conPWlineEdit->setPalette(*palette);
+
+         QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
+
+         ui.yourIdLineEdit->setText(identificationNumber);
+
+}
+
 
 }
 void login::startButton_click()
