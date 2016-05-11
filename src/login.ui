@@ -13,101 +13,166 @@
   <property name="windowTitle">
    <string>login</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QLabel" name="label1">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>299</width>
-     <height>158</height>
+     <x>32</x>
+     <y>34</y>
+     <width>29</width>
+     <height>16</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="2" column="0">
-     <widget class="QLabel" name="label3">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-        <underline>false</underline>
-       </font>
-      </property>
-      <property name="text">
-       <string>Generated Key:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="eMailLineEdit"/>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label1">
-          <property name="text">
-           <string>Login:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="passwdLineEdit">
-          <property name="echoMode">
-           <enum>QLineEdit::Password</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Password:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="loginButton">
-          <property name="text">
-           <string>Login</string>
-          </property>
-          <property name="autoDefault">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="cancelButton">
-          <property name="text">
-           <string>Cancel</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLineEdit" name="yourIdLineEdit"/>
-    </item>
-    <item row="4" column="0">
-     <widget class="QPushButton" name="startButton">
-      <property name="text">
-       <string>Start</string>
-      </property>
-      <property name="autoDefault">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QCheckBox" name="saveLogin">
-      <property name="text">
-       <string>Save Login</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <property name="text">
+    <string>Login:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="eMailLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>131</x>
+     <y>30</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="loginButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>30</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Login</string>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>63</y>
+     <width>50</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Password:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwdLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>131</x>
+     <y>60</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>60</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>92</y>
+     <width>90</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm Password:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="conPWlineEdit">
+   <property name="geometry">
+    <rect>
+     <x>132</x>
+     <y>90</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="saveLogin">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>90</y>
+     <width>75</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save Login</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label3">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>141</y>
+     <width>87</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+     <underline>false</underline>
+    </font>
+   </property>
+   <property name="text">
+    <string>Generated Key:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="yourIdLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>160</y>
+     <width>331</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="startButton">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>186</y>
+     <width>331</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -127,7 +192,7 @@
    <slot>loginButton_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>281</x>
+     <x>364</x>
      <y>45</y>
     </hint>
     <hint type="destinationlabel">
@@ -143,8 +208,8 @@
    <slot>startButton_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>173</x>
-     <y>176</y>
+     <x>175</x>
+     <y>276</y>
     </hint>
     <hint type="destinationlabel">
      <x>174</x>
@@ -159,8 +224,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>71</y>
+     <x>364</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
      <x>226</x>
@@ -195,8 +260,8 @@
      <y>79</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>141</y>
+     <x>266</x>
+     <y>179</y>
     </hint>
    </hints>
   </connection>
@@ -223,12 +288,28 @@
    <slot>saveLogin_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>117</x>
-     <y>174</y>
+     <x>119</x>
+     <y>276</y>
     </hint>
     <hint type="destinationlabel">
      <x>117</x>
      <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>conPWlineEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>356</x>
+     <y>75</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>275</x>
+     <y>106</y>
     </hint>
    </hints>
   </connection>
