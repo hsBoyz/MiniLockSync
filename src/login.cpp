@@ -137,7 +137,9 @@ void login::loginButton_click()
    //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
     QRegularExpressionMatch rmatch = rx.match(checkPasswd);
 
-
+     QString checkLog = ui.eMailLineEdit->text();
+     QRegularExpression rc("[a-z]|[A-Z]|[0-9]");
+      QRegularExpressionMatch logmatch = rc.match(checkLog);
 
 
 
@@ -172,7 +174,7 @@ void login::loginButton_click()
 
     }
 
-    else if(ui.eMailLineEdit->text() == NULL)
+    else if(logmatch.hasMatch() == 0)
     {
         QMessageBox::information(this, tr("Wrong Login"),
             tr("PLease enter your login. "));
