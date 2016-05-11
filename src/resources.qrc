@@ -5,5 +5,8 @@
     </qresource>
     <qresource prefix="/buttons">
         <file>buttons/HomeButtonRounded400.png</file>
+        <file>buttons/Cloud-Management-Icon-635.jpg</file>
+        <file>buttons/CloudService400x225.png</file>
+        <file>buttons/db-backup.png</file>
     </qresource>
 </RCC>
