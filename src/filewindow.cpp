@@ -153,6 +153,14 @@ void FileWindow::on_pushButton_encrypt_clicked()
     QFileInfo fileInfo = QFileInfo(selectedDirPath);
     uCrypt::uCryptLib mainSession = log->getMainSession();
     checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
+
+    QFileInfo fileInfo2 = QFileInfo(fileInfo.absoluteFilePath() + ".encrypted");
+
+    QString dirCleanedPath = returnDirectoryCleanedPath(currentDirPath);
+    QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
+    QString relativePath = returnRelativPath(dirCleanedPath);
+
+    copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
 }
 
 void FileWindow::on_pushButton_decrypt_clicked()
@@ -233,9 +241,21 @@ void FileWindow::copyDropFiles(QString from, QString folderName, QString relativ
     fileExists(toWorkDir, fileinfo);
 
     if(fileinfo.isFile()) {
-        QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        if(fileinfo.suffix() == "encrypted") {
+            //Dateiendung entfernen für mehr Sicherheit?
+
+            QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix());
+
+            QFile::remove(from);
+            QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
+
+        }
+        else {
+
+            QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+            QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+            QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        }
     }
     else if (fileinfo.isDir()) {
         //Create folder with name from root folder which should be copied

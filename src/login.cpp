@@ -116,7 +116,7 @@ void login::loginButton_click()
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-	if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
+    if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
 	{
 		QMessageBox::information(this, tr("Passwort zu schwach"),
 			tr("Das Passwort muss midestens 8 Zeichen lang sein. "));
@@ -187,9 +187,6 @@ void login::closeEvent(QCloseEvent *event)
 {
 
        QWidget::closeEvent(event);
-
-
-
 }
 
 uCrypt::uCryptLib login::getMainSession() {
