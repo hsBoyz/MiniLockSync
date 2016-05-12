@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>MiniLockSync</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/images/MiniLock_15x15.png</normaloff>:/icons/images/MiniLock_15x15.png</iconset>
+  </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="title">
     <string/>
@@ -65,29 +69,86 @@
        </property>
        <item>
         <widget class="QPushButton" name="pushHome">
+         <property name="styleSheet">
+          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;
+
+</string>
+         </property>
          <property name="text">
-          <string>Home</string>
+          <string>           Welcome</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/buttons/buttons/HomeButtonRounded400.png</normaloff>:/buttons/buttons/HomeButtonRounded400.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>60</width>
+           <height>40</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushCloudService">
+         <property name="styleSheet">
+          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
          <property name="text">
-          <string>Cloud Service</string>
+          <string>                Cloud</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/buttons/buttons/CloudService400x225.png</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>60</width>
+           <height>40</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushManageCloud">
+         <property name="styleSheet">
+          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
          <property name="text">
-          <string>Manage Cloud Service</string>
+          <string>          Add Cloud</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/buttons/buttons/Cloud-Management-Icon-635.jpg</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>60</width>
+           <height>40</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushManageSaveDir">
+         <property name="styleSheet">
+          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
          <property name="text">
-          <string>Manage Save/Work Dir</string>
+          <string>  work/backup dir</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/buttons/buttons/db-backup.png</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>60</width>
+           <height>40</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -145,7 +206,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>4</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -230,7 +291,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="pushButton_addDir">
              <property name="text">
-              <string>Add</string>
+              <string>Add Cloud service or directory for encoding</string>
              </property>
             </widget>
            </item>
@@ -288,7 +349,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QPushButton" name="pushButton_addSaveDir">
                <property name="text">
-                <string>Add save directory</string>
+                <string>Add backup directory</string>
                </property>
               </widget>
              </item>
@@ -317,7 +378,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="pushButton_setdefaultopenaction">
              <property name="text">
-              <string>Set as default open action</string>
+              <string>Set as default path</string>
              </property>
             </widget>
            </item>
@@ -392,6 +453,8 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
