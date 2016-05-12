@@ -255,6 +255,8 @@ void qtApp::decryptFileAction_click()
 			"",
 			tr("Files (*.encrypted)"));
 
+		qDebug() << QFileInfo(qSzFileName).fileName();
+		qDebug() << QFileInfo(qSzFileName).absolutePath();
 		checkForErrors(mainSession.DecryptFile(QFileInfo(qSzFileName).fileName().toStdString(),
 											   QFileInfo(qSzFileName).absolutePath().toStdString()));
 	}
