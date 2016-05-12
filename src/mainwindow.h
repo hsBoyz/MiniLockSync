@@ -37,8 +37,8 @@ public:
 
     static QString settingsKeyForPaths;
     static QString settingsKeyForWorkDirPath;
-    static QString settingsKeyForSaveDirPath;
     static QString settingsKeyGeneralSettings;
+    static QString settingsKeyForCloudDirPath;
 
     ~MainWindow();
 

@@ -197,7 +197,7 @@ void FileWindow::setFileModels() {
      * @brief NO dynamic implementation yet. Group of sPath1 is hardcoded
      */
 
-    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath");
+    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
     currentDirPath = sPath1;
 
     filemodel->setRootPath(sPath1);
@@ -210,7 +210,7 @@ void FileWindow::setFileModels() {
  * returns relative path
  */
 QString FileWindow::returnDirectoryCleanedPath(QString path) {
-    QString defaultPath = setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath");
+    QString defaultPath = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
     int removeTo = defaultPath.length() + 1;    //+1 to also eliminate the last seperator
 
     return path.remove(0,removeTo);
@@ -235,9 +235,7 @@ QString FileWindow::returnDirNameFromString(QString path) {
 void FileWindow::copyDropFiles(QString from, QString folderName, QString relativePath, QFileInfo fileinfo) {
     //Specify paths of working directory, saftycopy directory and cloud service directory
     QString toCloudDir = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + relativePath;
-    QString toWorkDir = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
-            + QDir::separator() + folderName + relativePath;
-    QString toSaveDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
+    QString toWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
             + QDir::separator() + folderName + relativePath;
 
     fileExists(toWorkDir, fileinfo);
@@ -257,18 +255,17 @@ void FileWindow::copyDropFiles(QString from, QString folderName, QString relativ
 
             QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
             QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-            QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+
         }
     }
     else if (fileinfo.isDir()) {
         //Create folder with name from root folder which should be copied
         fileshandler->createDir(toCloudDir, fileinfo.baseName() + "."  + fileinfo.suffix());
-        fileshandler->createDir(toSaveDir, fileinfo.baseName() + "."  + fileinfo.suffix());
         fileshandler->createDir(toWorkDir, fileinfo.baseName() + "."  + fileinfo.suffix());
 
         fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "." + fileinfo.suffix());
         fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        fileshandler->copy_dir_recursive(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+
     }
 
 }
@@ -297,22 +294,22 @@ void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
 
 void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo) {
 
-    //Specify paths of working directory, saftycopy directory and cloud service directory
-    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
-    QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
-            + QDir::separator() + folderName + QDir::separator() + relativePath;
-    QString deleteSaveDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
-            + QDir::separator() + folderName + QDir::separator() + relativePath;
+    //Specify paths of working directory and cloud service directory
+    QString deleteOriginals = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
+    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + folderName + QDir::separator() + relativePath;
+    QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + folderName + QDir::separator() + relativePath;
 
     if (fileInfo.isDir()) {
+        fileshandler->delete_dir_recursive(deleteOriginals);
         fileshandler->delete_dir_recursive(deleteCloudDir);
         fileshandler->delete_dir_recursive(deleteWorkDir);
-        fileshandler->delete_dir_recursive(deleteSaveDir);
+
     }
     else {
+        QFile::remove(deleteOriginals);
         QFile::remove(deleteCloudDir);
         QFile::remove(deleteWorkDir);
-        QFile::remove(deleteSaveDir);
+
     }
 }
 

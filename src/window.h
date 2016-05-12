@@ -52,17 +52,14 @@ private slots:
     void on_pushButton_deleteDir_clicked();
 
     void on_pushButton_addWorkDir_clicked();
-
-    void on_pushButton_addSaveDir_clicked();
-
     void on_pushManageSaveDir_clicked();
-
     void on_pushButton_deleteDir_2_clicked();
 
     void on_pushButton_confirm_clicked();
 
+    void on_pushButton_AddCloud_clicked();
 
-    void on_pushButton_setdefaultopenaction_clicked();
+    void on_pushButton_delete_cloud_clicked();
 
 private:
     Ui::Window *ui;
@@ -77,7 +74,7 @@ private:
     void saveDirectories(QString group, QString name, QString path);
     void deleteDirectories(QString name);
     void populateTableWidget(QString group, QTableWidget *widget);
-    QList<QString> returnSelectedPath();
+    QFileInfo returnSelectedPath();
     void copyDirectory();
 
 };
