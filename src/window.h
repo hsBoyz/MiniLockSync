@@ -4,6 +4,7 @@
 #include "settingsmanager.h"
 #include "mainwindow.h"
 #include "handlefiles.h"
+#include "worker.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
@@ -23,6 +24,8 @@ class Window : public QMainWindow
 
 public:
     explicit Window(QWidget *parent = 0);
+
+    Ui::Window *ui;
 
     QAction *act1, *act2, *act3, *act4;
 
@@ -62,12 +65,11 @@ private slots:
     void on_pushButton_delete_cloud_clicked();
 
 private:
-    Ui::Window *ui;
-
 
     QFileSystemModel *fileBrowserModel;
     Settingsmanager *settingsmanager;
     Handlefiles *filesHandler;
+    Worker *worker;
 
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);

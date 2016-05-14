@@ -2,7 +2,7 @@
 #include "ui_window.h"
 #include <QDebug>
 #include <QMessageBox>
-
+#include <QThread>
 Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Window)
@@ -266,7 +266,10 @@ void Window::on_pushButton_delete_cloud_clicked()
 void Window::on_pushButton_confirm_clicked()
 {
     //filesHandler->createDir(MainWindow::settingsKeyForWorkDirPath);
-    copyDirectory();
+    worker = new Worker();
+    worker->start();
+
+    //copyDirectory();
 }
 
 
@@ -388,7 +391,7 @@ QFileInfo Window::returnSelectedPath() {
 
 void Window::copyDirectory(){
     /*
-     * this implementation assumes that every directory which should be encrypted are stored to the same workdirectory
+     * this implementation assumes that every directory which should be encrypted are stored to the same workdirectory and cloud
      *
      */
 
@@ -414,8 +417,8 @@ void Window::copyDirectory(){
             QString toNewWork = filesHandler->createDir(toWork, nameOfDir);
             QString toNewCloud = filesHandler->createDir(toCloud, nameOfDir);
 
-            filesHandler->copy_dir_recursive(from, toNewWork);
-            filesHandler->copy_dir_recursive(from, toNewCloud);
+            filesHandler->copy_dir_recursive(from, toNewWork, false);
+            filesHandler->copy_dir_recursive(from, toNewCloud, true);
 
         //}
     }

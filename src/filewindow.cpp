@@ -2,6 +2,8 @@
 #include "ui_filewindow.h"
 #include "mainwindow.h"
 #include "login.hpp"
+#include "window.h"
+#include "ui_window.h"
 #include <QDebug>
 #include <QDesktopServices>
 #include <QMessageBox>
@@ -152,7 +154,7 @@ void FileWindow::on_pushButton_encrypt_clicked()
 {
     QFileInfo fileInfo = QFileInfo(selectedDirPath);
     uCrypt::uCryptLib mainSession = log->getMainSession();
-    checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
+
 
     QFileInfo fileInfo2 = QFileInfo(fileInfo.absoluteFilePath() + ".encrypted");
 
@@ -160,9 +162,16 @@ void FileWindow::on_pushButton_encrypt_clicked()
     QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     QString relativePath = returnRelativPath(dirCleanedPath);
 
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << dirCleanedPath;
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << nameOfEncryptedFolder;
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << relativePath;
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << fileInfo.absoluteFilePath();
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << setman->returnSetting(MainWindow::settingsKeyForPaths, nameOfEncryptedFolder) + relativePath + QDir::separator() + fileInfo2.completeBaseName();
 
-    copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+    //copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+    QString savePath = setman->returnSetting(MainWindow::settingsKeyForPaths, nameOfEncryptedFolder) + relativePath + QDir::separator() + fileInfo2.completeBaseName();
 
+    checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
 }
 
 void FileWindow::on_pushButton_decrypt_clicked()
@@ -172,7 +181,7 @@ void FileWindow::on_pushButton_decrypt_clicked()
     uCrypt::uCryptLib mainSession = log->getMainSession();
     qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << fileInfo.fileName() << " FilePath: " << fileInfo.absolutePath();
 
-    checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
+    //checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
 
 }
 
@@ -263,8 +272,8 @@ void FileWindow::copyDropFiles(QString from, QString folderName, QString relativ
         fileshandler->createDir(toCloudDir, fileinfo.baseName() + "."  + fileinfo.suffix());
         fileshandler->createDir(toWorkDir, fileinfo.baseName() + "."  + fileinfo.suffix());
 
-        fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "." + fileinfo.suffix());
-        fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "." + fileinfo.suffix(), true);
+        fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix(), false);
 
     }
 
@@ -300,15 +309,28 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
     QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + folderName + QDir::separator() + relativePath;
 
     if (fileInfo.isDir()) {
-        fileshandler->delete_dir_recursive(deleteOriginals);
+        //fileshandler->delete_dir_recursive(deleteOriginals);
         fileshandler->delete_dir_recursive(deleteCloudDir);
         fileshandler->delete_dir_recursive(deleteWorkDir);
 
+        /* TODO: Wenn ordner root ordner ist, dann aus einstellungen und tablewidget löschen
+        if (relativePath == "") {
+            Window *w;
+            QList<QTableWidgetItem *> list = w->ui->tableWidget->findItems(folderName, Qt::MatchFixedString);
+
+            if(list.length() == 1) {
+                qDebug() << "Remove row" << list.value(0)->row();
+                w->ui->tableWidget->item(0, 0)->setBackground(Qt::red);
+                w->ui->tableWidget->removeRow(list.value(0)->row());
+            }
+        }
+        */
     }
     else {
-        QFile::remove(deleteOriginals);
+
         QFile::remove(deleteCloudDir);
         QFile::remove(deleteWorkDir);
+        //QFile::remove(deleteOriginals);
 
     }
 }

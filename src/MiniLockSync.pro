@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     window.cpp \
     handlefiles.cpp \
     filewindow.cpp \
-    login.cpp
+    login.cpp \
+    worker.cpp
 
 HEADERS  += mainwindow.h \
     steerer.h \
@@ -28,7 +29,8 @@ HEADERS  += mainwindow.h \
     window.h \
     handlefiles.h \
     filewindow.h \
-    login.hpp
+    login.hpp \
+    worker.h
 
 FORMS    += mainwindow.ui \
     steerer.ui \

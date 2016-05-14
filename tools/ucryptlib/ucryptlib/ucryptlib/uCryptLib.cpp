@@ -388,6 +388,7 @@ namespace uCrypt
 		return 0;
 	}
 
+	
 	uint8_t uCryptLib::EncryptFile(std::string fileName, std::string path, std::string recipientIDs[], uint8_t numberRecipients)
 	{
 		if (!isInitialized)
@@ -397,6 +398,7 @@ namespace uCrypt
 		  || path[path.size()-1] != '/')
 			path.append("/");
 
+		
 		std::string saveFileName = path + fileName + ".encrypted";
 		std::string fileNameInclPath = path + fileName;
 		std::string encryptedFile;

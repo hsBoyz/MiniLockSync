@@ -3,13 +3,14 @@
 #include "mainwindow.h"
 #include <QDebug>
 #include <QMessageBox>
+#include <QObject>
 
 Handlefiles::Handlefiles()
 {
-
+    log = new login();
 }
 
-bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
+bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryptionOn)
 {
     QMessageBox msgBox;
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
@@ -66,7 +67,20 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
             return false;
         }
 
-        if (QFile::copy(from, to) == false)
+        if (encryptionOn) {
+            uCrypt::uCryptLib mainSession = log->getMainSession();
+
+            if (QFile::copy(from, to)== false) {
+                return false;
+            }
+            //checkForErrors(mainSession.EncryptFile(copyfile.toStdString(), to.toStdString(), nullptr, 0));
+            if (mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), nullptr, 0) != 0) {
+                return false;
+            }
+            QFile::remove(to);
+
+        }
+        else if (QFile::copy(from, to) == false)
         {
             return false;
         }
@@ -82,7 +96,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
         {
             return false;
         }
-        if (copy_dir_recursive(from, to) == false)
+        if (copy_dir_recursive(from, to, encryptionOn) == false)
         {
             return false;
         }
@@ -107,7 +121,7 @@ QString Handlefiles::createDir(QString path, QString folderName) {
         dir.mkpath(path + QDir::separator() + folderName);
     }
     else {
-        qDebug() << "handlefiles createdir folder already exists";
+        //qDebug() << "handlefiles createdir folder already exists";
     }
     return path + QDir::separator() + folderName;
 }
@@ -197,3 +211,76 @@ void Handlefiles::createCopyAndWorkDir(QString group) {
     }
     */
 }
+
+
+
+/*
+void Handlefiles::checkForErrors(int result)
+{
+    switch(result)
+    {
+    case 1: // Encryption Error
+        {
+            QMessageBox::critical(this, QObject::tr("General Encryption Error"),
+            QObject::tr("Something went wrong with the encryption"));
+            break;
+        }
+
+    case 2: // Decryption Error
+        {
+            QMessageBox::critical(this, QObject::tr("General Decryption Error"),
+            QObject::tr("Something went wrong with the decryption"));
+            break;
+        }
+
+    case 3: // JSON Parsing Error
+        {
+            QMessageBox::critical(this, QObject::tr("General JSON Parsing Error"),
+            QObject::tr("Library returned with the Error Code for a JSON Parsing Error!"));
+            break;
+        }
+
+    case 4: // Invalid Header Version
+        {
+            QMessageBox::critical(this, QObject::tr("Invalid Header Version"),
+            QObject::tr("Library returned with the Error Code for a Invalid Header Version!"));
+            break;
+        }
+
+    case 5: // Invalid Sender
+        {
+            QMessageBox::critical(this, QObject::tr("Invalid Sender"),
+            QObject::tr("Library returned with the Error Code for a Invalid Sender!"));
+            break;
+        }
+
+    case 6: // Invalid Recipient
+        {
+            QMessageBox::critical(this, QObject::tr("Invalid Recipient"),
+            QObject::tr("Library returned with the Error Code for a Invalid Recipient!"));
+            break;
+        }
+
+    case 7: // Invalid File Hash
+        {
+            QMessageBox::critical(this, QObject::tr("Invalid File Hash"),
+            QObject::tr("Library returned with the Error Code for a Invalid File Hash!"));
+            break;
+        }
+
+    case 0xfe: // General File Read Error
+        {
+            QMessageBox::critical(this, QObject::tr("General File Read Error"),
+            QObject::tr("Please select a file to encrypt"));
+            break;
+        }
+
+    case 0xff: // Library not initialized
+        {
+            QMessageBox::critical(this, QObject::tr("Library not initialized"),
+            QObject::tr("Library was called without beeing initialized correctly!"));
+            break;
+        }
+    }
+}
+*/
