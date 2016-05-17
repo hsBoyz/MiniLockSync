@@ -3,6 +3,7 @@
 
 #include "handlefiles.h"
 #include "login.hpp"
+#include "ui_login.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <settingsmanager.h>
@@ -62,6 +63,10 @@ private:
     QList<QString> previousDirPath;     //List for storing the file browsing history
     QString currentDirPath;             //current path of directory for copying files
     QString selectedDirPath = "";
+
+    bool isFileEncrypted(QString fileName, QString absolutePath);
+        QString getEncodedHash(QString fileName, QString absolutPath);
+
 };
 
 #endif // FILEWINDOW_H

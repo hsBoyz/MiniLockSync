@@ -1,5 +1,6 @@
 #include "filewindow.h"
 #include "ui_filewindow.h"
+#include "ui_login.h"
 #include "mainwindow.h"
 #include "login.hpp"
 #include <QDebug>
@@ -150,7 +151,7 @@ void FileWindow::on_pushButton_deleteFile_clicked()
 
 void FileWindow::on_pushButton_encrypt_clicked()
 {
-    QFileInfo fileInfo = QFileInfo(selectedDirPath);
+   /* QFileInfo fileInfo = QFileInfo(selectedDirPath);
     uCrypt::uCryptLib mainSession = log->getMainSession();
     checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
 
@@ -163,16 +164,46 @@ void FileWindow::on_pushButton_encrypt_clicked()
 
     copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
 
+    */
+
+    QString qSzFileName = QString(selectedDirPath);
+        uCrypt::uCryptLib mainSession = log->getMainSession();
+
+        int numberOfRecipients = log->ui.comboBox->count();
+                std::string *recipients = new std::string[numberOfRecipients];
+
+                for(int i=0; i < numberOfRecipients; i++)
+                {
+                    recipients[i] = log->ui.comboBox->itemText(i).toStdString();
+                }
+
+        checkForErrors(mainSession.EncryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString(),recipients,numberOfRecipients));
+
+        //QString fileInfo2 = QString(fileInfo.absoluteFilePath() + ".encrypted");
+
+        QString dirCleanedPath = returnDirectoryCleanedPath(currentDirPath);
+        QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
+        QString relativePath = returnRelativPath(dirCleanedPath);
+
+
+       // copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+
 }
 
 void FileWindow::on_pushButton_decrypt_clicked()
 {
-
+/*
     QFileInfo fileInfo = QFileInfo(selectedDirPath);
     uCrypt::uCryptLib mainSession = log->getMainSession();
     qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << fileInfo.fileName() << " FilePath: " << fileInfo.absolutePath();
 
     checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
+*/
+    QString qSzFileName = QString(selectedDirPath);
+    uCrypt::uCryptLib mainSession = log->getMainSession();
+    qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << QFileInfo(qSzFileName).fileName() << " FilePath: " << QFileInfo(qSzFileName).absolutePath();
+
+    checkForErrors(mainSession.DecryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString()));
 
 }
 
@@ -315,6 +346,8 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
 
 
 
+
+
 void FileWindow::checkForErrors(int result)
 {
     switch(result)
@@ -382,4 +415,85 @@ void FileWindow::checkForErrors(int result)
             break;
         }
     }
+}
+
+bool FileWindow::isFileEncrypted(QString fileName, QString absolutePath)
+{
+    bool result = false;
+    std::string fileInfoName = ".fileInfo";
+    QFile qFileInfoName(absolutePath + QString::fromStdString("/_encrypted/") + QString::fromStdString(fileInfoName));
+
+    if(qFileInfoName.exists())
+    {
+        if(!qFileInfoName.open(QIODevice::ReadWrite | QIODevice::Text))
+        {
+            QString errorM = qFileInfoName.errorString();
+            QMessageBox::critical(this,"Disc Write fail", "Failed to write necessary files.\nError Details: " + errorM);
+        }
+        else
+        {
+            QTextStream fileContentStream(&qFileInfoName);
+            QString s;
+
+            while (! fileContentStream.atEnd())
+            {
+                QString strLine = fileContentStream.readLine();
+
+                if(strLine.contains(fileName))
+                {
+                    // Line formating is FILENAME:HASH\n
+                    QStringList stringlist_0;
+                    stringlist_0 = strLine.split( ":" );
+
+                    QString fName = stringlist_0[0];
+                    QString fHash = stringlist_0[1];
+
+                    QString originalFileHash = getEncodedHash(fileName, absolutePath);
+                    if(originalFileHash == fHash)
+                    {
+                        // Original Hash equals the saved Hash in File -> no need to encrypt again
+                        result = true;
+                        s.append(strLine + "\n");
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+                }
+                else
+                {
+                    s.append(strLine + "\n");
+                }
+            }
+            qFileInfoName.resize(0);
+            fileContentStream << s;
+            qFileInfoName.close();
+        }
+    }
+    else
+    {
+        return result;
+    }
+
+    return result;
+}
+
+QString FileWindow::getEncodedHash(QString fileName, QString absolutPath)
+{
+    unsigned char bufHash[uCrypt::uCryptLib::_BLAKE2S_OUTBYTES];
+
+    QFile file(absolutPath + QString("/") + fileName);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        QString errorM = file.errorString();
+        QMessageBox::critical(this,"Disc Write fail", "Failed to write necessary files.\nError Details: " + errorM);
+    }
+
+QByteArray buf = file.readAll();
+
+    uCrypt::uCryptLib::blake2s_Hash(bufHash, buf.constData(), NULL, uCrypt::uCryptLib::_BLAKE2S_OUTBYTES, buf.size(), 0);
+
+    std::string encodedHash = uCrypt::uCryptLib::base64_Encode(bufHash, uCrypt::uCryptLib::_BLAKE2S_OUTBYTES);
+
+    return QString::fromStdString(encodedHash);
 }
