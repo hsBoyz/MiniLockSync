@@ -1,7 +1,6 @@
 #ifndef WORKER_H
 #define WORKER_H
 
-#include "queue.h"
 #include "login.hpp"
 #include "settingsmanager.h"
 #include "handlefiles.h"
@@ -18,12 +17,11 @@ public:
     ~Worker();
 
 private:
-    Queue *queue;
-    QFileInfo getDir();
     login *log;
     Settingsmanager *settingsmanager;
     Handlefiles *filesHandler;
 
+    void copyDirectory();
 signals:
     void finished();
     void error(QString err);
@@ -31,7 +29,6 @@ signals:
 public slots:
     void process(int encryptionOn);
 
-    void printDir();
 };
 
 #endif // WORKER_H

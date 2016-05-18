@@ -91,7 +91,7 @@ void FileWindow::dropEvent(QDropEvent *e)
     QString relativePath;
 
     //dont allow to copy a file/dir into working directory root folder
-    if (copyTo == setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath")) {
+    if (copyTo == setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir")) {
         QMessageBox msgBox;
         msgBox.setInformativeText(tr("You cannot copy into the root folder."));
         msgBox.exec();
@@ -199,7 +199,6 @@ void FileWindow::on_pushButton_encrypt_clicked()
 
        // copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
 
->>>>>>> Eugen_NEU
 }
 
 void FileWindow::on_pushButton_decrypt_clicked()
@@ -219,7 +218,7 @@ void FileWindow::on_pushButton_decrypt_clicked()
     qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << QFileInfo(qSzFileName).fileName() << " FilePath: " << QFileInfo(qSzFileName).absolutePath();
 
     checkForErrors(mainSession.DecryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString()));
->>>>>>> Eugen_NEU
+
 
 }
 
@@ -286,24 +285,20 @@ void FileWindow::copyDropFiles(QString from, QString folderName, QString relativ
             + QDir::separator() + folderName + relativePath;
 
     fileExists(toWorkDir, fileinfo);
-
     if(fileinfo.isFile()) {
+        /*
         if(fileinfo.suffix() == "encrypted") {
             //Dateiendung entfernen für mehr Sicherheit?
-
             if (QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix())) {
                 QFile::remove(from);
                 QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
             }
-
-
         }
         else {
-
+        */
             QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
             QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-
-        }
+        //}
     }
     else if (fileinfo.isDir()) {
         //Create folder with name from root folder which should be copied

@@ -5,16 +5,9 @@
 
 Worker::Worker()
 {
-    queue = new Queue();
     log = new login();
     settingsmanager = new Settingsmanager();
     filesHandler = new Handlefiles();
-
-    QThread *thread2 = new QThread();
-    queue->moveToThread(thread2);
-    connect(thread2, SIGNAL(started()), queue, SLOT(fillQueue()));
-    connect(queue, SIGNAL(finished()), thread2, SLOT(quit()));
-    thread2->start();
 }
 
 Worker::~Worker()
@@ -24,15 +17,16 @@ Worker::~Worker()
 
 void Worker::process(int encryptionOn)
 {
+
+    //copyDirectory();
+    /*
     int testint;
     QFileInfo fromDir;
     QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
     QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
     QString toCloud = settingsmanager->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir");
+    */
 
-
-    do
-    {
         //fromDir = getDir();
         //qDebug() << fromDir.path();
 
@@ -87,25 +81,11 @@ void Worker::process(int encryptionOn)
             }
         }
         */
-    } while (getDir().path() != ".");
-
-
 
     emit finished();
     }
 
 
-
-
-QFileInfo Worker::getDir()
-{
-    return queue->getQDir();
-}
-
-void Worker::printDir()
-{
-    qDebug() << queue->getQDir().path();
-}
 
 /*
 
@@ -171,7 +151,7 @@ bool Worker::copy_dir(QString fromDir, QString toDir, bool encryptionOn)
     return true;
 }
 
-
+*/
 
 void Worker::copyDirectory(){
     QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
@@ -183,11 +163,11 @@ void Worker::copyDirectory(){
 
         QString toNewWork = filesHandler->createDir(toWork, nameOfDir);
         QString toNewCloud = filesHandler->createDir(toCloud, nameOfDir);
-        filesHandler->copy_dir(from, toNewWork, false);
-        filesHandler->copy_dir(from, toNewCloud, true);
+        filesHandler->copy_dir_recursive(from, toNewWork, false);
+        filesHandler->copy_dir_recursive(from, toNewCloud, true);
     }
 }
 
 
 
-*/
+
