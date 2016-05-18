@@ -1,8 +1,10 @@
 #include "window.h"
 #include "ui_window.h"
+#include "queue.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QThread>
+#include <QSignalMapper>
 Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Window)
@@ -266,8 +268,30 @@ void Window::on_pushButton_delete_cloud_clicked()
 void Window::on_pushButton_confirm_clicked()
 {
     //filesHandler->createDir(MainWindow::settingsKeyForWorkDirPath);
+    QThread *thread = new QThread();
+    QSignalMapper *signalMapper = new QSignalMapper (this);
+
     worker = new Worker();
-    worker->start();
+    worker->moveToThread(thread);
+
+    connect(thread, SIGNAL(started()), signalMapper, SLOT(map())) ;
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+
+    signalMapper->setMapping(thread, 0);
+    connect(signalMapper, SIGNAL(mapped(int)), worker, SLOT(process(int)));
+
+    thread->start();
+
+    /*
+     * Moved to ctor of worker
+     *
+    QThread *thread2 = new QThread();
+    Queue *queue = new Queue();
+    queue->moveToThread(thread2);
+    connect(thread2, SIGNAL(started()), queue, SLOT(fillQueue()));
+    connect(queue, SIGNAL(finished()), thread2, SLOT(quit()));
+    thread2->start();
+    */
 
     //copyDirectory();
 }

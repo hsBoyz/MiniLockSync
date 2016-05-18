@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     handlefiles.cpp \
     filewindow.cpp \
     login.cpp \
-    worker.cpp
+    worker.cpp \
+    queue.cpp
 
 HEADERS  += mainwindow.h \
     steerer.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     handlefiles.h \
     filewindow.h \
     login.hpp \
-    worker.h
+    worker.h \
+    queue.h
 
 FORMS    += mainwindow.ui \
     steerer.ui \
