@@ -4,10 +4,12 @@
 #include "handlefiles.h"
 #include "login.hpp"
 #include "ui_login.h"
+#include "worker.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <settingsmanager.h>
 #include <uCryptLib.h>
+#include <QThread>
 
 namespace Ui {
 class FileWindow;
@@ -49,6 +51,8 @@ private slots:
 
     void on_pushButton_decrypt_clicked();
 
+    void on_pushButton_sync_clicked();
+
 private:
     QString TAG = "Filewindow ";
 
@@ -58,6 +62,7 @@ private:
     Settingsmanager *setman;
     Handlefiles *fileshandler;
     login *log;
+    Worker *worker;
 
     QString keyOfCurrentFileBrowser;    //Necessary to load different filewindows, e.g. for each encrypted folder
     QList<QString> previousDirPath;     //List for storing the file browsing history
@@ -65,8 +70,8 @@ private:
     QString selectedDirPath = "";
 
     bool isFileEncrypted(QString fileName, QString absolutePath);
-        QString getEncodedHash(QString fileName, QString absolutPath);
-
+    QString getEncodedHash(QString fileName, QString absolutPath);
+    void checkAndCopy();
 };
 
 #endif // FILEWINDOW_H

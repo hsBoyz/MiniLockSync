@@ -19,6 +19,7 @@ FileWindow::FileWindow(QWidget *parent) :
     setman = new Settingsmanager();
     fileshandler = new Handlefiles();
     log = new login();
+    worker = new Worker();
     setFileModels();
 }
 
@@ -222,6 +223,10 @@ void FileWindow::on_pushButton_decrypt_clicked()
 
 }
 
+void FileWindow::on_pushButton_sync_clicked()
+{
+    checkAndCopy();
+}
 
 /*
  *
@@ -252,9 +257,6 @@ void FileWindow::setFileModels() {
     ui->listView->setRootIndex(filemodel->index(sPath1));
 }
 
-/*
- * returns relative path
- */
 QString FileWindow::returnDirectoryCleanedPath(QString path) {
     QString defaultPath = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
     int removeTo = defaultPath.length() + 1;    //+1 to also eliminate the last seperator
@@ -520,4 +522,18 @@ QByteArray buf = file.readAll();
     std::string encodedHash = uCrypt::uCryptLib::base64_Encode(bufHash, uCrypt::uCryptLib::_BLAKE2S_OUTBYTES);
 
     return QString::fromStdString(encodedHash);
+}
+
+void FileWindow::checkAndCopy() {
+
+    QThread *thread = new QThread();
+
+    worker = new Worker();
+    worker->moveToThread(thread);
+
+    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    thread->start();
+
 }

@@ -266,7 +266,8 @@ void Window::on_pushButton_delete_cloud_clicked()
 
 void Window::on_pushButton_confirm_clicked()
 {
-    //filesHandler->createDir(MainWindow::settingsKeyForWorkDirPath);
+    checkAndCopy();
+    /*
     QThread *thread = new QThread();
     QSignalMapper *signalMapper = new QSignalMapper (this);
 
@@ -277,11 +278,14 @@ void Window::on_pushButton_confirm_clicked()
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
 
     signalMapper->setMapping(thread, 0);
-    connect(signalMapper, SIGNAL(mapped(int)), worker, SLOT(process(int)));
+    connect(signalMapper, SIGNAL(mapped(int)), worker, SLOT(process()));
 
     thread->start();
+    */
+}
 
-    //copyDirectory();
+void Window::setCopyStatus(bool status) {
+    qDebug() << "WINDOW setCopyStatus: " << "Check Files and Copy Done? " << status;
 }
 
 
@@ -418,24 +422,27 @@ void Window::copyDirectory(){
          * Dont copy if folder already exists, which means copy was done before
          */
         QString from = settingsmanager->returnSetting(MainWindow::settingsKeyForPaths, nameOfDir);
+        QString toNewWork = filesHandler->createDir(toWork, nameOfDir);
+        QString toNewCloud = filesHandler->createDir(toCloud, nameOfDir);
 
-        /*
-        if (onlyOneDirToEncrypt) {
-            filesHandler->copy_dir_recursive (from, to);
-            filesHandler->copy_dir_recursive (from, toSaveDir);
-        }
-        */
-        //else {
-            QString toNewWork = filesHandler->createDir(toWork, nameOfDir);
-            QString toNewCloud = filesHandler->createDir(toCloud, nameOfDir);
-
-            filesHandler->copy_dir_recursive(from, toNewWork, false);
-            filesHandler->copy_dir_recursive(from, toNewCloud, true);
-
-        //}
+        filesHandler->copy_dir_recursive(from, toNewWork, false);
+        filesHandler->copy_dir_recursive(from, toNewCloud, true);
     }
 }
 
+void Window::checkAndCopy() {
+
+    QThread *thread = new QThread();
+
+    worker = new Worker();
+    worker->moveToThread(thread);
+
+    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    thread->start();
+
+}
 
 
 

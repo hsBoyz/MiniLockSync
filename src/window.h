@@ -20,14 +20,13 @@ class Window : public QMainWindow
     Q_OBJECT
 
 
-
-
 public:
     explicit Window(QWidget *parent = 0);
 
     Ui::Window *ui;
 
     QAction *act1, *act2, *act3, *act4;
+    void checkAndCopy();
 
     ~Window();
 
@@ -64,6 +63,8 @@ private slots:
 
     void on_pushButton_delete_cloud_clicked();
 
+    void setCopyStatus(bool status);
+
 private:
 
     QFileSystemModel *fileBrowserModel;
@@ -78,6 +79,7 @@ private:
     void populateTableWidget(QString group, QTableWidget *widget);
     QFileInfo returnSelectedPath();
     void copyDirectory();
+
 
 };
 

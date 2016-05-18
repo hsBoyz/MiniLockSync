@@ -8,6 +8,7 @@
 Handlefiles::Handlefiles()
 {
     log = new login();
+    settingsmanager = new Settingsmanager();
 }
 
 bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryptionOn)
@@ -29,7 +30,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
 
         if (QFile::exists(to))
         {
-            /*
+
             QFileInfo fromInfo(from);
             QFileInfo toInfo(to);
 
@@ -39,6 +40,9 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
             if (fromInfo.lastModified().toMSecsSinceEpoch() > toInfo.lastModified().toMSecsSinceEpoch()) {
                 qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified();
                 qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified();
+
+                QFile::remove(to);
+                qDebug() << TAG << "Modifiziertes File ersetzt? " << QFile::copy(from, to);
             }
 
             /*
@@ -64,7 +68,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
                 return false;
             }
             */
-            return false;
+            //return false;
         }
 
         if (encryptionOn) {
@@ -82,7 +86,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
         }
         else if (QFile::copy(from, to) == false)
         {
-            return false;
+            //return false;
         }
 
     }
@@ -125,13 +129,6 @@ QString Handlefiles::createDir(QString path, QString folderName) {
     }
     return path + QDir::separator() + folderName;
 }
-
-
-
-/**
- * @brief Handlefiles::createCopyAndWorkDir
- * no dynamic implementation yet
- */
 
 void Handlefiles::createCopyAndWorkDir(QString group) {
 
@@ -212,7 +209,21 @@ void Handlefiles::createCopyAndWorkDir(QString group) {
     */
 }
 
+void Handlefiles::copyDirectory(){
+    QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
+    QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
+    QString toCloud = settingsmanager->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir");
 
+    foreach (QString nameOfDir, dirsToEncryp) {
+        QString from = settingsmanager->returnSetting(MainWindow::settingsKeyForPaths, nameOfDir);
+
+        QString toNewWork = createDir(toWork, nameOfDir);
+        QString toNewCloud = createDir(toCloud, nameOfDir);
+        copy_dir_recursive(from, toNewWork, false);
+        copy_dir_recursive(from, toNewCloud, true);
+    }
+
+}
 
 /*
 void Handlefiles::checkForErrors(int result)
