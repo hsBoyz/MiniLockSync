@@ -1,7 +1,10 @@
 #include "filewindow.h"
 #include "ui_filewindow.h"
+#include "ui_login.h"
 #include "mainwindow.h"
 #include "login.hpp"
+#include "window.h"
+#include "ui_window.h"
 #include <QDebug>
 #include <QDesktopServices>
 #include <QMessageBox>
@@ -16,6 +19,7 @@ FileWindow::FileWindow(QWidget *parent) :
     setman = new Settingsmanager();
     fileshandler = new Handlefiles();
     log = new login();
+    worker = new Worker();
     setFileModels();
 }
 
@@ -88,7 +92,7 @@ void FileWindow::dropEvent(QDropEvent *e)
     QString relativePath;
 
     //dont allow to copy a file/dir into working directory root folder
-    if (copyTo == setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath")) {
+    if (copyTo == setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir")) {
         QMessageBox msgBox;
         msgBox.setInformativeText(tr("You cannot copy into the root folder."));
         msgBox.exec();
@@ -150,9 +154,9 @@ void FileWindow::on_pushButton_deleteFile_clicked()
 
 void FileWindow::on_pushButton_encrypt_clicked()
 {
-    QFileInfo fileInfo = QFileInfo(selectedDirPath);
+   /* QFileInfo fileInfo = QFileInfo(selectedDirPath);
     uCrypt::uCryptLib mainSession = log->getMainSession();
-    checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
+
 
     QFileInfo fileInfo2 = QFileInfo(fileInfo.absoluteFilePath() + ".encrypted");
 
@@ -160,20 +164,69 @@ void FileWindow::on_pushButton_encrypt_clicked()
     QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     QString relativePath = returnRelativPath(dirCleanedPath);
 
-    copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << dirCleanedPath;
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << nameOfEncryptedFolder;
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << relativePath;
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << fileInfo.absoluteFilePath();
+    qDebug() << TAG << "on_pushButton_encrypt_clicked" << setman->returnSetting(MainWindow::settingsKeyForPaths, nameOfEncryptedFolder) + relativePath + QDir::separator() + fileInfo2.completeBaseName();
+
+    //copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+    QString savePath = setman->returnSetting(MainWindow::settingsKeyForPaths, nameOfEncryptedFolder) + relativePath + QDir::separator() + fileInfo2.completeBaseName();
+
+<<<<<<< HEAD
+    checkForErrors(mainSession.EncryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString(), nullptr, 0));
+=======
+    */
+
+    QString qSzFileName = QString(selectedDirPath);
+        uCrypt::uCryptLib mainSession = log->getMainSession();
+
+        int numberOfRecipients = log->ui.comboBox->count();
+                std::string *recipients = new std::string[numberOfRecipients];
+
+                for(int i=0; i < numberOfRecipients; i++)
+                {
+                    recipients[i] = log->ui.comboBox->itemText(i).toStdString();
+                }
+
+        checkForErrors(mainSession.EncryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString(),recipients,numberOfRecipients));
+
+        //QString fileInfo2 = QString(fileInfo.absoluteFilePath() + ".encrypted");
+
+        QString dirCleanedPath = returnDirectoryCleanedPath(currentDirPath);
+        QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
+        QString relativePath = returnRelativPath(dirCleanedPath);
+
+
+       // copyDropFiles(fileInfo2.absoluteFilePath(), nameOfEncryptedFolder, relativePath, fileInfo2);
+
 }
 
 void FileWindow::on_pushButton_decrypt_clicked()
 {
-
+/*
     QFileInfo fileInfo = QFileInfo(selectedDirPath);
     uCrypt::uCryptLib mainSession = log->getMainSession();
     qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << fileInfo.fileName() << " FilePath: " << fileInfo.absolutePath();
 
+<<<<<<< HEAD
+    //checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
+=======
     checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
+*/
+    QString qSzFileName = QString(selectedDirPath);
+    uCrypt::uCryptLib mainSession = log->getMainSession();
+    qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << QFileInfo(qSzFileName).fileName() << " FilePath: " << QFileInfo(qSzFileName).absolutePath();
+
+    checkForErrors(mainSession.DecryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString()));
+
 
 }
 
+void FileWindow::on_pushButton_sync_clicked()
+{
+    checkAndCopy();
+}
 
 /*
  *
@@ -195,7 +248,7 @@ void FileWindow::setFileModels() {
      * @brief NO dynamic implementation yet. Group of sPath1 is hardcoded
      */
 
-    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath");
+    QString sPath1 = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
     currentDirPath = sPath1;
 
     filemodel->setRootPath(sPath1);
@@ -204,11 +257,8 @@ void FileWindow::setFileModels() {
     ui->listView->setRootIndex(filemodel->index(sPath1));
 }
 
-/*
- * returns relative path
- */
 QString FileWindow::returnDirectoryCleanedPath(QString path) {
-    QString defaultPath = setman->returnSetting(MainWindow::settingsKeyGeneralSettings, "defaultopenpath");
+    QString defaultPath = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
     int removeTo = defaultPath.length() + 1;    //+1 to also eliminate the last seperator
 
     return path.remove(0,removeTo);
@@ -233,39 +283,33 @@ QString FileWindow::returnDirNameFromString(QString path) {
 void FileWindow::copyDropFiles(QString from, QString folderName, QString relativePath, QFileInfo fileinfo) {
     //Specify paths of working directory, saftycopy directory and cloud service directory
     QString toCloudDir = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + relativePath;
-    QString toWorkDir = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
-            + QDir::separator() + folderName + relativePath;
-    QString toSaveDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
+    QString toWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
             + QDir::separator() + folderName + relativePath;
 
     fileExists(toWorkDir, fileinfo);
-
     if(fileinfo.isFile()) {
+        /*
         if(fileinfo.suffix() == "encrypted") {
             //Dateiendung entfernen für mehr Sicherheit?
-
-            QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix());
-
-            QFile::remove(from);
-            QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
-
+            if (QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.completeBaseName() + "." + fileinfo.suffix())) {
+                QFile::remove(from);
+                QFile::remove(toCloudDir + QDir::separator() + fileinfo.completeBaseName());
+            }
         }
         else {
-
+        */
             QFile::copy(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
             QFile::copy(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-            QFile::copy(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        }
+        //}
     }
     else if (fileinfo.isDir()) {
         //Create folder with name from root folder which should be copied
         fileshandler->createDir(toCloudDir, fileinfo.baseName() + "."  + fileinfo.suffix());
-        fileshandler->createDir(toSaveDir, fileinfo.baseName() + "."  + fileinfo.suffix());
         fileshandler->createDir(toWorkDir, fileinfo.baseName() + "."  + fileinfo.suffix());
 
-        fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "." + fileinfo.suffix());
-        fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
-        fileshandler->copy_dir_recursive(from, toSaveDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix());
+        fileshandler->copy_dir_recursive(from, toCloudDir + QDir::separator() + fileinfo.baseName() + "." + fileinfo.suffix(), true);
+        fileshandler->copy_dir_recursive(from, toWorkDir + QDir::separator() + fileinfo.baseName() + "."  + fileinfo.suffix(), false);
+
     }
 
 }
@@ -294,24 +338,39 @@ void FileWindow::fileExists(QString path, QFileInfo fileInfo) {
 
 void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo) {
 
-    //Specify paths of working directory, saftycopy directory and cloud service directory
-    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
-    QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForSaveDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForSaveDirPath, 0))
-            + QDir::separator() + folderName + QDir::separator() + relativePath;
-    QString deleteSaveDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, setman->getKeyAtPosition(MainWindow::settingsKeyForWorkDirPath, 0))
-            + QDir::separator() + folderName + QDir::separator() + relativePath;
+    //Specify paths of working directory and cloud service directory
+    QString deleteOriginals = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
+    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + folderName + QDir::separator() + relativePath;
+    QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + folderName + QDir::separator() + relativePath;
 
     if (fileInfo.isDir()) {
+        //fileshandler->delete_dir_recursive(deleteOriginals);
         fileshandler->delete_dir_recursive(deleteCloudDir);
         fileshandler->delete_dir_recursive(deleteWorkDir);
-        fileshandler->delete_dir_recursive(deleteSaveDir);
+
+        /* TODO: Wenn ordner root ordner ist, dann aus einstellungen und tablewidget löschen
+        if (relativePath == "") {
+            Window *w;
+            QList<QTableWidgetItem *> list = w->ui->tableWidget->findItems(folderName, Qt::MatchFixedString);
+
+            if(list.length() == 1) {
+                qDebug() << "Remove row" << list.value(0)->row();
+                w->ui->tableWidget->item(0, 0)->setBackground(Qt::red);
+                w->ui->tableWidget->removeRow(list.value(0)->row());
+            }
+        }
+        */
     }
     else {
+
         QFile::remove(deleteCloudDir);
         QFile::remove(deleteWorkDir);
-        QFile::remove(deleteSaveDir);
+        //QFile::remove(deleteOriginals);
+
     }
 }
+
+
 
 
 
@@ -382,4 +441,99 @@ void FileWindow::checkForErrors(int result)
             break;
         }
     }
+}
+
+bool FileWindow::isFileEncrypted(QString fileName, QString absolutePath)
+{
+    bool result = false;
+    std::string fileInfoName = ".fileInfo";
+    QFile qFileInfoName(absolutePath + QString::fromStdString("/_encrypted/") + QString::fromStdString(fileInfoName));
+
+    if(qFileInfoName.exists())
+    {
+        if(!qFileInfoName.open(QIODevice::ReadWrite | QIODevice::Text))
+        {
+            QString errorM = qFileInfoName.errorString();
+            QMessageBox::critical(this,"Disc Write fail", "Failed to write necessary files.\nError Details: " + errorM);
+        }
+        else
+        {
+            QTextStream fileContentStream(&qFileInfoName);
+            QString s;
+
+            while (! fileContentStream.atEnd())
+            {
+                QString strLine = fileContentStream.readLine();
+
+                if(strLine.contains(fileName))
+                {
+                    // Line formating is FILENAME:HASH\n
+                    QStringList stringlist_0;
+                    stringlist_0 = strLine.split( ":" );
+
+                    QString fName = stringlist_0[0];
+                    QString fHash = stringlist_0[1];
+
+                    QString originalFileHash = getEncodedHash(fileName, absolutePath);
+                    if(originalFileHash == fHash)
+                    {
+                        // Original Hash equals the saved Hash in File -> no need to encrypt again
+                        result = true;
+                        s.append(strLine + "\n");
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+                }
+                else
+                {
+                    s.append(strLine + "\n");
+                }
+            }
+            qFileInfoName.resize(0);
+            fileContentStream << s;
+            qFileInfoName.close();
+        }
+    }
+    else
+    {
+        return result;
+    }
+
+    return result;
+}
+
+QString FileWindow::getEncodedHash(QString fileName, QString absolutPath)
+{
+    unsigned char bufHash[uCrypt::uCryptLib::_BLAKE2S_OUTBYTES];
+
+    QFile file(absolutPath + QString("/") + fileName);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        QString errorM = file.errorString();
+        QMessageBox::critical(this,"Disc Write fail", "Failed to write necessary files.\nError Details: " + errorM);
+    }
+
+QByteArray buf = file.readAll();
+
+    uCrypt::uCryptLib::blake2s_Hash(bufHash, buf.constData(), NULL, uCrypt::uCryptLib::_BLAKE2S_OUTBYTES, buf.size(), 0);
+
+    std::string encodedHash = uCrypt::uCryptLib::base64_Encode(bufHash, uCrypt::uCryptLib::_BLAKE2S_OUTBYTES);
+
+    return QString::fromStdString(encodedHash);
+}
+
+void FileWindow::checkAndCopy() {
+
+    QThread *thread = new QThread();
+
+    worker = new Worker();
+    worker->moveToThread(thread);
+
+    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    thread->start();
+
 }

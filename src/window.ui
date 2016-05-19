@@ -53,6 +53,7 @@
          </property>
         </widget>
        </item>
+
       </layout>
      </widget>
     </item>
@@ -80,7 +81,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -165,7 +166,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="pushButton_addDir">
              <property name="text">
-              <string>Add Cloud service or directory for encoding</string>
+              <string>Choose folder you would like to encrypt</string>
              </property>
             </widget>
            </item>
@@ -213,20 +214,6 @@ p, li { white-space: pre-wrap; }
              <property name="spacing">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_addWorkDir">
-               <property name="text">
-                <string>Add work directory</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_addSaveDir">
-               <property name="text">
-                <string>Add backup directory</string>
-               </property>
-              </widget>
-             </item>
             </layout>
            </item>
            <item>
@@ -235,24 +222,52 @@ p, li { white-space: pre-wrap; }
               <number>0</number>
              </property>
              <item>
-              <widget class="QTableWidget" name="tableWidget_dir"/>
+              <widget class="QTableWidget" name="tableWidget_dir">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QTableWidget" name="tableWidget_save"/>
+              <widget class="QPushButton" name="pushButton_addWorkDir">
+               <property name="text">
+                <string>Add work directory</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_deleteDir_2">
+               <property name="text">
+                <string>Delete work dir</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_deleteDir_2">
-             <property name="text">
-              <string>Delete</string>
+            <widget class="QTableWidget" name="tableWidget_cloud">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_setdefaultopenaction">
+            <widget class="QPushButton" name="pushButton_AddCloud">
              <property name="text">
-              <string>Set as default path</string>
+              <string>Add cloud</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_delete_cloud">
+             <property name="text">
+              <string>Delete Cloud</string>
              </property>
             </widget>
            </item>
