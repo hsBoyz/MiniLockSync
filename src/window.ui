@@ -207,7 +207,7 @@ QPushButton#pushManageSaveDir:focus
 { 
     background-color: #95c0ff;
 }
-QPushButton#pushManageCloud:hover
+QPushButton#pushManageSaveDir:hover
 {
     background-color: #949494;
  }</string>
