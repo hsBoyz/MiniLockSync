@@ -26,7 +26,9 @@ void Steerer::start()
     createActions();
     createTrayIcon();
     trayIcon->show();
-
+    if (checkSettings()) {
+        startAutoSync();
+    }
 }
 
 
@@ -64,4 +66,20 @@ void Steerer::openFileWindow()
 {
     FileWindow *f = new FileWindow();
     f->show();
+}
+
+bool Steerer::checkSettings() {
+    Settingsmanager *setman = new Settingsmanager();
+    if (setman->groupExists(MainWindow::settingsKeyForPaths) &&
+            setman->groupExists(MainWindow::settingsKeyForCloudDirPath) &&
+                  setman->groupExists(MainWindow::settingsKeyForWorkDirPath)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Steerer::startAutoSync() {
+   Timer::GetInstance().start();
 }

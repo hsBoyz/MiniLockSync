@@ -27,7 +27,7 @@ public:
     Ui::Window *ui;
 
     QAction *act1, *act2, *act3, *act4;
-    void checkAndCopy();
+    void startAutoSync();
 
     ~Window();
 
@@ -44,12 +44,6 @@ private slots:
     void on_pushHome_clicked();
     void on_pushCloudService_clicked();
     void on_pushManageCloud_clicked();
-<<<<<<< HEAD
-    void on_pushCPULimitation_clicked();
-    void on_pushChangePassword_clicked();
-    void on_pushButton_addDir_clicked();
-=======
-
     //void on_pushCPULimitation_clicked();
 
    //void on_pushChangePassword_clicked();
@@ -57,7 +51,6 @@ private slots:
 
     void on_pushButton_addDir_clicked();
 
->>>>>>> mergeBranch
     void on_pushButton_deleteDir_clicked();
     void on_pushButton_addWorkDir_clicked();
     void on_pushManageSaveDir_clicked();
@@ -65,7 +58,6 @@ private slots:
     void on_pushButton_confirm_clicked();
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
-    void setCopyStatus(bool status);
 
 private:
 
@@ -81,6 +73,8 @@ private:
     void populateTableWidget(QString group, QTableWidget *widget);
     QFileInfo returnSelectedPath();
     void copyDirectory();
+    void checkAndCopy();
+
 
 
 };

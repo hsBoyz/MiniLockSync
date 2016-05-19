@@ -53,79 +53,6 @@
          </property>
         </widget>
        </item>
-<<<<<<< HEAD
-       <item>
-        <widget class="QPushButton" name="pushManageSaveDir">
-         <property name="styleSheet">
-          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
-         </property>
-         <property name="text">
-          <string>  work dir</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normalon>:/buttons/buttons/db-backup.png</normalon>
-          </iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>60</width>
-           <height>40</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushManageCloud">
-         <property name="styleSheet">
-          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
-         </property>
-         <property name="text">
-          <string>Folders to encrypt</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normalon>:/buttons/buttons/Cloud-Management-Icon-635.jpg</normalon>
-          </iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>60</width>
-           <height>40</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushCPULimitation">
-         <property name="text">
-          <string>CPU-Limitation</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushChangePassword">
-         <property name="text">
-          <string>Change Password</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-=======
-
->>>>>>> mergeBranch
       </layout>
      </widget>
     </item>
@@ -153,7 +80,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">
