@@ -32,8 +32,8 @@ Window::Window(QWidget *parent) :
     connect (ui->pushCloudService, SIGNAL(clicked(bool)), this, SLOT(on_pushCloudService_clicked()));
     connect (ui->pushManageCloud, SIGNAL(clicked(bool)), this, SLOT(on_pushManageCloud_clicked()));
     connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), this, SLOT(on_pushManageSaveDir_clicked()));
-    connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), this, SLOT(on_pushCPULimitation_clicked()));
-    connect (ui->pushChangePassword, SIGNAL(clicked(bool)), this, SLOT(on_pushChangePassword_clicked()));
+    //connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), this, SLOT(on_pushCPULimitation_clicked()));
+    //connect (ui->pushChangePassword, SIGNAL(clicked(bool)), this, SLOT(on_pushChangePassword_clicked()));
 
 
 
@@ -110,7 +110,7 @@ void Window::on_pushManageSaveDir_clicked()
               ui->stackedWidget->setCurrentIndex(3); // Manage Save Dir
           }
 }
-
+/*
 void Window::on_pushCPULimitation_clicked()
 {
     currentIndex = ui->stackedWidget->currentIndex();
@@ -128,7 +128,7 @@ void Window::on_pushChangePassword_clicked()
               ui->stackedWidget->setCurrentIndex(5); // Change PW
           }
 }
-
+*/
 void Window::on_pushButton_addDir_clicked()
 {
     /*
