@@ -266,22 +266,18 @@ void Window::on_pushButton_delete_cloud_clicked()
 
 void Window::on_pushButton_confirm_clicked()
 {
+    //Copy whole dirs on confirming changes
     checkAndCopy();
-    /*
-    QThread *thread = new QThread();
-    QSignalMapper *signalMapper = new QSignalMapper (this);
 
-    worker = new Worker();
-    worker->moveToThread(thread);
-
-    connect(thread, SIGNAL(started()), signalMapper, SLOT(map())) ;
-    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-
-    signalMapper->setMapping(thread, 0);
-    connect(signalMapper, SIGNAL(mapped(int)), worker, SLOT(process()));
-
+    //Start timer which check every x Seconds if there are changes in the specified directories
+    QThread *thread = new QThread(this);
+    QTimer *timer = new QTimer(0);
+    Timer *m_timer = new Timer();
+    timer->setInterval(1 * 1000);
+    timer->moveToThread(thread);
+    connect(timer, SIGNAL(timeout()), m_timer, SLOT(test()));
     thread->start();
-    */
+
 }
 
 void Window::setCopyStatus(bool status) {
@@ -439,7 +435,7 @@ void Window::checkAndCopy() {
 
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-    connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
 
 }

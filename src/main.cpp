@@ -7,7 +7,6 @@
 #include "window.h"
 #include "steerer.h"
 
-
 #include "login.hpp"
 #include <QApplication>
 

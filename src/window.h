@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "handlefiles.h"
 #include "worker.h"
+#include "timer.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
@@ -41,28 +42,18 @@ protected:
 private slots:
 
     void on_pushHome_clicked();
-
     void on_pushCloudService_clicked();
-
     void on_pushManageCloud_clicked();
-
     void on_pushCPULimitation_clicked();
-
     void on_pushChangePassword_clicked();
-
     void on_pushButton_addDir_clicked();
     void on_pushButton_deleteDir_clicked();
-
     void on_pushButton_addWorkDir_clicked();
     void on_pushManageSaveDir_clicked();
     void on_pushButton_deleteDir_2_clicked();
-
     void on_pushButton_confirm_clicked();
-
     void on_pushButton_AddCloud_clicked();
-
     void on_pushButton_delete_cloud_clicked();
-
     void setCopyStatus(bool status);
 
 private:
