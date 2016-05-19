@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QSignalMapper>
+#include <QPalette>
 Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Window)
@@ -20,14 +21,14 @@ Window::Window(QWidget *parent) :
            qApp, SLOT(quit()),
            QKeySequence(tr("Ctrl+Q", "File|Quit")) );
         act3->setStatusTip(tr("Quit Program"));
-        QMenu *workMenu = new QMenu(
+       /* QMenu *workMenu = new QMenu(
            tr("&Edit"), this);
-        menuBar()->addMenu(workMenu);
+        menuBar()->addMenu(workMenu); */
 //--------------------------------------------------------
 
     settingsmanager = new Settingsmanager();
     filesHandler = new Handlefiles();
-
+    filewin = new FileWindow();
 
     //Verbinde Ereignis mit Methode
     connect (ui->pushHome, SIGNAL(clicked(bool)), this, SLOT(on_pushHome_clicked()));
@@ -47,6 +48,14 @@ Window::Window(QWidget *parent) :
     populateTableWidget(MainWindow::settingsKeyForWorkDirPath, ui->tableWidget_dir);
     populateTableWidget(MainWindow::settingsKeyForCloudDirPath, ui->tableWidget_cloud);
 
+    /*
+    QPalette greenPalette = ui->pushHome->palette();
+    greenPalette.setColor(QPalette::Window, Qt::green);
+    ui->pushHome->setPalette(QPalette(QColor(Qt::green)));
+    */
+
+
+
 }
 
 Window::~Window()
@@ -63,6 +72,8 @@ void Window::contextMenuEvent(
    menu->addAction(act3);
    menu->exec(event->globalPos());
 }
+
+
 
 /*
  *
@@ -81,21 +92,27 @@ void Window::on_pushHome_clicked()
           if( currentIndex < ui->stackedWidget->count())
           {
               ui->stackedWidget->setCurrentIndex(0); // Home
+
           }
 }
 void Window::on_pushCloudService_clicked()
 {
+
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
           {
               ui->stackedWidget->setCurrentIndex(1); // CloudService
           }
 
-
-          FileWindow *f = new FileWindow();
-          f->show();
-
+          if (filewin->isHidden())
+          {
+              filewin->show();
+          }
+          else
+          filewin->show();
 }
+
+
 
 void Window::on_pushManageCloud_clicked()
 {

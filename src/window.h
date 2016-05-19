@@ -6,6 +6,7 @@
 #include "handlefiles.h"
 #include "worker.h"
 #include "timer.h"
+#include "filewindow.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
@@ -67,6 +68,8 @@ private:
     Settingsmanager *settingsmanager;
     Handlefiles *filesHandler;
     Worker *worker;
+    FileWindow *filewin;
+
 
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);
