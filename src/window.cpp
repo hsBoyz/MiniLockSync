@@ -1,5 +1,6 @@
 #include "window.h"
 #include "ui_window.h"
+#include "filewindow.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QThread>
@@ -89,6 +90,11 @@ void Window::on_pushCloudService_clicked()
           {
               ui->stackedWidget->setCurrentIndex(1); // CloudService
           }
+
+
+          FileWindow *f = new FileWindow();
+          f->show();
+
 }
 
 void Window::on_pushManageCloud_clicked()
