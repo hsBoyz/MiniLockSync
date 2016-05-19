@@ -44,9 +44,20 @@ private slots:
     void on_pushHome_clicked();
     void on_pushCloudService_clicked();
     void on_pushManageCloud_clicked();
+<<<<<<< HEAD
     void on_pushCPULimitation_clicked();
     void on_pushChangePassword_clicked();
     void on_pushButton_addDir_clicked();
+=======
+
+    //void on_pushCPULimitation_clicked();
+
+   //void on_pushChangePassword_clicked();
+
+
+    void on_pushButton_addDir_clicked();
+
+>>>>>>> mergeBranch
     void on_pushButton_deleteDir_clicked();
     void on_pushButton_addWorkDir_clicked();
     void on_pushManageSaveDir_clicked();
