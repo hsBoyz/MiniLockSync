@@ -181,7 +181,7 @@ void login::loginButton_click()
         QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
 
 		ui.yourIdLineEdit->setText(identificationNumber);
-		
+        ui.comboBox->insertItem(0, identificationNumber);
 	}
 
 }

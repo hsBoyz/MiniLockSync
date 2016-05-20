@@ -62,6 +62,7 @@ namespace uCrypt
 
 		uint8_t DecryptFile(std::string fileName, std::string path);
 		uint8_t EncryptFile(std::string fileName, std::string path, std::string recipientIDs[], uint8_t numRecipients);
+
 		std::string getIdentificationNumber();
 		void uCryptInit(std::string eMail, std::string passwd);
 

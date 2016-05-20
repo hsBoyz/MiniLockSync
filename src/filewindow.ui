@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>MiniLockSync</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/images/MiniLock_15x15.png</normaloff>:/icons/images/MiniLock_15x15.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -19,6 +23,18 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_back">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_back
+{ 
+    background-color: #bdbdbd;
+}
+
+QPushButton#pushButton_back:hover
+{
+    background-color: #949494;
+ }
+</string>
+        </property>
         <property name="text">
          <string>Back</string>
         </property>
@@ -39,6 +55,18 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_encrypt">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_encrypt 
+{ 
+    background-color: #bdbdbd;
+}
+
+QPushButton#pushButton_encrypt:hover
+{
+    background-color: #949494;
+ }
+</string>
+        </property>
         <property name="text">
          <string>Encrypt</string>
         </property>
@@ -46,8 +74,39 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_decrypt">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_decrypt 
+{ 
+    background-color: #bdbdbd;
+}
+
+QPushButton#pushButton_decrypt:hover
+{
+    background-color: #949494;
+ }
+</string>
+        </property>
         <property name="text">
          <string>Decrypt</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_sync">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_sync 
+{ 
+    background-color: #bdbdbd;
+}
+
+QPushButton#pushButton_sync:hover
+{
+    background-color: #949494;
+ }
+</string>
+        </property>
+        <property name="text">
+         <string>Sync</string>
         </property>
        </widget>
       </item>
@@ -66,6 +125,18 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_deleteFile">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_deleteFile 
+{ 
+    background-color: #bdbdbd;
+}
+
+QPushButton#pushButton_deleteFile:hover
+{
+    background-color: #949494;
+ }
+</string>
+        </property>
         <property name="text">
          <string>Delete</string>
         </property>
@@ -90,6 +161,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

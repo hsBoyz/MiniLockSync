@@ -5,6 +5,8 @@
 #include "filewindow.h"
 #include "settingsmanager.h"
 
+#include <QMessageBox>
+
 Steerer::Steerer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Steerer)
@@ -55,6 +57,7 @@ void Steerer::showSettings()
 {
     Window *w = new Window();
     w->show();
+
 }
 
 void Steerer::openFileWindow()
