@@ -241,7 +241,6 @@ QPushButton#pushManageSaveDir:hover
          </property>
         </spacer>
        </item>
->>>>>>> GUI_Luca
       </layout>
      </widget>
     </item>
@@ -269,7 +268,7 @@ QPushButton#pushManageSaveDir:hover
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>3</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">

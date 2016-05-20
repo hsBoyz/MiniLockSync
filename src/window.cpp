@@ -11,6 +11,7 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+
 //----------------------------------------------------------
     // Das komplette Menü zum Hauptprogramm
         QMenu *fileMenu = new QMenu(tr("&File"), this);
@@ -101,6 +102,7 @@ void Window::on_pushCloudService_clicked()
           if( currentIndex < ui->stackedWidget->count())
           {
               ui->stackedWidget->setCurrentIndex(1); // CloudService
+
           }
 
           if (FileWindow::GetInstance().isHidden())
@@ -109,6 +111,7 @@ void Window::on_pushCloudService_clicked()
           }
           else
           FileWindow::GetInstance().show();
+
 }
 
 

@@ -1,4 +1,5 @@
 #include "timer.h"
+#include <QScopedPointer>
 
 
 int Timer::SECONDS = 5 * 60;
@@ -6,7 +7,6 @@ int Timer::SECONDS = 5 * 60;
 Timer::Timer(QObject *parent) : QObject(parent)
 {
     m_Qtimer = new QTimer(this);
-    worker = new Worker();
 
     QObject::connect(m_Qtimer, SIGNAL(timeout()), this, SLOT(process()));
 }
@@ -21,12 +21,14 @@ void Timer::stop() {
 
 void Timer::process() {
     qDebug() << "Timer process: Sync";
+    //Use QScopedPointer to delete object and ptr when leaving scope
+    {
+        QThread *thread = new QThread();
+        QScopedPointer<Worker> worker(new Worker());
+        worker.data()->moveToThread(thread);
+        connect(thread, SIGNAL(started()), worker.data(), SLOT(process())) ;
+        connect(worker.data(), SIGNAL(finished()), thread, SLOT(quit()));
+        thread->start();
+    }
 
-    QThread *thread = new QThread();
-
-    worker->moveToThread(thread);
-
-    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
-    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-    thread->start();
 }
