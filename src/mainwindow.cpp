@@ -76,6 +76,6 @@ void MainWindow::on_pushSecondInterface_clicked()
     //window.show();
     */
 
-    Window *window = new Window();
-    window->show();
+    Window::GetInstance().show();
+    //window->show();
 }

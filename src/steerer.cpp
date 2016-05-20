@@ -57,15 +57,12 @@ void Steerer::createTrayIcon()
 
 void Steerer::showSettings()
 {
-    Window *w = new Window();
-    w->show();
-
+    Window::GetInstance().show();
 }
 
 void Steerer::openFileWindow()
 {
-    FileWindow *f = new FileWindow();
-    f->show();
+    FileWindow::GetInstance().show();
 }
 
 bool Steerer::checkSettings() {

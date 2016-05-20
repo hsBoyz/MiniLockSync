@@ -22,7 +22,12 @@ class Window : public QMainWindow
 
 
 public:
-    explicit Window(QWidget *parent = 0);
+    // >>> Singleton impl
+    static Window &GetInstance() {
+        static Window Instanz;
+        return Instanz;
+    }
+    // <<<
 
     Ui::Window *ui;
 
@@ -60,6 +65,11 @@ private slots:
     void on_pushButton_delete_cloud_clicked();
 
 private:
+    // >>> Singleton impl
+    Window(QWidget *parent = 0);
+    Window(const Window&);
+    Window &operator=(const Window&);
+    // <<<
 
     QFileSystemModel *fileBrowserModel;
     Settingsmanager *settingsmanager;

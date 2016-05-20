@@ -207,8 +207,7 @@ void login::startButton_click()
 		hide();
         mainWindow = new MainWindow(this);
 	//	mainWindow->show();
-		Window *window = new Window();
-		window->show();
+        Window::GetInstance().show();
 
         Steerer *s = new Steerer();
         s->start();
