@@ -28,7 +28,6 @@ Window::Window(QWidget *parent) :
 
     settingsmanager = new Settingsmanager();
     filesHandler = new Handlefiles();
-    filewin = new FileWindow();
 
     //Verbinde Ereignis mit Methode
     connect (ui->pushHome, SIGNAL(clicked(bool)), this, SLOT(on_pushHome_clicked()));
@@ -104,12 +103,12 @@ void Window::on_pushCloudService_clicked()
               ui->stackedWidget->setCurrentIndex(1); // CloudService
           }
 
-          if (filewin->isHidden())
+          if (FileWindow::GetInstance().isHidden())
           {
-              filewin->show();
+              FileWindow::GetInstance().show();
           }
           else
-          filewin->show();
+          FileWindow::GetInstance().show();
 }
 
 
