@@ -6,6 +6,7 @@
 #include "handlefiles.h"
 #include "worker.h"
 #include "timer.h"
+#include "filewindow.h"
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
@@ -49,6 +50,10 @@ private slots:
     void on_pushHome_clicked();
     void on_pushCloudService_clicked();
     void on_pushManageCloud_clicked();
+<<<<<<< HEAD
+=======
+
+>>>>>>> GUI_Luca
     //void on_pushCPULimitation_clicked();
 
    //void on_pushChangePassword_clicked();
@@ -75,6 +80,8 @@ private:
     Settingsmanager *settingsmanager;
     Handlefiles *filesHandler;
     Worker *worker;
+    FileWindow *filewin;
+
 
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);

@@ -8,5 +8,8 @@
         <file>buttons/Cloud-Management-Icon-635.jpg</file>
         <file>buttons/CloudService400x225.png</file>
         <file>buttons/db-backup.png</file>
+        <file>buttons/pushbutton.png</file>
+        <file>buttons/pushbutton_hover.png</file>
+        <file>buttons/pushbutton_pressed.png</file>
     </qresource>
 </RCC>
