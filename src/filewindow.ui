@@ -54,6 +54,13 @@ QPushButton#pushButton_back:hover
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_syncCloud">
+        <property name="text">
+         <string>Sync Cloud</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton_encrypt">
         <property name="styleSheet">
          <string notr="true">QPushButton#pushButton_encrypt 

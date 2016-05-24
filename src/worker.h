@@ -23,6 +23,7 @@ signals:
 
 public slots:
     void process();
+    void processSyncCloud();
 
 };
 

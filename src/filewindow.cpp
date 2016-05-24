@@ -182,12 +182,9 @@ void FileWindow::on_pushButton_encrypt_clicked()
         uCrypt::uCryptLib mainSession = log->getMainSession();
 
         int numberOfRecipients = log->ui.comboBox->count();
-                std::string *recipients = new std::string[numberOfRecipients];
+        std::string *recipients = new std::string[numberOfRecipients];
 
-                for(int i=0; i < numberOfRecipients; i++)
-                {
-                    recipients[i] = log->ui.comboBox->itemText(i).toStdString();
-                }
+        recipients[0] = log->ui.comboBox->itemText(0).toStdString();
 
         checkForErrors(mainSession.EncryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString(),recipients,numberOfRecipients));
 
@@ -228,6 +225,11 @@ void FileWindow::on_pushButton_sync_clicked()
     checkAndCopy();
 }
 
+
+void FileWindow::on_pushButton_syncCloud_clicked()
+{
+    checkAndCopyCloud();
+}
 /*
  *
  *
@@ -531,9 +533,21 @@ void FileWindow::checkAndCopy() {
     worker = new Worker();
     worker->moveToThread(thread);
 
-    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(thread, SIGNAL(started()), worker, SLOT(process()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-    connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
+}
 
+void FileWindow::checkAndCopyCloud() {
+
+    QThread *thread = new QThread();
+
+    worker = new Worker();
+    worker->moveToThread(thread);
+
+    connect(thread, SIGNAL(started()), worker, SLOT(processSyncCloud()));
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    thread->start();
 }

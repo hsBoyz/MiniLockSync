@@ -58,6 +58,8 @@ private slots:
 
     void on_pushButton_sync_clicked();
 
+    void on_pushButton_syncCloud_clicked();
+
 private:
     // >>> Singleton impl
     FileWindow(QWidget *parent = 0);
@@ -83,6 +85,7 @@ private:
     bool isFileEncrypted(QString fileName, QString absolutePath);
     QString getEncodedHash(QString fileName, QString absolutPath);
     void checkAndCopy();
+    void checkAndCopyCloud();
 };
 
 #endif // FILEWINDOW_H

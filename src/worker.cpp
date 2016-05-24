@@ -19,6 +19,11 @@ void Worker::process()
     emit finished();
 }
 
+void Worker::processSyncCloud()
+{
+    filesHandler->copyEncryptedFromCloud();
+    emit finished();
+}
 
 
 
