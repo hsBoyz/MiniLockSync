@@ -41,8 +41,14 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
                 qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified();
                 qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified();
 
+                if (encryptionOn) {
+                    QFile::remove(to);
+                    encryptAndCopy(from, to, copyfile, toDir);
+                }
+                else {
                 QFile::remove(to);
-                qDebug() << TAG << "Modifiziertes File ersetzt? " << QFile::copy(from, to);
+                QFile::copy(from, to);
+                }
             }
 
             /*
@@ -72,16 +78,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
         }
 
         if (encryptionOn) {
-            uCrypt::uCryptLib mainSession = log->getMainSession();
-
-            if (QFile::copy(from, to)== false) {
-                return false;
-            }
-            //checkForErrors(mainSession.EncryptFile(copyfile.toStdString(), to.toStdString(), nullptr, 0));
-            if (mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), nullptr, 0) != 0) {
-                return false;
-            }
-            QFile::remove(to);
+            encryptAndCopy(from, to, copyfile, toDir);
 
         }
         else if (QFile::copy(from, to) == false)
@@ -225,3 +222,15 @@ void Handlefiles::copyDirectory(){
 
 }
 
+bool Handlefiles::encryptAndCopy(QString from, QString to, QString copyfile, QString toDir) {
+    uCrypt::uCryptLib mainSession = log->getMainSession();
+
+    if (QFile::copy(from, to)== false) {
+        return false;
+    }
+    //checkForErrors(mainSession.EncryptFile(copyfile.toStdString(), to.toStdString(), nullptr, 0));
+    if (mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), nullptr, 0) != 0) {
+        return false;
+    }
+    QFile::remove(to);
+}

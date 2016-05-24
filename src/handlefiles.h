@@ -25,6 +25,8 @@ private:
      login *log;
      Settingsmanager *settingsmanager;
 
+     bool encryptAndCopy(QString from, QString to, QString copyfile, QString toDir);
+
 };
 
 #endif // HANDLEFILES_H
