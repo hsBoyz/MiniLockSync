@@ -58,11 +58,20 @@ void Steerer::createTrayIcon()
 void Steerer::showSettings()
 {
     Window::GetInstance().show();
+    Window::GetInstance().raise();
+    if (Window::GetInstance().isMinimized()) {
+        Window::GetInstance().showNormal();
+    }
 }
 
 void Steerer::openFileWindow()
 {
     FileWindow::GetInstance().show();
+    FileWindow::GetInstance().raise();
+    if (FileWindow::GetInstance().isMinimized()) {
+        FileWindow::GetInstance().showNormal();
+    }
+
 }
 
 bool Steerer::checkSettings() {

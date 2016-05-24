@@ -87,6 +87,7 @@ void Window::contextMenuEvent(
 
 void Window::on_pushHome_clicked()
 {
+    FileWindow::GetInstance().hide();
 
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
@@ -105,11 +106,6 @@ void Window::on_pushCloudService_clicked()
 
           }
 
-          if (FileWindow::GetInstance().isHidden())
-          {
-              FileWindow::GetInstance().show();
-          }
-          else
           FileWindow::GetInstance().show();
 
 }
@@ -118,6 +114,7 @@ void Window::on_pushCloudService_clicked()
 
 void Window::on_pushManageCloud_clicked()
 {
+    FileWindow::GetInstance().hide();
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
           {
@@ -127,6 +124,7 @@ void Window::on_pushManageCloud_clicked()
 
 void Window::on_pushManageSaveDir_clicked()
 {
+    FileWindow::GetInstance().hide();
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
           {
@@ -154,6 +152,7 @@ void Window::on_pushChangePassword_clicked()
 */
 void Window::on_pushButton_addDir_clicked()
 {
+
     QFileInfo path = returnSelectedPath();
 
     if (path.absoluteFilePath() == "") {
