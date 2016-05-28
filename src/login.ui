@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>login</class>
  <widget class="QWidget" name="login">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>300</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>MiniLockSync - Login</string>
   </property>
@@ -17,9 +9,61 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/images/MiniLock_15x15.png</normaloff>:/icons/images/MiniLock_15x15.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2">
+   <item row="7" column="0" colspan="3">
+    <widget class="QComboBox" name="comboBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label3">
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel#label3 {
+	font: bold 14px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Generated Key:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
+    <widget class="QLineEdit" name="yourIdLineEdit"/>
+   </item>
    <item row="0" column="2">
     <widget class="QPushButton" name="loginButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton#loginButton {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 5em;
+     padding: 6px;
+ }
+ QPushButton#loginButton:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#loginButton:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
+     </property>
      <property name="text">
       <string>Login</string>
      </property>
@@ -30,13 +74,15 @@
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">QLabel#label_2 {
+	font: bold 14px;
+}</string>
+     </property>
      <property name="text">
       <string>Password:</string>
      </property>
     </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="conPWlineEdit"/>
    </item>
    <item row="0" column="1">
     <widget class="QLineEdit" name="eMailLineEdit"/>
@@ -49,6 +95,24 @@
        <height>100</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#startButton {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     padding: 6px;
+ }
+ QPushButton#startButton:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#startButton:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
+     </property>
      <property name="text">
       <string>Start</string>
      </property>
@@ -57,55 +121,33 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label1">
-     <property name="text">
-      <string>Login:</string>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="2">
     <widget class="QCheckBox" name="saveLogin">
+     <property name="styleSheet">
+      <string notr="true">QCheckBox {
+     font: bold 14px;
+ }
+</string>
+     </property>
      <property name="text">
       <string>Save Login</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="cancelButton">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label1">
+     <property name="styleSheet">
+      <string notr="true">QLabel#label1 {
+	font: bold 14px;
+}</string>
+     </property>
      <property name="text">
-      <string>Cancel</string>
+      <string>Login:</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Confirm Password:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="passwdLineEdit">
-     <property name="echoMode">
-      <enum>QLineEdit::Password</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label3">
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <italic>false</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-      </font>
-     </property>
-     <property name="text">
-      <string>Generated Key:</string>
-     </property>
-    </widget>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="conPWlineEdit"/>
    </item>
    <item row="4" column="0">
     <spacer name="verticalSpacer">
@@ -120,13 +162,48 @@
      </property>
     </spacer>
    </item>
-   <item row="6" column="0" colspan="3">
-    <widget class="QLineEdit" name="yourIdLineEdit"/>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="cancelButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton#cancelButton {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 5em;
+     padding: 6px;
+ }
+ QPushButton#cancelButton:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#cancelButton:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
    </item>
-   <item row="7" column="0" colspan="3">
-    <widget class="QComboBox" name="comboBox">
-     <property name="enabled">
-      <bool>true</bool>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">QLabel#label {
+	font: bold 14px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Confirm Password:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="passwdLineEdit">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
      </property>
     </widget>
    </item>

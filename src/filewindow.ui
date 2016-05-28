@@ -17,6 +17,9 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/images/MiniLock_15x15.png</normaloff>:/icons/images/MiniLock_15x15.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -24,16 +27,23 @@
       <item>
        <widget class="QPushButton" name="pushButton_back">
         <property name="styleSheet">
-         <string notr="true">QPushButton#pushButton_back
-{ 
-    background-color: #bdbdbd;
-}
-
-QPushButton#pushButton_back:hover
-{
-    background-color: #949494;
+         <string notr="true">QPushButton#pushButton_back {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 10em;
+     padding: 6px;
  }
-</string>
+ QPushButton#pushButton_back:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_back:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
         </property>
         <property name="text">
          <string>Back</string>
@@ -55,62 +65,50 @@ QPushButton#pushButton_back:hover
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_syncCloud">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_syncCloud {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 10em;
+     padding: 6px;
+ }
+ QPushButton#pushButton_syncCloud:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_syncCloud:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
+        </property>
         <property name="text">
          <string>Sync Cloud</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_encrypt">
-        <property name="styleSheet">
-         <string notr="true">QPushButton#pushButton_encrypt 
-{ 
-    background-color: #bdbdbd;
-}
-
-QPushButton#pushButton_encrypt:hover
-{
-    background-color: #949494;
- }
-</string>
-        </property>
-        <property name="text">
-         <string>Encrypt</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_decrypt">
-        <property name="styleSheet">
-         <string notr="true">QPushButton#pushButton_decrypt 
-{ 
-    background-color: #bdbdbd;
-}
-
-QPushButton#pushButton_decrypt:hover
-{
-    background-color: #949494;
- }
-</string>
-        </property>
-        <property name="text">
-         <string>Decrypt</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="pushButton_sync">
         <property name="styleSheet">
-         <string notr="true">QPushButton#pushButton_sync 
-{ 
-    background-color: #bdbdbd;
-}
-
-QPushButton#pushButton_sync:hover
-{
-    background-color: #949494;
+         <string notr="true">QPushButton#pushButton_sync {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 10em;
+     padding: 6px;
  }
-</string>
+ QPushButton#pushButton_sync:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_sync:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
         </property>
         <property name="text">
          <string>Sync</string>
@@ -133,16 +131,23 @@ QPushButton#pushButton_sync:hover
       <item>
        <widget class="QPushButton" name="pushButton_deleteFile">
         <property name="styleSheet">
-         <string notr="true">QPushButton#pushButton_deleteFile 
-{ 
-    background-color: #bdbdbd;
-}
-
-QPushButton#pushButton_deleteFile:hover
-{
-    background-color: #949494;
+         <string notr="true">QPushButton#pushButton_deleteFile {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 10em;
+     padding: 6px;
  }
-</string>
+ QPushButton#pushButton_deleteFile:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_deleteFile:hover {
+	 background-color: rgb(100, 255, 255);
+}</string>
         </property>
         <property name="text">
          <string>Delete</string>
@@ -152,19 +157,43 @@ QPushButton#pushButton_deleteFile:hover
      </layout>
     </item>
     <item>
-     <widget class="QListView" name="listView"/>
+     <widget class="QListView" name="listView">
+      <property name="styleSheet">
+       <string notr="true">QListView#listView {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+QListView::item:alternate {
+     background: #EEEEEE;
+ }
+
+ QListView::item:selected {
+     border: 1px solid #6a6ea9;
+ }
+
+ QListView::item:selected:!active {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #ABAFE5, stop: 1 #8588B2);
+ }
+
+ QListView::item:selected:active {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #6a6ea9, stop: 1 #888dd9);
+ }
+
+ QListView::item:hover {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #FAFBFE, stop: 1 #DCDEF1);
+ }</string>
+      </property>
+     </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>821</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
