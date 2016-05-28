@@ -147,93 +147,166 @@ p, li { white-space: pre-wrap; }
           </layout>
          </widget>
          <widget class="QWidget" name="ManageCloud">
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
+          <layout class="QVBoxLayout" name="verticalLayout_17">
            <item>
-            <widget class="QTreeView" name="treeView_fileBrowser"/>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_addDir">
+            <widget class="QTreeView" name="treeView_fileBrowser">
              <property name="styleSheet">
-              <string notr="true">QPushButton#pushButton_addDir
-{ 
-    background-color: #bdbdbd;
+              <string notr="true">QTreeView#treeView_fileBrowser {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
 }
-
-QPushButton#pushButton_addDir:focus
-{ 
-    background-color: #95c0ff;
-}
-QPushButton#pushButton_addDir:hover
-{
-     background-color: #949494;
- }</string>
-             </property>
-             <property name="text">
-              <string>Choose folder you would like to encrypt</string>
+QTreeView#treeView_fileBrowser:selected {
+     border: 1px solid #6a6ea9;
+ }
+</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget"/>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_deleteDir">
-             <property name="styleSheet">
-              <string notr="true">QPushButton#pushButton_deleteDir
-{ 
-    background-color: #bdbdbd;
-}
-
-QPushButton#pushButton_deleteDir:focus
-{ 
-    background-color: #95c0ff;
-}
-QPushButton#pushButton_deleteDir:hover
-{
-      background-color: #949494;
- }</string>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>0</number>
              </property>
-             <property name="text">
-              <string>Delete</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_confirm">
-             <property name="styleSheet">
-              <string notr="true">QPushButton#pushButton_confirm
-{ 
-    background-color: #bdbdbd;
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="pushButton_addDir">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_addDir {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 7em;
+     padding: 6px;
+ }
+ QPushButton#pushButton_addDir:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_addDir:hover {
+	 background-color: rgb(100, 255, 255);
 }
-
-QPushButton#pushButton_confirm:focus
-{ 
-    background-color: #95c0ff;
+QPushButton#pushButton_addDir:focus {
+	background-color:rgb(40,255,255);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_deleteDir">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_deleteDir {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 7em;
+     padding: 6px;
+ }
+ QPushButton#pushButton_deleteDir:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_deleteDir:hover {
+	 background-color: rgb(100, 255, 255);
 }
-QPushButton#pushButton_confirm:hover
-{
-      background-color: #949494;
- }</string>
-             </property>
-             <property name="text">
-              <string>Confirm</string>
-             </property>
-            </widget>
+QPushButton#pushButton_deleteDir:focus {
+	background-color:rgb(40,255,255);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Delete</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_confirm">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_confirm {
+     background-color: rgb(194, 249, 255);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: bold 14px;
+     min-width: 7em;
+     padding: 6px;
+ }
+ QPushButton#pushButton_confirm:pressed {
+     background-color: rgb(71, 255, 255);
+     border-style: inset;
+ }
+QPushButton#pushButton_confirm:hover {
+	 background-color: rgb(100, 255, 255);
+}
+QPushButton#pushButton_confirm:focus {
+	background-color:rgb(40,255,255);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Confirm</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QTableWidget" name="tableWidget">
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget#tableWidget {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: rgb(0, 150, 150);
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+	margin: 0;
+}
+QTableWidget#tableWidget:selected {
+     border: 1px solid #6a6ea9;
+ }
+</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -241,6 +314,18 @@ QPushButton#pushButton_confirm:hover
           <layout class="QVBoxLayout" name="verticalLayout_15">
            <item>
             <widget class="QTreeView" name="treeView_dirBrowser">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>174</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">QTreeView#treeView_dirBrowser {
 	 border-style: outset;
@@ -333,6 +418,9 @@ QPushButton#pushButton_deleteDir_2:focus {
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_13">
+               <property name="spacing">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QTableWidget" name="tableWidget_dir">
                  <property name="sizePolicy">
