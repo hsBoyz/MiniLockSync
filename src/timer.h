@@ -1,26 +1,39 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+#include "worker.h"
 #include <QObject>
 #include <QTimer>
-#include <worker.h>
+#include <QThread>
 #include <QDebug>
 
 class Timer : public QObject
 {
     Q_OBJECT
 public:
-    explicit Timer(QObject *parent = 0);
+
+    static Timer &GetInstance() {
+        static Timer Instanz;
+        return Instanz;
+    }
+
+    static int SECONDS;
+
+    void start();
+    void stop();
 
 private:
+    Timer(QObject *parent = 0);
+    Timer(const Timer&);
+    Timer &operator=(const Timer&);
+
     QTimer *m_Qtimer;
     Worker *worker;
 
-    const int SECONDS = 15;
 signals:
 
 public slots:
-    void test();
+    void process();
 };
 
 #endif // TIMER_H

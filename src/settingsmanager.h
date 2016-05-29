@@ -22,6 +22,8 @@ public:
     void removeAllKeys();
     //void printGroups();
     bool keyExists(QString group, QString key);
+    bool groupExists(QString group);
+    QString valueExists(QString value);
 };
 
 #endif // SETTINGSMANAGER_H

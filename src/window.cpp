@@ -11,6 +11,7 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+
 //----------------------------------------------------------
     // Das komplette Menü zum Hauptprogramm
         QMenu *fileMenu = new QMenu(tr("&File"), this);
@@ -28,7 +29,6 @@ Window::Window(QWidget *parent) :
 
     settingsmanager = new Settingsmanager();
     filesHandler = new Handlefiles();
-    filewin = new FileWindow();
 
     //Verbinde Ereignis mit Methode
     connect (ui->pushHome, SIGNAL(clicked(bool)), this, SLOT(on_pushHome_clicked()));
@@ -87,6 +87,7 @@ void Window::contextMenuEvent(
 
 void Window::on_pushHome_clicked()
 {
+    FileWindow::GetInstance().hide();
 
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
@@ -102,20 +103,18 @@ void Window::on_pushCloudService_clicked()
           if( currentIndex < ui->stackedWidget->count())
           {
               ui->stackedWidget->setCurrentIndex(1); // CloudService
+
           }
 
-          if (filewin->isHidden())
-          {
-              filewin->show();
-          }
-          else
-          filewin->show();
+          FileWindow::GetInstance().show();
+
 }
 
 
 
 void Window::on_pushManageCloud_clicked()
 {
+    FileWindow::GetInstance().hide();
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
           {
@@ -125,6 +124,7 @@ void Window::on_pushManageCloud_clicked()
 
 void Window::on_pushManageSaveDir_clicked()
 {
+    FileWindow::GetInstance().hide();
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
           {
@@ -152,6 +152,7 @@ void Window::on_pushChangePassword_clicked()
 */
 void Window::on_pushButton_addDir_clicked()
 {
+
     QFileInfo path = returnSelectedPath();
 
     if (path.absoluteFilePath() == "") {
@@ -161,13 +162,21 @@ void Window::on_pushButton_addDir_clicked()
     }
     else
     {
-        saveDirectories(MainWindow::settingsKeyForPaths, path.baseName(), path.absoluteFilePath());
+        QString checkPath = settingsmanager->valueExists(path.absoluteFilePath());
+        if (checkPath != "false") {
+            QMessageBox msgBox;
+            msgBox.setInformativeText(tr("Path already set as ") + checkPath);
+            msgBox.exec();
+        }
+        else {
+            saveDirectories(MainWindow::settingsKeyForPaths, path.baseName(), path.absoluteFilePath());
 
-        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+            ui->tableWidget->insertRow(ui->tableWidget->rowCount());
 
-        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(path.absoluteFilePath()));
-        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(path.baseName()));
-        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(path.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(path.absoluteFilePath()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(path.baseName()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(path.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+        }
     }
 
 }
@@ -183,25 +192,33 @@ void Window::on_pushButton_addWorkDir_clicked()
     }
     else
     {
-        //saveDirectories(MainWindow::settingsKeyForWorkDirPath, fInfo.baseName(), fInfo.absoluteFilePath());
-        saveDirectories(MainWindow::settingsKeyForWorkDirPath, "workdir", fInfo.absoluteFilePath());
-
-        //Setup the default value key for contextmenu tray icon open action on first start
-        //once default path is set in settings, new path is set in Window::on_pushButton_setdefaultopenaction_clicked
-        if (!settingsmanager->keyExists(MainWindow::settingsKeyGeneralSettings, "defaultopendir")) {
-            saveDirectories(MainWindow::settingsKeyGeneralSettings, "defaultopendir", fInfo.absoluteFilePath());
+        QString checkPath = settingsmanager->valueExists(fInfo.absoluteFilePath());
+        if (checkPath != "false") {
+            QMessageBox msgBox;
+            msgBox.setInformativeText(tr("Path already set as ") + checkPath);
+            msgBox.exec();
         }
+        else {
 
-        ui->tableWidget_dir->insertRow(ui->tableWidget_dir->rowCount());
+            //saveDirectories(MainWindow::settingsKeyForWorkDirPath, fInfo.baseName(), fInfo.absoluteFilePath());
+            saveDirectories(MainWindow::settingsKeyForWorkDirPath, "workdir", fInfo.absoluteFilePath());
 
-        ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 0, new QTableWidgetItem(fInfo.absoluteFilePath()));
-        ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 1, new QTableWidgetItem(fInfo.baseName()));
-        ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 2, new QTableWidgetItem(fInfo.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+            //Setup the default value key for contextmenu tray icon open action on first start
+            //once default path is set in settings, new path is set in Window::on_pushButton_setdefaultopenaction_clicked
+            if (!settingsmanager->keyExists(MainWindow::settingsKeyGeneralSettings, "defaultopendir")) {
+                saveDirectories(MainWindow::settingsKeyGeneralSettings, "defaultopendir", fInfo.absoluteFilePath());
+            }
+
+            ui->tableWidget_dir->insertRow(ui->tableWidget_dir->rowCount());
+
+            ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 0, new QTableWidgetItem(fInfo.absoluteFilePath()));
+            ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 1, new QTableWidgetItem(fInfo.baseName()));
+            ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 2, new QTableWidgetItem(fInfo.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
 
 
-        //Allow user to only add one working directory
-        ui->pushButton_addWorkDir->setEnabled(false);
-
+            //Allow user to only add one working directory
+            ui->pushButton_addWorkDir->setEnabled(false);
+        }
     }
 
 
@@ -218,17 +235,25 @@ void Window::on_pushButton_AddCloud_clicked()
     }
     else
     {
-        //stored in group workdirpath because for workdir and cloud can only be chooses one dir
-        saveDirectories(MainWindow::settingsKeyForCloudDirPath, "clouddir", path.absoluteFilePath());
+        QString checkPath = settingsmanager->valueExists(path.absoluteFilePath());
+        if (checkPath != "false") {
+            QMessageBox msgBox;
+            msgBox.setInformativeText(tr("Path already set as ") + checkPath);
+            msgBox.exec();
+        }
+        else {
+            //stored in group workdirpath because for workdir and cloud can only be chooses one dir
+            saveDirectories(MainWindow::settingsKeyForCloudDirPath, "clouddir", path.absoluteFilePath());
 
-        ui->tableWidget_cloud->insertRow(ui->tableWidget_cloud->rowCount());
+            ui->tableWidget_cloud->insertRow(ui->tableWidget_cloud->rowCount());
 
-        ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 0, new QTableWidgetItem(path.absoluteFilePath()));
-        ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 1, new QTableWidgetItem(path.baseName()));
-        ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 2, new QTableWidgetItem(path.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+            ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 0, new QTableWidgetItem(path.absoluteFilePath()));
+            ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 1, new QTableWidgetItem(path.baseName()));
+            ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 2, new QTableWidgetItem(path.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
 
-        //Allow user to only add one working directory
-        ui->pushButton_AddCloud->setEnabled(false);
+            //Allow user to only add one working directory
+            ui->pushButton_AddCloud->setEnabled(false);
+        }
     }
 }
 
@@ -246,10 +271,15 @@ void Window::on_pushButton_deleteDir_clicked()
         ui->tableWidget->removeRow(row);
     }
 
+    if(ui->tableWidget->rowCount() == 0) {
+        Timer::GetInstance().stop();
+    }
+
 }
 
 void Window::on_pushButton_deleteDir_2_clicked()
 {
+    Timer::GetInstance().stop();
     QItemSelectionModel *selectDir = ui->tableWidget_dir->selectionModel();
 
     QModelIndexList indexListDir = selectDir->selectedIndexes();
@@ -274,6 +304,7 @@ void Window::on_pushButton_deleteDir_2_clicked()
 
 void Window::on_pushButton_delete_cloud_clicked()
 {
+    Timer::GetInstance().stop();
     QItemSelectionModel *select = ui->tableWidget_cloud->selectionModel();
     QModelIndexList indexList = select->selectedIndexes();
 
@@ -289,22 +320,21 @@ void Window::on_pushButton_delete_cloud_clicked()
 
 void Window::on_pushButton_confirm_clicked()
 {
-    //Copy whole dirs on confirming changes
-    checkAndCopy();
+    if (settingsmanager->groupExists(MainWindow::settingsKeyForWorkDirPath) &&
+                  settingsmanager->groupExists(MainWindow::settingsKeyForCloudDirPath)) {
+        //Copy whole dirs on confirming changes
+        checkAndCopy();
+        //Start timer which check every x Seconds if there are changes in the specified directories
+        startAutoSync();
+    }
+    else {
+        QMessageBox msgBox;
+        msgBox.setInformativeText(tr("Please specify workdir and clouddir first."));
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.exec();
+    }
 
-    //Start timer which check every x Seconds if there are changes in the specified directories
-    QThread *thread = new QThread(this);
-    QTimer *timer = new QTimer(0);
-    Timer *m_timer = new Timer();
-    timer->setInterval(1 * 1000);
-    timer->moveToThread(thread);
-    connect(timer, SIGNAL(timeout()), m_timer, SLOT(test()));
-    thread->start();
 
-}
-
-void Window::setCopyStatus(bool status) {
-    qDebug() << "WINDOW setCopyStatus: " << "Check Files and Copy Done? " << status;
 }
 
 
@@ -458,12 +488,14 @@ void Window::checkAndCopy() {
 
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-    //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
 
 }
 
-
+void Window::startAutoSync(){
+    Timer::GetInstance().stop();
+    Timer::GetInstance().start();
+}
 
 
 
