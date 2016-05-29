@@ -6,10 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-
     <width>1159</width>
     <height>500</height>
-
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -82,9 +80,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-
           <number>2</number>
-
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -109,7 +105,7 @@
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Willkommen blabla, ...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
@@ -139,7 +135,7 @@ p, li { white-space: pre-wrap; }
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cloud-Service&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;if you want to encypt or decrypt your data, please use the second interface!&lt;/span&gt;&lt;/p&gt;
@@ -169,7 +165,6 @@ QTreeView#treeView_fileBrowser:selected {
      border: 1px solid #6a6ea9;
  }
 </string>
-
              </property>
             </widget>
            </item>
@@ -314,7 +309,6 @@ QTableWidget#tableWidget:selected {
               </layout>
              </item>
             </layout>
-
            </item>
           </layout>
          </widget>
@@ -367,7 +361,6 @@ QTreeView#treeView_dirBrowser:selected {
                <item>
                 <widget class="QPushButton" name="pushButton_addWorkDir">
                  <property name="styleSheet">
-
                   <string notr="true">QPushButton#pushButton_addWorkDir {
      background-color: rgb(194, 249, 255);
 	 border-style: outset;
@@ -388,7 +381,6 @@ QPushButton#pushButton_addWorkDir:hover {
 QPushButton#pushButton_addWorkDir:focus {
 	background-color:rgb(40,255,255);
 }</string>
-
                  </property>
                  <property name="text">
                   <string>Add work directory</string>
@@ -398,7 +390,6 @@ QPushButton#pushButton_addWorkDir:focus {
                <item>
                 <widget class="QPushButton" name="pushButton_deleteDir_2">
                  <property name="styleSheet">
-
                   <string notr="true">QPushButton#pushButton_deleteDir_2 {
      background-color: rgb(194, 249, 255);
      border-style: outset;
@@ -419,7 +410,6 @@ QPushButton#pushButton_deleteDir_2:hover {
 QPushButton#pushButton_deleteDir_2:focus {
 	background-color:rgb(40,255,255);
 }</string>
-
                  </property>
                  <property name="text">
                   <string>Delete work dir</string>
@@ -491,7 +481,6 @@ QTableWidget#tableWidget_dir:selected {
                <item>
                 <widget class="QPushButton" name="pushButton_AddCloud">
                  <property name="styleSheet">
-
                   <string notr="true">QPushButton#pushButton_AddCloud {
      background-color: rgb(194, 249, 255);
      border-style: outset;
@@ -512,7 +501,6 @@ QPushButton#pushButton_AddCloud:hover {
 QPushButton#pushButton_AddCloud:focus {
 	background-color:rgb(40,255,255);
 }</string>
-
                  </property>
                  <property name="text">
                   <string>Add cloud</string>
@@ -522,7 +510,6 @@ QPushButton#pushButton_AddCloud:focus {
                <item>
                 <widget class="QPushButton" name="pushButton_delete_cloud">
                  <property name="styleSheet">
-
                   <string notr="true">QPushButton#pushButton_delete_cloud {
      background-color: rgb(194, 249, 255);
      border-style: outset;
@@ -543,7 +530,6 @@ QPushButton#pushButton_delete_cloud:hover {
 QPushButton#pushButton_delete_cloud:focus {
 	background-color:rgb(40,255,255);
 }</string>
-
                  </property>
                  <property name="text">
                   <string>Delete Cloud</string>
@@ -592,7 +578,6 @@ QTableWidget#tableWidget_cloud:selected {
           </layout>
           <zorder>treeView_dirBrowser</zorder>
           <zorder></zorder>
-          <zorder>horizontalLayoutWidget</zorder>
           <zorder></zorder>
          </widget>
          <widget class="QWidget" name="CPULimitation">
