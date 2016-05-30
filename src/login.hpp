@@ -28,7 +28,7 @@ protected:
 	void startButton_click();
 	
 
-private:
+public:
 	Ui::login ui;
     static uCrypt::uCryptLib mainSession;
     static bool isInitialized;

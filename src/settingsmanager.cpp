@@ -111,3 +111,29 @@ bool Settingsmanager::keyExists(QString group, QString key) {
         return false;
     }
 }
+
+bool Settingsmanager::groupExists(QString group) {
+    QSettings setting(myApp, mySetting);
+    setting.beginGroup(group);
+    QStringList list = setting.allKeys();
+    if (list.length() != 0){
+        setting.endGroup();
+        return true;
+    }
+    else {
+        setting.endGroup();
+        return false;
+    }
+}
+
+QString Settingsmanager::valueExists(QString value) {
+    QSettings setting(myApp, mySetting);
+    QStringList list = setting.allKeys();
+    foreach (QString key, list) {
+        if (setting.value(key) == value) {
+            return key;
+        }
+    }
+    return "false";
+}
+

@@ -11,7 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>MiniLockSync</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/images/icon_rund.png</normaloff>:/icons/images/icon_rund.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -19,6 +26,22 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_back">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_back {
+      background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_back:hover {
+	 background-color: #B0C4DE;
+}</string>
+        </property>
         <property name="text">
          <string>Back</string>
         </property>
@@ -38,16 +61,48 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_encrypt">
+       <widget class="QPushButton" name="pushButton_syncCloud">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_syncCloud {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_syncCloud:hover {
+	 background-color: #B0C4DE;
+}</string>
+        </property>
         <property name="text">
-         <string>Encrypt</string>
+         <string>Sync Cloud</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_decrypt">
+       <widget class="QPushButton" name="pushButton_sync">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_sync {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_sync:hover {
+	 background-color: #B0C4DE;
+}</string>
+        </property>
         <property name="text">
-         <string>Decrypt</string>
+         <string>Sync</string>
         </property>
        </widget>
       </item>
@@ -66,6 +121,22 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_deleteFile">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_deleteFile {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_deleteFile:hover {
+	 background-color: #B0C4DE;
+}</string>
+        </property>
         <property name="text">
          <string>Delete</string>
         </property>
@@ -74,22 +145,54 @@
      </layout>
     </item>
     <item>
-     <widget class="QListView" name="listView"/>
+     <widget class="QListView" name="listView">
+      <property name="styleSheet">
+       <string notr="true">QListView#listView {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+QListView::item:alternate {
+     background: #EEEEEE;
+ }
+
+ QListView::item:selected {
+     border: 1px solid #6a6ea9;
+ }
+
+ QListView::item:selected:!active {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #ABAFE5, stop: 1 #8588B2);
+ }
+
+ QListView::item:selected:active {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #6a6ea9, stop: 1 #888dd9);
+ }
+
+ QListView::item:hover {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #FAFBFE, stop: 1 #DCDEF1);
+ }</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>821</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>pushButton_back</tabstop>
+  <tabstop>pushButton_syncCloud</tabstop>
+  <tabstop>pushButton_sync</tabstop>
+  <tabstop>pushButton_deleteFile</tabstop>
+  <tabstop>listView</tabstop>
+ </tabstops>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

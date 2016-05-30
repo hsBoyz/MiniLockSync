@@ -3,13 +3,15 @@
 #include "mainwindow.h"
 #include <QDebug>
 #include <QMessageBox>
+#include <QObject>
 
 Handlefiles::Handlefiles()
 {
-
+    log = new login();
+    settingsmanager = new Settingsmanager();
 }
 
-bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
+bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryptionOn)
 {
     QMessageBox msgBox;
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
@@ -28,6 +30,27 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
 
         if (QFile::exists(to))
         {
+
+            QFileInfo fromInfo(from);
+            QFileInfo toInfo(to);
+
+            //qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified().date();
+            //qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified().;
+
+            if (fromInfo.lastModified().toMSecsSinceEpoch() > toInfo.lastModified().toMSecsSinceEpoch()) {
+                qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified();
+                qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified();
+
+                if (encryptionOn) {
+                    QFile::remove(to);
+                    encryptAndCopy(from, to, copyfile, toDir);
+                }
+                else {
+                QFile::remove(to);
+                QFile::copy(from, to);
+                }
+            }
+
             /*
             msgBox.setInformativeText("File " + to + " already exists. Do you want to override it?");
 
@@ -51,12 +74,16 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
                 return false;
             }
             */
-            return false;
+            //return false;
         }
 
-        if (QFile::copy(from, to) == false)
+        if (encryptionOn) {
+            encryptAndCopy(from, to, copyfile, toDir);
+
+        }
+        else if (QFile::copy(from, to) == false)
         {
-            return false;
+            //return false;
         }
 
     }
@@ -70,9 +97,76 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir)
         {
             return false;
         }
-        if (copy_dir_recursive(from, to) == false)
+        if (copy_dir_recursive(from, to, encryptionOn) == false)
         {
             return false;
+        }
+    }
+
+    return true;
+}
+
+bool Handlefiles::copy_dir_recursive_cloud(QString fromDir, QString toDir) {
+    QDir dir;
+    dir.setPath(fromDir);
+
+    fromDir += QDir::separator();
+    toDir += QDir::separator();
+
+    foreach (QString copyfile, dir.entryList(QDir::Files))
+    {
+        QString from = fromDir + copyfile;
+        QString to = toDir + copyfile;
+        QFileInfo fromInfo(from);
+        QFileInfo toInfo(to);
+
+        QFileInfo toInfoBase(toInfo.completeBaseName());    //includes path of file in to-dir without .encrypted suffix
+
+        if (fromInfo.suffix() == "encrypted") {
+            if (QFile::exists(toInfoBase.absoluteFilePath()))
+            {
+                qDebug() << toInfoBase.absoluteFilePath();
+                qDebug() <<  toInfoBase.lastModified().toMSecsSinceEpoch();
+
+                if (fromInfo.lastModified().toMSecsSinceEpoch() <  toInfoBase.lastModified().toMSecsSinceEpoch()) {
+                    qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified();
+                    qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified();
+
+                    QFile::remove(toInfo.completeBaseName());
+                    decryptAndCopy(from, to, copyfile, toDir);
+
+                }
+            }
+
+            else if (decryptAndCopy(from, to, copyfile, toDir) == false)
+            {
+                return false;
+            }
+       }
+    }
+
+    foreach (QString copyDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    {
+        QString from = fromDir + copyDir;
+        QString to = toDir + copyDir;
+
+        QFileInfoList list = QDir(from).entryInfoList(QDir::Files);
+
+        if (checkListForEncryptedFiles(list)) {
+            if (dir.mkpath(to) == false)
+            {
+                return false;
+            }
+            if (copy_dir_recursive_cloud(from, to) == false)
+            {
+                return false;
+            }
+        }
+        else {
+            if (copy_dir_recursive_cloud(from, to) == false)
+            {
+                return false;
+            }
         }
     }
 
@@ -95,17 +189,10 @@ QString Handlefiles::createDir(QString path, QString folderName) {
         dir.mkpath(path + QDir::separator() + folderName);
     }
     else {
-        qDebug() << "handlefiles createdir folder already exists";
+        //qDebug() << "handlefiles createdir folder already exists";
     }
     return path + QDir::separator() + folderName;
 }
-
-
-
-/**
- * @brief Handlefiles::createCopyAndWorkDir
- * no dynamic implementation yet
- */
 
 void Handlefiles::createCopyAndWorkDir(QString group) {
 
@@ -184,4 +271,70 @@ void Handlefiles::createCopyAndWorkDir(QString group) {
         }
     }
     */
+}
+
+void Handlefiles::copyDirectory(){
+    QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
+    QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
+    QString toCloud = settingsmanager->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir");
+
+    foreach (QString nameOfDir, dirsToEncryp) {
+        QString from = settingsmanager->returnSetting(MainWindow::settingsKeyForPaths, nameOfDir);
+
+        QString toNewWork = createDir(toWork, nameOfDir);
+        QString toNewCloud = createDir(toCloud, nameOfDir);
+        copy_dir_recursive(from, toNewWork, false);
+        copy_dir_recursive(from, toNewCloud, true);
+    }
+
+}
+
+void Handlefiles::copyEncryptedFromCloud() {
+    QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
+    QString fromCloud = settingsmanager->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir");
+
+    copy_dir_recursive_cloud(fromCloud, toWork);
+}
+
+bool Handlefiles::encryptAndCopy(QString from, QString to, QString copyfile, QString toDir) {
+    uCrypt::uCryptLib mainSession = log->getMainSession();
+
+    if (QFile::copy(from, to)== false) {
+        return false;
+    }
+    int numberOfRecipients = log->ui.comboBox->count();
+    std::string *recipients = new std::string[numberOfRecipients];
+
+    recipients[0] = log->ui.comboBox->itemText(0).toStdString();
+
+    if (mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), recipients, numberOfRecipients) != 0) {
+        return false;
+    }
+
+    QFile::remove(to);
+}
+
+bool Handlefiles::decryptAndCopy(QString from, QString to, QString copyfile, QString toDir) {
+   uCrypt::uCryptLib mainSession = log->getMainSession();
+
+    if (QFile::copy(from, to)== false) {
+        return false;
+    }
+
+    if (mainSession.DecryptFile(copyfile.toStdString(), toDir.toStdString()) != 0) {
+        return false;
+    }
+
+    QFile::remove(to);
+}
+
+bool Handlefiles::checkListForEncryptedFiles(QFileInfoList list) {
+    foreach (QFileInfo fileInfo, list) {
+        if (fileInfo.suffix() == "encrypted") {
+            qDebug() << "returning true";
+            return true;
+        }
+    }
+    qDebug() << "returning false";
+    return false;
 }

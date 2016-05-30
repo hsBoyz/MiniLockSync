@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1191</width>
-    <height>691</height>
+    <width>1159</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -16,17 +16,21 @@
   <property name="windowTitle">
    <string>MiniLockSync</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/images/icon_rund.png</normaloff>:/icons/images/icon_rund.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QGroupBox" name="groupBox">
+   <property name="styleSheet">
+    <string notr="true">border:0;</string>
+   </property>
    <property name="title">
     <string/>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
+   <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -39,15 +43,15 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox_4">
       <property name="title">
        <string/>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -64,64 +68,22 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QPushButton" name="pushHome">
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
-          <string>Home</string>
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="resources.qrc">:/icons/images/logo button 112x53_bearbeitet-1.png</pixmap>
          </property>
         </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushCloudService">
-         <property name="text">
-          <string>Cloud Service</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushManageCloud">
-         <property name="text">
-          <string>Manage Cloud Service</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushManageSaveDir">
-         <property name="text">
-          <string>Manage Save/Work Dir</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushCPULimitation">
-         <property name="text">
-          <string>CPU-Limitation</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushChangePassword">
-         <property name="text">
-          <string>Change Password</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
     </item>
-    <item>
+    <item row="0" column="1" rowspan="2">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
        <string/>
@@ -145,7 +107,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>4</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -166,11 +128,20 @@
            </property>
            <item>
             <widget class="QTextBrowser" name="textBrowser_5">
+             <property name="styleSheet">
+              <string notr="true">border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;</string>
+             </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Willkommen blabla, ...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
@@ -196,22 +167,32 @@ p, li { white-space: pre-wrap; }
            </property>
            <item>
             <widget class="QTextBrowser" name="textBrowser">
+             <property name="styleSheet">
+              <string notr="true">border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;</string>
+             </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cloud Service&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cloud-Service&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;if you want to encypt or decrypt your data, please use the second interface!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;greez MLS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
           </layout>
          </widget>
          <widget class="QWidget" name="ManageCloud">
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <property name="spacing">
-            <number>0</number>
-           </property>
+          <layout class="QGridLayout" name="gridLayout_2">
            <property name="leftMargin">
             <number>0</number>
            </property>
@@ -224,75 +205,195 @@ p, li { white-space: pre-wrap; }
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="QTreeView" name="treeView_fileBrowser"/>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_addDir">
-             <property name="text">
-              <string>Add</string>
+           <property name="horizontalSpacing">
+            <number>0</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>6</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QTreeView" name="treeView_fileBrowser">
+             <property name="styleSheet">
+              <string notr="true">QTreeView#treeView_fileBrowser {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+
+</string>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QTableWidget" name="tableWidget"/>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_deleteDir">
-             <property name="text">
-              <string>Delete</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_confirm">
-             <property name="text">
-              <string>Confirm</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="ManageWorkSaveDir">
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QTreeView" name="treeView_dirBrowser"/>
-           </item>
-           <item>
+           <item row="1" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <property name="spacing">
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="pushButton_addWorkDir">
-               <property name="text">
-                <string>Add work directory</string>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <property name="spacing">
+                <number>0</number>
                </property>
-              </widget>
+               <item>
+                <widget class="QPushButton" name="pushButton_addDir">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_addDir {
+      background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8.4em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_addDir:hover {
+	 background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_deleteDir">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_deleteDir {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8.4em;
+     padding: 6px;
+ }
+
+QPushButton#pushButton_deleteDir:hover {
+	 background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Delete</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_confirm">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_confirm {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8.4em;
+     padding: 6px;
+ }
+
+QPushButton#pushButton_confirm:hover {
+	 background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Confirm</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_addSaveDir">
-               <property name="text">
-                <string>Add save directory</string>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <property name="spacing">
+                <number>0</number>
                </property>
-              </widget>
+               <item>
+                <widget class="QTableWidget" name="tableWidget">
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget#tableWidget {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+
+</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="ManageWorkSaveDir">
+          <layout class="QVBoxLayout" name="verticalLayout_15">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QTreeView" name="treeView_dirBrowser">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>174</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTreeView#treeView_dirBrowser {
+	border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+</string>
+             </property>
+            </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
@@ -300,28 +401,209 @@ p, li { white-space: pre-wrap; }
               <number>0</number>
              </property>
              <item>
-              <widget class="QTableWidget" name="tableWidget_dir"/>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="pushButton_addWorkDir">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_addWorkDir {
+      background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+
+QPushButton#pushButton_addWorkDir:hover {
+	 background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Add work directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_deleteDir_2">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_deleteDir_2 {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_deleteDir_2:hover {
+	background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Delete work dir</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
              <item>
-              <widget class="QTableWidget" name="tableWidget_save"/>
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QTableWidget" name="tableWidget_dir">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>65</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget#tableWidget_dir {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+
+</string>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>0</number>
+                 </attribute>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_deleteDir_2">
-             <property name="text">
-              <string>Delete</string>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>0</number>
              </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_setdefaultopenaction">
-             <property name="text">
-              <string>Set as default open action</string>
-             </property>
-            </widget>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="pushButton_AddCloud">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_AddCloud {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8.4em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_AddCloud:hover {
+	background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Add cloud</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_delete_cloud">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButton_delete_cloud {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8.4em;
+     padding: 6px;
+ }
+
+QPushButton#pushButton_delete_cloud:hover {
+	background-color: #B0C4DE;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Delete Cloud</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_14">
+               <item>
+                <widget class="QTableWidget" name="tableWidget_cloud">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>65</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget#tableWidget_cloud {
+	 border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: 14px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+
+</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </item>
           </layout>
+          <zorder>treeView_dirBrowser</zorder>
+          <zorder></zorder>
+          <zorder></zorder>
          </widget>
          <widget class="QWidget" name="CPULimitation">
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -340,17 +622,6 @@ p, li { white-space: pre-wrap; }
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="QTextBrowser" name="textBrowser_3">
-             <property name="html">
-              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;CPU-Limitation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="ChangePasword">
@@ -370,20 +641,212 @@ p, li { white-space: pre-wrap; }
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="QTextBrowser" name="textBrowser_4">
-             <property name="html">
-              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Change Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="pushHome">
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushHome {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+     font: bold 11px;
+     min-width: 5em;
+     padding: 6px;
+ }
+
+QPushButton#pushHome:hover {
+	 background-color: #B0C4DE;
+}
+QPushButton#pushHome:focus {
+	background-color:  #778899;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Welcome</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/buttons/buttons/HomeButtonRounded400.png</normaloff>:/buttons/buttons/HomeButtonRounded400.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushCloudService">
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushCloudService {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 5em;
+     padding: 6px;
+ }
+
+QPushButton#pushCloudService:hover {
+	  background-color: #B0C4DE;
+}
+QPushButton#pushCloudService:focus {
+	background-color:  #778899;
+}</string>
+         </property>
+         <property name="text">
+          <string>Work Dir</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/buttons/buttons/CloudService400x225.png</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushManageCloud">
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushManageCloud {
+      background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 5em;
+     padding: 6px;
+ }
+
+QPushButton#pushManageCloud:hover {
+	background-color: #B0C4DE;
+}
+QPushButton#pushManageCloud:focus {
+	background-color:  #778899;
+}</string>
+         </property>
+         <property name="text">
+          <string>Folders</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/buttons/buttons/Cloud-Management-Icon-635.jpg</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushManageSaveDir">
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushManageSaveDir {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 5em;
+     padding: 6px;
+ }
+
+QPushButton#pushManageSaveDir:hover {
+	background-color: #B0C4DE;
+}
+QPushButton#pushManageSaveDir:focus {
+	background-color:  #778899;
+}</string>
+         </property>
+         <property name="text">
+          <string>Settings</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/buttons/buttons/db-backup.png</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -392,6 +855,28 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>pushHome</tabstop>
+  <tabstop>textBrowser_5</tabstop>
+  <tabstop>pushCloudService</tabstop>
+  <tabstop>textBrowser</tabstop>
+  <tabstop>pushManageCloud</tabstop>
+  <tabstop>pushButton_addDir</tabstop>
+  <tabstop>pushButton_deleteDir</tabstop>
+  <tabstop>pushButton_confirm</tabstop>
+  <tabstop>treeView_fileBrowser</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>pushManageSaveDir</tabstop>
+  <tabstop>pushButton_addWorkDir</tabstop>
+  <tabstop>pushButton_deleteDir_2</tabstop>
+  <tabstop>pushButton_AddCloud</tabstop>
+  <tabstop>pushButton_delete_cloud</tabstop>
+  <tabstop>treeView_dirBrowser</tabstop>
+  <tabstop>tableWidget_dir</tabstop>
+  <tabstop>tableWidget_cloud</tabstop>
+ </tabstops>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

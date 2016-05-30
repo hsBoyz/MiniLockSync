@@ -21,6 +21,7 @@
 #include <QFileDialog>
 #include <random>
 #include <QSettings>
+#include <QRegExp>
 
 	
 MainWindow *mainWindow;
@@ -28,6 +29,20 @@ MainWindow *mainWindow;
 login::login(QWidget * parent) : QWidget(parent) {
 	ui.setupUi(this);
     loadLogin();
+
+
+   // QRegExp rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
+
+    ui.yourIdLineEdit->setReadOnly(true);
+    QPalette *palette = new QPalette();
+    palette->setColor(QPalette::Base, Qt::lightGray);
+    palette->setColor(QPalette::Text, Qt::darkGray);
+
+    ui.yourIdLineEdit->setPalette(*palette);
+    ui.passwdLineEdit->setEchoMode(QLineEdit::Password);
+    ui.conPWlineEdit->setEchoMode(QLineEdit::Password);
+
+
 }
 
 
@@ -45,12 +60,14 @@ void login::cancelButton_click()
 
     ui.passwdLineEdit->setReadOnly(false);
     ui.eMailLineEdit->setReadOnly(false);
+    ui.conPWlineEdit->setReadOnly(false);
     QPalette *palette = new QPalette();
     palette->setColor(QPalette::Base, Qt::white);
     palette->setColor(QPalette::Text, Qt::black);
 
     ui.passwdLineEdit->setPalette(*palette);
     ui.eMailLineEdit->setPalette(*palette);
+    ui.conPWlineEdit->setPalette(*palette);
 
 
 
@@ -68,6 +85,7 @@ void login::saveLogin()
          setting.beginGroup("login");
          setting.setValue("logName",this->ui.eMailLineEdit->text());
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
+         setting.setValue("conPW",this->ui.conPWlineEdit->text());
          setting.setValue("check",this->ui.saveLogin->isChecked());
          setting.endGroup();
 
@@ -77,7 +95,9 @@ void login::saveLogin()
     else
     {
         QSettings setting("MyApp","mysetting");
+        setting.beginGroup("login");
         setting.clear();
+        setting.endGroup();
     }
 }
 
@@ -87,14 +107,18 @@ void login::loadLogin()
     setting.beginGroup("login");
     QString qSzEmail = setting.value("logName").toString();
     QString qSzPasswd = setting.value("logPassword").toString();
+    QString conPW = setting.value("conPW").toString();
 
     ui.eMailLineEdit->setText(qSzEmail);
     ui.passwdLineEdit->setText(qSzPasswd);
+    ui.conPWlineEdit->setText(conPW);
     ui.saveLogin->setChecked(true);
    if(qSzEmail != 0)
     loginButton_click();
-else
+
     setting.endGroup();
+
+
 
 }
 
@@ -116,23 +140,35 @@ void login::loginButton_click()
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-	if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
+    if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
 	{
-		QMessageBox::information(this, tr("Passwort zu schwach"),
-			tr("Das Passwort muss midestens 8 Zeichen lang sein. "));
+        QMessageBox::information(this, tr("Password to wea"),
+            tr("Password should be atleast 8 characters. "));
 	}
+
+    else if( ui.passwdLineEdit->text() != ui.conPWlineEdit->text())
+    {
+        QMessageBox::information(this, tr("Wrong Password"),
+            tr("Passwords dont match. "));
+
+
+    }
+
+
 	else
 	{
         mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
             ui.passwdLineEdit->text().toStdString());
 
-		ui.passwdLineEdit->setEchoMode(QLineEdit::Password);
+
 
 		QString qSzPasswd = ui.passwdLineEdit->text();
 		QString qSzEmail = ui.eMailLineEdit->text();
+        QString conPW = ui.conPWlineEdit->text();
 
 		ui.passwdLineEdit->setReadOnly(true);
 		ui.eMailLineEdit->setReadOnly(true);
+        ui.conPWlineEdit->setReadOnly(true);
 
 		QPalette *palette = new QPalette();
         palette->setColor(QPalette::Base, Qt::lightGray);
@@ -140,11 +176,12 @@ void login::loginButton_click()
 
 		ui.passwdLineEdit->setPalette(*palette);
         ui.eMailLineEdit->setPalette(*palette);
+        ui.conPWlineEdit->setPalette(*palette);
 
         QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
 
 		ui.yourIdLineEdit->setText(identificationNumber);
-		
+        ui.comboBox->insertItem(0, identificationNumber);
 	}
 
 }
@@ -152,10 +189,9 @@ void login::startButton_click()
 {
 	if (ui.yourIdLineEdit->text().isEmpty())
 	{
-		QMessageBox::information(this, tr("Fehler"),
-			tr("Bitte geben Sie den Benutzernamen "
-				"und das Passwort ein um nach  "
-				"dem Login das Programm zu starten "));
+        QMessageBox::information(this, tr("Error"),
+            tr("Please log in first "
+                "to start the program " ));
 	}
 	else
     {
@@ -169,10 +205,9 @@ void login::startButton_click()
 		isInitialized = true;
 
 		hide();
-		mainWindow = new MainWindow(this);
+        mainWindow = new MainWindow(this);
 	//	mainWindow->show();
-		Window *window = new Window();
-		window->show();
+        Window::GetInstance().show();
 
         Steerer *s = new Steerer();
         s->start();
@@ -187,9 +222,6 @@ void login::closeEvent(QCloseEvent *event)
 {
 
        QWidget::closeEvent(event);
-
-
-
 }
 
 uCrypt::uCryptLib login::getMainSession() {
