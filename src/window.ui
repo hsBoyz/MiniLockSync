@@ -648,6 +648,10 @@ QPushButton#pushButton_delete_cloud:hover
           </layout>
           <zorder>treeView_dirBrowser</zorder>
           <zorder></zorder>
+<<<<<<< GUI_Luca
+=======
+          <zorder></zorder>
+>>>>>>> local
          </widget>
          <widget class="QWidget" name="CPULimitation">
           <layout class="QVBoxLayout" name="verticalLayout_8">
