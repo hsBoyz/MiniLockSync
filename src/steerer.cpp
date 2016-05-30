@@ -50,7 +50,7 @@ void Steerer::createTrayIcon()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
     trayIcon = new QSystemTrayIcon(this);
-    QIcon icon(":/icons/images/MiniLock_15x15.png");
+    QIcon icon(":/icons/images/icon_rund.png");
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 }
