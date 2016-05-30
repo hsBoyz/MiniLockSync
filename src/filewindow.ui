@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/icons/images/MiniLock_15x15.png</normaloff>:/icons/images/MiniLock_15x15.png</iconset>
+    <normaloff>:/icons/images/icon_rund.png</normaloff>:/icons/images/icon_rund.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -28,21 +28,18 @@
        <widget class="QPushButton" name="pushButton_back">
         <property name="styleSheet">
          <string notr="true">QPushButton#pushButton_back {
-     background-color: rgb(194, 249, 255);
+      background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
-     min-width: 10em;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
      padding: 6px;
  }
- QPushButton#pushButton_back:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
+ 
 QPushButton#pushButton_back:hover {
-	 background-color: rgb(100, 255, 255);
+	 background-color: #B0C4DE;
 }</string>
         </property>
         <property name="text">
@@ -67,21 +64,18 @@ QPushButton#pushButton_back:hover {
        <widget class="QPushButton" name="pushButton_syncCloud">
         <property name="styleSheet">
          <string notr="true">QPushButton#pushButton_syncCloud {
-     background-color: rgb(194, 249, 255);
+     background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
-     min-width: 10em;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
      padding: 6px;
  }
- QPushButton#pushButton_syncCloud:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
+ 
 QPushButton#pushButton_syncCloud:hover {
-	 background-color: rgb(100, 255, 255);
+	 background-color: #B0C4DE;
 }</string>
         </property>
         <property name="text">
@@ -93,21 +87,18 @@ QPushButton#pushButton_syncCloud:hover {
        <widget class="QPushButton" name="pushButton_sync">
         <property name="styleSheet">
          <string notr="true">QPushButton#pushButton_sync {
-     background-color: rgb(194, 249, 255);
+     background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
-     min-width: 10em;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
      padding: 6px;
  }
- QPushButton#pushButton_sync:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
+ 
 QPushButton#pushButton_sync:hover {
-	 background-color: rgb(100, 255, 255);
+	 background-color: #B0C4DE;
 }</string>
         </property>
         <property name="text">
@@ -132,21 +123,18 @@ QPushButton#pushButton_sync:hover {
        <widget class="QPushButton" name="pushButton_deleteFile">
         <property name="styleSheet">
          <string notr="true">QPushButton#pushButton_deleteFile {
-     background-color: rgb(194, 249, 255);
+     background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
-     min-width: 10em;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
      padding: 6px;
  }
- QPushButton#pushButton_deleteFile:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
+ 
 QPushButton#pushButton_deleteFile:hover {
-	 background-color: rgb(100, 255, 255);
+	 background-color: #B0C4DE;
 }</string>
         </property>
         <property name="text">
@@ -163,7 +151,7 @@ QPushButton#pushButton_deleteFile:hover {
 	 border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
+     border-color: #708090;
      font: 14px;
      min-width: 10em;
      show-decoration-selected: 1;
@@ -195,8 +183,14 @@ QListView::item:alternate {
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_back</tabstop>
+  <tabstop>pushButton_syncCloud</tabstop>
+  <tabstop>pushButton_sync</tabstop>
+  <tabstop>pushButton_deleteFile</tabstop>
+  <tabstop>listView</tabstop>
+ </tabstops>
  <resources>
   <include location="resources.qrc"/>
  </resources>
