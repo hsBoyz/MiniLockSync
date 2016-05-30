@@ -20,7 +20,12 @@ class FileWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit FileWindow(QWidget *parent = 0);
+    // >>> Singleton impl
+    static FileWindow &GetInstance() {
+        static FileWindow Instanz;
+        return Instanz;
+    }
+    // <<<
 
     ~FileWindow();
 
@@ -53,7 +58,15 @@ private slots:
 
     void on_pushButton_sync_clicked();
 
+    void on_pushButton_syncCloud_clicked();
+
 private:
+    // >>> Singleton impl
+    FileWindow(QWidget *parent = 0);
+    FileWindow(const FileWindow&);
+    FileWindow &operator=(const FileWindow&);
+    // <<<
+
     QString TAG = "Filewindow ";
 
     Ui::FileWindow *ui;
@@ -72,6 +85,7 @@ private:
     bool isFileEncrypted(QString fileName, QString absolutePath);
     QString getEncodedHash(QString fileName, QString absolutPath);
     void checkAndCopy();
+    void checkAndCopyCloud();
 };
 
 #endif // FILEWINDOW_H

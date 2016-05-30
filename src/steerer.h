@@ -1,7 +1,9 @@
 #ifndef STEERER_H
 #define STEERER_H
 
-
+#include "timer.h"
+#include <QTimer>
+#include <QThread>
 #include <QWidget>
 #include <QMenu>
 #include <QSystemTrayIcon>
@@ -39,6 +41,8 @@ private:
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
 
+    bool checkSettings();
+    void startAutoSync();
 
 
 };

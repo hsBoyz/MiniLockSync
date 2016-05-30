@@ -23,12 +23,17 @@ class Window : public QMainWindow
 
 
 public:
-    explicit Window(QWidget *parent = 0);
+    // >>> Singleton impl
+    static Window &GetInstance() {
+        static Window Instanz;
+        return Instanz;
+    }
+    // <<<
 
     Ui::Window *ui;
 
     QAction *act1, *act2, *act3, *act4;
-    void checkAndCopy();
+    void startAutoSync();
 
     ~Window();
 
@@ -60,9 +65,13 @@ private slots:
     void on_pushButton_confirm_clicked();
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
-    void setCopyStatus(bool status);
 
 private:
+    // >>> Singleton impl
+    Window(QWidget *parent = 0);
+    Window(const Window&);
+    Window &operator=(const Window&);
+    // <<<
 
     QFileSystemModel *fileBrowserModel;
     Settingsmanager *settingsmanager;
@@ -78,6 +87,8 @@ private:
     void populateTableWidget(QString group, QTableWidget *widget);
     QFileInfo returnSelectedPath();
     void copyDirectory();
+    void checkAndCopy();
+
 
 
 };
