@@ -33,6 +33,7 @@ public:
     Ui::Window *ui;
 
     QAction *act1, *act2, *act3, *act4;
+
     void startAutoSync();
 
     ~Window();
@@ -65,6 +66,7 @@ private slots:
     void on_pushButton_confirm_clicked();
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
+    void set_StatusBar_finished();
 
 private:
     // >>> Singleton impl

@@ -22,6 +22,11 @@ Window::Window(QWidget *parent) :
            qApp, SLOT(quit()),
            QKeySequence(tr("Ctrl+Q", "File|Quit")) );
         act3->setStatusTip(tr("Quit Program"));
+
+
+
+
+
        /* QMenu *workMenu = new QMenu(
            tr("&Edit"), this);
         menuBar()->addMenu(workMenu); */
@@ -490,15 +495,33 @@ void Window::copyDirectory(){
 void Window::checkAndCopy() {
 
     QThread *thread = new QThread();
+    QLabel *test = new QLabel;
+    test->setPixmap(QPixmap(":/icons/images/sync_icon2.png"));
 
     worker = new Worker();
     worker->moveToThread(thread);
 
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(thread, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
+
+
+
+
+
     thread->start();
 
 }
+void Window::set_StatusBar_finished(){
+
+
+        QLabel *test = new QLabel;
+        test->setPixmap(QPixmap(":/icons/images/check_icon.png"));
+        ui->statusBar->insertPermanentWidget(0, test, 0);
+
+    }
+
+
 
 void Window::startAutoSync(){
     Timer::GetInstance().stop();

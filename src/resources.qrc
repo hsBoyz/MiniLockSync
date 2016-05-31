@@ -8,8 +8,8 @@
         <file>images/MLS Banner2.png</file>
         <file>images/MLS Banner3.png</file>
         <file>images/4MLS Banner4.png</file>
-        <file>images/check_icon2.png</file>
-        <file>images/sync_icon.png</file>
+        <file>images/check_icon.png</file>
+        <file>images/sync_icon2.png</file>
     </qresource>
     <qresource prefix="/buttons">
         <file>buttons/HomeButtonRounded400.png</file>

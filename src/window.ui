@@ -881,7 +881,11 @@ QPushButton#pushButton_delete_cloud:hover {
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>pushHome</tabstop>
