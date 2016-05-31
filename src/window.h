@@ -67,6 +67,7 @@ private slots:
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
     void set_StatusBar_finished();
+    void set_StatusBar_started();
 
 private:
     // >>> Singleton impl

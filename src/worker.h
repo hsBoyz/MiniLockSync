@@ -2,7 +2,6 @@
 #define WORKER_H
 
 #include "handlefiles.h"
-#include "window.h"
 #include <uCryptLib.h>
 #include <QDir>
 #include <QThread>
@@ -17,14 +16,14 @@ public:
 
 private:
     Handlefiles *filesHandler;
-    Window *window;
+
 
 signals:
     void finished();
     void error(QString err);
 
 public slots:
-    void set_StatusBar_Started();
+
     void process();
     void processSyncCloud();
 
