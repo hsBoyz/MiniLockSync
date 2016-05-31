@@ -111,6 +111,11 @@ void Window::on_pushCloudService_clicked()
           FileWindow::GetInstance().raise();
           FileWindow::GetInstance().activateWindow();
 
+          if (FileWindow::GetInstance().isMinimized()){
+              FileWindow::GetInstance().showNormal();
+
+          }
+
 }
 
 
