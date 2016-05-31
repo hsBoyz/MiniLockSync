@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
+#include <QFileDialog>
 
 static int currentIndex = 0; // Global
 

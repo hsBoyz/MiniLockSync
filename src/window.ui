@@ -309,7 +309,7 @@ QPushButton#pushManageSaveDir:focus {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="Home">
           <property name="styleSheet">
@@ -639,6 +639,45 @@ background-color: rgb(255, 255, 255);
               <number>0</number>
              </property>
              <item>
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QTableWidget" name="tableWidget_dir">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>65</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget#tableWidget_dir {
+	
+     font: 11px;
+     min-width: 10em;
+     show-decoration-selected: 1;
+}
+
+</string>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>0</number>
+                 </attribute>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
               <layout class="QVBoxLayout" name="verticalLayout_10">
                <property name="spacing">
                 <number>0</number>
@@ -696,13 +735,17 @@ QPushButton#pushButton_deleteDir_2:hover {
                </item>
               </layout>
              </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_13">
-               <property name="spacing">
-                <number>0</number>
-               </property>
+              <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
-                <widget class="QTableWidget" name="tableWidget_dir">
+                <widget class="QTableWidget" name="tableWidget_cloud">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
                    <horstretch>0</horstretch>
@@ -716,7 +759,7 @@ QPushButton#pushButton_deleteDir_2:hover {
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QTableWidget#tableWidget_dir {
+                  <string notr="true">QTableWidget#tableWidget_cloud {
 	
      font: 11px;
      min-width: 10em;
@@ -728,20 +771,10 @@ QPushButton#pushButton_deleteDir_2:hover {
                  <property name="selectionMode">
                   <enum>QAbstractItemView::SingleSelection</enum>
                  </property>
-                 <attribute name="horizontalHeaderDefaultSectionSize">
-                  <number>0</number>
-                 </attribute>
                 </widget>
                </item>
               </layout>
              </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
-             <property name="spacing">
-              <number>0</number>
-             </property>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <property name="spacing">
@@ -798,39 +831,6 @@ QPushButton#pushButton_delete_cloud:hover {
                  </property>
                  <property name="text">
                   <string>Delete Cloud</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_14">
-               <item>
-                <widget class="QTableWidget" name="tableWidget_cloud">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>65</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QTableWidget#tableWidget_cloud {
-	
-     font: 11px;
-     min-width: 10em;
-     show-decoration-selected: 1;
-}
-
-</string>
-                 </property>
-                 <property name="selectionMode">
-                  <enum>QAbstractItemView::SingleSelection</enum>
                  </property>
                 </widget>
                </item>
