@@ -221,7 +221,7 @@ void Window::on_pushButton_addDir_clicked()
 
 void Window::on_pushButton_addWorkDir_clicked()
 {
-    settingsmanager->removeAllKeys();
+
     QString workDirPath = QFileDialog::getExistingDirectory(
                 this,
                 tr("Open Directory"),
