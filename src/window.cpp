@@ -459,13 +459,6 @@ void Window::on_pushButton_confirm_clicked()
 
 }
 
-void Window::set_copyStatusTip() {
-    qDebug() << "Window set_copystatustip: " << "Copy and encryption of files done";
-    act3->setStatusTip(tr("Copy and encryption of files done"));
-}
-
-
-
 
 /*
  *
@@ -620,7 +613,7 @@ void Window::checkAndCopy() {
 
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-    connect(thread, SIGNAL(finished()), this, SLOT(set_copyStatusTip()));
+
     thread->start();
 
 }
