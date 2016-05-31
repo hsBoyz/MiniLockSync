@@ -199,43 +199,6 @@ QPushButton#pushCloudService:focus {
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushManageCloud">
-         <property name="styleSheet">
-          <string notr="true">QPushButton#pushManageCloud {
-      background-color: #D3D3D3;
-     border-style: outset;
-     border-width: 2px;
-     border-radius: 6px;
-     border-color: #708090;
-    font: bold 11px;
-     min-width: 5em;
-     padding: 6px;
-text-align: left;
- }
-
-QPushButton#pushManageCloud:hover {
-	background-color: #B0C4DE;
-}
-QPushButton#pushManageCloud:focus {
-	background-color:  #778899;
-}</string>
-         </property>
-         <property name="text">
-          <string>Folders</string>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/buttons/buttons/folder_button.png</normaloff>:/buttons/buttons/folder_button.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushManageSaveDir">
          <property name="styleSheet">
           <string notr="true">QPushButton#pushManageSaveDir {
@@ -263,6 +226,43 @@ QPushButton#pushManageSaveDir:focus {
          <property name="icon">
           <iconset resource="resources.qrc">
            <normaloff>:/buttons/buttons/settings_button.png</normaloff>:/buttons/buttons/settings_button.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushManageCloud">
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushManageCloud {
+      background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 5em;
+     padding: 6px;
+text-align: left;
+ }
+
+QPushButton#pushManageCloud:hover {
+	background-color: #B0C4DE;
+}
+QPushButton#pushManageCloud:focus {
+	background-color:  #778899;
+}</string>
+         </property>
+         <property name="text">
+          <string>Folders</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/buttons/buttons/folder_button.png</normaloff>:/buttons/buttons/folder_button.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -872,7 +872,6 @@ QPushButton#pushButton_delete_cloud:hover {
   <tabstop>textBrowser_5</tabstop>
   <tabstop>pushCloudService</tabstop>
   <tabstop>textBrowser</tabstop>
-  <tabstop>pushManageCloud</tabstop>
   <tabstop>pushButton_addDir</tabstop>
   <tabstop>pushButton_deleteDir</tabstop>
   <tabstop>pushButton_confirm</tabstop>

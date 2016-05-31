@@ -70,7 +70,7 @@ QPushButton#loginButton:hover {
 }</string>
      </property>
      <property name="text">
-      <string>Login</string>
+      <string>Generate Key</string>
      </property>
      <property name="autoDefault">
       <bool>true</bool>

@@ -342,7 +342,7 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
 
     //Specify paths of working directory and cloud service directory
     QString deleteOriginals = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
-    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + folderName + QDir::separator() + relativePath + ".encrypted";
+    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + folderName + QDir::separator() + relativePath;
     QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + folderName + QDir::separator() + relativePath;
 
     if (fileInfo.isDir()) {
@@ -365,7 +365,7 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
     }
     else {
 
-        QFile::remove(deleteCloudDir);
+        QFile::remove(deleteCloudDir + ".encrypted");
         QFile::remove(deleteWorkDir);
         QFile::remove(deleteOriginals);
 
