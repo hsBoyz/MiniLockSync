@@ -123,17 +123,17 @@ void FileWindow::on_pushButton_deleteFile_clicked()
     QString nameOfEncryptedFolder;
     QString relativePath;
 
+    QFileInfo fileInfo(selectedDirPath);
+
     QMessageBox msgBox;
     msgBox.setText(tr("File/Dir will be deleted."));
-    msgBox.setInformativeText(tr("Do you want to delete the File/DirectoryS?"));
+    msgBox.setInformativeText(tr("Do you want to delete \"") + fileInfo.baseName().toStdString().c_str() + "." + fileInfo.suffix() + "\"?");
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
     dirCleanedPath = returnDirectoryCleanedPath(selectedDirPath);
     nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     relativePath = returnRelativPath(dirCleanedPath);
-
-    QFileInfo fileInfo(selectedDirPath);
 
     if (selectedDirPath != "") {
         int returnValue = msgBox.exec();
@@ -342,7 +342,7 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
 
     //Specify paths of working directory and cloud service directory
     QString deleteOriginals = setman->returnSetting(MainWindow::settingsKeyForPaths, folderName) + QDir::separator() + relativePath;
-    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + folderName + QDir::separator() + relativePath;
+    QString deleteCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + folderName + QDir::separator() + relativePath + ".encrypted";
     QString deleteWorkDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + folderName + QDir::separator() + relativePath;
 
     if (fileInfo.isDir()) {
@@ -367,7 +367,7 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
 
         QFile::remove(deleteCloudDir);
         QFile::remove(deleteWorkDir);
-        //QFile::remove(deleteOriginals);
+        QFile::remove(deleteOriginals);
 
     }
 }

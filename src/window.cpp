@@ -162,7 +162,7 @@ void Window::on_pushButton_addDir_clicked()
 {
     QString folderPath = QFileDialog::getExistingDirectory(
                 this,
-                tr("Open Directory"),
+                tr("Add folders to encrypt"),
                 "C://",
                 QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
                 );
@@ -224,7 +224,7 @@ void Window::on_pushButton_addWorkDir_clicked()
 
     QString workDirPath = QFileDialog::getExistingDirectory(
                 this,
-                tr("Open Directory"),
+                tr("Add working directory"),
                 "C://",
                 QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
                 );
@@ -304,7 +304,7 @@ void Window::on_pushButton_AddCloud_clicked()
 {
     QString cloudDirPath = QFileDialog::getExistingDirectory(
                 this,
-                tr("Open Directory"),
+                tr("Add cloud"),
                 "C://",
                 QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
                 );
