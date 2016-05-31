@@ -84,6 +84,9 @@ private:
     Worker *worker;
     FileWindow *filewin;
 
+    QLabel *checkWidget;
+    QLabel *syncWidget;
+
 
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);

@@ -59,7 +59,11 @@ Window::Window(QWidget *parent) :
     ui->pushHome->setPalette(QPalette(QColor(Qt::green)));
     */
 
+    checkWidget = new QLabel;
+    checkWidget->setPixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(30));
 
+    syncWidget = new QLabel;
+    syncWidget->setPixmap(QPixmap(":/icons/images/sync_icon2.png").scaledToHeight(30));
 
 }
 
@@ -618,53 +622,30 @@ void Window::checkAndCopy() {
     worker = new Worker();
     worker->moveToThread(thread);
 
-    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
+    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-    connect(thread, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
 
     thread->start();
 
 }
 void Window::set_StatusBar_finished(){
 
-
-        QLabel *test = new QLabel;
-        test->setPixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(30));
-        ui->statusBar->removeWidget(test);
-        ui->statusBar->insertPermanentWidget(0, test, 0);
-
-   /* QStatusBar * status_bar = statusBar();
-            QLabel *test = new QLabel("", status_bar);
-
-            QPixmap pixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(status_bar->height()));
-                    test->setPixmap(pixmap);
-                    test->setToolTip(tr("Finished."));
-                    status_bar->removeWidget(test);
-                    status_bar->insertPermanentWidget(0,test,0);
-    */
-    }
+    qDebug() << "Window set_StatusBar_finished: sync done";
+        ui->statusBar->removeWidget(syncWidget);
+        ui->statusBar->addPermanentWidget(checkWidget, 0);
+        checkWidget->show();
+}
 
 void Window::set_StatusBar_started(){
 
-    /*
+    qDebug() << "Window set_StatusBar_started: start sync";
+    ui->statusBar->removeWidget(checkWidget);
+    ui->statusBar->addPermanentWidget(syncWidget, 0);
+    syncWidget->show();
 
-QStatusBar * status_bar = statusBar();
-        QLabel *test = new QLabel("", status_bar);
-
-        QPixmap pixmap(QPixmap(":/icons/images/sync_icon2.png").scaledToHeight(status_bar->height()));
-                test->setPixmap(pixmap);
-                test->setToolTip(tr("Syncing."));
-                status_bar->removeWidget(test);
-                status_bar->insertPermanentWidget(0,test,0);
-
-     */
-
-    QLabel *test = new QLabel;
-    test->setPixmap(QPixmap(":/icons/images/sync_icon2.png").scaledToHeight(30));
-    ui->statusBar->insertPermanentWidget(0, test, 0);
-
-    }
+}
 
 void Window::startAutoSync(){
     Timer::GetInstance().stop();
