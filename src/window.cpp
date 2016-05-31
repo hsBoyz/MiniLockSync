@@ -107,6 +107,8 @@ void Window::on_pushCloudService_clicked()
           }
 
           FileWindow::GetInstance().show();
+          FileWindow::GetInstance().raise();
+          FileWindow::GetInstance().activateWindow();
 
 }
 

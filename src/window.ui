@@ -226,10 +226,13 @@ p, li { white-space: pre-wrap; }
 
 </string>
              </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -603,14 +606,6 @@ QPushButton#pushButton_delete_cloud:hover {
           </layout>
           <zorder>treeView_dirBrowser</zorder>
           <zorder></zorder>
-<<<<<<< HEAD
-<<<<<<< GUI_Luca
-=======
-          <zorder></zorder>
->>>>>>> local
-=======
-          <zorder></zorder>
->>>>>>> 0c236e1552e4fd3d65d7fbe18ad270654262e63d
          </widget>
          <widget class="QWidget" name="CPULimitation">
           <layout class="QVBoxLayout" name="verticalLayout_8">
