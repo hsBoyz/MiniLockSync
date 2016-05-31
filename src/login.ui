@@ -2,15 +2,23 @@
 <ui version="4.0">
  <class>login</class>
  <widget class="QWidget" name="login">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>395</width>
+    <height>344</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>MiniLockSync - Login</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/icons/images/MiniLock_15x15.png</normaloff>:/icons/images/MiniLock_15x15.png</iconset>
+    <normaloff>:/icons/images/icon_rund.png</normaloff>:/icons/images/icon_rund.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="7" column="0" colspan="3">
@@ -32,7 +40,7 @@
      </property>
      <property name="styleSheet">
       <string notr="true">QLabel#label3 {
-	font: bold 14px;
+	font: bold 11px;
 }</string>
      </property>
      <property name="text">
@@ -47,21 +55,18 @@
     <widget class="QPushButton" name="loginButton">
      <property name="styleSheet">
       <string notr="true">QPushButton#loginButton {
-     background-color: rgb(194, 249, 255);
+     background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
+     border-color: #708090;
+     font: bold 11px;
      min-width: 5em;
      padding: 6px;
  }
- QPushButton#loginButton:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
+
 QPushButton#loginButton:hover {
-	 background-color: rgb(100, 255, 255);
+	 background-color: #B0C4DE;
 }</string>
      </property>
      <property name="text">
@@ -76,7 +81,7 @@ QPushButton#loginButton:hover {
     <widget class="QLabel" name="label_2">
      <property name="styleSheet">
       <string notr="true">QLabel#label_2 {
-	font: bold 14px;
+	font: bold 11px;
 }</string>
      </property>
      <property name="text">
@@ -91,27 +96,25 @@ QPushButton#loginButton:hover {
     <widget class="QPushButton" name="startButton">
      <property name="minimumSize">
       <size>
-       <width>0</width>
+       <width>81</width>
        <height>100</height>
       </size>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton#startButton {
-     background-color: rgb(194, 249, 255);
+    background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
+     border-color: #708090;
+     font: bold 11px;
+     min-width: 5em;
      padding: 6px;
  }
- QPushButton#startButton:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
 QPushButton#startButton:hover {
-	 background-color: rgb(100, 255, 255);
-}</string>
+	 background-color: #B0C4DE;
+}
+</string>
      </property>
      <property name="text">
       <string>Start</string>
@@ -125,7 +128,7 @@ QPushButton#startButton:hover {
     <widget class="QCheckBox" name="saveLogin">
      <property name="styleSheet">
       <string notr="true">QCheckBox {
-     font: bold 14px;
+     font: bold 11px;
  }
 </string>
      </property>
@@ -138,7 +141,7 @@ QPushButton#startButton:hover {
     <widget class="QLabel" name="label1">
      <property name="styleSheet">
       <string notr="true">QLabel#label1 {
-	font: bold 14px;
+	font: bold 11px;
 }</string>
      </property>
      <property name="text">
@@ -166,22 +169,19 @@ QPushButton#startButton:hover {
     <widget class="QPushButton" name="cancelButton">
      <property name="styleSheet">
       <string notr="true">QPushButton#cancelButton {
-     background-color: rgb(194, 249, 255);
+     background-color: #D3D3D3;
      border-style: outset;
      border-width: 2px;
      border-radius: 6px;
-     border-color: rgb(0, 150, 150);
-     font: bold 14px;
+     border-color: #708090;
+     font: bold 11px;
      min-width: 5em;
      padding: 6px;
  }
- QPushButton#cancelButton:pressed {
-     background-color: rgb(71, 255, 255);
-     border-style: inset;
- }
 QPushButton#cancelButton:hover {
-	 background-color: rgb(100, 255, 255);
-}</string>
+	 background-color: #B0C4DE;
+}
+</string>
      </property>
      <property name="text">
       <string>Cancel</string>
@@ -192,7 +192,7 @@ QPushButton#cancelButton:hover {
     <widget class="QLabel" name="label">
      <property name="styleSheet">
       <string notr="true">QLabel#label {
-	font: bold 14px;
+	font: bold 11px;
 }</string>
      </property>
      <property name="text">
@@ -208,14 +208,31 @@ QPushButton#cancelButton:hover {
     </widget>
    </item>
   </layout>
+  <zorder>label1</zorder>
+  <zorder>comboBox</zorder>
+  <zorder>label3</zorder>
+  <zorder>yourIdLineEdit</zorder>
+  <zorder>loginButton</zorder>
+  <zorder>label_2</zorder>
+  <zorder>eMailLineEdit</zorder>
+  <zorder>startButton</zorder>
+  <zorder>saveLogin</zorder>
+  <zorder>conPWlineEdit</zorder>
+  <zorder>label</zorder>
+  <zorder>passwdLineEdit</zorder>
+  <zorder>cancelButton</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>eMailLineEdit</tabstop>
   <tabstop>passwdLineEdit</tabstop>
+  <tabstop>conPWlineEdit</tabstop>
   <tabstop>loginButton</tabstop>
-  <tabstop>startButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>saveLogin</tabstop>
   <tabstop>yourIdLineEdit</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>startButton</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>
