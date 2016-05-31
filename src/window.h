@@ -42,7 +42,7 @@ public slots:
 
 
 protected:
-     void contextMenuEvent(QContextMenuEvent *event);
+    // void contextMenuEvent(QContextMenuEvent *event);
 
 
 private slots:

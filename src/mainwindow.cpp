@@ -24,9 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 
-    //Verbinde Ereignis mit Methode
-    connect (ui->pushConfirm, SIGNAL(clicked()), SLOT(pushConfirmClicked()));
-    connect (ui->pushSecondInterface, SIGNAL(clicked(bool)), SLOT(on_pushSecondInterface_clicked()));
+
 
 }
 
@@ -38,32 +36,10 @@ MainWindow::~MainWindow()
 }
 
 
-// Kontextmenü verwenden contextMenuEvent
-// ist eine virtuelle Methode
-void MainWindow::contextMenuEvent(
-    QContextMenuEvent *event) {
-   QMenu *menu = new QMenu(this);
-   //menu->addAction(act1);
-   //menu->addAction(act2);
-   menu->addAction(act3);
-
-   menu->exec(event->globalPos());
-}
 
 
-void MainWindow::pushConfirmClicked(){
-/*
-    //Model approach (dealing with stack memory)
-    StackedWindow stkwindow;    //creat object stackedwindow
-    stkwindow.setModal(true);   //use object to open second window
-    stkwindow.exec();           //show second window
-*/
 
 
-    //Model less approach (dealing with heap memory)
-
-
-}
 
 
 void MainWindow::on_pushSecondInterface_clicked()
