@@ -309,7 +309,7 @@ QPushButton#pushManageSaveDir:focus {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="Home">
           <property name="styleSheet">

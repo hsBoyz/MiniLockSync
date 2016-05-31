@@ -221,6 +221,7 @@ void Window::on_pushButton_addDir_clicked()
 
 void Window::on_pushButton_addWorkDir_clicked()
 {
+    settingsmanager->removeAllKeys();
     QString workDirPath = QFileDialog::getExistingDirectory(
                 this,
                 tr("Open Directory"),
@@ -398,10 +399,14 @@ void Window::on_pushButton_deleteDir_2_clicked()
     //if (!indexListDir.isEmpty()) {
         //foreach (QModelIndex index, indexListDir) {
             //int row = index.row();
+    if (ui->tableWidget_dir->rowCount() != 0) {
             QString name = ui->tableWidget_dir->item(0, 1)->text();
 
             settingsmanager->removeKey(MainWindow::settingsKeyForWorkDirPath, "workdir");
             ui->tableWidget_dir->removeRow(0);
+
+            ui->pushButton_addWorkDir->setEnabled(true);
+    }
         //}
    // }
             /*
@@ -411,7 +416,7 @@ void Window::on_pushButton_deleteDir_2_clicked()
         msgBox.exec();
     }
     */
-    ui->pushButton_addWorkDir->setEnabled(true);
+
 }
 
 void Window::on_pushButton_delete_cloud_clicked()
@@ -423,12 +428,16 @@ void Window::on_pushButton_delete_cloud_clicked()
     foreach (QModelIndex index, indexList) {
         int row = index.row();
         */
+    if (ui->tableWidget_cloud->rowCount() != 0) {
         QString name = ui->tableWidget_cloud->item(0, 1)->text();
 
         settingsmanager->removeKey(MainWindow::settingsKeyForCloudDirPath, "clouddir");
         ui->tableWidget_cloud->removeRow(0);
+
+        ui->pushButton_AddCloud->setEnabled(true);
+    }
     //}
-    ui->pushButton_AddCloud->setEnabled(true);
+
 }
 
 void Window::on_pushButton_confirm_clicked()
