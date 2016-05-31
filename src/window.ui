@@ -107,7 +107,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="Home">
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -493,6 +493,9 @@ QPushButton#pushButton_deleteDir_2:hover {
 
 </string>
                  </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
+                 </property>
                  <attribute name="horizontalHeaderDefaultSectionSize">
                   <number>0</number>
                  </attribute>
@@ -503,7 +506,7 @@ QPushButton#pushButton_deleteDir_2:hover {
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -596,6 +599,9 @@ QPushButton#pushButton_delete_cloud:hover {
 }
 
 </string>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
                  </property>
                 </widget>
                </item>

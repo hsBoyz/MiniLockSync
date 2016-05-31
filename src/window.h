@@ -66,6 +66,8 @@ private slots:
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
 
+    void set_copyStatusTip();
+
 private:
     // >>> Singleton impl
     Window(QWidget *parent = 0);

@@ -285,23 +285,24 @@ void Window::on_pushButton_deleteDir_2_clicked()
     Timer::GetInstance().stop();
     QItemSelectionModel *selectDir = ui->tableWidget_dir->selectionModel();
 
-    QModelIndexList indexListDir = selectDir->selectedIndexes();
+    //QModelIndexList indexListDir = selectDir->selectedIndexes();
 
-    if (!indexListDir.isEmpty()) {
-        foreach (QModelIndex index, indexListDir) {
-            int row = index.row();
-            QString name = ui->tableWidget_dir->item(row, 1)->text();
+    //if (!indexListDir.isEmpty()) {
+        //foreach (QModelIndex index, indexListDir) {
+            //int row = index.row();
+            QString name = ui->tableWidget_dir->item(0, 1)->text();
 
             settingsmanager->removeKey(MainWindow::settingsKeyForWorkDirPath, "workdir");
-            ui->tableWidget_dir->removeRow(row);
-        }
-    }
+            ui->tableWidget_dir->removeRow(0);
+        //}
+   // }
+            /*
     else {
         QMessageBox msgBox;
         msgBox.setInformativeText(tr("Please select path to delete."));
         msgBox.exec();
     }
-
+    */
     ui->pushButton_addWorkDir->setEnabled(true);
 }
 
@@ -309,15 +310,16 @@ void Window::on_pushButton_delete_cloud_clicked()
 {
     Timer::GetInstance().stop();
     QItemSelectionModel *select = ui->tableWidget_cloud->selectionModel();
-    QModelIndexList indexList = select->selectedIndexes();
+    /*QModelIndexList indexList = select->selectedIndexes();
 
     foreach (QModelIndex index, indexList) {
         int row = index.row();
-        QString name = ui->tableWidget_cloud->item(row, 1)->text();
+        */
+        QString name = ui->tableWidget_cloud->item(0, 1)->text();
 
         settingsmanager->removeKey(MainWindow::settingsKeyForCloudDirPath, "clouddir");
-        ui->tableWidget_cloud->removeRow(row);
-    }
+        ui->tableWidget_cloud->removeRow(0);
+    //}
     ui->pushButton_AddCloud->setEnabled(true);
 }
 
@@ -339,6 +341,13 @@ void Window::on_pushButton_confirm_clicked()
 
 
 }
+
+void Window::set_copyStatusTip() {
+    qDebug() << "Window set_copystatustip: " << "Copy and encryption of files done";
+    act3->setStatusTip(tr("Copy and encryption of files done"));
+}
+
+
 
 
 /*
@@ -491,6 +500,7 @@ void Window::checkAndCopy() {
 
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(thread, SIGNAL(finished()), this, SLOT(set_copyStatusTip()));
     thread->start();
 
 }
@@ -499,6 +509,4 @@ void Window::startAutoSync(){
     Timer::GetInstance().stop();
     Timer::GetInstance().start();
 }
-
-
 
