@@ -477,11 +477,13 @@ void Window::initializeFileBrowser()
     fileBrowserModel->setRootPath(sPath);
 
 
+    /*
     ui->treeView_fileBrowser->setModel(fileBrowserModel);
     ui->treeView_fileBrowser->setColumnWidth(0,300);
 
     ui->treeView_dirBrowser->setModel(fileBrowserModel);
     ui->treeView_dirBrowser->setColumnWidth(0,300);
+    */
 }
 
 
@@ -556,7 +558,7 @@ void Window::deleteDirectories(QString name) {
 }
 
 QFileInfo Window::returnSelectedPath() {
-    QWidget *currentWidget = QApplication::focusWidget();
+    /*QWidget *currentWidget = QApplication::focusWidget();
     QTreeView *model;
     QFileInfo path;
     if (currentWidget->parentWidget()->objectName() == "ManageWorkSaveDir") {
@@ -571,7 +573,8 @@ QFileInfo Window::returnSelectedPath() {
     else {
         return path;
     }
-    return path;
+    return path;*/
+    return "";
 }
 
 void Window::copyDirectory(){

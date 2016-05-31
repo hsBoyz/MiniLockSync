@@ -446,27 +446,24 @@ background-color: rgb(255, 255, 255);
             <number>6</number>
            </property>
            <item row="0" column="0">
-            <widget class="QTreeView" name="treeView_fileBrowser">
-             <property name="styleSheet">
-              <string notr="true">QTreeView#treeView_fileBrowser {
-	 
+            <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QTableWidget" name="tableWidget">
+               <property name="styleSheet">
+                <string notr="true">QTableWidget#tableWidget {
+	
      font: 11px;
      min-width: 10em;
      show-decoration-selected: 1;
 }
 
 </string>
-             </property>
-             <property name="selectionMode">
-              <enum>QAbstractItemView::SingleSelection</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
-             <property name="spacing">
-              <number>0</number>
-             </property>
+               </property>
+              </widget>
+             </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout">
                <property name="spacing">
@@ -564,20 +561,6 @@ QPushButton#pushButton_confirm:hover {
                <property name="spacing">
                 <number>0</number>
                </property>
-               <item>
-                <widget class="QTableWidget" name="tableWidget">
-                 <property name="styleSheet">
-                  <string notr="true">QTableWidget#tableWidget {
-	
-     font: 11px;
-     min-width: 10em;
-     show-decoration-selected: 1;
-}
-
-</string>
-                 </property>
-                </widget>
-               </item>
               </layout>
              </item>
             </layout>
@@ -608,31 +591,6 @@ background-color: rgb(255, 255, 255);
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="QTreeView" name="treeView_dirBrowser">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>130</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QTreeView#treeView_dirBrowser {
-
-     font: 11px;
-     min-width: 10em;
-     show-decoration-selected: 1;
-}
-</string>
-             </property>
-            </widget>
-           </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
              <property name="spacing">
@@ -742,6 +700,9 @@ QPushButton#pushButton_deleteDir_2:hover {
              <property name="spacing">
               <number>0</number>
              </property>
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
@@ -838,8 +799,25 @@ QPushButton#pushButton_delete_cloud:hover {
              </item>
             </layout>
            </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
-          <zorder>treeView_dirBrowser</zorder>
+          <zorder></zorder>
+          <zorder>pushButton_AddCloud</zorder>
+          <zorder>pushButton_delete_cloud</zorder>
+          <zorder>tableWidget_cloud</zorder>
+          <zorder>verticalSpacer_3</zorder>
           <zorder></zorder>
          </widget>
          <widget class="QWidget" name="CPULimitation">
@@ -898,14 +876,11 @@ QPushButton#pushButton_delete_cloud:hover {
   <tabstop>pushButton_addDir</tabstop>
   <tabstop>pushButton_deleteDir</tabstop>
   <tabstop>pushButton_confirm</tabstop>
-  <tabstop>treeView_fileBrowser</tabstop>
-  <tabstop>tableWidget</tabstop>
   <tabstop>pushManageSaveDir</tabstop>
   <tabstop>pushButton_addWorkDir</tabstop>
   <tabstop>pushButton_deleteDir_2</tabstop>
   <tabstop>pushButton_AddCloud</tabstop>
   <tabstop>pushButton_delete_cloud</tabstop>
-  <tabstop>treeView_dirBrowser</tabstop>
   <tabstop>tableWidget_dir</tabstop>
   <tabstop>tableWidget_cloud</tabstop>
  </tabstops>
