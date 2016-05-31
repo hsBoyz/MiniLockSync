@@ -288,7 +288,7 @@ void Window::on_pushButton_deleteDir_clicked()
 void Window::on_pushButton_deleteDir_2_clicked()
 {
     Timer::GetInstance().stop();
-    QItemSelectionModel *selectDir = ui->tableWidget_dir->selectionModel();
+    //QItemSelectionModel *selectDir = ui->tableWidget_dir->selectionModel();
 
     //QModelIndexList indexListDir = selectDir->selectedIndexes();
 
@@ -314,7 +314,7 @@ void Window::on_pushButton_deleteDir_2_clicked()
 void Window::on_pushButton_delete_cloud_clicked()
 {
     Timer::GetInstance().stop();
-    QItemSelectionModel *select = ui->tableWidget_cloud->selectionModel();
+    //QItemSelectionModel *select = ui->tableWidget_cloud->selectionModel();
     /*QModelIndexList indexList = select->selectedIndexes();
 
     foreach (QModelIndex index, indexList) {
