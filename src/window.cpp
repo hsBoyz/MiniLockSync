@@ -64,6 +64,7 @@ Window::~Window()
 }
 // Kontextmenü verwenden contextMenuEvent
 // ist eine virtuelle Methode
+/*
 void Window::contextMenuEvent(
     QContextMenuEvent *event) {
    QMenu *menu = new QMenu(this);
@@ -72,7 +73,7 @@ void Window::contextMenuEvent(
    menu->addAction(act3);
    menu->exec(event->globalPos());
 }
-
+*/
 
 
 /*
