@@ -621,14 +621,7 @@ void Window::checkAndCopy() {
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
     connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
-<<<<<<< HEAD
-=======
     connect(thread, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
-
-
-
-
->>>>>>> remotes/originHttps/GUI_eugen
 
     thread->start();
 
