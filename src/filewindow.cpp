@@ -56,6 +56,8 @@ void FileWindow::on_listView_activated(const QModelIndex &index)
 
 void FileWindow::on_listView_doubleClicked(const QModelIndex &index)
 {
+    selectedDirPath = "";
+
     if (filemodel->fileInfo(index).isDir()) {
         //Step into folder
         ui->listView->setRootIndex(index);
@@ -123,7 +125,15 @@ void FileWindow::on_pushButton_deleteFile_clicked()
     QString nameOfEncryptedFolder;
     QString relativePath;
 
+    if (selectedDirPath == "") {
+        QMessageBox msgBox;
+        msgBox.setInformativeText(tr("Please select file or directory to delete"));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+    }
+
     QFileInfo fileInfo(selectedDirPath);
+
 
     QMessageBox msgBox;
     msgBox.setText(tr("File/Dir will be deleted."));

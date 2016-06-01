@@ -290,6 +290,16 @@ QPushButton#pushManageCloud:focus {
     </item>
     <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox_3">
+      <property name="styleSheet">
+       <string notr="true">QStackedWidget{
+
+background-color: rgb(255, 255, 255);
+ border-style: outset;
+     border-width: 1px;
+     border-radius: 6px;
+     border-color: #708090;
+}</string>
+      </property>
       <property name="title">
        <string/>
       </property>
@@ -415,9 +425,7 @@ p, li { white-space: pre-wrap; }
          </widget>
          <widget class="QWidget" name="ManageCloud">
           <property name="styleSheet">
-           <string notr="true">QWidget::ManageCloud
-
-{
+           <string notr="true">QWidget::ManageCloud{
 
 background-color: rgb(255, 255, 255);
  border-style: outset;
@@ -460,7 +468,19 @@ background-color: rgb(255, 255, 255);
      show-decoration-selected: 1;
 }
 
-</string>
+QHeaderView::section { 
+	 border-style: outset;
+     border-width: 1px;
+     border-radius: 3px;
+	 border-color: #ECECEC; 
+	 background-color:#ECECEC; 
+}</string>
+               </property>
+               <property name="showGrid">
+                <bool>true</bool>
+               </property>
+               <property name="cornerButtonEnabled">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -623,7 +643,13 @@ background-color: rgb(255, 255, 255);
      show-decoration-selected: 1;
 }
 
-</string>
+QHeaderView::section { 
+	 border-style: outset;
+     border-width: 1px;
+     border-radius: 3px;
+	 border-color: #ECECEC; 
+	 background-color:#ECECEC; 
+}</string>
                  </property>
                  <property name="selectionMode">
                   <enum>QAbstractItemView::SingleSelection</enum>
@@ -636,7 +662,7 @@ background-color: rgb(255, 255, 255);
               </layout>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_10">
+              <layout class="QVBoxLayout" name="verticalLayout_10" stretch="0,0">
                <property name="spacing">
                 <number>0</number>
                </property>
@@ -645,6 +671,15 @@ background-color: rgb(255, 255, 255);
                </property>
                <item>
                 <widget class="QPushButton" name="pushButton_addWorkDir">
+                 <property name="statusTip">
+                  <string/>
+                 </property>
+                 <property name="whatsThis">
+                  <string/>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>false</bool>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton#pushButton_addWorkDir {
       background-color: #D3D3D3;
@@ -655,6 +690,7 @@ background-color: rgb(255, 255, 255);
     font: bold 11px;
      min-width: 8em;
      padding: 6px;
+	margin-top: 0;
  }
 
 QPushButton#pushButton_addWorkDir:hover {
@@ -664,6 +700,9 @@ QPushButton#pushButton_addWorkDir:hover {
                  </property>
                  <property name="text">
                   <string>Add work directory</string>
+                 </property>
+                 <property name="flat">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -705,6 +744,9 @@ QPushButton#pushButton_deleteDir_2:hover {
              </property>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_14">
+               <property name="spacing">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QTableWidget" name="tableWidget_cloud">
                  <property name="sizePolicy">
@@ -727,7 +769,13 @@ QPushButton#pushButton_deleteDir_2:hover {
      show-decoration-selected: 1;
 }
 
-</string>
+QHeaderView::section { 
+	 border-style: outset;
+     border-width: 1px;
+     border-radius: 3px;
+	 border-color: #ECECEC; 
+	 background-color:#ECECEC; 
+}</string>
                  </property>
                  <property name="selectionMode">
                   <enum>QAbstractItemView::SingleSelection</enum>
@@ -814,9 +862,6 @@ QPushButton#pushButton_delete_cloud:hover {
            </item>
           </layout>
           <zorder></zorder>
-          <zorder>pushButton_AddCloud</zorder>
-          <zorder>pushButton_delete_cloud</zorder>
-          <zorder>tableWidget_cloud</zorder>
           <zorder>verticalSpacer_3</zorder>
           <zorder></zorder>
          </widget>
@@ -881,7 +926,6 @@ QPushButton#pushButton_delete_cloud:hover {
   <tabstop>pushButton_confirm</tabstop>
   <tabstop>pushManageSaveDir</tabstop>
   <tabstop>pushButton_addWorkDir</tabstop>
-  <tabstop>pushButton_deleteDir_2</tabstop>
   <tabstop>pushButton_AddCloud</tabstop>
   <tabstop>pushButton_delete_cloud</tabstop>
   <tabstop>tableWidget_dir</tabstop>

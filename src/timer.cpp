@@ -2,7 +2,7 @@
 #include <QScopedPointer>
 
 
-int Timer::SECONDS = 5 * 60;
+int Timer::SECONDS = 0.25 * 60;
 
 Timer::Timer(QObject *parent) : QObject(parent)
 {

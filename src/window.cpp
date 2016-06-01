@@ -509,6 +509,8 @@ void Window::initializeTableWidget(QTableWidget *widget) {
     widget->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     widget->setShowGrid(false);
     widget->setWordWrap(false);
+    widget->verticalHeader()->setVisible(false);
+
 }
 
 

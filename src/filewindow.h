@@ -60,6 +60,7 @@ private slots:
 
     void on_pushButton_syncCloud_clicked();
 
+
 private:
     // >>> Singleton impl
     FileWindow(QWidget *parent = 0);
