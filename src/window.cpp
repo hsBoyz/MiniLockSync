@@ -22,6 +22,11 @@ Window::Window(QWidget *parent) :
            qApp, SLOT(quit()),
            QKeySequence(tr("Ctrl+Q", "File|Quit")) );
         act3->setStatusTip(tr("Quit Program"));
+
+
+
+
+
        /* QMenu *workMenu = new QMenu(
            tr("&Edit"), this);
         menuBar()->addMenu(workMenu); */
@@ -54,7 +59,11 @@ Window::Window(QWidget *parent) :
     ui->pushHome->setPalette(QPalette(QColor(Qt::green)));
     */
 
+    checkWidget = new QLabel;
+    checkWidget->setPixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(30));
 
+    syncWidget = new QLabel;
+    syncWidget->setPixmap(QPixmap(":/icons/images/sync_icon2.png").scaledToHeight(30));
 
 }
 
@@ -64,6 +73,7 @@ Window::~Window()
 }
 // Kontextmenü verwenden contextMenuEvent
 // ist eine virtuelle Methode
+/*
 void Window::contextMenuEvent(
     QContextMenuEvent *event) {
    QMenu *menu = new QMenu(this);
@@ -72,7 +82,7 @@ void Window::contextMenuEvent(
    menu->addAction(act3);
    menu->exec(event->globalPos());
 }
-
+*/
 
 
 /*
@@ -107,6 +117,13 @@ void Window::on_pushCloudService_clicked()
           }
 
           FileWindow::GetInstance().show();
+          FileWindow::GetInstance().raise();
+          FileWindow::GetInstance().activateWindow();
+
+          if (FileWindow::GetInstance().isMinimized()){
+              FileWindow::GetInstance().showNormal();
+
+          }
 
 }
 
@@ -152,7 +169,36 @@ void Window::on_pushChangePassword_clicked()
 */
 void Window::on_pushButton_addDir_clicked()
 {
+    QString folderPath = QFileDialog::getExistingDirectory(
+                this,
+                tr("Add folders to encrypt"),
+                "C://",
+                QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+                );
+    QFileInfo path = folderPath;
 
+    if (folderPath == "") {
+        //Do nothing when user cancel dialog
+    }
+    else
+    {
+        QString checkPath = settingsmanager->valueExists(path.absoluteFilePath());
+        if (checkPath != "false") {
+            QMessageBox msgBox;
+            msgBox.setInformativeText(tr("Path already set as ") + checkPath);
+            msgBox.exec();
+        }
+        else {
+            saveDirectories(MainWindow::settingsKeyForPaths, path.baseName(), path.absoluteFilePath());
+
+            ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(path.absoluteFilePath()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(path.baseName()));
+            ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(path.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+        }
+    }
+    /*
     QFileInfo path = returnSelectedPath();
 
     if (path.absoluteFilePath() == "") {
@@ -178,11 +224,50 @@ void Window::on_pushButton_addDir_clicked()
             ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem(path.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
         }
     }
+    */
 
 }
 
 void Window::on_pushButton_addWorkDir_clicked()
 {
+
+    QString workDirPath = QFileDialog::getExistingDirectory(
+                this,
+                tr("Add working directory"),
+                "C://",
+                QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+                );
+
+    QString checkPath = settingsmanager->valueExists(workDirPath);
+    QFileInfo fInfo = workDirPath;
+
+    if (workDirPath == "") {
+        //Do nothing when user cancel dialog
+    }
+
+    else if (checkPath != "false") {
+        QMessageBox msgBox;
+        msgBox.setInformativeText(tr("Path already set as ") + checkPath);
+        msgBox.exec();
+    }
+    else {
+
+        //saveDirectories(MainWindow::settingsKeyForWorkDirPath, fInfo.baseName(), fInfo.absoluteFilePath());
+        saveDirectories(MainWindow::settingsKeyForWorkDirPath, "workdir", workDirPath);
+
+        ui->tableWidget_dir->insertRow(ui->tableWidget_dir->rowCount());
+
+        ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 0, new QTableWidgetItem(fInfo.absoluteFilePath()));
+        ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 1, new QTableWidgetItem(fInfo.baseName()));
+        ui->tableWidget_dir->setItem(ui->tableWidget_dir->rowCount()-1, 2, new QTableWidgetItem(fInfo.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+
+
+        //Allow user to only add one working directory
+        ui->pushButton_addWorkDir->setEnabled(false);
+    }
+
+}
+    /*
     QFileInfo fInfo = returnSelectedPath();
 
     if (fInfo.absoluteFilePath() == "") {
@@ -220,12 +305,47 @@ void Window::on_pushButton_addWorkDir_clicked()
             ui->pushButton_addWorkDir->setEnabled(false);
         }
     }
+    */
 
-
-}
+//}
 
 void Window::on_pushButton_AddCloud_clicked()
 {
+    QString cloudDirPath = QFileDialog::getExistingDirectory(
+                this,
+                tr("Add cloud"),
+                "C://",
+                QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+                );
+
+    QString checkPath = settingsmanager->valueExists(cloudDirPath);
+    QFileInfo fInfo = cloudDirPath;
+
+    if (cloudDirPath == "") {
+        //Do nothing when user cancel dialog
+    }
+
+    else if (checkPath != "false") {
+        QMessageBox msgBox;
+        msgBox.setInformativeText(tr("Path already set as ") + checkPath);
+        msgBox.exec();
+    }
+    else {
+
+        //saveDirectories(MainWindow::settingsKeyForWorkDirPath, fInfo.baseName(), fInfo.absoluteFilePath());
+        saveDirectories(MainWindow::settingsKeyForCloudDirPath, "clouddir", cloudDirPath);
+
+        ui->tableWidget_cloud->insertRow(ui->tableWidget_cloud->rowCount());
+
+        ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 0, new QTableWidgetItem(fInfo.absoluteFilePath()));
+        ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 1, new QTableWidgetItem(fInfo.baseName()));
+        ui->tableWidget_cloud->setItem(ui->tableWidget_cloud->rowCount()-1, 2, new QTableWidgetItem(fInfo.lastModified().toUTC().toString(tr("dd.MM.yyyy hh:mm"))));
+
+
+        //Allow user to only add one working directory
+        ui->pushButton_AddCloud->setEnabled(false);
+    }
+    /*
     QFileInfo path = returnSelectedPath();
 
     if (path.absoluteFilePath() == "") {
@@ -255,6 +375,7 @@ void Window::on_pushButton_AddCloud_clicked()
             ui->pushButton_AddCloud->setEnabled(false);
         }
     }
+    */
 }
 
 
@@ -280,42 +401,52 @@ void Window::on_pushButton_deleteDir_clicked()
 void Window::on_pushButton_deleteDir_2_clicked()
 {
     Timer::GetInstance().stop();
-    QItemSelectionModel *selectDir = ui->tableWidget_dir->selectionModel();
+    //QItemSelectionModel *selectDir = ui->tableWidget_dir->selectionModel();
 
-    QModelIndexList indexListDir = selectDir->selectedIndexes();
+    //QModelIndexList indexListDir = selectDir->selectedIndexes();
 
-    if (!indexListDir.isEmpty()) {
-        foreach (QModelIndex index, indexListDir) {
-            int row = index.row();
-            QString name = ui->tableWidget_dir->item(row, 1)->text();
+    //if (!indexListDir.isEmpty()) {
+        //foreach (QModelIndex index, indexListDir) {
+            //int row = index.row();
+    if (ui->tableWidget_dir->rowCount() != 0) {
+            QString name = ui->tableWidget_dir->item(0, 1)->text();
 
             settingsmanager->removeKey(MainWindow::settingsKeyForWorkDirPath, "workdir");
-            ui->tableWidget_dir->removeRow(row);
-        }
+            ui->tableWidget_dir->removeRow(0);
+
+            ui->pushButton_addWorkDir->setEnabled(true);
     }
+        //}
+   // }
+            /*
     else {
         QMessageBox msgBox;
         msgBox.setInformativeText(tr("Please select path to delete."));
         msgBox.exec();
     }
+    */
 
-    ui->pushButton_addWorkDir->setEnabled(true);
 }
 
 void Window::on_pushButton_delete_cloud_clicked()
 {
     Timer::GetInstance().stop();
-    QItemSelectionModel *select = ui->tableWidget_cloud->selectionModel();
-    QModelIndexList indexList = select->selectedIndexes();
+    //QItemSelectionModel *select = ui->tableWidget_cloud->selectionModel();
+    /*QModelIndexList indexList = select->selectedIndexes();
 
     foreach (QModelIndex index, indexList) {
         int row = index.row();
-        QString name = ui->tableWidget_cloud->item(row, 1)->text();
+        */
+    if (ui->tableWidget_cloud->rowCount() != 0) {
+        QString name = ui->tableWidget_cloud->item(0, 1)->text();
 
         settingsmanager->removeKey(MainWindow::settingsKeyForCloudDirPath, "clouddir");
-        ui->tableWidget_cloud->removeRow(row);
+        ui->tableWidget_cloud->removeRow(0);
+
+        ui->pushButton_AddCloud->setEnabled(true);
     }
-    ui->pushButton_AddCloud->setEnabled(true);
+    //}
+
 }
 
 void Window::on_pushButton_confirm_clicked()
@@ -357,11 +488,13 @@ void Window::initializeFileBrowser()
     fileBrowserModel->setRootPath(sPath);
 
 
+    /*
     ui->treeView_fileBrowser->setModel(fileBrowserModel);
     ui->treeView_fileBrowser->setColumnWidth(0,300);
 
     ui->treeView_dirBrowser->setModel(fileBrowserModel);
     ui->treeView_dirBrowser->setColumnWidth(0,300);
+    */
 }
 
 
@@ -376,6 +509,8 @@ void Window::initializeTableWidget(QTableWidget *widget) {
     widget->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     widget->setShowGrid(false);
     widget->setWordWrap(false);
+    widget->verticalHeader()->setVisible(false);
+
 }
 
 
@@ -436,7 +571,7 @@ void Window::deleteDirectories(QString name) {
 }
 
 QFileInfo Window::returnSelectedPath() {
-    QWidget *currentWidget = QApplication::focusWidget();
+    /*QWidget *currentWidget = QApplication::focusWidget();
     QTreeView *model;
     QFileInfo path;
     if (currentWidget->parentWidget()->objectName() == "ManageWorkSaveDir") {
@@ -451,7 +586,8 @@ QFileInfo Window::returnSelectedPath() {
     else {
         return path;
     }
-    return path;
+    return path;*/
+    return "";
 }
 
 void Window::copyDirectory(){
@@ -482,13 +618,34 @@ void Window::copyDirectory(){
 void Window::checkAndCopy() {
 
     QThread *thread = new QThread();
+    QLabel *test = new QLabel;
+    test->setPixmap(QPixmap(":/icons/images/sync_icon2.png"));
 
     worker = new Worker();
     worker->moveToThread(thread);
 
+    connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
     connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+
     thread->start();
+
+}
+void Window::set_StatusBar_finished(){
+
+    qDebug() << "Window set_StatusBar_finished: sync done";
+        ui->statusBar->removeWidget(syncWidget);
+        ui->statusBar->addPermanentWidget(checkWidget, 0);
+        checkWidget->show();
+}
+
+void Window::set_StatusBar_started(){
+
+    qDebug() << "Window set_StatusBar_started: start sync";
+    ui->statusBar->removeWidget(checkWidget);
+    ui->statusBar->addPermanentWidget(syncWidget, 0);
+    syncWidget->show();
 
 }
 
@@ -496,6 +653,4 @@ void Window::startAutoSync(){
     Timer::GetInstance().stop();
     Timer::GetInstance().start();
 }
-
-
 

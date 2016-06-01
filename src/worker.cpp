@@ -1,17 +1,22 @@
 #include "worker.h"
 #include "mainwindow.h"
+#include "window.h"
 #include <Qdir>
 #include <QThread>
 
 Worker::Worker()
 {
     filesHandler = new Handlefiles();
+
 }
 
 Worker::~Worker()
 {
 
 }
+
+
+
 
 void Worker::process()
 {

@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QFileSystemModel>
 #include <QTableWidget>
+#include <QFileDialog>
 
 static int currentIndex = 0; // Global
 
@@ -33,16 +34,18 @@ public:
     Ui::Window *ui;
 
     QAction *act1, *act2, *act3, *act4;
+
     void startAutoSync();
 
     ~Window();
 
 public slots:
-
+    void set_StatusBar_finished();
+    void set_StatusBar_started();
 
 
 protected:
-     void contextMenuEvent(QContextMenuEvent *event);
+    // void contextMenuEvent(QContextMenuEvent *event);
 
 
 private slots:
@@ -66,6 +69,8 @@ private slots:
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
 
+
+
 private:
     // >>> Singleton impl
     Window(QWidget *parent = 0);
@@ -78,6 +83,9 @@ private:
     Handlefiles *filesHandler;
     Worker *worker;
     FileWindow *filewin;
+
+    QLabel *checkWidget;
+    QLabel *syncWidget;
 
 
     void initializeFileBrowser();

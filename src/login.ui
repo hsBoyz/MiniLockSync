@@ -70,7 +70,7 @@ QPushButton#loginButton:hover {
 }</string>
      </property>
      <property name="text">
-      <string>Login</string>
+      <string>Generate Key</string>
      </property>
      <property name="autoDefault">
       <bool>true</bool>
@@ -245,8 +245,8 @@ QPushButton#cancelButton:hover {
    <slot>loginButton_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>364</x>
-     <y>45</y>
+     <x>385</x>
+     <y>37</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -277,12 +277,12 @@ QPushButton#cancelButton:hover {
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>364</x>
-     <y>82</y>
+     <x>385</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>70</y>
+     <x>295</x>
+     <y>67</y>
     </hint>
    </hints>
   </connection>
@@ -293,12 +293,12 @@ QPushButton#cancelButton:hover {
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>77</y>
+     <x>385</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>221</x>
-     <y>44</y>
+     <x>295</x>
+     <y>32</y>
     </hint>
    </hints>
   </connection>
@@ -309,12 +309,12 @@ QPushButton#cancelButton:hover {
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>297</x>
-     <y>79</y>
+     <x>385</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>266</x>
-     <y>179</y>
+     <x>275</x>
+     <y>202</y>
     </hint>
    </hints>
   </connection>
@@ -325,8 +325,8 @@ QPushButton#cancelButton:hover {
    <slot>cancelButton_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>301</x>
-     <y>74</y>
+     <x>385</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -357,12 +357,28 @@ QPushButton#cancelButton:hover {
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>356</x>
-     <y>75</y>
+     <x>385</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>275</x>
-     <y>106</y>
+     <x>295</x>
+     <y>98</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBox</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>367</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>222</y>
     </hint>
    </hints>
   </connection>

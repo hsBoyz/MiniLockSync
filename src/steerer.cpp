@@ -25,6 +25,7 @@ void Steerer::start()
 {
     createActions();
     createTrayIcon();
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayLeftClick(QSystemTrayIcon::ActivationReason)));
     trayIcon->show();
     if (checkSettings()) {
         startAutoSync();
@@ -34,12 +35,14 @@ void Steerer::start()
 
 void Steerer::createActions()
 {
-    settingsAction = new QAction(tr("&Settings"), this);
+    settingsAction = new QAction(tr("&Open"), this);
     connect(settingsAction, SIGNAL(triggered()), this, SLOT(showSettings()));
     quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-    openAction = new QAction(tr("Open"), this);
+    openAction = new QAction(tr("Workdir"), this);
     connect(openAction, SIGNAL(triggered()), this, SLOT(openFileWindow()));
+
+
 }
 
 void Steerer::createTrayIcon()
@@ -59,6 +62,7 @@ void Steerer::showSettings()
 {
     Window::GetInstance().show();
     Window::GetInstance().raise();
+    Window::GetInstance().activateWindow();
     if (Window::GetInstance().isMinimized()) {
         Window::GetInstance().showNormal();
     }
@@ -68,8 +72,21 @@ void Steerer::openFileWindow()
 {
     FileWindow::GetInstance().show();
     FileWindow::GetInstance().raise();
+    FileWindow::GetInstance().activateWindow();
     if (FileWindow::GetInstance().isMinimized()) {
         FileWindow::GetInstance().showNormal();
+    }
+
+}
+
+void Steerer::trayLeftClick(QSystemTrayIcon::ActivationReason reason) {
+    if (reason == QSystemTrayIcon::Trigger) {
+        FileWindow::GetInstance().show();
+        FileWindow::GetInstance().raise();
+        FileWindow::GetInstance().activateWindow();
+        if (FileWindow::GetInstance().isMinimized()) {
+            FileWindow::GetInstance().showNormal();
+        }
     }
 
 }

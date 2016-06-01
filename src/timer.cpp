@@ -1,8 +1,7 @@
 #include "timer.h"
-#include <QScopedPointer>
+#include "window.h"
 
-
-int Timer::SECONDS = 5 * 60;
+int Timer::SECONDS = 0.125 * 60;
 
 Timer::Timer(QObject *parent) : QObject(parent)
 {
@@ -21,14 +20,25 @@ void Timer::stop() {
 
 void Timer::process() {
     qDebug() << "Timer process: Sync";
-    //Use QScopedPointer to delete object and ptr when leaving scope
-    {
-        QThread *thread = new QThread();
-        QScopedPointer<Worker> worker(new Worker());
-        worker.data()->moveToThread(thread);
-        connect(thread, SIGNAL(started()), worker.data(), SLOT(process())) ;
-        connect(worker.data(), SIGNAL(finished()), thread, SLOT(quit()));
-        thread->start();
-    }
 
+    QThread *thread = new QThread();
+    worker = new Worker();
+
+    worker->moveToThread(thread);
+    connect(thread, SIGNAL(started()), this, SLOT(callWindow()));
+    connect(thread, SIGNAL(started()), worker, SLOT(process()));
+    connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()), this, SLOT(deleteWorker()));
+    thread->start();
+}
+
+void Timer::deleteWorker() {
+    FileWindow::GetInstance().set_StatusBar_finished();
+    Window::GetInstance().set_StatusBar_finished();
+    delete worker;
+}
+
+void Timer::callWindow() {
+    FileWindow::GetInstance().set_StatusBar_started();
+    Window::GetInstance().set_StatusBar_started();
 }

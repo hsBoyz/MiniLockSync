@@ -47,17 +47,17 @@ public slots:
 
 
 protected:
-     void contextMenuEvent(QContextMenuEvent *event);
+
 
 private:
     Ui::MainWindow *ui;
 
-    QAction *act1,*act2,*act3,*act4;
+
 
 
 
 private slots:
-    void pushConfirmClicked();
+
 
     void on_pushSecondInterface_clicked();
 };

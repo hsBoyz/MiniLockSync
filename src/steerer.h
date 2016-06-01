@@ -27,6 +27,7 @@ public:
 private slots:
     void showSettings();
     void openFileWindow();
+    void trayLeftClick(QSystemTrayIcon::ActivationReason reason);
 
 
 private:

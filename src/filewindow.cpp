@@ -21,6 +21,12 @@ FileWindow::FileWindow(QWidget *parent) :
     log = new login();
     worker = new Worker();
     setFileModels();
+
+    checkWidget = new QLabel;
+    checkWidget->setPixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(30));
+
+    syncWidget = new QLabel;
+    syncWidget->setPixmap(QPixmap(":/icons/images/sync_icon2.png").scaledToHeight(30));
 }
 
 FileWindow::~FileWindow()
@@ -56,6 +62,8 @@ void FileWindow::on_listView_activated(const QModelIndex &index)
 
 void FileWindow::on_listView_doubleClicked(const QModelIndex &index)
 {
+    selectedDirPath = "";
+
     if (filemodel->fileInfo(index).isDir()) {
         //Step into folder
         ui->listView->setRootIndex(index);
@@ -123,17 +131,25 @@ void FileWindow::on_pushButton_deleteFile_clicked()
     QString nameOfEncryptedFolder;
     QString relativePath;
 
+    if (selectedDirPath == "") {
+        QMessageBox msgBox;
+        msgBox.setInformativeText(tr("Please select file or directory to delete"));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+    }
+
+    QFileInfo fileInfo(selectedDirPath);
+
+
     QMessageBox msgBox;
     msgBox.setText(tr("File/Dir will be deleted."));
-    msgBox.setInformativeText(tr("Do you want to delete the File/DirectoryS?"));
+    msgBox.setInformativeText(tr("Do you want to delete \"") + fileInfo.baseName().toStdString().c_str() + "." + fileInfo.suffix() + "\"?");
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
     dirCleanedPath = returnDirectoryCleanedPath(selectedDirPath);
     nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     relativePath = returnRelativPath(dirCleanedPath);
-
-    QFileInfo fileInfo(selectedDirPath);
 
     if (selectedDirPath != "") {
         int returnValue = msgBox.exec();
@@ -365,9 +381,9 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
     }
     else {
 
-        QFile::remove(deleteCloudDir);
+        QFile::remove(deleteCloudDir + ".encrypted");
         QFile::remove(deleteWorkDir);
-        //QFile::remove(deleteOriginals);
+        QFile::remove(deleteOriginals);
 
     }
 }
@@ -533,8 +549,10 @@ void FileWindow::checkAndCopy() {
     worker = new Worker();
     worker->moveToThread(thread);
 
+    connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
     connect(thread, SIGNAL(started()), worker, SLOT(process()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
 }
@@ -546,8 +564,27 @@ void FileWindow::checkAndCopyCloud() {
     worker = new Worker();
     worker->moveToThread(thread);
 
+    connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
     connect(thread, SIGNAL(started()), worker, SLOT(processSyncCloud()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
+}
+
+void FileWindow::set_StatusBar_finished(){
+
+    qDebug() << "Window set_StatusBar_finished: sync done";
+        ui->statusBar->removeWidget(syncWidget);
+        ui->statusBar->addPermanentWidget(checkWidget, 0);
+        checkWidget->show();
+}
+
+void FileWindow::set_StatusBar_started(){
+
+    qDebug() << "Window set_StatusBar_started: start sync";
+    ui->statusBar->removeWidget(checkWidget);
+    ui->statusBar->addPermanentWidget(syncWidget, 0);
+    syncWidget->show();
+
 }

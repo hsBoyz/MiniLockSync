@@ -17,11 +17,13 @@ public:
 private:
     Handlefiles *filesHandler;
 
+
 signals:
     void finished();
     void error(QString err);
 
 public slots:
+
     void process();
     void processSyncCloud();
 
