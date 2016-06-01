@@ -61,11 +61,9 @@ private slots:
 
     void on_pushButton_syncCloud_clicked();
 
-<<<<<<< HEAD
-=======
+public slots:
     void set_StatusBar_finished();
     void set_StatusBar_started();
->>>>>>> remotes/originHttps/gui_luca3
 
 private:
     // >>> Singleton impl

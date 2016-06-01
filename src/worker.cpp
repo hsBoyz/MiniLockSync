@@ -20,8 +20,6 @@ Worker::~Worker()
 
 void Worker::process()
 {
-
-
     filesHandler->copyDirectory();
     emit finished();
 }

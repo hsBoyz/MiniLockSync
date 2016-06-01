@@ -7,6 +7,8 @@
 #include <QThread>
 #include <QDebug>
 
+class Window;
+
 class Timer : public QObject
 {
     Q_OBJECT
@@ -29,6 +31,11 @@ private:
 
     QTimer *m_Qtimer;
     Worker *worker;
+
+
+private slots:
+    void deleteWorker();
+    void callWindow();
 
 signals:
 

@@ -40,7 +40,8 @@ public:
     ~Window();
 
 public slots:
-
+    void set_StatusBar_finished();
+    void set_StatusBar_started();
 
 
 protected:
@@ -67,8 +68,7 @@ private slots:
     void on_pushButton_confirm_clicked();
     void on_pushButton_AddCloud_clicked();
     void on_pushButton_delete_cloud_clicked();
-    void set_StatusBar_finished();
-    void set_StatusBar_started();
+
 
 
 private:
