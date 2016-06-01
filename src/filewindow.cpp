@@ -21,6 +21,12 @@ FileWindow::FileWindow(QWidget *parent) :
     log = new login();
     worker = new Worker();
     setFileModels();
+
+    checkWidget = new QLabel;
+    checkWidget->setPixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(30));
+
+    syncWidget = new QLabel;
+    syncWidget->setPixmap(QPixmap(":/icons/images/sync_icon2.png").scaledToHeight(30));
 }
 
 FileWindow::~FileWindow()
@@ -543,8 +549,10 @@ void FileWindow::checkAndCopy() {
     worker = new Worker();
     worker->moveToThread(thread);
 
+    connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
     connect(thread, SIGNAL(started()), worker, SLOT(process()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
 }
@@ -556,8 +564,27 @@ void FileWindow::checkAndCopyCloud() {
     worker = new Worker();
     worker->moveToThread(thread);
 
+    connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
     connect(thread, SIGNAL(started()), worker, SLOT(processSyncCloud()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
+}
+
+void FileWindow::set_StatusBar_finished(){
+
+    qDebug() << "Window set_StatusBar_finished: sync done";
+        ui->statusBar->removeWidget(syncWidget);
+        ui->statusBar->addPermanentWidget(checkWidget, 0);
+        checkWidget->show();
+}
+
+void FileWindow::set_StatusBar_started(){
+
+    qDebug() << "Window set_StatusBar_started: start sync";
+    ui->statusBar->removeWidget(checkWidget);
+    ui->statusBar->addPermanentWidget(syncWidget, 0);
+    syncWidget->show();
+
 }

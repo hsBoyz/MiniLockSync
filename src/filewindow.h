@@ -25,6 +25,7 @@ public:
         static FileWindow Instanz;
         return Instanz;
     }
+
     // <<<
 
     ~FileWindow();
@@ -60,6 +61,11 @@ private slots:
 
     void on_pushButton_syncCloud_clicked();
 
+<<<<<<< HEAD
+=======
+    void set_StatusBar_finished();
+    void set_StatusBar_started();
+>>>>>>> remotes/originHttps/gui_luca3
 
 private:
     // >>> Singleton impl
@@ -71,6 +77,9 @@ private:
     QString TAG = "Filewindow ";
 
     Ui::FileWindow *ui;
+
+    QLabel *checkWidget;
+    QLabel *syncWidget;
 
     QFileSystemModel *filemodel;
     Settingsmanager *setman;
