@@ -285,9 +285,22 @@ void Handlefiles::copyDirectory(){
         QString toNewCloud = createDir(toCloud, nameOfDir);
         copy_dir_recursive(from, toNewWork, false);
         copy_dir_recursive(from, toNewCloud, true);
+        //delete originals after copying into working directory
+
+        delete_dir_recursive(from);
     }
 
+
 }
+
+void Handlefiles::checkAndCopyWorkDir() {
+    QString fromWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
+    QString toCloud = settingsmanager->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir");
+
+    copy_dir_recursive(fromWork, toCloud, true);
+
+}
+
 
 void Handlefiles::copyEncryptedFromCloud() {
     QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
@@ -307,7 +320,9 @@ bool Handlefiles::encryptAndCopy(QString from, QString to, QString copyfile, QSt
 
     recipients[0] = log->ui.comboBox->itemText(0).toStdString();
 
-    if (mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), recipients, numberOfRecipients) != 0) {
+    int returnCode = mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), recipients, numberOfRecipients);
+    if (returnCode != 0) {
+        qDebug() << returnCode << ": " << copyfile;
         return false;
     }
 
@@ -337,4 +352,12 @@ bool Handlefiles::checkListForEncryptedFiles(QFileInfoList list) {
     }
     qDebug() << "returning false";
     return false;
+}
+
+void Handlefiles::copyFile(QString from, QString to) {
+    QFile::remove(to + ".encrypted");
+    QFileInfo fInfo(from);
+    QFileInfo fInfoTo(to);
+
+    encryptAndCopy(from, to, fInfo.fileName(), fInfoTo.absolutePath());
 }

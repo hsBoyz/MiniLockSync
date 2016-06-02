@@ -15,12 +15,21 @@ Worker::~Worker()
 
 }
 
-
+void Worker::processCopyAddedFolders() {
+    filesHandler->copyDirectory();
+    emit finished();
+}
 
 
 void Worker::process()
 {
-    filesHandler->copyDirectory();
+    filesHandler->checkAndCopyWorkDir();
+    filesHandler->copyEncryptedFromCloud();
+    emit finished();
+}
+
+void Worker::processSyncWork() {
+    filesHandler->checkAndCopyWorkDir();
     emit finished();
 }
 

@@ -10,6 +10,7 @@
 #include <settingsmanager.h>
 #include <uCryptLib.h>
 #include <QThread>
+#include <QFileSystemWatcher>
 
 namespace Ui {
 class FileWindow;
@@ -29,6 +30,8 @@ public:
     // <<<
 
     ~FileWindow();
+    void addPathToWatcher(QString path);
+
 
 private slots:
     void setFileModels();
@@ -39,6 +42,7 @@ private slots:
     void fileExists(QString path, QFileInfo fileInfo);
     void deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo);
     void checkForErrors(int result);
+    void handleModifiedFile(const QString &path);
 
     void dragEnterEvent(QDragEnterEvent *e);
     void dragLeaveEvent(QDragLeaveEvent *e);
@@ -84,6 +88,8 @@ private:
     Handlefiles *fileshandler;
     login *log;
     Worker *worker;
+
+    QFileSystemWatcher *watcher;
 
     QString keyOfCurrentFileBrowser;    //Necessary to load different filewindows, e.g. for each encrypted folder
     QList<QString> previousDirPath;     //List for storing the file browsing history
