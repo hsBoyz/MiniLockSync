@@ -71,7 +71,7 @@ void FileWindow::on_listView_doubleClicked(const QModelIndex &index)
     }
     else {
         //Open document with system standard application
-        QDesktopServices::openUrl(filemodel->fileInfo(index).absoluteFilePath());
+        QDesktopServices::openUrl(QUrl::fromLocalFile(filemodel->fileInfo(index).absoluteFilePath()));
     }
 }
 
