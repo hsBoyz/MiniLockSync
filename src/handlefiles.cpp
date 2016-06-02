@@ -85,6 +85,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
         {
             //return false;
         }
+        QFile::remove(from);
 
     }
 
