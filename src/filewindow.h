@@ -65,6 +65,8 @@ private slots:
 
     void on_pushButton_syncCloud_clicked();
 
+    void on_pushButton_addFolder_clicked();
+
 public slots:
     void set_StatusBar_finished();
     void set_StatusBar_started();

@@ -638,7 +638,10 @@ void Window::set_StatusBar_finished(){
         ui->statusBar->removeWidget(syncWidget);
         ui->statusBar->addPermanentWidget(checkWidget, 0);
 
-        ui->tableWidget->clearContents();
+        while (ui->tableWidget->rowCount() > 0) {
+            ui->tableWidget->removeRow(0);
+        }
+
         settingsmanager->removeKey(MainWindow::settingsKeyForPaths, "");
         checkWidget->show();
 }

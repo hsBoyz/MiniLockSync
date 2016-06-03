@@ -605,3 +605,41 @@ void FileWindow::handleModifiedFile(const QString & path){
     watcher->removePath(path);
 }
 
+
+void FileWindow::on_pushButton_addFolder_clicked()
+{
+        QString folderPath = QFileDialog::getExistingDirectory(
+                    this,
+                    tr("Add folders to encrypt"),
+                    "C://",
+                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+                    );
+        QFileInfo path = folderPath;
+
+        if (folderPath == "") {
+            //Do nothing when user cancel dialog
+        }
+        else
+        {
+            QFileInfo folderName(folderPath);
+
+            QString dirCleanedPath = returnDirectoryCleanedPath(currentDirPath);
+            QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
+            QString relativePath = returnRelativPath(dirCleanedPath);
+
+            qDebug() << path.baseName(); //Foldername vom ordner der hiinzugefügt werden soll
+            qDebug() << nameOfEncryptedFolder;
+            qDebug() << relativePath;
+            //QString workFolder = fileshandler->createDir();
+            //QString cloudFolder = fileshandler->createDir()
+
+
+                    /*QString toCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + nameOfEncryptedFolder + QDir::separator() + relativePath;
+            QString toWorkDir = currentDirPath;
+
+            fileshandler->copy_dir_recursive(folderPath, toCloudDir, true);
+            fileshandler->copy_dir_recursive(folderPath, toWorkDir, false);
+                    */
+        }
+    }
+
