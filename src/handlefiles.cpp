@@ -192,6 +192,8 @@ QString Handlefiles::createDir(QString path, QString folderName) {
         //qDebug() << "handlefiles createdir folder already exists";
     }
     return path + QDir::separator() + folderName;
+
+
 }
 
 void Handlefiles::createCopyAndWorkDir(QString group) {
