@@ -133,6 +133,18 @@ void login::saveLogin_click()
 
 void login::loginButton_click()
 {
+
+    //regexp for checking PW complexity
+       QString checkPasswd = ui.passwdLineEdit->text();
+       QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
+      //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
+       QRegularExpressionMatch rmatch = rx.match(checkPasswd);
+
+        QString checkLog = ui.eMailLineEdit->text();
+        QRegularExpression rc("[a-z]|[A-Z]|[0-9]");
+         QRegularExpressionMatch logmatch = rc.match(checkLog);
+
+
 	// check for entropy
 	std::string password = ui.passwdLineEdit->text().toStdString();
 
@@ -141,11 +153,22 @@ void login::loginButton_click()
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
 
-    if(ui.eMailLineEdit->text().isEmpty())
-      {
-            QMessageBox::information(this, tr("No login entered"),
-                tr("Please enter a valid login. "));
-      }
+    if(logmatch.hasMatch() == 0)
+       {
+           QMessageBox::information(this, tr("Wrong Login"),
+               tr("Please enter a valid login, containing only characters and numbers. "));
+
+       }
+    else  if(rmatch.hasMatch() == 0)
+    {
+        QMessageBox::information(this, tr("Password too weak"),
+            tr("The password should at least have one digit,"
+               " one capital letter or one special letter"
+               " . "));
+    }
+
+
+
     else if ((bitEntropy * password.size()) < 24) // war auf 200... übertrieben?
 	{
         QMessageBox::information(this, tr("Password to weak"),
