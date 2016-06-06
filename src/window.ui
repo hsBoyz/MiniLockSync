@@ -295,7 +295,7 @@ QPushButton#pushManageCloud:focus {
 
 background-color: rgb(255, 255, 255);
  border-style: outset;
-     border-width: 1px;
+     border-width: 2px;
      border-radius: 6px;
      border-color: #708090;
 }
@@ -633,7 +633,16 @@ QHeaderView::section {
                <property name="spacing">
                 <number>0</number>
                </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
                <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
                 <number>0</number>
                </property>
                <item>
