@@ -148,13 +148,15 @@ QPushButton#pushButton_deleteFile:hover {
      <widget class="QListView" name="listView">
       <property name="styleSheet">
        <string notr="true">QListView#listView {
+	background-color: rgb(255, 255, 255);
 	 border-style: outset;
-     border-width: 2px;
+     border-width: 1px;
      border-radius: 6px;
      border-color: #708090;
-     font: 14px;
+     font: 11px;
      min-width: 10em;
      show-decoration-selected: 1;
+
 }
 QListView::item:alternate {
      background: #EEEEEE;
