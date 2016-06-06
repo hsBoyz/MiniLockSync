@@ -20,6 +20,9 @@ FileWindow::FileWindow(QWidget *parent) :
     fileshandler = new Handlefiles();
     log = new login();
     worker = new Worker();
+    watcher = new QFileSystemWatcher();
+
+    connect(watcher, SIGNAL(fileChanged(QString)), this, SLOT(handleModifiedFile(QString)));
     setFileModels();
 
     checkWidget = new QLabel;
@@ -71,7 +74,9 @@ void FileWindow::on_listView_doubleClicked(const QModelIndex &index)
     }
     else {
         //Open document with system standard application
-        QDesktopServices::openUrl(filemodel->fileInfo(index).absoluteFilePath());
+        watcher->addPath(filemodel->fileInfo(index).absoluteFilePath());
+        QDesktopServices::openUrl(QUrl::fromLocalFile(filemodel->fileInfo(index).absoluteFilePath()));
+
     }
 }
 
@@ -588,3 +593,45 @@ void FileWindow::set_StatusBar_started(){
     syncWidget->show();
 
 }
+
+void FileWindow::handleModifiedFile(const QString & path){
+    QString dirCleanedPath = returnDirectoryCleanedPath(path);
+    QString nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
+    QString relativePath = returnRelativPath(dirCleanedPath);
+
+    QString toCloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + nameOfEncryptedFolder + QDir::separator() + relativePath;
+    fileshandler->copyFile(path, toCloudDir);
+
+    watcher->removePath(path);
+}
+
+
+void FileWindow::on_pushButton_addFolder_clicked()
+{
+        QString folderPath = QFileDialog::getExistingDirectory(
+                    this,
+                    tr("Add folders to encrypt"),
+                    "C://",
+                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+                    );
+        QFileInfo path = folderPath;
+
+        if (folderPath == "") {
+            //Do nothing when user cancel dialog
+        }
+        else
+        {
+
+            QString dirCleanedPath = returnDirectoryCleanedPath(QString(currentDirPath));
+
+            QString cloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + dirCleanedPath;
+            QString workDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + dirCleanedPath;
+            QString toWorkDir = fileshandler->createDir(workDir, path.baseName());
+            QString toCloudDir = fileshandler->createDir(cloudDir, path.baseName());
+
+            fileshandler->copy_dir_recursive(folderPath, toCloudDir, true);
+            fileshandler->copy_dir_recursive(folderPath, toWorkDir, false);
+
+        }
+    }
+

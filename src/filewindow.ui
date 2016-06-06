@@ -84,6 +84,29 @@ QPushButton#pushButton_syncCloud:hover {
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_addFolder">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton_addFolder {
+     background-color: #D3D3D3;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 6px;
+     border-color: #708090;
+    font: bold 11px;
+     min-width: 8em;
+     padding: 6px;
+ }
+ 
+QPushButton#pushButton_addFolder:hover {
+	 background-color: #B0C4DE;
+}</string>
+        </property>
+        <property name="text">
+         <string>PushButton</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton_sync">
         <property name="styleSheet">
          <string notr="true">QPushButton#pushButton_sync {

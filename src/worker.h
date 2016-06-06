@@ -24,7 +24,9 @@ signals:
 
 public slots:
 
+    void processCopyAddedFolders();
     void process();
+    void processSyncWork();
     void processSyncCloud();
 
 };

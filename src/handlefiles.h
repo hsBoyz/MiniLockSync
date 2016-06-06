@@ -22,6 +22,8 @@ public:
     void checkForErrors(int result);
     void copyDirectory();
     void copyEncryptedFromCloud();
+    void copyFile(QString from, QString to);
+    void checkAndCopyWorkDir();
 
 private:
      login *log;
@@ -30,6 +32,7 @@ private:
      bool encryptAndCopy(QString from, QString to, QString copyfile, QString toDir);
      bool decryptAndCopy(QString from, QString to, QString copyfile, QString toDir);
      bool checkListForEncryptedFiles(QFileInfoList list);
+
 
 };
 

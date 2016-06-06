@@ -625,7 +625,7 @@ void Window::checkAndCopy() {
     worker->moveToThread(thread);
 
     connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
-    connect(thread, SIGNAL(started()), worker, SLOT(process())) ;
+    connect(thread, SIGNAL(started()), worker, SLOT(processCopyAddedFolders())) ;
     connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
 
@@ -637,6 +637,12 @@ void Window::set_StatusBar_finished(){
     qDebug() << "Window set_StatusBar_finished: sync done";
         ui->statusBar->removeWidget(syncWidget);
         ui->statusBar->addPermanentWidget(checkWidget, 0);
+
+        while (ui->tableWidget->rowCount() > 0) {
+            ui->tableWidget->removeRow(0);
+        }
+
+        settingsmanager->removeKey(MainWindow::settingsKeyForPaths, "");
         checkWidget->show();
 }
 
