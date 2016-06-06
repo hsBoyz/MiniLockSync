@@ -16,20 +16,35 @@ Window::Window(QWidget *parent) :
     // Das komplette Menü zum Hauptprogramm
         QMenu *fileMenu = new QMenu(tr("&File"), this);
         menuBar()->addMenu(fileMenu);
-        act3 = fileMenu->addAction(
+
+        act1 = fileMenu->addAction(
+                    QIcon(":icons(images/"),
+                    tr("Instructions"),
+                    qApp, SLOT(menubar_instructions));
+        act1->setStatusTip((tr("Instructions")));
+
+        act2 = fileMenu->addAction(
                     QIcon(":/icons/images/cancel.png")   ,
                     tr("Quit"),
            qApp, SLOT(quit()),
            QKeySequence(tr("Ctrl+Q", "File|Quit")) );
-        act3->setStatusTip(tr("Quit Program"));
+        act2->setStatusTip(tr("Quit Program"));
+
+
+        QMenu *questionMark = new QMenu(tr("&?"), this);
+        menuBar()->addMenu(questionMark);
+        act3 = questionMark->addAction(
+                    QIcon(":icons/images/icon_rund.png"),
+                    tr("About us"),
+                    questionMark, SLOT(menubar_aboutus));
+        act3->setStatusTip((tr("About us")));
 
 
 
 
 
-       /* QMenu *workMenu = new QMenu(
-           tr("&Edit"), this);
-        menuBar()->addMenu(workMenu); */
+
+
 //--------------------------------------------------------
 
     settingsmanager = new Settingsmanager();
@@ -40,8 +55,11 @@ Window::Window(QWidget *parent) :
     connect (ui->pushCloudService, SIGNAL(clicked(bool)), this, SLOT(on_pushCloudService_clicked()));
     connect (ui->pushManageCloud, SIGNAL(clicked(bool)), this, SLOT(on_pushManageCloud_clicked()));
     connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), this, SLOT(on_pushManageSaveDir_clicked()));
-    //connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), this, SLOT(on_pushCPULimitation_clicked()));
-    //connect (ui->pushChangePassword, SIGNAL(clicked(bool)), this, SLOT(on_pushChangePassword_clicked()));
+
+
+
+
+
 
 
 
@@ -83,6 +101,18 @@ void Window::contextMenuEvent(
    menu->exec(event->globalPos());
 }
 */
+
+void Window::menubar_instructions(){
+
+
+}
+
+void Window::menubar_aboutus(){
+
+
+
+
+}
 
 
 /*
@@ -148,25 +178,7 @@ void Window::on_pushManageSaveDir_clicked()
               ui->stackedWidget->setCurrentIndex(3); // Manage Save Dir
           }
 }
-/*
-void Window::on_pushCPULimitation_clicked()
-{
-    currentIndex = ui->stackedWidget->currentIndex();
-          if( currentIndex < ui->stackedWidget->count())
-          {
-              ui->stackedWidget->setCurrentIndex(4); // CPU Limitation
-          }
-}
 
-void Window::on_pushChangePassword_clicked()
-{
-    currentIndex = ui->stackedWidget->currentIndex();
-          if( currentIndex < ui->stackedWidget->count())
-          {
-              ui->stackedWidget->setCurrentIndex(5); // Change PW
-          }
-}
-*/
 void Window::on_pushButton_addDir_clicked()
 {
     QString folderPath = QFileDialog::getExistingDirectory(
