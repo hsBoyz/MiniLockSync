@@ -140,9 +140,15 @@ void login::loginButton_click()
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-    if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
+
+    if(ui.eMailLineEdit->text().isEmpty())
+      {
+            QMessageBox::information(this, tr("No login entered"),
+                tr("Please enter a valid login. "));
+      }
+    else if ((bitEntropy * password.size()) < 24) // war auf 200... übertrieben?
 	{
-        QMessageBox::information(this, tr("Password to wea"),
+        QMessageBox::information(this, tr("Password to weak"),
             tr("Password should be atleast 8 characters. "));
 	}
 
@@ -151,9 +157,7 @@ void login::loginButton_click()
         QMessageBox::information(this, tr("Wrong Password"),
             tr("Passwords dont match. "));
 
-
     }
-
 
 	else
 	{
@@ -190,7 +194,7 @@ void login::startButton_click()
 	if (ui.yourIdLineEdit->text().isEmpty())
 	{
         QMessageBox::information(this, tr("Error"),
-            tr("Please log in first "
+            tr("Please generate a key first "
                 "to start the program " ));
 	}
 	else
