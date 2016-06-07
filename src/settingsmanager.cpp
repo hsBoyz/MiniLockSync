@@ -10,22 +10,49 @@ Settingsmanager::Settingsmanager()
 }
 
 void Settingsmanager::saveSettings(QString group, QString key, QString value) {
+    /*QSettings setting(myApp, mySetting);
+    //setting.beginGroup(group);
+    setting.setValue(login::user + "/" + key, value);
+
+    //setting.endGroup();
+
+    qDebug() << TAG + " saveSettings: " + "saved key/value: " << login::user + "/" + key, value;
+    */
+
     QSettings setting(myApp, mySetting);
+    setting.beginGroup(login::user);
     setting.beginGroup(group);
     setting.setValue(key, value);
+    setting.endGroup(); //group
+    setting.endGroup(); //login.user
 
-    setting.endGroup();
-
-    qDebug() << TAG + " saveSettings: " + "saved";
+    qDebug() << TAG + " saveSettings: user " << login::user + "saved key/value: " << key  << " " << value;
 }
 
 QStringList Settingsmanager::loadSettings(QString group) {
+    qDebug() << login::user;
+    /*
     QSettings setting(myApp, mySetting);
+    QStringList keysUser;
     QStringList keys;
 
     setting.beginGroup(group);
-    keys = setting.allKeys();
-    setting.endGroup();
+    keysUser = setting.childKeys();
+
+    foreach (QString child, keysUser) {
+        qDebug() << TAG << " loadsetting: childgroups: " << child;
+    }
+    */
+    QSettings setting(myApp, mySetting);
+    QStringList keys;
+
+    setting.beginGroup(login::user);
+    setting.beginGroup(group);
+    keys = setting.childKeys();
+
+    foreach (QString key, keys) {
+        qDebug() << TAG << " loadsetting: " << "user: " << login::user << "key: " << key;
+    }
 
     return keys;
 }
@@ -33,15 +60,18 @@ QStringList Settingsmanager::loadSettings(QString group) {
 QString Settingsmanager::returnSetting(QString group, QString key) {
     QSettings setting(myApp, mySetting);
     QString value;
+    setting.beginGroup(login::user);
     setting.beginGroup(group);
     value = setting.value(key).toString();
-    setting.endGroup();
+    setting.endGroup(); //group
+    setting.endGroup(); //login::user
 
     return value;
 }
 
 void Settingsmanager::removeKey(QString group, QString keyToRemove) {
     QSettings setting(myApp, mySetting);
+    setting.beginGroup(login::user);
     setting.beginGroup(group);
     setting.remove(keyToRemove);
 
@@ -49,10 +79,11 @@ void Settingsmanager::removeKey(QString group, QString keyToRemove) {
 
     if (setting.allKeys().length() == 0){
         setting.remove("");
-        qDebug() << TAG + ": Group " + group + " removed";
+        qDebug() << TAG + ": Group " + login::user + "/" +  group + " removed";
     }
 
-    setting.endGroup();
+    setting.endGroup(); //group
+    setting.endGroup(); //login::user
 }
 
 /*
@@ -74,8 +105,10 @@ void Settingsmanager::printGroups() {
 */
 
 void Settingsmanager::removeAllKeys() {
+    /*
     QSettings setting(myApp, mySetting);
     QStringList list = setting.childGroups();
+
 
     foreach(QString grp, list) {
         qDebug() << grp;
@@ -87,53 +120,73 @@ void Settingsmanager::removeAllKeys() {
         }
         setting.endGroup();
     }
+    */
+    QSettings setting(myApp, mySetting);
+    QStringList allKeys = setting.allKeys();
+    foreach (QString key, allKeys) {
+        setting.remove(key);
+        qDebug() << TAG << " removeAllKey: removed key: " << key;
+    }
+
+
 }
 
 
 QString Settingsmanager::getKeyAtPosition(QString group, int position) {
     QSettings setting(myApp, mySetting);
+    setting.beginGroup(login::user);
     setting.beginGroup(group);
     QStringList keyList = setting.allKeys();
-    setting.endGroup();
+    setting.endGroup(); //group
+    setting.endGroup(); //login::user
 
     return keyList[position];
 }
 
 bool Settingsmanager::keyExists(QString group, QString key) {
     QSettings setting(myApp, mySetting);
+    setting.beginGroup(login::user);
     setting.beginGroup(group);
     if (setting.contains(key)){
-        setting.endGroup();
+        setting.endGroup(); //group
+        setting.endGroup(); //login::user
         return true;
     }
     else {
-        setting.endGroup();
+        setting.endGroup(); //group
+        setting.endGroup(); //login::user
         return false;
     }
 }
 
 bool Settingsmanager::groupExists(QString group) {
     QSettings setting(myApp, mySetting);
+    setting.beginGroup(login::user);
     setting.beginGroup(group);
     QStringList list = setting.allKeys();
     if (list.length() != 0){
-        setting.endGroup();
+        setting.endGroup(); //group
+        setting.endGroup(); //login::user
         return true;
     }
     else {
-        setting.endGroup();
+        setting.endGroup(); //group
+        setting.endGroup(); //login::user
         return false;
     }
 }
 
 QString Settingsmanager::valueExists(QString value) {
     QSettings setting(myApp, mySetting);
+    setting.beginGroup(login::user);
     QStringList list = setting.allKeys();
     foreach (QString key, list) {
         if (setting.value(key) == value) {
+            setting.endGroup();
             return key;
         }
     }
+    setting.endGroup();
     return "false";
 }
 

@@ -1,6 +1,7 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
+#include "login.hpp"
 #include <QString>
 #include <QDir>
 

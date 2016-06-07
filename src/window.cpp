@@ -542,6 +542,7 @@ void Window::saveDirectories(QString group, QString name, QString path) {
 
 
 void Window::populateTableWidget(QString group, QTableWidget *widget) {
+
    if (!settingsmanager->loadSettings(group).isEmpty()) {
        if (group == MainWindow::settingsKeyForWorkDirPath) {
            //Only allow user to specify one working directory

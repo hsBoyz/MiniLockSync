@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "filewindow.h"
 #include "steerer.h"
-//#include "settingsmanager.h"
+#include "settingsmanager.h"
 
 #include <QtGui>
 #include <QAction>
@@ -42,7 +42,6 @@ login::login(QWidget * parent) : QWidget(parent) {
     ui.passwdLineEdit->setEchoMode(QLineEdit::Password);
     ui.conPWlineEdit->setEchoMode(QLineEdit::Password);
 
-
 }
 
 
@@ -54,6 +53,7 @@ login::~login()
 
 uCrypt::uCryptLib login::mainSession = uCrypt::uCryptLib();
 bool login::isInitialized = false;
+QString login::user = "";
 
 void login::cancelButton_click()
 {
@@ -69,7 +69,7 @@ void login::cancelButton_click()
     ui.eMailLineEdit->setPalette(*palette);
     ui.conPWlineEdit->setPalette(*palette);
 
-
+    this->user = "";
 
 }
 
@@ -87,7 +87,7 @@ void login::saveLogin()
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
          setting.setValue("conPW",this->ui.conPWlineEdit->text());
          setting.setValue("check",this->ui.saveLogin->isChecked());
-         setting.endGroup();
+         setting.endGroup(); //login
 
 
 
@@ -133,7 +133,6 @@ void login::saveLogin_click()
 
 void login::loginButton_click()
 {
-
     //regexp for checking PW complexity
        QString checkPasswd = ui.passwdLineEdit->text();
        QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
@@ -192,6 +191,8 @@ void login::loginButton_click()
 		QString qSzPasswd = ui.passwdLineEdit->text();
 		QString qSzEmail = ui.eMailLineEdit->text();
         QString conPW = ui.conPWlineEdit->text();
+
+        this->user = qSzEmail;
 
 		ui.passwdLineEdit->setReadOnly(true);
 		ui.eMailLineEdit->setReadOnly(true);
@@ -257,4 +258,16 @@ uCrypt::uCryptLib login::getMainSession() {
 
 bool login::getIsInitialized() {
     return this->isInitialized;
+}
+
+void login::on_pushButton_clicked()
+{
+    Settingsmanager *setman = new Settingsmanager();
+    setman->removeAllKeys();
+}
+
+void login::on_pushButton_2_clicked()
+{
+    Settingsmanager *serman = new Settingsmanager();
+    serman->loadSettings("test");
 }
