@@ -18,4 +18,8 @@
     <qresource prefix="/files">
         <file>files/MiniLockSync - Instructions.pdf</file>
     </qresource>
+    <qresource prefix="/Languages">
+        <file>MiniLockSync_de.qm</file>
+        <file>MiniLockSync_de.ts</file>
+    </qresource>
 </RCC>

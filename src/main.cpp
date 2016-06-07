@@ -24,6 +24,8 @@ int main(int argc, char *argv[])
 
     /* /build/build-MiniLockSync-Desktop_Qt_5_6_0_MSVC2015-Release/release/MiniLockSync_de.qm    and      /MiniLockSync_de.ts ! */
     editTranslator.load(filename, dir.currentPath());                      //qApp->applicationDirPath()); ///!!!!!!!!!!!!!!!!!! ToDo
+
+
     a.installTranslator(&editTranslator);
 
 
