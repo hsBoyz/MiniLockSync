@@ -30,7 +30,7 @@ void Settingsmanager::saveSettings(QString group, QString key, QString value) {
 }
 
 QStringList Settingsmanager::loadSettings(QString group) {
-    qDebug() << login::user;
+    qDebug() << TAG << " loadsettings: " << login::user;
     /*
     QSettings setting(myApp, mySetting);
     QStringList keysUser;

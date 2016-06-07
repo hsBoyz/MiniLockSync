@@ -91,15 +91,9 @@ void login::saveLogin()
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
          setting.setValue("conPW",this->ui.conPWlineEdit->text());
          setting.setValue("check",this->ui.saveLogin->isChecked());
-<<<<<<< HEAD
-         setting.endGroup(); //login
-=======
          setting.setValue("lineEdit",this->ui.yourIdLineEdit->text());
          setting.setValue("checkbox",this->ui.comboBox->itemText(0));
          setting.endGroup();
->>>>>>> remotes/originHttps/Branch_gui_luca2
-
-
 
     }
     else
@@ -314,5 +308,8 @@ void login::on_pushButton_clicked()
 void login::on_pushButton_2_clicked()
 {
     Settingsmanager *serman = new Settingsmanager();
-    serman->loadSettings("test");
+    serman->loadSettings(MainWindow::settingsKeyForCloudDirPath);
+    serman->loadSettings(MainWindow::settingsKeyForPaths);
+    serman->loadSettings(MainWindow::settingsKeyForWorkDirPath);
+    serman->loadSettings(MainWindow::settingsKeyGeneralSettings);
 }

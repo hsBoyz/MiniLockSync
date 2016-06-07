@@ -43,12 +43,10 @@ public:
 	Ui::login ui;
     static uCrypt::uCryptLib mainSession;
     static bool isInitialized;
-<<<<<<< HEAD
     static QString user;
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
-=======
 
     private:
 
@@ -57,5 +55,4 @@ private slots:
     login(const login&);
     login &operator=(const login&);
     // <<<
->>>>>>> remotes/originHttps/Branch_gui_luca2
 };
