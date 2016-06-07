@@ -33,7 +33,7 @@ protected:
     void cancelButton_click();
     void saveLogin_click();
     void saveLogin();
-    void loadLogin();
+    void loadLogin(QString user);
     //void autostart();
 	
 	void startButton_click();
@@ -47,6 +47,8 @@ public:
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
+    void checkUserName();
+    bool checkPassword();
 
     private:
 

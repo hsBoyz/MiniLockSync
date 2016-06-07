@@ -1,10 +1,8 @@
 <RCC>
     <qresource prefix="/icons">
         <file>images/cancel.png</file>
-        <file>images/logo button 400x200_bearbeitet-1.png</file>
         <file>images/icon_rund.png</file>
         <file>images/icon_eckig.png</file>
-        <file>images/logo button 112x53_bearbeitet-1.png</file>
         <file>images/MLS Banner2.png</file>
         <file>images/MLS Banner3.png</file>
         <file>images/4MLS Banner4.png</file>
@@ -12,13 +10,16 @@
         <file>images/sync_icon2.png</file>
     </qresource>
     <qresource prefix="/buttons">
-        <file>buttons/HomeButtonRounded400.png</file>
-        <file>buttons/Cloud-Management-Icon-635.jpg</file>
-        <file>buttons/CloudService400x225.png</file>
-        <file>buttons/db-backup.png</file>
         <file>buttons/cloud_button.png</file>
         <file>buttons/folder_button.png</file>
         <file>buttons/home_button.png</file>
         <file>buttons/settings_button.png</file>
+    </qresource>
+    <qresource prefix="/files">
+        <file>files/MiniLockSync - Instructions.pdf</file>
+    </qresource>
+    <qresource prefix="/Languages">
+        <file>MiniLockSync_de.qm</file>
+        <file>MiniLockSync_de.ts</file>
     </qresource>
 </RCC>

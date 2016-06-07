@@ -86,9 +86,15 @@ void Steerer::openFileWindow()
 
 void Steerer::logout()
 {
+    QSettings setting("MyApp","mysetting");
+    setting.beginGroup("general");
+    setting.setValue("check","false"); //dont load any settings on new start
+    setting.setValue("user", "");
+    setting.endGroup();
 
     qApp->quit();
     login::user = "";
+
     //QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
     //login::GetInstance().show();
 

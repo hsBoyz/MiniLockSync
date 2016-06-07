@@ -29,8 +29,16 @@ MainWindow *mainWindow;
 
 login::login(QWidget * parent) : QWidget(parent) {
     ui.setupUi(this);
-    loadLogin();
-    qDebug() <<  "login loaded";
+    connect(ui.eMailLineEdit, SIGNAL (editingFinished()), this, SLOT(checkUserName()));
+
+    Settingsmanager *setman = new Settingsmanager();
+
+    if (setman->returnSetting("general", "check") == "true") {
+        loadLogin(setman->returnSetting("general", "user"));
+        qDebug() <<  "login loaded";
+    }
+
+
 
 
 
@@ -81,11 +89,12 @@ void login::cancelButton_click()
 
 void login::saveLogin()
 {
-    if(ui.saveLogin->isChecked())
-    {
+    //if(ui.saveLogin->isChecked())
+    //{
 
 
          QSettings setting("MyApp","mysetting");
+         setting.beginGroup(this->ui.eMailLineEdit->text());
          setting.beginGroup("login");
          setting.setValue("logName",this->ui.eMailLineEdit->text());
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
@@ -94,7 +103,8 @@ void login::saveLogin()
          setting.setValue("lineEdit",this->ui.yourIdLineEdit->text());
          setting.setValue("checkbox",this->ui.comboBox->itemText(0));
          setting.endGroup();
-
+         setting.endGroup();
+/*
     }
     else
     {
@@ -103,11 +113,13 @@ void login::saveLogin()
         setting.clear();
         setting.endGroup();
     }
+    */
 }
 
-void login::loadLogin()
+void login::loadLogin(QString user)
 {
     QSettings setting("MyApp","mysetting");
+    setting.beginGroup(user);
     setting.beginGroup("login");
     QString qSzEmail = setting.value("logName").toString();
     QString qSzPasswd = setting.value("logPassword").toString();
@@ -123,6 +135,7 @@ void login::loadLogin()
     ui.yourIdLineEdit->setText(idNumber);
     ui.comboBox->setItemText(0, checkbox);
 
+     setting.endGroup();
      setting.endGroup();
      loginButton_click();
 
@@ -142,11 +155,11 @@ void login::loadLogin()
 void login::saveLogin_click()
 
 {
-
-    saveLogin();
-
-
-
+    QSettings setting("MyApp","mysetting");
+    setting.beginGroup("general");
+    setting.setValue("check",this->ui.saveLogin->isChecked()); //Store in general settings, not user specific
+    setting.setValue("user", ui.eMailLineEdit->text());
+    setting.endGroup();
 }
 
 
@@ -154,6 +167,10 @@ void login::saveLogin_click()
 
 void login::loginButton_click()
 {
+    if (checkPassword() == false) {
+
+    }
+    else {
     //regexp for checking PW complexity
        QString checkPasswd = ui.passwdLineEdit->text();
        QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
@@ -233,9 +250,12 @@ void login::loginButton_click()
         ui.comboBox->insertItem(0, identificationNumber);
 
 
+        saveLogin();    //Save login data in settings
+
 
 
 	}
+    }
 
 }
 void login::startButton_click()
@@ -297,6 +317,33 @@ uCrypt::uCryptLib login::getMainSession() {
 
 bool login::getIsInitialized() {
     return this->isInitialized;
+}
+
+void login::checkUserName() {
+    Settingsmanager *setman = new Settingsmanager();
+    if (setman->groupExists(ui.eMailLineEdit->text())) {
+        ui.conPWlineEdit->setEnabled(false);
+    }
+}
+
+bool login::checkPassword() {
+    QSettings setting("MyApp","mysetting");
+    setting.beginGroup(ui.eMailLineEdit->text());
+    setting.beginGroup("login");
+    QString qSzPasswd = setting.value("logPassword").toString();
+
+    if (ui.passwdLineEdit->text() == qSzPasswd) {
+        return true;
+    }
+    else {
+        ui.loginButton->setEnabled(false);
+        QMessageBox msgBox;
+        msgBox.setInformativeText(tr("Wrong password or username"));
+        msgBox.exec();
+        ui.passwdLineEdit->setFocus();
+        ui.passwdLineEdit->selectAll();
+        return false;
+    }
 }
 
 void login::on_pushButton_clicked()

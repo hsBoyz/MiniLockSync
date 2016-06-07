@@ -6,6 +6,8 @@
 #include <QThread>
 #include <QSignalMapper>
 #include <QPalette>
+#include <QDesktopServices>
+
 Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Window)
@@ -16,20 +18,39 @@ Window::Window(QWidget *parent) :
     // Das komplette Menü zum Hauptprogramm
         QMenu *fileMenu = new QMenu(tr("&File"), this);
         menuBar()->addMenu(fileMenu);
-        act3 = fileMenu->addAction(
+
+
+
+        act1 = fileMenu->addAction(
                     QIcon(":/icons/images/cancel.png")   ,
                     tr("Quit"),
-           qApp, SLOT(quit()),
-           QKeySequence(tr("Ctrl+Q", "File|Quit")) );
-        act3->setStatusTip(tr("Quit Program"));
+                    qApp, SLOT(quit()),
+                    QKeySequence(tr("Ctrl+Q", "File|Quit")) );
+        act1->setStatusTip(tr("Quit Program"));
+
+
+
+        QMenu *questionMark = new QMenu(tr("&?"), this);
+        menuBar()->addMenu(questionMark);
+
+        act2 = questionMark->addAction(
+                    QIcon(":icons(images/"),
+                    tr("Instructions"),
+                    questionMark, SLOT(menubar_instructions()));
+        act2->setStatusTip((tr("Instructions")));
+
+        act3 = questionMark->addAction(
+                    QIcon(":icons/images/icon_rund.png"),
+                    tr("About us"),
+                    questionMark, SLOT(menubar_aboutus()));
+        act3->setStatusTip((tr("About us")));
 
 
 
 
 
-       /* QMenu *workMenu = new QMenu(
-           tr("&Edit"), this);
-        menuBar()->addMenu(workMenu); */
+
+
 //--------------------------------------------------------
 
     settingsmanager = new Settingsmanager();
@@ -40,8 +61,11 @@ Window::Window(QWidget *parent) :
     connect (ui->pushCloudService, SIGNAL(clicked(bool)), this, SLOT(on_pushCloudService_clicked()));
     connect (ui->pushManageCloud, SIGNAL(clicked(bool)), this, SLOT(on_pushManageCloud_clicked()));
     connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), this, SLOT(on_pushManageSaveDir_clicked()));
-    //connect (ui->pushCPULimitation, SIGNAL(clicked(bool)), this, SLOT(on_pushCPULimitation_clicked()));
-    //connect (ui->pushChangePassword, SIGNAL(clicked(bool)), this, SLOT(on_pushChangePassword_clicked()));
+
+    connect(act2, SIGNAL(triggered()), this, SLOT(menubar_instructions()));
+    connect(act3, SIGNAL(triggered()), this, SLOT(menubar_aboutus()));
+
+
 
 
 
@@ -83,6 +107,25 @@ void Window::contextMenuEvent(
    menu->exec(event->globalPos());
 }
 */
+
+void Window::menubar_instructions(){
+
+    /*/build/build-MiniLockSync-Desktop_Qt_5_6_0_MSVC2015-Release/release/MiniLockSync - Instructions.pdf' !! */
+    QFile HelpFile("qrc:/files/files/MiniLockSync - Instructions.pdf");
+    HelpFile.copy(qApp->applicationDirPath().append("/MiniLockSync - Instructions.pdf"));
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(qApp->applicationDirPath().append("/MiniLockSync - Instructions.pdf")));
+
+}
+
+void Window::menubar_aboutus(){
+
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(0); // Home
+          }
+}
 
 
 /*
@@ -148,25 +191,7 @@ void Window::on_pushManageSaveDir_clicked()
               ui->stackedWidget->setCurrentIndex(3); // Manage Save Dir
           }
 }
-/*
-void Window::on_pushCPULimitation_clicked()
-{
-    currentIndex = ui->stackedWidget->currentIndex();
-          if( currentIndex < ui->stackedWidget->count())
-          {
-              ui->stackedWidget->setCurrentIndex(4); // CPU Limitation
-          }
-}
 
-void Window::on_pushChangePassword_clicked()
-{
-    currentIndex = ui->stackedWidget->currentIndex();
-          if( currentIndex < ui->stackedWidget->count())
-          {
-              ui->stackedWidget->setCurrentIndex(5); // Change PW
-          }
-}
-*/
 void Window::on_pushButton_addDir_clicked()
 {
     QString folderPath = QFileDialog::getExistingDirectory(
