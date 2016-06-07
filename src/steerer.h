@@ -8,6 +8,7 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QAction>
+#include <handlefiles.h>
 
 namespace Ui {
 class Steerer;
@@ -18,6 +19,13 @@ class Steerer : public QWidget
     Q_OBJECT
 
 public:
+
+    // >>> Singleton impl
+    static Steerer &GetInstance() {
+        static Steerer Instanz;
+        return Instanz;
+    }
+    // <<<
     explicit Steerer(QWidget *parent = 0);
     ~Steerer();
 
@@ -27,11 +35,19 @@ public:
 private slots:
     void showSettings();
     void openFileWindow();
+    void logout();
     void trayLeftClick(QSystemTrayIcon::ActivationReason reason);
 
 
 private:
+    // >>> Singleton impl
+    //Steerer(QWidget *parent = 0);
+    Steerer(const Steerer&);
+    Steerer &operator=(const Steerer&);
+    // <<<
     Ui::Steerer *ui;
+
+
 
 
     void createActions();
@@ -39,11 +55,13 @@ private:
     QAction *settingsAction;
     QAction *quitAction;
     QAction *openAction;
+    QAction *logoutAction;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
 
     bool checkSettings();
     void startAutoSync();
+
 
 
 };

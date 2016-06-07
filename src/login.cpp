@@ -22,13 +22,17 @@
 #include <random>
 #include <QSettings>
 #include <QRegExp>
+#include <QDebug>
 
 	
 MainWindow *mainWindow;
 
 login::login(QWidget * parent) : QWidget(parent) {
-	ui.setupUi(this);
+    ui.setupUi(this);
     loadLogin();
+    qDebug() <<  "login loaded";
+
+
 
 
    // QRegExp rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
@@ -87,6 +91,8 @@ void login::saveLogin()
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
          setting.setValue("conPW",this->ui.conPWlineEdit->text());
          setting.setValue("check",this->ui.saveLogin->isChecked());
+         setting.setValue("lineEdit",this->ui.yourIdLineEdit->text());
+         setting.setValue("checkbox",this->ui.comboBox->itemText(0));
          setting.endGroup();
 
 
@@ -108,17 +114,30 @@ void login::loadLogin()
     QString qSzEmail = setting.value("logName").toString();
     QString qSzPasswd = setting.value("logPassword").toString();
     QString conPW = setting.value("conPW").toString();
+    QString idNumber = setting.value("lineEdit").toString();
+    QString checkbox = setting.value("checkbox").toString();
+
 
     ui.eMailLineEdit->setText(qSzEmail);
     ui.passwdLineEdit->setText(qSzPasswd);
     ui.conPWlineEdit->setText(conPW);
     ui.saveLogin->setChecked(true);
-   if(qSzEmail != 0)
-    loginButton_click();
+    ui.yourIdLineEdit->setText(idNumber);
+    ui.comboBox->setItemText(0, checkbox);
 
-    setting.endGroup();
+     setting.endGroup();
+     loginButton_click();
 
+    qDebug()<<  "load complete";
 
+/*
+    if(checkbox == idNumber)
+    {
+        autostart();
+    }
+    else
+        loginButton_click();
+*/
 
 }
 
@@ -128,7 +147,11 @@ void login::saveLogin_click()
 
     saveLogin();
 
+
+
 }
+
+
 
 
 void login::loginButton_click()
@@ -209,11 +232,16 @@ void login::loginButton_click()
 
 		ui.yourIdLineEdit->setText(identificationNumber);
         ui.comboBox->insertItem(0, identificationNumber);
+
+
+
+
 	}
 
 }
 void login::startButton_click()
 {
+
 	if (ui.yourIdLineEdit->text().isEmpty())
 	{
         QMessageBox::information(this, tr("Error"),
@@ -233,17 +261,30 @@ void login::startButton_click()
 
 		hide();
         mainWindow = new MainWindow(this);
-	//	mainWindow->show();
+
         Window::GetInstance().show();
+       // FileWindow::GetInstance().show();
 
-        Steerer *s = new Steerer();
-        s->start();
-
+       Steerer::GetInstance().start();
+     qDebug()<<  "startbutton clicked";
 
 		
 	}
 
+
 }
+
+/*
+  void login::autostart()
+{
+
+
+    isInitialized = true;
+    Steerer::GetInstance().start();
+
+    qDebug()<<  "autostart engaged";
+}
+*/
 
 void login::closeEvent(QCloseEvent *event)
 {
