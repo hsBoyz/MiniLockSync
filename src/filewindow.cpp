@@ -51,6 +51,7 @@ void FileWindow::on_pushButton_back_clicked()
 {
     if (!previousDirPath.isEmpty()) {
         ui->listView->setRootIndex(filemodel->index(previousDirPath.last()));
+        currentDirPath = previousDirPath.last();
         previousDirPath.removeLast();
     }
 
@@ -132,18 +133,20 @@ void FileWindow::on_listView_clicked(const QModelIndex &index)
 
 void FileWindow::on_pushButton_deleteFile_clicked()
 {
+    QString selectedPath = filemodel->filePath(ui->listView->selectionModel()->selectedIndexes().value(0));
+
     QString dirCleanedPath;
     QString nameOfEncryptedFolder;
     QString relativePath;
 
-    if (selectedDirPath == "") {
+    if (selectedPath == "") {
         QMessageBox msgBox;
         msgBox.setInformativeText(tr("Please select file or directory to delete"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
     }
 
-    QFileInfo fileInfo(selectedDirPath);
+    QFileInfo fileInfo(selectedPath);
 
 
     QMessageBox msgBox;
@@ -152,11 +155,11 @@ void FileWindow::on_pushButton_deleteFile_clicked()
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
-    dirCleanedPath = returnDirectoryCleanedPath(selectedDirPath);
+    dirCleanedPath = returnDirectoryCleanedPath(selectedPath);
     nameOfEncryptedFolder = returnDirNameFromString(dirCleanedPath);
     relativePath = returnRelativPath(dirCleanedPath);
 
-    if (selectedDirPath != "") {
+    if (selectedPath != "") {
         int returnValue = msgBox.exec();
 
         switch (returnValue) {
@@ -615,23 +618,41 @@ void FileWindow::on_pushButton_addFolder_clicked()
                     QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
                     );
         QFileInfo path = folderPath;
+        QString dirCleanedPath = returnDirectoryCleanedPath(QString(currentDirPath));
+        QString workDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + dirCleanedPath;
+
+        QDir dir(workDir + QDir::separator() + path.baseName());
 
         if (folderPath == "") {
             //Do nothing when user cancel dialog
         }
+        else if (dir.exists()) {
+            QMessageBox msgBox;
+            msgBox.setInformativeText(tr("Folder already exists. Please remove or rename."));
+            msgBox.exec();
+        }
         else
         {
 
-            QString dirCleanedPath = returnDirectoryCleanedPath(QString(currentDirPath));
 
             QString cloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + dirCleanedPath;
-            QString workDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + dirCleanedPath;
             QString toWorkDir = fileshandler->createDir(workDir, path.baseName());
             QString toCloudDir = fileshandler->createDir(cloudDir, path.baseName());
 
-            fileshandler->copy_dir_recursive(folderPath, toCloudDir, true);
-            fileshandler->copy_dir_recursive(folderPath, toWorkDir, false);
+            bool cloudBool = fileshandler->copy_dir_recursive(folderPath, toCloudDir, true);
+            bool workBool = fileshandler->copy_dir_recursive(folderPath, toWorkDir, false);
+
+            if (cloudBool == true && workBool == true) {
+                fileshandler->delete_dir_recursive(folderPath);
+            }
 
         }
     }
 
+
+void FileWindow::handleSelectionChanged(const QModelIndex& selection){
+
+      QString selectedPath = filemodel->filePath(selection);
+      qDebug() << selectedPath;
+
+}

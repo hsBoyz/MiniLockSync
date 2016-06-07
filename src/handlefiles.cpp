@@ -363,3 +363,4 @@ void Handlefiles::copyFile(QString from, QString to) {
 
     encryptAndCopy(from, to, fInfo.fileName(), fInfoTo.absolutePath());
 }
+

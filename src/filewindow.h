@@ -43,6 +43,7 @@ private slots:
     void deleteFile(QString folderName, QString relativePath, QFileInfo fileInfo);
     void checkForErrors(int result);
     void handleModifiedFile(const QString &path);
+    void handleSelectionChanged(const QModelIndex &selection);
 
     void dragEnterEvent(QDragEnterEvent *e);
     void dragLeaveEvent(QDragLeaveEvent *e);
