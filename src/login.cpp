@@ -30,8 +30,10 @@ MainWindow *mainWindow;
 login::login(QWidget * parent) : QWidget(parent) {
     ui.setupUi(this);
     connect(ui.eMailLineEdit, SIGNAL (editingFinished()), this, SLOT(checkUserName()));
+    connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
 
     Settingsmanager *setman = new Settingsmanager();
+    this->userExists == false;
 
     if (setman->returnSetting("general", "check") == "true") {
         loadLogin(setman->returnSetting("general", "user"));
@@ -170,91 +172,56 @@ void login::loginButton_click()
     if (checkPassword() == false) {
 
     }
-    else {
-    //regexp for checking PW complexity
-       QString checkPasswd = ui.passwdLineEdit->text();
-       QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
-      //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
-       QRegularExpressionMatch rmatch = rx.match(checkPasswd);
+    else if (!this->userExists){
 
-        QString checkLog = ui.eMailLineEdit->text();
-        QRegularExpression rc("[a-z]|[A-Z]|[0-9]");
-         QRegularExpressionMatch logmatch = rc.match(checkLog);
+        //regexp for checking PW complexity
+           QString checkPasswd = ui.passwdLineEdit->text();
+           QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
+          //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
+           QRegularExpressionMatch rmatch = rx.match(checkPasswd);
 
-
-	// check for entropy
-	std::string password = ui.passwdLineEdit->text().toStdString();
+            QString checkLog = ui.eMailLineEdit->text();
+            QRegularExpression rc("[a-z]|[A-Z]|[0-9]");
+             QRegularExpressionMatch logmatch = rc.match(checkLog);
 
 
-	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
-	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
+        // check for entropy
+        std::string password = ui.passwdLineEdit->text().toStdString();
 
 
-    if(logmatch.hasMatch() == 0)
-       {
-           QMessageBox::information(this, tr("Wrong Login"),
-               tr("Please enter a valid login, containing only characters and numbers. "));
+        // double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
+        double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-       }
-    else  if(rmatch.hasMatch() == 0)
-    {
-        QMessageBox::information(this, tr("Password too weak"),
-            tr("The password should at least have one digit,"
-               " one capital letter or one special letter"
-               " . "));
+
+        if(logmatch.hasMatch() == 0)
+        {
+               QMessageBox::information(this, tr("Wrong Login"),
+                   tr("Please enter a valid login, containing only characters and numbers. "));
+
+        }
+        else if(rmatch.hasMatch() == 0)
+        {
+            QMessageBox::information(this, tr("Password too weak"),
+                tr("The password should at least have one digit,"
+                   " one capital letter or one special letter"
+                   " . "));
+        }
+        else if ((bitEntropy * password.size()) < 24) // war auf 200... übertrieben?
+        {
+            QMessageBox::information(this, tr("Password to weak"),
+                tr("Password should be atleast 8 characters. "));
+        }
+        else if( ui.passwdLineEdit->text() != ui.conPWlineEdit->text())
+        {
+            QMessageBox::information(this, tr("Wrong Password"),
+                tr("Passwords dont match. "));
+
+        }
+        loginDataConfirmed();
     }
-
-
-
-    else if ((bitEntropy * password.size()) < 24) // war auf 200... übertrieben?
+    else
 	{
-        QMessageBox::information(this, tr("Password to weak"),
-            tr("Password should be atleast 8 characters. "));
-	}
-
-    else if( ui.passwdLineEdit->text() != ui.conPWlineEdit->text())
-    {
-        QMessageBox::information(this, tr("Wrong Password"),
-            tr("Passwords dont match. "));
-
-    }
-
-	else
-	{
-        mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
-            ui.passwdLineEdit->text().toStdString());
-
-
-
-		QString qSzPasswd = ui.passwdLineEdit->text();
-		QString qSzEmail = ui.eMailLineEdit->text();
-        QString conPW = ui.conPWlineEdit->text();
-
-        this->user = qSzEmail;
-
-		ui.passwdLineEdit->setReadOnly(true);
-		ui.eMailLineEdit->setReadOnly(true);
-        ui.conPWlineEdit->setReadOnly(true);
-
-		QPalette *palette = new QPalette();
-        palette->setColor(QPalette::Base, Qt::lightGray);
-        palette->setColor(QPalette::Text, Qt::darkGray);
-
-		ui.passwdLineEdit->setPalette(*palette);
-        ui.eMailLineEdit->setPalette(*palette);
-        ui.conPWlineEdit->setPalette(*palette);
-
-        QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
-
-		ui.yourIdLineEdit->setText(identificationNumber);
-        ui.comboBox->insertItem(0, identificationNumber);
-
-
-        saveLogin();    //Save login data in settings
-
-
-
-	}
+        loginDataConfirmed();
     }
 
 }
@@ -323,6 +290,7 @@ void login::checkUserName() {
     Settingsmanager *setman = new Settingsmanager();
     if (setman->groupExists(ui.eMailLineEdit->text())) {
         ui.conPWlineEdit->setEnabled(false);
+        this->userExists = true;
     }
 }
 
@@ -344,6 +312,46 @@ bool login::checkPassword() {
         ui.passwdLineEdit->selectAll();
         return false;
     }
+}
+
+void login::loginDataConfirmed() {
+    mainSession.uCryptInit(ui.eMailLineEdit->text().toStdString(),
+        ui.passwdLineEdit->text().toStdString());
+
+
+
+    QString qSzPasswd = ui.passwdLineEdit->text();
+    QString qSzEmail = ui.eMailLineEdit->text();
+    QString conPW = ui.conPWlineEdit->text();
+
+    this->user = qSzEmail;
+
+    ui.passwdLineEdit->setReadOnly(true);
+    ui.eMailLineEdit->setReadOnly(true);
+    ui.conPWlineEdit->setReadOnly(true);
+
+    QPalette *palette = new QPalette();
+    palette->setColor(QPalette::Base, Qt::lightGray);
+    palette->setColor(QPalette::Text, Qt::darkGray);
+
+    ui.passwdLineEdit->setPalette(*palette);
+    ui.eMailLineEdit->setPalette(*palette);
+    ui.conPWlineEdit->setPalette(*palette);
+
+    QString identificationNumber = QString::fromStdString(mainSession.getIdentificationNumber());
+
+    ui.yourIdLineEdit->setText(identificationNumber);
+    ui.comboBox->insertItem(0, identificationNumber);
+
+
+    saveLogin();    //Save login data in settings
+
+
+}
+
+void login::enableLoginButton() {
+    ui.loginButton->setEnabled(true);
+    ui.loginButton->setFocus();
 }
 
 void login::on_pushButton_clicked()

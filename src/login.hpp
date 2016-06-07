@@ -34,9 +34,11 @@ protected:
     void saveLogin_click();
     void saveLogin();
     void loadLogin(QString user);
+    void loginDataConfirmed();
     //void autostart();
 	
 	void startButton_click();
+    void enableLoginButton();
 	
 
 public:
@@ -57,4 +59,5 @@ private slots:
     login(const login&);
     login &operator=(const login&);
     // <<<
+    bool userExists;
 };
