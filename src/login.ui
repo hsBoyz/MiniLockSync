@@ -297,7 +297,7 @@ QPushButton#cancelButton:hover {
      <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>295</x>
+     <x>286</x>
      <y>67</y>
     </hint>
    </hints>
@@ -313,7 +313,7 @@ QPushButton#cancelButton:hover {
      <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>295</x>
+     <x>286</x>
      <y>32</y>
     </hint>
    </hints>
@@ -377,7 +377,7 @@ QPushButton#cancelButton:hover {
      <y>72</y>
     </hint>
     <hint type="destinationlabel">
-     <x>295</x>
+     <x>286</x>
      <y>98</y>
     </hint>
    </hints>
@@ -395,6 +395,22 @@ QPushButton#cancelButton:hover {
     <hint type="destinationlabel">
      <x>378</x>
      <y>222</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loginButton</sender>
+   <signal>clicked()</signal>
+   <receiver>login</receiver>
+   <slot>saveLogin_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>355</x>
+     <y>26</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>314</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>

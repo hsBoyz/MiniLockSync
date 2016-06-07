@@ -4,6 +4,8 @@
 #include "window.h"
 #include "filewindow.h"
 #include "settingsmanager.h"
+#include <QApplication>
+#include <QProcess>
 
 #include <QMessageBox>
 
@@ -41,6 +43,8 @@ void Steerer::createActions()
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     openAction = new QAction(tr("Workdir"), this);
     connect(openAction, SIGNAL(triggered()), this, SLOT(openFileWindow()));
+    logoutAction = new QAction(tr("Logout"),this);
+    connect(logoutAction, SIGNAL(triggered()),this, SLOT(logout()));
 
 
 }
@@ -50,6 +54,7 @@ void Steerer::createTrayIcon()
     trayIconMenu = new QMenu(this);
     trayIconMenu->addAction(openAction);
     trayIconMenu->addAction(settingsAction);
+    trayIconMenu->addAction(logoutAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
     trayIcon = new QSystemTrayIcon(this);
@@ -76,6 +81,15 @@ void Steerer::openFileWindow()
     if (FileWindow::GetInstance().isMinimized()) {
         FileWindow::GetInstance().showNormal();
     }
+
+}
+
+void Steerer::logout()
+{
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    //login::GetInstance().show();
+
 
 }
 
