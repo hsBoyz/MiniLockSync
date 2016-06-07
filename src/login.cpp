@@ -22,13 +22,17 @@
 #include <random>
 #include <QSettings>
 #include <QRegExp>
+#include <QDebug>
 
 	
 MainWindow *mainWindow;
 
 login::login(QWidget * parent) : QWidget(parent) {
-	ui.setupUi(this);
+    ui.setupUi(this);
     loadLogin();
+    qDebug() <<  "login loaded";
+
+
 
 
    // QRegExp rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
@@ -87,6 +91,8 @@ void login::saveLogin()
          setting.setValue("logPassword",this->ui.passwdLineEdit->text());
          setting.setValue("conPW",this->ui.conPWlineEdit->text());
          setting.setValue("check",this->ui.saveLogin->isChecked());
+         setting.setValue("lineEdit",this->ui.yourIdLineEdit->text());
+         setting.setValue("checkbox",this->ui.comboBox->itemText(0));
          setting.endGroup();
 
 
@@ -108,17 +114,30 @@ void login::loadLogin()
     QString qSzEmail = setting.value("logName").toString();
     QString qSzPasswd = setting.value("logPassword").toString();
     QString conPW = setting.value("conPW").toString();
+    QString idNumber = setting.value("lineEdit").toString();
+    QString checkbox = setting.value("checkbox").toString();
+
 
     ui.eMailLineEdit->setText(qSzEmail);
     ui.passwdLineEdit->setText(qSzPasswd);
     ui.conPWlineEdit->setText(conPW);
     ui.saveLogin->setChecked(true);
-   if(qSzEmail != 0)
-    loginButton_click();
+    ui.yourIdLineEdit->setText(idNumber);
+    ui.comboBox->setItemText(0, checkbox);
 
-    setting.endGroup();
+     setting.endGroup();
+     loginButton_click();
 
+    qDebug()<<  "load complete";
 
+/*
+    if(checkbox == idNumber)
+    {
+        autostart();
+    }
+    else
+        loginButton_click();
+*/
 
 }
 
@@ -128,11 +147,27 @@ void login::saveLogin_click()
 
     saveLogin();
 
+
+
 }
+
+
 
 
 void login::loginButton_click()
 {
+
+    //regexp for checking PW complexity
+       QString checkPasswd = ui.passwdLineEdit->text();
+       QRegularExpression rx("^(?![^a-zA-Z]*$|[^a-z0-9]*$|[^a-z<+$*]*$|[^A-Z0-9]*$|[^A-Z<+$*]*$|[^0-9<+$*]*$|.*[|;{}]).*$");
+      //QRegularExpression rx(" ^(?:(?=.*[0-9])(?=.*[a-z])(?=.*[<+$*)])|(?=.*[a-z])(?=.*[<+$*)])(?=.*[A-Z])|(?=.*[0-9])(?=.*[A-Z])(?=.*[<+$*)])|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))(?!.*[|;{}].*$).+$");
+       QRegularExpressionMatch rmatch = rx.match(checkPasswd);
+
+        QString checkLog = ui.eMailLineEdit->text();
+        QRegularExpression rc("[a-z]|[A-Z]|[0-9]");
+         QRegularExpressionMatch logmatch = rc.match(checkLog);
+
+
 	// check for entropy
 	std::string password = ui.passwdLineEdit->text().toStdString();
 
@@ -140,9 +175,26 @@ void login::loginButton_click()
 	// double entropy_ar1 = uCrypt::uCryptLib::getBitEntropy("Die Wuerde des Menschen ist unantastbar.");
 	double bitEntropy = uCrypt::uCryptLib::getBitEntropy(password);
 
-    if ((bitEntropy * password.size()) < 10) // war auf 200... übertrieben?
+
+    if(logmatch.hasMatch() == 0)
+       {
+           QMessageBox::information(this, tr("Wrong Login"),
+               tr("Please enter a valid login, containing only characters and numbers. "));
+
+       }
+    else  if(rmatch.hasMatch() == 0)
+    {
+        QMessageBox::information(this, tr("Password too weak"),
+            tr("The password should at least have one digit,"
+               " one capital letter or one special letter"
+               " . "));
+    }
+
+
+
+    else if ((bitEntropy * password.size()) < 24) // war auf 200... übertrieben?
 	{
-        QMessageBox::information(this, tr("Password to wea"),
+        QMessageBox::information(this, tr("Password to weak"),
             tr("Password should be atleast 8 characters. "));
 	}
 
@@ -151,9 +203,7 @@ void login::loginButton_click()
         QMessageBox::information(this, tr("Wrong Password"),
             tr("Passwords dont match. "));
 
-
     }
-
 
 	else
 	{
@@ -182,15 +232,20 @@ void login::loginButton_click()
 
 		ui.yourIdLineEdit->setText(identificationNumber);
         ui.comboBox->insertItem(0, identificationNumber);
+
+
+
+
 	}
 
 }
 void login::startButton_click()
 {
+
 	if (ui.yourIdLineEdit->text().isEmpty())
 	{
         QMessageBox::information(this, tr("Error"),
-            tr("Please log in first "
+            tr("Please generate a key first "
                 "to start the program " ));
 	}
 	else
@@ -206,17 +261,30 @@ void login::startButton_click()
 
 		hide();
         mainWindow = new MainWindow(this);
-	//	mainWindow->show();
+
         Window::GetInstance().show();
+       // FileWindow::GetInstance().show();
 
-        Steerer *s = new Steerer();
-        s->start();
-
+       Steerer::GetInstance().start();
+     qDebug()<<  "startbutton clicked";
 
 		
 	}
 
+
 }
+
+/*
+  void login::autostart()
+{
+
+
+    isInitialized = true;
+    Steerer::GetInstance().start();
+
+    qDebug()<<  "autostart engaged";
+}
+*/
 
 void login::closeEvent(QCloseEvent *event)
 {
