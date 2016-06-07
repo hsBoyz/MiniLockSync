@@ -84,6 +84,7 @@ private:
     QLabel *syncWidget;
 
 
+
     void initializeFileBrowser();
     void initializeTableWidget(QTableWidget *widget);
     void saveDirectories(QString group, QString name, QString path);

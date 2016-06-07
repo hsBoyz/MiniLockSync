@@ -6,6 +6,8 @@
 #include <QThread>
 #include <QSignalMapper>
 #include <QPalette>
+#include <QDesktopServices>
+
 Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Window)
@@ -17,26 +19,30 @@ Window::Window(QWidget *parent) :
         QMenu *fileMenu = new QMenu(tr("&File"), this);
         menuBar()->addMenu(fileMenu);
 
-        act1 = fileMenu->addAction(
-                    QIcon(":icons(images/"),
-                    tr("Instructions"),
-                    qApp, SLOT(menubar_instructions));
-        act1->setStatusTip((tr("Instructions")));
 
-        act2 = fileMenu->addAction(
+
+        act1 = fileMenu->addAction(
                     QIcon(":/icons/images/cancel.png")   ,
                     tr("Quit"),
-           qApp, SLOT(quit()),
-           QKeySequence(tr("Ctrl+Q", "File|Quit")) );
-        act2->setStatusTip(tr("Quit Program"));
+                    qApp, SLOT(quit()),
+                    QKeySequence(tr("Ctrl+Q", "File|Quit")) );
+        act1->setStatusTip(tr("Quit Program"));
+
 
 
         QMenu *questionMark = new QMenu(tr("&?"), this);
         menuBar()->addMenu(questionMark);
+
+        act2 = questionMark->addAction(
+                    QIcon(":icons(images/"),
+                    tr("Instructions"),
+                    questionMark, SLOT(menubar_instructions()));
+        act2->setStatusTip((tr("Instructions")));
+
         act3 = questionMark->addAction(
                     QIcon(":icons/images/icon_rund.png"),
                     tr("About us"),
-                    questionMark, SLOT(menubar_aboutus));
+                    questionMark, SLOT(menubar_aboutus()));
         act3->setStatusTip((tr("About us")));
 
 
@@ -56,8 +62,8 @@ Window::Window(QWidget *parent) :
     connect (ui->pushManageCloud, SIGNAL(clicked(bool)), this, SLOT(on_pushManageCloud_clicked()));
     connect (ui->pushManageSaveDir, SIGNAL(clicked(bool)), this, SLOT(on_pushManageSaveDir_clicked()));
 
-
-
+    connect(act2, SIGNAL(triggered()), this, SLOT(menubar_instructions()));
+    connect(act3, SIGNAL(triggered()), this, SLOT(menubar_aboutus()));
 
 
 
@@ -104,14 +110,21 @@ void Window::contextMenuEvent(
 
 void Window::menubar_instructions(){
 
+    /*/build/build-MiniLockSync-Desktop_Qt_5_6_0_MSVC2015-Release/release/MiniLockSync - Instructions.pdf' !! */
+    QFile HelpFile("qrc:/files/files/MiniLockSync - Instructions.pdf");
+    HelpFile.copy(qApp->applicationDirPath().append("/MiniLockSync - Instructions.pdf"));
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(qApp->applicationDirPath().append("/MiniLockSync - Instructions.pdf")));
 
 }
 
 void Window::menubar_aboutus(){
 
-
-
-
+    currentIndex = ui->stackedWidget->currentIndex();
+          if( currentIndex < ui->stackedWidget->count())
+          {
+              ui->stackedWidget->setCurrentIndex(0); // Home
+          }
 }
 
 

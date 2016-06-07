@@ -15,4 +15,7 @@
         <file>buttons/home_button.png</file>
         <file>buttons/settings_button.png</file>
     </qresource>
+    <qresource prefix="/files">
+        <file>files/MiniLockSync - Instructions.pdf</file>
+    </qresource>
 </RCC>
