@@ -86,8 +86,10 @@ void Steerer::openFileWindow()
 
 void Steerer::logout()
 {
+
     qApp->quit();
-    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    login::user = "";
+    //QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
     //login::GetInstance().show();
 
 

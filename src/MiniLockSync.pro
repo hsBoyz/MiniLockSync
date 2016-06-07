@@ -57,4 +57,3 @@ else:unix: LIBS += -L$$PWD/../tools/ucryptlib/libs/ -luCryptLib.Release
 INCLUDEPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
 DEPENDPATH += $$PWD/../tools/ucryptlib/ucryptlib/ucryptlib
 
-
