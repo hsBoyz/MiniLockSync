@@ -35,14 +35,22 @@ Window::Window(QWidget *parent) :
 
         act2 = questionMark->addAction(
                     QIcon(":icons(images/"),
+<<<<<<< HEAD
                     tr("Instructions"),
                     questionMark, SLOT(menubar_instructions()));
+=======
+                    tr("Instructions"));
+>>>>>>> GUI_Luca
         act2->setStatusTip((tr("Instructions")));
 
         act3 = questionMark->addAction(
                     QIcon(":icons/images/icon_rund.png"),
+<<<<<<< HEAD
                     tr("About us"),
                     questionMark, SLOT(menubar_aboutus()));
+=======
+                    tr("About us"));
+>>>>>>> GUI_Luca
         act3->setStatusTip((tr("About us")));
 
 
@@ -116,10 +124,17 @@ void Window::menubar_instructions(){
 
     QDesktopServices::openUrl(QUrl::fromLocalFile(qApp->applicationDirPath().append("/MiniLockSync - Instructions.pdf")));
 
+    //QDesktopServices::openUrl(QUrl::fromLocalFile(":/docs/MiniLockSync - Instructions.pdf"));
+    QDesktopServices::openUrl(QUrl("https://github.com/hsBoyz/MiniLockSync/blob/GUI_Luca/docs/MiniLockSync%20-%20Instructions.pdf"));
+
+<<<<<<< HEAD
+=======
 }
+
 
 void Window::menubar_aboutus(){
 
+>>>>>>> GUI_Luca
     currentIndex = ui->stackedWidget->currentIndex();
           if( currentIndex < ui->stackedWidget->count())
           {

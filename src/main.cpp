@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     QTranslator editTranslator;
     QString filename;
     filename = QString("MiniLockSync_%1").arg(QLocale::system().name());
+<<<<<<< HEAD
     QDir dir(QDir::currentPath() + "/../../src/");
     //qDebug() << dir.absolutePath();
 
@@ -26,13 +27,19 @@ int main(int argc, char *argv[])
     editTranslator.load(filename, dir.currentPath());                      //qApp->applicationDirPath()); ///!!!!!!!!!!!!!!!!!! ToDo
 
 
+=======
+    //qDebug() << filename;
+    if (filename == "MiniLockSync_de_DE"){
+    editTranslator.load(":/Languages/MiniLockSync_de.qm");
+    }
+>>>>>>> GUI_Luca
     a.installTranslator(&editTranslator);
 
 
     a.setQuitOnLastWindowClosed(false);
     MainWindow w;
-    login l;
-    l.show();
+    //login l;
+    login::GetInstance().show();
 
 
 

@@ -320,7 +320,11 @@ background-color: rgb(255, 255, 255);
           <string notr="true"/>
          </property>
          <property name="currentIndex">
+<<<<<<< HEAD
           <number>3</number>
+=======
+          <number>0</number>
+>>>>>>> GUI_Luca
          </property>
          <widget class="QWidget" name="Home">
           <property name="styleSheet">

@@ -30,10 +30,17 @@ MainWindow *mainWindow;
 login::login(QWidget * parent) : QWidget(parent) {
     ui.setupUi(this);
     connect(ui.eMailLineEdit, SIGNAL (editingFinished()), this, SLOT(checkUserName()));
+<<<<<<< HEAD
     connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
 
     Settingsmanager *setman = new Settingsmanager();
     this->userExists == false;
+=======
+    connect(ui.saveLogin, SIGNAL(stateChanged(int)), this, SLOT(saveLogin_click(int)));
+
+    Settingsmanager *setman = new Settingsmanager();
+    this->userExists = false;
+>>>>>>> GUI_Luca
 
     if (setman->returnSetting("general", "check") == "true") {
         loadLogin(setman->returnSetting("general", "user"));
@@ -56,6 +63,11 @@ login::login(QWidget * parent) : QWidget(parent) {
     ui.passwdLineEdit->setEchoMode(QLineEdit::Password);
     ui.conPWlineEdit->setEchoMode(QLineEdit::Password);
 
+<<<<<<< HEAD
+=======
+    //delete(setman);
+
+>>>>>>> GUI_Luca
 }
 
 
@@ -83,6 +95,11 @@ void login::cancelButton_click()
     ui.eMailLineEdit->setPalette(*palette);
     ui.conPWlineEdit->setPalette(*palette);
 
+<<<<<<< HEAD
+=======
+    ui.conPWlineEdit->setEnabled(true);
+
+>>>>>>> GUI_Luca
     this->user = "";
 
 }
@@ -154,14 +171,36 @@ void login::loadLogin(QString user)
 
 }
 
-void login::saveLogin_click()
+void login::saveLogin_click(int check)
 
 {
+<<<<<<< HEAD
     QSettings setting("MyApp","mysetting");
     setting.beginGroup("general");
     setting.setValue("check",this->ui.saveLogin->isChecked()); //Store in general settings, not user specific
     setting.setValue("user", ui.eMailLineEdit->text());
     setting.endGroup();
+=======
+    if (check == 2 || check == 1) {
+        qDebug() << "login savelogin_click: checked";
+        QSettings setting("MyApp","mysetting");
+        setting.beginGroup("general");
+        setting.remove("check");
+        setting.setValue("check","true"); //Store in general settings, not user specific
+        setting.setValue("user", ui.eMailLineEdit->text());
+        setting.endGroup();
+    }
+    else {
+        qDebug() << "login savelogin_click: unchecked";
+        QSettings setting("MyApp","mysetting");
+        setting.beginGroup("general");
+        setting.remove("check");
+        setting.setValue("check","false"); //Store in general settings, not user specific
+        setting.setValue("user", ui.eMailLineEdit->text());
+        setting.endGroup();
+    }
+
+>>>>>>> GUI_Luca
 }
 
 
@@ -169,9 +208,28 @@ void login::saveLogin_click()
 
 void login::loginButton_click()
 {
+<<<<<<< HEAD
     if (checkPassword() == false) {
 
     }
+=======
+    QSettings setting("MyApp","mysetting");
+    setting.beginGroup("general");
+    setting.remove("user");
+    setting.setValue("user", ui.eMailLineEdit->text());
+    setting.endGroup();
+
+    if (this->userExists) {
+        if (checkPassword() == false) {
+
+        }
+        else
+        {
+            loginDataConfirmed();
+        }
+    }
+
+>>>>>>> GUI_Luca
     else if (!this->userExists){
 
         //regexp for checking PW complexity
@@ -217,6 +275,7 @@ void login::loginButton_click()
                 tr("Passwords dont match. "));
 
         }
+<<<<<<< HEAD
         loginDataConfirmed();
     }
     else
@@ -224,6 +283,15 @@ void login::loginButton_click()
         loginDataConfirmed();
     }
 
+=======
+        else {
+            loginDataConfirmed();
+        }
+
+    }
+
+
+>>>>>>> GUI_Luca
 }
 void login::startButton_click()
 {
@@ -287,11 +355,28 @@ bool login::getIsInitialized() {
 }
 
 void login::checkUserName() {
+<<<<<<< HEAD
     Settingsmanager *setman = new Settingsmanager();
     if (setman->groupExists(ui.eMailLineEdit->text())) {
         ui.conPWlineEdit->setEnabled(false);
         this->userExists = true;
     }
+=======
+    qDebug() << this->userExists;
+    Settingsmanager *setman = new Settingsmanager();
+    if (ui.eMailLineEdit->text() != "") {
+        if (setman->groupExists(ui.eMailLineEdit->text())) {
+            qDebug() << "group exists: " << setman->groupExists(ui.eMailLineEdit->text());
+            ui.conPWlineEdit->setEnabled(false);
+            this->userExists = true;
+            connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
+            connect(ui.passwdLineEdit, SIGNAL (cursorPositionChanged(int, int)), this, SLOT(setConPasswd()));
+
+            //delete(setman);
+        }
+    }
+    //delete(setman);
+>>>>>>> GUI_Luca
 }
 
 bool login::checkPassword() {
@@ -343,7 +428,10 @@ void login::loginDataConfirmed() {
     ui.yourIdLineEdit->setText(identificationNumber);
     ui.comboBox->insertItem(0, identificationNumber);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> GUI_Luca
     saveLogin();    //Save login data in settings
 
 
@@ -354,6 +442,7 @@ void login::enableLoginButton() {
     ui.loginButton->setFocus();
 }
 
+<<<<<<< HEAD
 void login::on_pushButton_clicked()
 {
     Settingsmanager *setman = new Settingsmanager();
@@ -368,3 +457,10 @@ void login::on_pushButton_2_clicked()
     serman->loadSettings(MainWindow::settingsKeyForWorkDirPath);
     serman->loadSettings(MainWindow::settingsKeyGeneralSettings);
 }
+=======
+void login::setConPasswd() {
+    ui.conPWlineEdit->clear();
+    ui.conPWlineEdit->setText(ui.passwdLineEdit->text());
+}
+
+>>>>>>> GUI_Luca

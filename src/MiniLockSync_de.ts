@@ -6,12 +6,16 @@
     <message>
         <location filename="filewindow.ui" line="14"/>
         <source>MiniLockSync</source>
+<<<<<<< HEAD
         <translation></translation>
+=======
+        <translation type="unfinished"></translation>
+>>>>>>> GUI_Luca
     </message>
     <message>
         <location filename="filewindow.ui" line="46"/>
         <source>Back</source>
-        <translation>Zurück</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="filewindow.ui" line="82"/>
@@ -31,12 +35,13 @@
     <message>
         <location filename="filewindow.ui" line="164"/>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="filewindow.cpp" line="110"/>
         <source>You cannot copy into the root folder.</source>
         <translation type="unfinished"></translation>
+<<<<<<< HEAD
     </message>
     <message>
         <location filename="filewindow.cpp" line="141"/>
@@ -45,75 +50,138 @@
     </message>
     <message>
         <location filename="filewindow.cpp" line="150"/>
+=======
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="143"/>
+        <source>Please select file or directory to delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="152"/>
+>>>>>>> GUI_Luca
         <source>File/Dir will be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="151"/>
+=======
+        <location filename="filewindow.cpp" line="153"/>
+>>>>>>> GUI_Luca
         <source>Do you want to delete &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="344"/>
+=======
+        <location filename="filewindow.cpp" line="346"/>
+>>>>>>> GUI_Luca
         <source>File </source>
-        <translation>Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="344"/>
+=======
+        <location filename="filewindow.cpp" line="346"/>
+>>>>>>> GUI_Luca
         <source> already exists. Please rename it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="406"/>
+=======
+        <location filename="filewindow.cpp" line="408"/>
+>>>>>>> GUI_Luca
         <source>General Encryption Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="407"/>
+=======
+        <location filename="filewindow.cpp" line="409"/>
+>>>>>>> GUI_Luca
         <source>Something went wrong with the encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="413"/>
+=======
+        <location filename="filewindow.cpp" line="415"/>
+>>>>>>> GUI_Luca
         <source>General Decryption Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="414"/>
+=======
+        <location filename="filewindow.cpp" line="416"/>
+>>>>>>> GUI_Luca
         <source>Something went wrong with the decryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="420"/>
+=======
+        <location filename="filewindow.cpp" line="422"/>
+>>>>>>> GUI_Luca
         <source>General JSON Parsing Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="421"/>
+=======
+        <location filename="filewindow.cpp" line="423"/>
+>>>>>>> GUI_Luca
         <source>Library returned with the Error Code for a JSON Parsing Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="427"/>
+=======
+        <location filename="filewindow.cpp" line="429"/>
+>>>>>>> GUI_Luca
         <source>Invalid Header Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="428"/>
+=======
+        <location filename="filewindow.cpp" line="430"/>
+>>>>>>> GUI_Luca
         <source>Library returned with the Error Code for a Invalid Header Version!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="434"/>
+=======
+        <location filename="filewindow.cpp" line="436"/>
+>>>>>>> GUI_Luca
         <source>Invalid Sender</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="435"/>
+=======
+        <location filename="filewindow.cpp" line="437"/>
+>>>>>>> GUI_Luca
         <source>Library returned with the Error Code for a Invalid Sender!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="filewindow.cpp" line="441"/>
         <source>Invalid Recipient</source>
         <translation type="unfinished"></translation>
@@ -156,6 +224,55 @@
     <message>
         <location filename="filewindow.cpp" line="613"/>
         <source>Add folders to encrypt</source>
+=======
+        <location filename="filewindow.cpp" line="443"/>
+        <source>Invalid Recipient</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="444"/>
+        <source>Library returned with the Error Code for a Invalid Recipient!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="450"/>
+        <source>Invalid File Hash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="451"/>
+        <source>Library returned with the Error Code for a Invalid File Hash!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="457"/>
+        <source>General File Read Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="458"/>
+        <source>Please select a file to encrypt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="464"/>
+        <source>Library not initialized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="465"/>
+        <source>Library was called without beeing initialized correctly!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="615"/>
+        <source>Add folders to encrypt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="filewindow.cpp" line="630"/>
+        <source>Folder already exists. Please remove or rename.</source>
+>>>>>>> GUI_Luca
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -180,11 +297,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="steerer.cpp" line="38"/>
+=======
+        <location filename="steerer.cpp" line="40"/>
+>>>>>>> GUI_Luca
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="steerer.cpp" line="40"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
@@ -192,6 +314,20 @@
     <message>
         <location filename="steerer.cpp" line="42"/>
         <source>Workdir</source>
+=======
+        <location filename="steerer.cpp" line="42"/>
+        <source>&amp;Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="steerer.cpp" line="44"/>
+        <source>Workdir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="steerer.cpp" line="46"/>
+        <source>Logout</source>
+>>>>>>> GUI_Luca
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -201,6 +337,7 @@
         <location filename="window.ui" line="17"/>
         <source>MiniLockSync</source>
         <translation type="unfinished"></translation>
+<<<<<<< HEAD
     </message>
     <message>
         <location filename="window.ui" line="138"/>
@@ -223,6 +360,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+    </message>
+    <message>
+        <location filename="window.ui" line="138"/>
+        <source>Welcome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.ui" line="184"/>
+        <source>Work Dir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.ui" line="224"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.ui" line="261"/>
+        <source>Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> GUI_Luca
         <location filename="window.ui" line="351"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -263,6 +424,7 @@ p, li { white-space: pre-wrap; }
         <location filename="window.ui" line="678"/>
         <source>Add work directory</source>
         <translation type="unfinished"></translation>
+<<<<<<< HEAD
     </message>
     <message>
         <location filename="window.ui" line="705"/>
@@ -281,6 +443,26 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+    </message>
+    <message>
+        <location filename="window.ui" line="705"/>
+        <source>Delete work dir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.ui" line="820"/>
+        <location filename="window.cpp" line="338"/>
+        <source>Add cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.ui" line="844"/>
+        <source>Delete Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> GUI_Luca
         <location filename="window.cpp" line="19"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
@@ -300,6 +482,7 @@ p, li { white-space: pre-wrap; }
         <location filename="window.cpp" line="29"/>
         <source>Quit Program</source>
         <translation type="unfinished"></translation>
+<<<<<<< HEAD
     </message>
     <message>
         <location filename="window.cpp" line="33"/>
@@ -350,21 +533,85 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="window.cpp" line="528"/>
+=======
+    </message>
+    <message>
+        <location filename="window.cpp" line="33"/>
+        <source>&amp;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="38"/>
+        <location filename="window.cpp" line="39"/>
+        <source>Instructions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="43"/>
+        <location filename="window.cpp" line="44"/>
+        <source>About us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="196"/>
+        <source>Add folders to encrypt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="210"/>
+        <location filename="window.cpp" line="272"/>
+        <location filename="window.cpp" line="352"/>
+        <source>Path already set as </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="220"/>
+        <location filename="window.cpp" line="284"/>
+        <location filename="window.cpp" line="364"/>
+        <location filename="window.cpp" line="585"/>
+        <source>dd.MM.yyyy hh:mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="258"/>
+        <source>Add working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="485"/>
+        <source>Please specify workdir and clouddir first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="525"/>
+>>>>>>> GUI_Luca
         <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="window.cpp" line="528"/>
+=======
+        <location filename="window.cpp" line="525"/>
+>>>>>>> GUI_Luca
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="window.cpp" line="528"/>
+=======
+        <location filename="window.cpp" line="525"/>
+>>>>>>> GUI_Luca
         <source>Date Modified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="window.cpp" line="549"/>
+=======
+        <location filename="window.cpp" line="546"/>
+>>>>>>> GUI_Luca
         <source>Last Entry will be overwritten.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,33 +664,84 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="login.cpp" line="145"/>
         <source>Password to wea</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="login.cpp" line="146"/>
+=======
+        <location filename="login.cpp" line="229"/>
+        <source>Wrong Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.cpp" line="230"/>
+        <source>Please enter a valid login, containing only characters and numbers. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.cpp" line="235"/>
+        <source>Password too weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.cpp" line="236"/>
+        <source>The password should at least have one digit, one capital letter or one special letter . </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.cpp" line="242"/>
+        <source>Password to weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.cpp" line="243"/>
+>>>>>>> GUI_Luca
         <source>Password should be atleast 8 characters. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="login.cpp" line="151"/>
+=======
+        <location filename="login.cpp" line="247"/>
+>>>>>>> GUI_Luca
         <source>Wrong Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="login.cpp" line="152"/>
+=======
+        <location filename="login.cpp" line="248"/>
+>>>>>>> GUI_Luca
         <source>Passwords dont match. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="login.cpp" line="192"/>
+=======
+        <location filename="login.cpp" line="264"/>
+>>>>>>> GUI_Luca
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="login.cpp" line="193"/>
         <source>Please log in first to start the program </source>
+=======
+        <location filename="login.cpp" line="265"/>
+        <source>Please generate a key first to start the program </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.cpp" line="349"/>
+        <source>Wrong password or username</source>
+>>>>>>> GUI_Luca
         <translation type="unfinished"></translation>
     </message>
 </context>
