@@ -110,7 +110,7 @@ void Window::menubar_instructions(){
 
 
     //QDesktopServices::openUrl(QUrl::fromLocalFile(":/docs/MiniLockSync - Instructions.pdf"));
-    QDesktopServices::openUrl(QUrl("https://github.com/hsBoyz/MiniLockSync/tree/master/docs"));
+    QDesktopServices::openUrl(QUrl("https://github.com/hsBoyz/MiniLockSync/blob/GUI_Luca/docs/MiniLockSync%20-%20Instructions.pdf"));
 
 }
 
