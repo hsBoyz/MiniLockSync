@@ -30,10 +30,10 @@ MainWindow *mainWindow;
 login::login(QWidget * parent) : QWidget(parent) {
     ui.setupUi(this);
     connect(ui.eMailLineEdit, SIGNAL (editingFinished()), this, SLOT(checkUserName()));
-    connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
+    connect(ui.saveLogin, SIGNAL(stateChanged(int)), this, SLOT(saveLogin_click(int)));
 
     Settingsmanager *setman = new Settingsmanager();
-    this->userExists == false;
+    this->userExists = false;
 
     if (setman->returnSetting("general", "check") == "true") {
         loadLogin(setman->returnSetting("general", "user"));
@@ -55,6 +55,8 @@ login::login(QWidget * parent) : QWidget(parent) {
     ui.yourIdLineEdit->setPalette(*palette);
     ui.passwdLineEdit->setEchoMode(QLineEdit::Password);
     ui.conPWlineEdit->setEchoMode(QLineEdit::Password);
+
+    //delete(setman);
 
 }
 
@@ -82,6 +84,8 @@ void login::cancelButton_click()
     ui.passwdLineEdit->setPalette(*palette);
     ui.eMailLineEdit->setPalette(*palette);
     ui.conPWlineEdit->setPalette(*palette);
+
+    ui.conPWlineEdit->setEnabled(true);
 
     this->user = "";
 
@@ -154,14 +158,28 @@ void login::loadLogin(QString user)
 
 }
 
-void login::saveLogin_click()
+void login::saveLogin_click(int check)
 
 {
-    QSettings setting("MyApp","mysetting");
-    setting.beginGroup("general");
-    setting.setValue("check",this->ui.saveLogin->isChecked()); //Store in general settings, not user specific
-    setting.setValue("user", ui.eMailLineEdit->text());
-    setting.endGroup();
+    if (check == 2 || check == 1) {
+        qDebug() << "login savelogin_click: checked";
+        QSettings setting("MyApp","mysetting");
+        setting.beginGroup("general");
+        setting.remove("check");
+        setting.setValue("check","true"); //Store in general settings, not user specific
+        setting.setValue("user", ui.eMailLineEdit->text());
+        setting.endGroup();
+    }
+    else {
+        qDebug() << "login savelogin_click: unchecked";
+        QSettings setting("MyApp","mysetting");
+        setting.beginGroup("general");
+        setting.remove("check");
+        setting.setValue("check","false"); //Store in general settings, not user specific
+        setting.setValue("user", ui.eMailLineEdit->text());
+        setting.endGroup();
+    }
+
 }
 
 
@@ -169,9 +187,16 @@ void login::saveLogin_click()
 
 void login::loginButton_click()
 {
-    if (checkPassword() == false) {
+    if (this->userExists) {
+        if (checkPassword() == false) {
 
+        }
+        else
+        {
+            loginDataConfirmed();
+        }
     }
+
     else if (!this->userExists){
 
         //regexp for checking PW complexity
@@ -217,12 +242,12 @@ void login::loginButton_click()
                 tr("Passwords dont match. "));
 
         }
-        loginDataConfirmed();
+        else {
+            loginDataConfirmed();
+        }
+
     }
-    else
-	{
-        loginDataConfirmed();
-    }
+
 
 }
 void login::startButton_click()
@@ -287,11 +312,18 @@ bool login::getIsInitialized() {
 }
 
 void login::checkUserName() {
+    qDebug() << this->userExists;
     Settingsmanager *setman = new Settingsmanager();
     if (setman->groupExists(ui.eMailLineEdit->text())) {
+        qDebug() << "group exists: " << setman->groupExists(ui.eMailLineEdit->text());
         ui.conPWlineEdit->setEnabled(false);
         this->userExists = true;
+        connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
+        connect(ui.passwdLineEdit, SIGNAL (cursorPositionChanged(int, int)), this, SLOT(setConPasswd()));
+
+        //delete(setman);
     }
+    //delete(setman);
 }
 
 bool login::checkPassword() {
@@ -354,17 +386,8 @@ void login::enableLoginButton() {
     ui.loginButton->setFocus();
 }
 
-void login::on_pushButton_clicked()
-{
-    Settingsmanager *setman = new Settingsmanager();
-    setman->removeAllKeys();
+void login::setConPasswd() {
+    ui.conPWlineEdit->clear();
+    ui.conPWlineEdit->setText(ui.passwdLineEdit->text());
 }
 
-void login::on_pushButton_2_clicked()
-{
-    Settingsmanager *serman = new Settingsmanager();
-    serman->loadSettings(MainWindow::settingsKeyForCloudDirPath);
-    serman->loadSettings(MainWindow::settingsKeyForPaths);
-    serman->loadSettings(MainWindow::settingsKeyForWorkDirPath);
-    serman->loadSettings(MainWindow::settingsKeyGeneralSettings);
-}
