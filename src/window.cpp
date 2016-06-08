@@ -34,7 +34,7 @@ Window::Window(QWidget *parent) :
         menuBar()->addMenu(questionMark);
 
         act2 = questionMark->addAction(
-                    QIcon(":icons(images/"),
+                    QIcon(":icons/images/book4.png"),
                     tr("Instructions"),
                     questionMark, SLOT(menubar_instructions()));
         act2->setStatusTip((tr("Instructions")));

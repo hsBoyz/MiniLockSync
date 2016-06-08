@@ -161,7 +161,7 @@ QString Handlefiles::createDir(QString path, QString folderName) {
 
 }
 
-void Handlefiles::createCopyAndWorkDir(QString group) {
+//void Handlefiles::createCopyAndWorkDir(QString group) {
 
     /*
     *
@@ -238,7 +238,7 @@ void Handlefiles::createCopyAndWorkDir(QString group) {
         }
     }
     */
-}
+//}
 
 void Handlefiles::copyDirectory(){
     QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);

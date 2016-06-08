@@ -24,6 +24,7 @@ public:
     void copyFile(QString from, QString to);
     void checkAndCopyWorkDir();
 
+
 private:
      Settingsmanager *settingsmanager;
 
