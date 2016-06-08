@@ -102,7 +102,7 @@ QPushButton#pushButton_addFolder:hover {
 }</string>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>Add</string>
         </property>
        </widget>
       </item>
