@@ -15,7 +15,13 @@
         <file>buttons/home_button.png</file>
         <file>buttons/settings_button.png</file>
     </qresource>
+<<<<<<< HEAD
     <qresource prefix="/files"/>
+=======
+    <qresource prefix="/files">
+        <file>files/MiniLockSync - Instructions.pdf</file>
+    </qresource>
+>>>>>>> remotes/origin/gui_luca2
     <qresource prefix="/Languages">
         <file>MiniLockSync_de.qm</file>
         <file>MiniLockSync_de.ts</file>
