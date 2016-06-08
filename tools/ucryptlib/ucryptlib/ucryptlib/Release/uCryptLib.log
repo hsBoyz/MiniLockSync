@@ -1,0 +1,48 @@
+﻿Der Buildvorgang wurde am 02.04.2015 11:45:39 gestartet.
+     1>Projekt "C:\Users\adr\Dev\MiniLockCpp\ucryptlib\uCryptLib\uCryptLib\uCryptLib.vcxproj" auf Knoten "2", Rebuild Ziel(e).
+     1>ClCompile:
+         C:\DevTools\VS2013\VC\bin\CL.exe /c /IC:\Users\adr\Dev\MiniLockCpp\ucryptlib\\uCryptLib\uCryptLib\blake2 /IC:\Users\adr\Dev\MiniLockCpp\ucryptlib\\uCryptLib\uCryptLib\rapidjson /IC:\Users\adr\Dev\MiniLockCpp\ucryptlib\\uCryptLib\uCryptLib\sodium /IC:\Users\adr\Dev\MiniLockCpp\ucryptlib\\uCryptLib\uCryptLib\scrypt /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /GL /D COMPILE_UCRYPTOLIB /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D UCRYPTLIB_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt blake2\blake2b.c blake2\blake2bp.c blake2\blake2s.c blake2\blake2sp.c "scrypt\crypto_scrypt-sse.c" scrypt\mman.c scrypt\sha256.c uCryptLib.cpp
+         blake2b.c
+     1>blake2\blake2b.c(339): warning C4244: 'Argument': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+     1>blake2\blake2b.c(340): warning C4244: '+=': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+         blake2bp.c
+     1>blake2\blake2bp.c(155): warning C4244: 'Argument': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+     1>blake2\blake2bp.c(157): warning C4244: '=': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+     1>blake2\blake2bp.c(241): warning C4244: 'Initialisierung': Konvertierung von 'uint64_t' in 'const size_t', möglicher Datenverlust
+         blake2s.c
+     1>blake2\blake2s.c(317): warning C4244: 'Argument': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+     1>blake2\blake2s.c(318): warning C4244: '+=': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+         blake2sp.c
+     1>blake2\blake2sp.c(152): warning C4244: 'Argument': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+     1>blake2\blake2sp.c(154): warning C4244: '=': Konvertierung von 'uint64_t' in 'size_t', möglicher Datenverlust
+     1>blake2\blake2sp.c(238): warning C4244: 'Initialisierung': Konvertierung von 'uint64_t' in 'const size_t', möglicher Datenverlust
+         crypto_scrypt-sse.c
+         mman.c
+         sha256.c
+         uCryptLib.cpp
+     1>c:\users\adr\dev\minilockcpp\ucryptlib\ucryptlib\ucryptlib\uCryptLib.h(79): warning C4251: 'uCrypt::uCryptLib::base64_chars': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' erfordert eine DLL-Schnittstelle, die von Clients von class 'uCrypt::uCryptLib' verwendet wird
+     1>c:\users\adr\dev\minilockcpp\ucryptlib\ucryptlib\ucryptlib\uCryptLib.h(85): warning C4251: 'uCrypt::uCryptLib::_identificationNumber': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' erfordert eine DLL-Schnittstelle, die von Clients von class 'uCrypt::uCryptLib' verwendet wird
+     1>uCryptLib.cpp(244): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>uCryptLib.cpp(800): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>uCryptLib.cpp(807): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>uCryptLib.cpp(817): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>uCryptLib.cpp(827): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+       Link:
+         C:\DevTools\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Release\uCryptLib.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Users\adr\Dev\MiniLockCpp\ucryptlib\\uCryptLib\uCryptLib\libs kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Release\uCryptLib.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Release\uCryptLib.lib" /MACHINE:X86 /SAFESEH /DLL Release\blake2b.obj
+         Release\blake2bp.obj
+         Release\blake2s.obj
+         Release\blake2sp.obj
+         "Release\crypto_scrypt-sse.obj"
+         Release\mman.obj
+         Release\sha256.obj
+         Release\uCryptLib.obj
+         libs\libsodium.lib
+            Bibliothek "C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Release\uCryptLib.lib" und Objekt "C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Release\uCryptLib.exp" werden erstellt.
+         Code wird generiert.
+         Codegenerierung ist abgeschlossen.
+         uCryptLib.vcxproj -> C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Release\uCryptLib.dll
+     1>Die Erstellung des Projekts "C:\Users\adr\Dev\MiniLockCpp\ucryptlib\uCryptLib\uCryptLib\uCryptLib.vcxproj" ist abgeschlossen, Rebuild Ziel(e).
+
+Build erfolgreich.
+
+Verstrichene Zeit 00:00:03.89

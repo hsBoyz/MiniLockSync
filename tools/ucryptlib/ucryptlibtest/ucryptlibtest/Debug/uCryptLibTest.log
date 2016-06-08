@@ -1,0 +1,28 @@
+﻿Der Buildvorgang wurde am 02.04.2015 12:22:08 gestartet.
+     1>Projekt "C:\Users\adr\Dev\MiniLockCpp\ucryptlib\uCryptLibTest\uCryptLibTest\uCryptLibTest.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>Link:
+         C:\DevTools\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Debug\uCryptLibTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\adr\Dev\MiniLockCpp\ucryptlib\\Debug /LIBPATH:C:\Users\adr\Dev\MiniLockCpp\ucryptlib\\ucryptlib\ucryptlib\libs kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Debug\uCryptLibTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Debug\uCryptLibTest.lib" /MACHINE:X86 Debug\TestSuite.obj
+         Debug\TUnit_BALKE2.obj
+         Debug\TUnit_Base58_Decode.obj
+         Debug\TUnit_Base58_Encode.obj
+         Debug\TUnit_Base64.obj
+         Debug\TUnit_Calculate_Bit_Entropy.obj
+         Debug\TUnit_DecryptFile_random_10MB.obj
+         Debug\TUnit_DecryptFile_random_31415KB.obj
+         Debug\TUnit_DecryptFile_Tux.obj
+         Debug\TUnit_DecryptFile_Two_Recipients.obj
+         Debug\TUnit_EncryptFile_Benchmark.obj
+         Debug\TUnit_EncryptFile_random_10MB.obj
+         Debug\TUnit_EncryptFile_random_31415KB.obj
+         Debug\TUnit_EncryptFile_Two_Recipients.obj
+         Debug\TUnit_Generate_IdentificationNumber.obj
+         Debug\TUnit_Private_Key.obj
+         Debug\TUnit_Public_Key.obj
+         Debug\TUnit_Uninitialized_State.obj
+         C:\Users\adr\Dev\MiniLockCpp\ucryptlib\libs\uCryptLib.Debug.lib
+         uCryptLibTest.vcxproj -> C:\Users\adr\Dev\MiniLockCpp\ucryptlib\Debug\uCryptLibTest.exe
+     1>Die Erstellung des Projekts "C:\Users\adr\Dev\MiniLockCpp\ucryptlib\uCryptLibTest\uCryptLibTest\uCryptLibTest.vcxproj" ist abgeschlossen, Build Ziel(e).
+
+Build erfolgreich.
+
+Verstrichene Zeit 00:00:00.58
