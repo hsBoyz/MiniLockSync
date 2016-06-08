@@ -15,11 +15,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //Translation
+    //Translation                           //ToDo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     QTranslator editTranslator;
     QString filename;
     filename = QString("MiniLockSync_%1").arg(QLocale::system().name());
+    if (filename == "MiniLockSync_de"){
     editTranslator.load(":/Languages/MiniLockSync_de.qm");
+    }
     a.installTranslator(&editTranslator);
 
 

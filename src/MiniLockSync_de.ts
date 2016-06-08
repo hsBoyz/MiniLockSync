@@ -11,7 +11,7 @@
     <message>
         <location filename="filewindow.ui" line="46"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="filewindow.ui" line="82"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="filewindow.ui" line="164"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="filewindow.cpp" line="110"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="window.ui" line="224"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="window.ui" line="261"/>
@@ -262,7 +262,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="window.ui" line="501"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="window.ui" line="525"/>
@@ -419,7 +419,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="login.ui" line="187"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="login.ui" line="199"/>
