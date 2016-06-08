@@ -187,6 +187,12 @@ void login::saveLogin_click(int check)
 
 void login::loginButton_click()
 {
+    QSettings setting("MyApp","mysetting");
+    setting.beginGroup("general");
+    setting.remove("user");
+    setting.setValue("user", ui.eMailLineEdit->text());
+    setting.endGroup();
+
     if (this->userExists) {
         if (checkPassword() == false) {
 

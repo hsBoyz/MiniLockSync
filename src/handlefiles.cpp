@@ -27,13 +27,13 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
     {
         QString from = fromDir + copyfile;
         QString to = toDir + copyfile;
-
+        qDebug() << "handlefiles " << "copy_dir_recursive 1";
         if (QFile::exists(to))
         {
-
+            qDebug() << "handlefiles " << "copy_dir_recursive 2";
             QFileInfo fromInfo(from);
             QFileInfo toInfo(to);
-
+            qDebug() << "handlefiles " << "copy_dir_recursive 3";
             //qDebug() << TAG << "copy_dir_recursive, fromInfo: " << fromInfo.lastModified().date();
             //qDebug() << TAG << "copy_dir_recursive, toInfo: " << toInfo.lastModified().;
 
@@ -50,7 +50,7 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
                 QFile::copy(from, to);
                 }
             }
-
+            qDebug() << "handlefiles " << "copy_dir_recursive 4";
             /*
             msgBox.setInformativeText("File " + to + " already exists. Do you want to override it?");
 
@@ -76,15 +76,18 @@ bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryp
             */
             //return false;
         }
-
+        qDebug() << "handlefiles " << "copy_dir_recursive 5";
         if (encryptionOn) {
+            qDebug() << "handlefiles " << "copy_dir_recursive 5.1";
             encryptAndCopy(from, to, copyfile, toDir);
 
         }
         else if (QFile::copy(from, to) == false)
         {
             //return false;
+            qDebug() << "handlefiles " << "copy_dir_recursive 6";
         }
+        qDebug() << "handlefiles " << "copy_dir_recursive 7";
         QFile::remove(from);
 
     }

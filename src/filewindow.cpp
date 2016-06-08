@@ -634,7 +634,6 @@ void FileWindow::on_pushButton_addFolder_clicked()
         else
         {
 
-
             QString cloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + dirCleanedPath;
             QString toWorkDir = fileshandler->createDir(workDir, path.baseName());
             QString toCloudDir = fileshandler->createDir(cloudDir, path.baseName());
