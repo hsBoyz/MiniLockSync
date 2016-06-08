@@ -89,7 +89,6 @@ private:
     QFileSystemModel *filemodel;
     Settingsmanager *setman;
     Handlefiles *fileshandler;
-    login *log;
     Worker *worker;
 
     QFileSystemWatcher *watcher;

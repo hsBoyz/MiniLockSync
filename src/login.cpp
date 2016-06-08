@@ -383,7 +383,6 @@ void login::loginDataConfirmed() {
     ui.yourIdLineEdit->setText(identificationNumber);
     ui.comboBox->insertItem(0, identificationNumber);
 
-
     saveLogin();    //Save login data in settings
 
 

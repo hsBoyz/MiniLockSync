@@ -17,7 +17,6 @@ public:
     bool copy_dir_recursive(QString fromDir, QString toDir, bool encryptionOn);
     bool copy_dir_recursive_cloud(QString fromDir, QString toDir);
     bool delete_dir_recursive(QString dirDelete);
-    void createCopyAndWorkDir(QString group);
     QString createDir(QString path, QString folderName);
     void checkForErrors(int result);
     void copyDirectory();
@@ -26,7 +25,6 @@ public:
     void checkAndCopyWorkDir();
 
 private:
-     login *log;
      Settingsmanager *settingsmanager;
 
      bool encryptAndCopy(QString from, QString to, QString copyfile, QString toDir);

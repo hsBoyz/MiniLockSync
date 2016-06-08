@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 
     a.setQuitOnLastWindowClosed(false);
     MainWindow w;
-    login l;
-    l.show();
+    //login l;
+    login::GetInstance().show();
 
 
 

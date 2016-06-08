@@ -15,7 +15,6 @@ public:
         return Instanz;
     }
     // <<<
-	login(QWidget * parent = Q_NULLPTR);
 
     uCrypt::uCryptLib getMainSession();
     bool getIsInitialized();
@@ -54,7 +53,7 @@ private slots:
     private:
 
     // >>> Singleton impl
-    //Steerer(QWidget *parent = 0);
+    login(QWidget * parent = Q_NULLPTR);
     login(const login&);
     login &operator=(const login&);
     // <<<

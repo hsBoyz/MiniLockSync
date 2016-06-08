@@ -18,7 +18,6 @@ FileWindow::FileWindow(QWidget *parent) :
     setAcceptDrops(true);
     setman = new Settingsmanager();
     fileshandler = new Handlefiles();
-    log = new login();
     worker = new Worker();
     watcher = new QFileSystemWatcher();
 
@@ -203,12 +202,12 @@ void FileWindow::on_pushButton_encrypt_clicked()
     */
 
     QString qSzFileName = QString(selectedDirPath);
-        uCrypt::uCryptLib mainSession = log->getMainSession();
+        uCrypt::uCryptLib mainSession = login::GetInstance().getMainSession();
 
-        int numberOfRecipients = log->ui.comboBox->count();
+        int numberOfRecipients = login::GetInstance().ui.comboBox->count();
         std::string *recipients = new std::string[numberOfRecipients];
 
-        recipients[0] = log->ui.comboBox->itemText(0).toStdString();
+        recipients[0] = login::GetInstance().ui.comboBox->itemText(0).toStdString();
 
         checkForErrors(mainSession.EncryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString(),recipients,numberOfRecipients));
 
@@ -236,7 +235,7 @@ void FileWindow::on_pushButton_decrypt_clicked()
     checkForErrors(mainSession.DecryptFile(fileInfo.fileName().toStdString(), fileInfo.absolutePath().toStdString()));
 */
     QString qSzFileName = QString(selectedDirPath);
-    uCrypt::uCryptLib mainSession = log->getMainSession();
+    uCrypt::uCryptLib mainSession = login::GetInstance().getMainSession();
     qDebug() << TAG <<  "on_pushButton_decrypt_clicked: fileName: " << QFileInfo(qSzFileName).fileName() << " FilePath: " << QFileInfo(qSzFileName).absolutePath();
 
     checkForErrors(mainSession.DecryptFile(QFileInfo(qSzFileName).fileName().toStdString(), QFileInfo(qSzFileName).absolutePath().toStdString()));
@@ -638,7 +637,9 @@ void FileWindow::on_pushButton_addFolder_clicked()
             QString toWorkDir = fileshandler->createDir(workDir, path.baseName());
             QString toCloudDir = fileshandler->createDir(cloudDir, path.baseName());
 
+            qDebug() << "filewindow on_pushButton_addFolder_clicked copy cloud";
             bool cloudBool = fileshandler->copy_dir_recursive(folderPath, toCloudDir, true);
+            qDebug() << "filewindow on_pushButton_addFolder_clicked copy work";
             bool workBool = fileshandler->copy_dir_recursive(folderPath, toWorkDir, false);
 
             if (cloudBool == true && workBool == true) {
