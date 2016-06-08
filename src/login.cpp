@@ -314,14 +314,16 @@ bool login::getIsInitialized() {
 void login::checkUserName() {
     qDebug() << this->userExists;
     Settingsmanager *setman = new Settingsmanager();
-    if (setman->groupExists(ui.eMailLineEdit->text())) {
-        qDebug() << "group exists: " << setman->groupExists(ui.eMailLineEdit->text());
-        ui.conPWlineEdit->setEnabled(false);
-        this->userExists = true;
-        connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
-        connect(ui.passwdLineEdit, SIGNAL (cursorPositionChanged(int, int)), this, SLOT(setConPasswd()));
+    if (ui.eMailLineEdit->text() != "") {
+        if (setman->groupExists(ui.eMailLineEdit->text())) {
+            qDebug() << "group exists: " << setman->groupExists(ui.eMailLineEdit->text());
+            ui.conPWlineEdit->setEnabled(false);
+            this->userExists = true;
+            connect(ui.passwdLineEdit, SIGNAL (editingFinished()), this, SLOT(enableLoginButton()));
+            connect(ui.passwdLineEdit, SIGNAL (cursorPositionChanged(int, int)), this, SLOT(setConPasswd()));
 
-        //delete(setman);
+            //delete(setman);
+        }
     }
     //delete(setman);
 }
