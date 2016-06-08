@@ -11,7 +11,7 @@
     <message>
         <location filename="filewindow.ui" line="46"/>
         <source>Back</source>
-        <translation>Zurück</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="filewindow.ui" line="82"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="filewindow.ui" line="164"/>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="filewindow.cpp" line="110"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="window.ui" line="224"/>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="window.ui" line="261"/>
@@ -262,7 +262,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="window.ui" line="501"/>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="window.ui" line="525"/>
@@ -281,7 +281,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="window.ui" line="820"/>
-        <location filename="window.cpp" line="341"/>
+        <location filename="window.cpp" line="338"/>
         <source>Add cloud</source>
         <translation type="unfinished"></translation>
     </message>
@@ -318,63 +318,63 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="window.cpp" line="38"/>
-        <location filename="window.cpp" line="40"/>
+        <location filename="window.cpp" line="39"/>
         <source>Instructions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="window.cpp" line="43"/>
         <location filename="window.cpp" line="44"/>
-        <location filename="window.cpp" line="46"/>
         <source>About us</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="199"/>
+        <location filename="window.cpp" line="196"/>
         <source>Add folders to encrypt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="213"/>
-        <location filename="window.cpp" line="275"/>
-        <location filename="window.cpp" line="355"/>
+        <location filename="window.cpp" line="210"/>
+        <location filename="window.cpp" line="272"/>
+        <location filename="window.cpp" line="352"/>
         <source>Path already set as </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="223"/>
-        <location filename="window.cpp" line="287"/>
-        <location filename="window.cpp" line="367"/>
-        <location filename="window.cpp" line="588"/>
+        <location filename="window.cpp" line="220"/>
+        <location filename="window.cpp" line="284"/>
+        <location filename="window.cpp" line="364"/>
+        <location filename="window.cpp" line="585"/>
         <source>dd.MM.yyyy hh:mm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="261"/>
+        <location filename="window.cpp" line="258"/>
         <source>Add working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="488"/>
+        <location filename="window.cpp" line="485"/>
         <source>Please specify workdir and clouddir first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="528"/>
+        <location filename="window.cpp" line="525"/>
         <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="528"/>
+        <location filename="window.cpp" line="525"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="528"/>
+        <location filename="window.cpp" line="525"/>
         <source>Date Modified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="window.cpp" line="549"/>
+        <location filename="window.cpp" line="546"/>
         <source>Last Entry will be overwritten.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -419,7 +419,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="login.ui" line="187"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="login.ui" line="199"/>
