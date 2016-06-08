@@ -15,7 +15,9 @@
         <file>buttons/home_button.png</file>
         <file>buttons/settings_button.png</file>
     </qresource>
-    <qresource prefix="/files"/>
+    <qresource prefix="/files">
+        <file>../docs/MiniLockSync - Instructions.pdf</file>
+    </qresource>
     <qresource prefix="/Languages">
         <file>MiniLockSync_de.qm</file>
         <file>MiniLockSync_de.ts</file>
