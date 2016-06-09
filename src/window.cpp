@@ -125,7 +125,9 @@ void Window::menubar_aboutus(){
 
     QMessageBox about;
     about.setWindowIcon(QPixmap(":icons/images/icon_rund.png"));
-    about.setText(tr("MiniLockSync Vers.: 1.0 \n\nMiniLockSync is a study-related project of the course SWB. \n\nParticipating developers: \nEugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, Fabian Högl"));
+    about.setWindowTitle(tr("MiniLockSync - About us"));
+    about.setIconPixmap(QPixmap(":/icons/images/icon_eckig128x128.png"));
+    about.setText(tr("MiniLockSync Vers.: 1.0 \n\nMiniLockSync is an open soure program which was developed from 5 students of the Hochschule Esslingen - University of Applied Sciences. \n\nParticipating developers: \nEugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, \nFabian Högl"));
     about.exec();
 }
 
