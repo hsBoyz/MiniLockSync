@@ -29,11 +29,11 @@ MainWindow *mainWindow;
 
 login::login(QWidget * parent) : QWidget(parent) {
     ui.setupUi(this);
+    this->userExists = false;
     connect(ui.eMailLineEdit, SIGNAL (editingFinished()), this, SLOT(checkUserName()));
     connect(ui.saveLogin, SIGNAL(stateChanged(int)), this, SLOT(saveLogin_click(int)));
 
     Settingsmanager *setman = new Settingsmanager();
-    this->userExists = false;
 
     if (setman->returnSetting("general", "check") == "true") {
         loadLogin(setman->returnSetting("general", "user"));
@@ -88,6 +88,10 @@ void login::cancelButton_click()
     ui.conPWlineEdit->setEnabled(true);
 
     this->user = "";
+    this->userExists = false;
+
+    disconnect(ui.passwdLineEdit, SIGNAL (cursorPositionChanged(int, int)), this, SLOT(setConPasswd()));
+
 
 }
 
@@ -318,7 +322,7 @@ bool login::getIsInitialized() {
 }
 
 void login::checkUserName() {
-    qDebug() << this->userExists;
+    qDebug() << "Login checkusername: user exists: " << this->userExists;
     Settingsmanager *setman = new Settingsmanager();
     if (ui.eMailLineEdit->text() != "") {
         if (setman->groupExists(ui.eMailLineEdit->text())) {
