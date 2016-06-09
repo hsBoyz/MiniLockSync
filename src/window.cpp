@@ -125,7 +125,7 @@ void Window::menubar_aboutus(){
 
     QMessageBox about;
     about.setWindowIcon(QPixmap(":icons/images/icon_rund.png"));
-    about.setText(tr("MiniLockSync Vers.: 1.0 \n\nMinilock Sync is a Study-related Project of the course SWB. \n\nParticipating developers: \nEugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, Fabian Högl"));
+    about.setText(tr("MiniLockSync Vers.: 1.0 \n\nMiniLockSync is a study-related project of the course SWB. \n\nParticipating developers: \nEugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, Fabian Högl"));
     about.exec();
 }
 
