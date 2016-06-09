@@ -161,6 +161,88 @@ QString Handlefiles::createDir(QString path, QString folderName) {
 
 }
 
+<<<<<<< HEAD
+=======
+//void Handlefiles::createCopyAndWorkDir(QString group) {
+
+    /*
+    *
+    *Not necessary yet, because folders of workdir and safetycopydir
+    *are choosen in settings before.
+    *
+    *This becomes necessary if the user wants to create new folders with
+    * specific names at selected directory
+    *
+    *
+    *
+    *
+    */
+
+    /*
+    Settingsmanager *setman = new Settingsmanager();
+    QStringList keys = setman->loadSettings(group);
+
+    foreach(QString key, keys) {
+        QString setting = setman->returnSetting(group, key);
+        QDir dir = QDir::root();
+
+
+    }
+    */
+
+    /*
+
+    if (!QDir(setting + "/MiniLockSync").exists()) {
+        qDebug() << TAG << "createCopyAndWorkDir: MiniLockSync Ordner erstellt? " <<
+        dir.mkpath(setting + "/MiniLockSync");
+        setman->saveSettings(MainWindow::settingsKeyForSaveDir, "mainfolder", setting + "/MiniLockSync");
+        setting += "/MiniLockSync";
+            if (!QDir(setting + "/Workplace").exists()) {
+                qDebug() << TAG << "createCopyAndWorkDir: Workplace Ordner erstellt? " <<
+                dir.mkpath(setting + "/Workplace");
+                setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
+            }
+
+            if (!QDir(setting + "/Safetycopy").exists()) {
+                qDebug() << TAG << "createCopyAndWorkDir: Safetycopy Ordner erstellt? " <<
+                dir.mkpath(setting + "/Safetycopy");
+                setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
+            }
+
+    }
+
+    }
+    else if (QDir(setting + "/MiniLockSync").exists()){
+
+        setting += "/MiniLockSync";
+
+        if (!QDir(setting + "/Workplace").exists()) {
+            //qDebug() << TAG << "createCopyAndWorkDir else: Workplace Ordner erstellt? " <<
+            dir.mkpath(setting + "/Workplace");
+            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "workplace", setting + "/Workplace");
+        }
+
+        if (!QDir(setting + "/Safetycopy").exists()) {
+            //qDebug() << TAG << "createCopyAndWorkDir else: Safetycopy Ordner erstellt? " <<
+            dir.mkpath(setting + "/Safetycopy");
+            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "safetycopy", setting + "/Safetycopy");
+
+        }
+
+        if (!setman->keyExists(MainWindow::settingsKeyForSaveDirPath, "mainfolder")) {
+            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "mainfolder", setting + "/MiniLockSync");
+        }
+        if (!setman->keyExists(MainWindow::settingsKeyForSaveDirPath, "workplace")) {
+            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "workplace", setting + "/Workplace");
+        }
+        if (!setman->keyExists(MainWindow::settingsKeyForSaveDirPath, "safetycopy")) {
+            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "safetycopy", setting + "/Safetycopy");
+        }
+    }
+    */
+//}
+
+>>>>>>> 0098c37c0b565d27ff9a94353db2733f36b794fc
 void Handlefiles::copyDirectory(){
     QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
     QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
