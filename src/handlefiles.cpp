@@ -12,8 +12,6 @@ Handlefiles::Handlefiles()
 
 bool Handlefiles::copy_dir_recursive(QString fromDir, QString toDir, bool encryptionOn)
 {
-    qDebug() << encryptionOn;
-    qDebug() << fromDir;
     QMessageBox msgBox;
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
@@ -198,7 +196,6 @@ void Handlefiles::copyEncryptedFromCloud() {
 
 bool Handlefiles::encryptAndCopy(QString from, QString to, QString copyfile, QString toDir) {
     uCrypt::uCryptLib mainSession = login::GetInstance().getMainSession();
-    qDebug() << "handlefiles " << "copy_dir_recursive 8";
 
     if (QFile::copy(from, to)== false) {
         return false;
@@ -209,6 +206,8 @@ bool Handlefiles::encryptAndCopy(QString from, QString to, QString copyfile, QSt
     int returnCode = mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), recipients, numberOfRecipients);
     if (returnCode != 0) {
         qDebug() << returnCode << ": " << copyfile;
+        Worker::errorCounter ++;
+        Worker::errorFilesList.append(copyfile);
         return false;
     }
 

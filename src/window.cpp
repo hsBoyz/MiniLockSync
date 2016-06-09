@@ -654,6 +654,7 @@ void Window::checkAndCopy() {
     connect(thread, SIGNAL(started()), worker, SLOT(processCopyAddedFolders())) ;
     connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()), this, SLOT(showErrorMessage()));
 
     thread->start();
 
@@ -686,3 +687,20 @@ void Window::startAutoSync(){
     Timer::GetInstance().start();
 }
 
+void Window::showErrorMessage() {
+    if (Worker::errorCounter > 0) {
+        QString files;
+        foreach (QString string, Worker::errorFilesList) {
+            files += string + "\n";
+        }
+
+        QString str = QString::number(Worker::errorCounter) + tr(" files couldn't be encrypted. Please check your choosen Cloud!");
+
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setWindowTitle(tr("WARNING"));
+        msgBox.setText(str);
+        msgBox.setDetailedText(tr("Files which were not encrypted: \n\n") + files);
+        msgBox.exec();
+    }
+}

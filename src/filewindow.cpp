@@ -9,6 +9,9 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QSignalMapper>
+
+QString FileWindow::currentDirPath = "";
 
 FileWindow::FileWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -560,9 +563,11 @@ void FileWindow::checkAndCopy() {
     connect(thread, SIGNAL(started()), worker, SLOT(process()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
     connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
+    connect(worker, SIGNAL(finished()), this, SLOT(showErrorMessage()));
     //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
     thread->start();
 }
+
 
 void FileWindow::checkAndCopyCloud() {
 
@@ -576,6 +581,26 @@ void FileWindow::checkAndCopyCloud() {
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
     connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     //connect(worker, SIGNAL(finished()), this, SLOT(setCopyStatus()));
+    thread->start();
+}
+
+void FileWindow::checkAndCopyAddButton(QString path) {
+
+    QThread *thread = new QThread();
+
+    Worker *worker2 = new Worker();
+    worker2->moveToThread(thread);
+
+    QSignalMapper *signalMapper = new QSignalMapper(0);
+    connect(thread, SIGNAL(started()), signalMapper, SLOT(map()));
+
+    signalMapper->setMapping(thread, path);
+
+    connect(thread, SIGNAL(started()),this, SLOT(set_StatusBar_started()));
+    connect(signalMapper, SIGNAL(mapped(QString)), worker2, SLOT(processAddFolder(QString)));
+    connect(worker2, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker2, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
+    connect(worker2, SIGNAL(finished()), this, SLOT(showErrorMessage()));
     thread->start();
 }
 
@@ -616,38 +641,8 @@ void FileWindow::on_pushButton_addFolder_clicked()
                     "C://",
                     QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
                     );
-        QFileInfo path = folderPath;
-        QString dirCleanedPath = returnDirectoryCleanedPath(QString(currentDirPath));
-        QString workDir = setman->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir") + QDir::separator() + dirCleanedPath;
-
-        QDir dir(workDir + QDir::separator() + path.baseName());
-
-        if (folderPath == "") {
-            //Do nothing when user cancel dialog
-        }
-        else if (dir.exists()) {
-            QMessageBox msgBox;
-            msgBox.setInformativeText(tr("Folder already exists. Please remove or rename."));
-            msgBox.exec();
-        }
-        else
-        {
-
-            QString cloudDir = setman->returnSetting(MainWindow::settingsKeyForCloudDirPath, "clouddir") + QDir::separator() + dirCleanedPath;
-            QString toWorkDir = fileshandler->createDir(workDir, path.baseName());
-            QString toCloudDir = fileshandler->createDir(cloudDir, path.baseName());
-
-            qDebug() << "filewindow on_pushButton_addFolder_clicked copy cloud";
-            bool cloudBool = fileshandler->copy_dir_recursive(folderPath, toCloudDir, true);
-            qDebug() << "filewindow on_pushButton_addFolder_clicked copy work";
-            bool workBool = fileshandler->copy_dir_recursive(folderPath, toWorkDir, false);
-
-            if (cloudBool == true && workBool == true) {
-                fileshandler->delete_dir_recursive(folderPath);
-            }
-
-        }
-    }
+        checkAndCopyAddButton(folderPath);
+}
 
 
 void FileWindow::handleSelectionChanged(const QModelIndex& selection){
@@ -655,4 +650,23 @@ void FileWindow::handleSelectionChanged(const QModelIndex& selection){
       QString selectedPath = filemodel->filePath(selection);
       qDebug() << selectedPath;
 
+}
+
+void FileWindow::showErrorMessage() {
+
+    if (Worker::errorCounter > 0) {
+        QString files;
+        foreach (QString string, Worker::errorFilesList) {
+            files += string + "\n";
+        }
+
+        QString str = QString::number(Worker::errorCounter) + tr(" files couldn't be encrypted. Please check your choosen Cloud!");
+
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setWindowTitle(tr("WARNING"));
+        msgBox.setText(str);
+        msgBox.setDetailedText(tr("Files which were not encrypted: \n\n") + files);
+        msgBox.exec();
+    }
 }

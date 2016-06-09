@@ -31,6 +31,7 @@ public:
 
     ~FileWindow();
     void addPathToWatcher(QString path);
+    static QString currentDirPath;             //current path of directory for copying files
 
 
 private slots:
@@ -68,6 +69,8 @@ private slots:
 
     void on_pushButton_addFolder_clicked();
 
+    void showErrorMessage();
+
 public slots:
     void set_StatusBar_finished();
     void set_StatusBar_started();
@@ -95,13 +98,13 @@ private:
 
     QString keyOfCurrentFileBrowser;    //Necessary to load different filewindows, e.g. for each encrypted folder
     QList<QString> previousDirPath;     //List for storing the file browsing history
-    QString currentDirPath;             //current path of directory for copying files
     QString selectedDirPath = "";
 
     bool isFileEncrypted(QString fileName, QString absolutePath);
     QString getEncodedHash(QString fileName, QString absolutPath);
     void checkAndCopy();
     void checkAndCopyCloud();
+    void checkAndCopyAddButton(QString path);
 };
 
 #endif // FILEWINDOW_H
