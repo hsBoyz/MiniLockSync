@@ -153,7 +153,7 @@ void FileWindow::on_pushButton_deleteFile_clicked()
 
     QMessageBox msgBox;
     msgBox.setText(tr("File/Dir will be deleted."));
-    msgBox.setInformativeText(tr("Do you want to delete \"") + fileInfo.baseName().toStdString().c_str() + "." + fileInfo.suffix() + "\"?");
+    msgBox.setInformativeText(tr("Do you want to delete the following file? ") + fileInfo.baseName().toStdString().c_str() + "." + fileInfo.suffix());
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
 
@@ -390,10 +390,9 @@ void FileWindow::deleteFile(QString folderName, QString relativePath, QFileInfo 
         */
     }
     else {
-
-        QFile::remove(deleteCloudDir + ".encrypted");
-        QFile::remove(deleteWorkDir);
-        QFile::remove(deleteOriginals);
+        qDebug() << "filewindow deleteFile deleteCloudDir: " <<QFile::remove(deleteCloudDir + ".encrypted");
+        qDebug() << "filewindow deleteFile deleteWorkDir: " <<QFile::remove(deleteWorkDir);
+        qDebug() << "filewindow deleteFile deleteOriginals" <<QFile::remove(deleteOriginals);
 
     }
 }
