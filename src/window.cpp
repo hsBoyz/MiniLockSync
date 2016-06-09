@@ -35,12 +35,16 @@ Window::Window(QWidget *parent) :
 
         act2 = questionMark->addAction(
                     QIcon(":icons/images/book4.png"),
+
                     tr("Instructions"));
+
         act2->setStatusTip((tr("Instructions")));
 
         act3 = questionMark->addAction(
                     QIcon(":icons/images/icon_rund.png"),
+
                     tr("About us"));
+
         act3->setStatusTip((tr("About us")));
 
 
@@ -109,10 +113,12 @@ void Window::contextMenuEvent(
 void Window::menubar_instructions(){
 
 
+
     //QDesktopServices::openUrl(QUrl::fromLocalFile(":/docs/MiniLockSync - Instructions.pdf"));
     QDesktopServices::openUrl(QUrl("https://github.com/hsBoyz/MiniLockSync/blob/GUI_Luca/docs/MiniLockSync%20-%20Instructions.pdf"));
 
 }
+
 
 
 void Window::menubar_aboutus(){
@@ -651,6 +657,7 @@ void Window::checkAndCopy() {
     connect(thread, SIGNAL(started()), worker, SLOT(processCopyAddedFolders())) ;
     connect(worker, SIGNAL(finished()),this, SLOT(set_StatusBar_finished()));
     connect(worker, SIGNAL(finished()), thread, SLOT(quit()));
+    connect(worker, SIGNAL(finished()), this, SLOT(showErrorMessage()));
 
     thread->start();
 
@@ -683,3 +690,20 @@ void Window::startAutoSync(){
     Timer::GetInstance().start();
 }
 
+void Window::showErrorMessage() {
+    if (Worker::errorCounter > 0) {
+        QString files;
+        foreach (QString string, Worker::errorFilesList) {
+            files += string + "\n";
+        }
+
+        QString str = QString::number(Worker::errorCounter) + tr(" files couldn't be encrypted. Please check your choosen Cloud!");
+
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setWindowTitle(tr("WARNING"));
+        msgBox.setText(str);
+        msgBox.setDetailedText(tr("Files which were not encrypted: \n\n") + files);
+        msgBox.exec();
+    }
+}

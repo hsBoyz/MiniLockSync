@@ -161,85 +161,6 @@ QString Handlefiles::createDir(QString path, QString folderName) {
 
 }
 
-void Handlefiles::createCopyAndWorkDir(QString group) {
-
-    /*
-    *
-    *Not necessary yet, because folders of workdir and safetycopydir
-    *are choosen in settings before.
-    *
-    *This becomes necessary if the user wants to create new folders with
-    * specific names at selected directory
-    *
-    *
-    *
-    *
-    */
-
-    /*
-    Settingsmanager *setman = new Settingsmanager();
-    QStringList keys = setman->loadSettings(group);
-
-    foreach(QString key, keys) {
-        QString setting = setman->returnSetting(group, key);
-        QDir dir = QDir::root();
-
-
-    }
-    */
-
-    /*
-
-    if (!QDir(setting + "/MiniLockSync").exists()) {
-        qDebug() << TAG << "createCopyAndWorkDir: MiniLockSync Ordner erstellt? " <<
-        dir.mkpath(setting + "/MiniLockSync");
-        setman->saveSettings(MainWindow::settingsKeyForSaveDir, "mainfolder", setting + "/MiniLockSync");
-        setting += "/MiniLockSync";
-            if (!QDir(setting + "/Workplace").exists()) {
-                qDebug() << TAG << "createCopyAndWorkDir: Workplace Ordner erstellt? " <<
-                dir.mkpath(setting + "/Workplace");
-                setman->saveSettings(MainWindow::settingsKeyForSaveDir, "workplace", setting + "/Workplace");
-            }
-
-            if (!QDir(setting + "/Safetycopy").exists()) {
-                qDebug() << TAG << "createCopyAndWorkDir: Safetycopy Ordner erstellt? " <<
-                dir.mkpath(setting + "/Safetycopy");
-                setman->saveSettings(MainWindow::settingsKeyForSaveDir, "safetycopy", setting + "/Safetycopy");
-            }
-
-    }
-
-    }
-    else if (QDir(setting + "/MiniLockSync").exists()){
-
-        setting += "/MiniLockSync";
-
-        if (!QDir(setting + "/Workplace").exists()) {
-            //qDebug() << TAG << "createCopyAndWorkDir else: Workplace Ordner erstellt? " <<
-            dir.mkpath(setting + "/Workplace");
-            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "workplace", setting + "/Workplace");
-        }
-
-        if (!QDir(setting + "/Safetycopy").exists()) {
-            //qDebug() << TAG << "createCopyAndWorkDir else: Safetycopy Ordner erstellt? " <<
-            dir.mkpath(setting + "/Safetycopy");
-            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "safetycopy", setting + "/Safetycopy");
-
-        }
-
-        if (!setman->keyExists(MainWindow::settingsKeyForSaveDirPath, "mainfolder")) {
-            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "mainfolder", setting + "/MiniLockSync");
-        }
-        if (!setman->keyExists(MainWindow::settingsKeyForSaveDirPath, "workplace")) {
-            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "workplace", setting + "/Workplace");
-        }
-        if (!setman->keyExists(MainWindow::settingsKeyForSaveDirPath, "safetycopy")) {
-            setman->saveSettings(MainWindow::settingsKeyForSaveDirPath, "safetycopy", setting + "/Safetycopy");
-        }
-    }
-    */
-}
-
 void Handlefiles::copyDirectory(){
     QStringList dirsToEncryp = settingsmanager->loadSettings(MainWindow::settingsKeyForPaths);
     QString toWork = settingsmanager->returnSetting(MainWindow::settingsKeyForWorkDirPath, "workdir");
@@ -277,22 +198,21 @@ void Handlefiles::copyEncryptedFromCloud() {
 
 bool Handlefiles::encryptAndCopy(QString from, QString to, QString copyfile, QString toDir) {
     uCrypt::uCryptLib mainSession = login::GetInstance().getMainSession();
-    qDebug() << "handlefiles " << "copy_dir_recursive 8";
+
 
     if (QFile::copy(from, to)== false) {
         return false;
     }
-    qDebug() << "handlefiles " << "copy_dir_recursive 9";
+
     int numberOfRecipients = login::GetInstance().ui.comboBox->count();
-    qDebug() << "handlefiles " << "copy_dir_recursive 9.1 " << login::GetInstance().ui.comboBox->itemData(0).toString();
-     qDebug() << "handlefiles " << "copy_dir_recursive 10 " << numberOfRecipients;
     std::string *recipients = new std::string[numberOfRecipients];
- qDebug() << "handlefiles " << "copy_dir_recursive 11" << sizeof(recipients)/sizeof(recipients[0]);
     recipients[0] = login::GetInstance().ui.comboBox->itemText(0).toStdString();
-qDebug() << "handlefiles " << "copy_dir_recursive 12";
+
     int returnCode = mainSession.EncryptFile(copyfile.toStdString(), toDir.toStdString(), recipients, numberOfRecipients);
     if (returnCode != 0) {
         qDebug() << returnCode << ": " << copyfile;
+        Worker::errorCounter ++;
+        Worker::errorFilesList.append(copyfile);
         return false;
     }
 

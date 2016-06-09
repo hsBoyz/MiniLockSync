@@ -65,6 +65,7 @@ private slots:
     void menubar_instructions();
     void menubar_aboutus();
 
+    void showErrorMessage();
 
 
 private:

@@ -14,9 +14,12 @@ public:
     explicit Worker();
     ~Worker();
 
+    static int errorCounter;
+    static QStringList errorFilesList;
+
 private:
     Handlefiles *filesHandler;
-
+    QString returnDirectoryCleanedPath(QString path);
 
 signals:
     void finished();
@@ -28,6 +31,7 @@ public slots:
     void process();
     void processSyncWork();
     void processSyncCloud();
+    void processAddFolder(QString path);
 
 };
 

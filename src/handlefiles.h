@@ -24,7 +24,7 @@ public:
     void copyFile(QString from, QString to);
     void checkAndCopyWorkDir();
 
-    void createCopyAndWorkDir(QString group);   //??
+
 
 private:
      Settingsmanager *settingsmanager;
