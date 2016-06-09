@@ -350,6 +350,8 @@ bool login::checkPassword() {
         msgBox.exec();
         ui.passwdLineEdit->setFocus();
         ui.passwdLineEdit->selectAll();
+        ui.loginButton->setEnabled(true);
+
         return false;
     }
 }
