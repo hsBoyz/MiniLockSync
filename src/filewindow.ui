@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MiniLockSync</string>
+   <string>MiniLockSync - Working directory</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
