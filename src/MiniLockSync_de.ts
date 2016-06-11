@@ -442,7 +442,7 @@ Fabian Högl</oldsource>
 MiniLockSync ist ein Open-Source-Programm, das von fünf Studenten der Hochschule Esslingen - University of Applied Sciences entwickelt wurde. 
 
 Mitwirkende Entwickler: 
-Eugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, 
+Manuel Tutsch, Luca Hanf, Eugen Rudel, Daniel Seitz, 
 Fabian Högl</translation>
     </message>
     <message>
