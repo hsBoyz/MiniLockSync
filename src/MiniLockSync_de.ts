@@ -165,19 +165,19 @@
     <message>
         <location filename="filewindow.cpp" line="665"/>
         <source> files couldn&apos;t be encrypted. Please check your choosen Cloud!</source>
-        <translation type="unfinished"></translation>
+        <translation> Dateien können nicht verschlüsselt werden. Bitte überprüfen Sie Ihre gewählte Cloud!</translation>
     </message>
     <message>
         <location filename="filewindow.cpp" line="669"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>WARNUNG</translation>
     </message>
     <message>
         <location filename="filewindow.cpp" line="671"/>
         <source>Files which were not encrypted: 
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien, die nicht verschlüsselt wurden: </translation>
     </message>
     <message>
         <source>Folder already exists. Please remove or rename.</source>
@@ -202,7 +202,7 @@
     <message>
         <location filename="steerer.ui" line="16"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="steerer.cpp" line="40"/>
@@ -240,7 +240,7 @@
     <message>
         <location filename="window.ui" line="184"/>
         <source>Work Dir</source>
-        <translation>Arbeit</translation>
+        <translation>Arbeitsordner</translation>
     </message>
     <message>
         <location filename="window.ui" line="224"/>
@@ -310,27 +310,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="window.ui" line="483"/>
         <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="window.ui" line="507"/>
         <source>Delete</source>
-        <translation type="unfinished">Löschen</translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="window.ui" line="531"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestätigen</translation>
     </message>
     <message>
         <location filename="window.ui" line="684"/>
         <source>Add work directory</source>
-        <translation>Arbeitsverzeichnis hinzufügen</translation>
+        <translation>Arbeitsordner hinzufügen</translation>
     </message>
     <message>
         <location filename="window.ui" line="711"/>
         <source>Delete work dir</source>
-        <translation>Arbeitsverzeichnis löschen</translation>
+        <translation>Arbeitsordner löschen</translation>
     </message>
     <message>
         <location filename="window.ui" line="826"/>
@@ -351,7 +351,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="window.cpp" line="26"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <location filename="window.cpp" line="28"/>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="window.cpp" line="29"/>
         <source>Quit Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Programm beenden</translation>
     </message>
     <message>
         <location filename="window.cpp" line="33"/>
@@ -384,18 +384,31 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="window.cpp" line="128"/>
         <source>MiniLockSync - About us</source>
-        <translation type="unfinished"></translation>
+        <translation>MiniLockSync - Über uns</translation>
     </message>
     <message>
         <location filename="window.cpp" line="130"/>
         <source>MiniLockSync Vers.: 1.0 
 
+MiniLockSync is an open soure program which was developed by 5 students of the Hochschule Esslingen - University of Applied Sciences. 
+
+Participating developers: 
+Manuel Tutsch, Luca Hanf, Eugen Rudel, Daniel Seitz, 
+Fabian Högl</source>
+        <oldsource>MiniLockSync Vers.: 1.0 
+
 MiniLockSync is an open soure program which was developed from 5 students of the Hochschule Esslingen - University of Applied Sciences. 
 
 Participating developers: 
 Eugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, 
-Fabian Högl</source>
-        <translation type="unfinished"></translation>
+Fabian Högl</oldsource>
+        <translation>MiniLockSync Vers.: 1.0 
+
+MiniLockSync ist ein Open-Source-Programm, das von fünf Studenten der Hochschule Esslingen - University of Applied Sciences entwickelt wurde. 
+
+Mitwirkende Entwickler: 
+Eugen Rudel, Luca Hanf, Manuel Tutsch, Daniel Seitz, 
+Fabian Högl</translation>
     </message>
     <message>
         <location filename="window.cpp" line="203"/>
@@ -445,24 +458,24 @@ Fabian Högl</source>
     <message>
         <location filename="window.cpp" line="553"/>
         <source>Last Entry will be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzter Eintrag wird überschrieben.</translation>
     </message>
     <message>
         <location filename="window.cpp" line="701"/>
         <source> files couldn&apos;t be encrypted. Please check your choosen Cloud!</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien können nicht verschlüsselt werden. Bitte überprüfen Sie Ihre gewählte Cloud!</translation>
     </message>
     <message>
         <location filename="window.cpp" line="705"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>WARNUNG</translation>
     </message>
     <message>
         <location filename="window.cpp" line="707"/>
         <source>Files which were not encrypted: 
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien, die nicht verschlüsselt wurden: </translation>
     </message>
 </context>
 <context>
@@ -470,7 +483,7 @@ Fabian Högl</source>
     <message>
         <location filename="worker.cpp" line="63"/>
         <source>Folder already exists. Please remove or rename.</source>
-        <translation type="unfinished">Der Ordner ist bereits vorhanden. Bitte entfernen oder umbenennen.</translation>
+        <translation>Der Ordner ist bereits vorhanden. Bitte entfernen oder umbenennen.</translation>
     </message>
 </context>
 <context>
@@ -478,42 +491,42 @@ Fabian Högl</source>
     <message>
         <location filename="login.ui" line="14"/>
         <source>MiniLockSync - Login</source>
-        <translation type="unfinished">MiniLockSync - Anmeldung</translation>
+        <translation>MiniLockSync - Anmeldung</translation>
     </message>
     <message>
         <location filename="login.ui" line="47"/>
         <source>Generated Key:</source>
-        <translation type="unfinished">Erzeugter Schlüssel:</translation>
+        <translation>Erzeugter Schlüssel:</translation>
     </message>
     <message>
         <location filename="login.ui" line="73"/>
         <source>Generate Key</source>
-        <translation type="unfinished">Schlüssel erzeugen</translation>
+        <translation>Schlüssel erzeugen</translation>
     </message>
     <message>
         <location filename="login.ui" line="88"/>
         <source>Password:</source>
-        <translation type="unfinished">Passwort:</translation>
+        <translation>Passwort:</translation>
     </message>
     <message>
         <location filename="login.ui" line="120"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="login.ui" line="136"/>
         <source>Save Login</source>
-        <translation type="unfinished">Anmeldedaten speichern</translation>
+        <translation>Anmeldedaten speichern</translation>
     </message>
     <message>
         <location filename="login.ui" line="148"/>
         <source>Login:</source>
-        <translation type="unfinished">Anmeldung:</translation>
+        <translation>Anmeldung:</translation>
     </message>
     <message>
         <location filename="login.ui" line="187"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="login.ui" line="199"/>
@@ -523,22 +536,22 @@ Fabian Högl</source>
     <message>
         <location filename="login.cpp" line="247"/>
         <source>Password should be atleast 8 characters. </source>
-        <translation type="unfinished">Das Passwort sollte mindestens 8 Zeichen lang sein.</translation>
+        <translation>Das Passwort sollte mindestens 8 Zeichen lang sein.</translation>
     </message>
     <message>
         <location filename="login.cpp" line="251"/>
         <source>Wrong Password</source>
-        <translation type="unfinished">Falsches Passwort</translation>
+        <translation>Falsches Passwort</translation>
     </message>
     <message>
         <location filename="login.cpp" line="252"/>
         <source>Passwords dont match. </source>
-        <translation type="unfinished">Passwörter stimmen nicht überein.</translation>
+        <translation>Passwörter stimmen nicht überein.</translation>
     </message>
     <message>
         <location filename="login.cpp" line="268"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="login.cpp" line="233"/>
