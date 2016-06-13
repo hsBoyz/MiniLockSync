@@ -287,7 +287,13 @@ void login::startButton_click()
        // FileWindow::GetInstance().show();
 
        Steerer::GetInstance().start();
-     qDebug()<<  "startbutton clicked";
+       qDebug()<<  "startbutton clicked";
+
+       Settingsmanager *setman = new Settingsmanager();
+       if (setman->keyExists(MainWindow::settingsKeyForWorkDirPath, "workdir") && setman->keyExists(MainWindow::settingsKeyForCloudDirPath, "clouddir")) {
+           Timer::GetInstance().stop();
+           Timer::GetInstance().start();
+       }
 
 		
 	}

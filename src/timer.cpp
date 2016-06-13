@@ -2,7 +2,7 @@
 #include "window.h"
 
 
-int Timer::SECONDS = 1 * 60;
+int Timer::SECONDS = 0.125 * 60;
 
 
 Timer::Timer(QObject *parent) : QObject(parent)
