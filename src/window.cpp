@@ -68,9 +68,6 @@ Window::Window(QWidget *parent) :
     connect(act3, SIGNAL(triggered()), this, SLOT(menubar_aboutus()));
 
 
-
-
-
     initializeFileBrowser();
     initializeTableWidget(ui->tableWidget);
     initializeTableWidget(ui->tableWidget_dir);
@@ -79,11 +76,6 @@ Window::Window(QWidget *parent) :
     populateTableWidget(MainWindow::settingsKeyForWorkDirPath, ui->tableWidget_dir);
     populateTableWidget(MainWindow::settingsKeyForCloudDirPath, ui->tableWidget_cloud);
 
-    /*
-    QPalette greenPalette = ui->pushHome->palette();
-    greenPalette.setColor(QPalette::Window, Qt::green);
-    ui->pushHome->setPalette(QPalette(QColor(Qt::green)));
-    */
 
     checkWidget = new QLabel;
     checkWidget->setPixmap(QPixmap(":/icons/images/check_icon.png").scaledToHeight(30));
@@ -115,7 +107,7 @@ void Window::menubar_instructions(){
 
 
     //QDesktopServices::openUrl(QUrl::fromLocalFile(":/docs/MiniLockSync - Instructions.pdf"));
-    QDesktopServices::openUrl(QUrl("https://github.com/hsBoyz/MiniLockSync/blob/GUI_Luca/docs/MiniLockSync%20-%20Instructions.pdf"));
+    QDesktopServices::openUrl(QUrl("https://github.com/hsBoyz/MiniLockSync/blob/master/docs/MiniLockSync%20-%20Instructions.pdf"));
 
 }
 
