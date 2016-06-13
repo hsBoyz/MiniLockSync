@@ -1,0 +1,14 @@
+﻿  moc_qtapp.cpp
+  Import Symbols
+  Compiler Message: RELEASE
+  Compiler Message: Unicode not defined
+  main.cpp
+  Import Symbols
+  Compiler Message: RELEASE
+  Compiler Message: Unicode not defined
+  qtapp.cpp
+  Import Symbols
+  Compiler Message: RELEASE
+  Compiler Message: Unicode not defined
+  Code wird generiert...
+  qtApp.vcxproj -> E:\Benutzer\Manuel\OneDrive\Programmieren\QT\MiniLockSync\tools\qtapp\Win32\Release\qtApp.exe

@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/cancel.png</file>
+        <file>images/icon_rund.png</file>
+        <file>images/icon_eckig.png</file>
+        <file>images/MLS Banner2.png</file>
+        <file>images/MLS Banner3.png</file>
+        <file>images/4MLS Banner4.png</file>
+        <file>images/check_icon.png</file>
+        <file>images/sync_icon2.png</file>
+        <file>images/book4.png</file>
+        <file>images/icon_eckig128x128.png</file>
+    </qresource>
+    <qresource prefix="/buttons">
+        <file>buttons/cloud_button.png</file>
+        <file>buttons/folder_button.png</file>
+        <file>buttons/home_button.png</file>
+        <file>buttons/settings_button.png</file>
+    </qresource>
+    <qresource prefix="/files"/>
+    <qresource prefix="/Languages">
+        <file>MiniLockSync_de.qm</file>
+    </qresource>
+</RCC>
