@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>μCryptLib: uCrypt::uCryptLib Klassenreferenz</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">μCryptLib
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Projektarbeit der Hochschule Esslingen</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Klassen</span></a></li>
+      <li><a href="files.html"><span>Dateien</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Auflistung&#160;der&#160;Klassen</span></a></li>
+      <li><a href="classes.html"><span>Klassen-Verzeichnis</span></a></li>
+      <li><a href="functions.html"><span>Klassen-Elemente</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classuCrypt_1_1uCryptLib.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Öffentliche Methoden</a> &#124;
+<a href="#pub-static-methods">Öffentliche, statische Methoden</a> &#124;
+<a href="#pub-static-attribs">Statische öffentliche Attribute</a> &#124;
+<a href="classuCrypt_1_1uCryptLib-members.html">Aufstellung aller Elemente</a>  </div>
+  <div class="headertitle">
+<div class="title">uCrypt::uCryptLib Klassenreferenz</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classuCrypt_1_1uCryptLib.html" title="The uCryptLib class is part of a Cryptography Library that&#39;s built to make encryption and decryption ...">uCryptLib</a> class is part of a Cryptography Library that's built to make encryption and decryption as easy and fast as possible for third party tools.  
+ <a href="classuCrypt_1_1uCryptLib.html#details">Mehr ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="uCryptLib_8h_source.html">uCryptLib.h</a>&gt;</code></p>
+<div class="dynheader">
+Zusammengehörigkeiten von uCrypt::uCryptLib:</div>
+<div class="dyncontent">
+<div class="center"><img src="classuCrypt_1_1uCryptLib__coll__graph.png" border="0" usemap="#uCrypt_1_1uCryptLib_coll__map" alt="Collaboration graph"/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Öffentliche Methoden</h2></td></tr>
+<tr class="memitem:aab8ae866a5f5bb7728b76a217f7cabf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab8ae866a5f5bb7728b76a217f7cabf0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuCrypt_1_1uCryptLib.html#aab8ae866a5f5bb7728b76a217f7cabf0">uCryptLib</a> ()</td></tr>
+<tr class="memdesc:aab8ae866a5f5bb7728b76a217f7cabf0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classuCrypt_1_1uCryptLib.html" title="The uCryptLib class is part of a Cryptography Library that&#39;s built to make encryption and decryption ...">uCryptLib</a> Konstruktor ohne Initialisierung. <br /></td></tr>
+<tr class="separator:aab8ae866a5f5bb7728b76a217f7cabf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87345999d9b68b3e116e091f5d5b1e80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuCrypt_1_1uCryptLib.html#a87345999d9b68b3e116e091f5d5b1e80">uCryptLib</a> (std::string eMail, std::string passwd)</td></tr>
+<tr class="memdesc:a87345999d9b68b3e116e091f5d5b1e80"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classuCrypt_1_1uCryptLib.html" title="The uCryptLib class is part of a Cryptography Library that&#39;s built to make encryption and decryption ...">uCryptLib</a> Konstruktor mit Initialisierung.  <a href="#a87345999d9b68b3e116e091f5d5b1e80">Mehr ...</a><br /></td></tr>
+<tr class="separator:a87345999d9b68b3e116e091f5d5b1e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868127bd1d2aa4edd62076663d801b66"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuCrypt_1_1uCryptLib.html#a868127bd1d2aa4edd62076663d801b66">DecryptFile</a> (std::string fileName, std::string sourcePath, std::string targetPath=&quot;&quot;)</td></tr>
+<tr class="memdesc:a868127bd1d2aa4edd62076663d801b66"><td class="mdescLeft">&#160;</td><td class="mdescRight">DecryptFile führt die Entschlüsselung der Datei durch.  <a href="#a868127bd1d2aa4edd62076663d801b66">Mehr ...</a><br /></td></tr>
+<tr class="separator:a868127bd1d2aa4edd62076663d801b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52da107c55f0d20b709022e1e12ee18e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuCrypt_1_1uCryptLib.html#a52da107c55f0d20b709022e1e12ee18e">EncryptFile</a> (std::string fileName, std::string sourcePath, std::string recipientIDs[], uint8_t numRecipients, std::string targetPath)</td></tr>
+<tr class="memdesc:a52da107c55f0d20b709022e1e12ee18e"><td class="mdescLeft">&#160;</td><td class="mdescRight">EncryptFile führt die Verschlüsselung der Datei durch.  <a href="#a52da107c55f0d20b709022e1e12ee18e">Mehr ...</a><br /></td></tr>
+<tr class="separator:a52da107c55f0d20b709022e1e12ee18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a659692c488ec460fa123ad81fa46f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a659692c488ec460fa123ad81fa46f1"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getIdentificationNumber</b> ()</td></tr>
+<tr class="separator:a6a659692c488ec460fa123ad81fa46f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d7c6328bb218876de708d43be91494d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d7c6328bb218876de708d43be91494d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uCryptInit</b> (std::string eMail, std::string passwd)</td></tr>
+<tr class="separator:a6d7c6328bb218876de708d43be91494d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Öffentliche, statische Methoden</h2></td></tr>
+<tr class="memitem:af460e066f8c91c19d70306efdd7704b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af460e066f8c91c19d70306efdd7704b3"></a>
+static double&#160;</td><td class="memItemRight" valign="bottom"><b>getBitEntropy</b> (std::string s)</td></tr>
+<tr class="separator:af460e066f8c91c19d70306efdd7704b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b831c97eb1fc974ad32a63931de4d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72b831c97eb1fc974ad32a63931de4d3"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>blake2s_Hash</b> (uint8_t *out, const void *in, const void *key, const uint8_t outlen, const uint64_t inlen, uint8_t keylen)</td></tr>
+<tr class="separator:a72b831c97eb1fc974ad32a63931de4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac29c8bc8acdae72a1a16b705af8f463b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac29c8bc8acdae72a1a16b705af8f463b"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>scrypt</b> (const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint32_t, uint32_t, uint8_t *, size_t)</td></tr>
+<tr class="separator:ac29c8bc8acdae72a1a16b705af8f463b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d0d507065deffd5d4f16973382f1db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33d0d507065deffd5d4f16973382f1db"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>base64_Encode</b> (unsigned char const *, unsigned int)</td></tr>
+<tr class="separator:a33d0d507065deffd5d4f16973382f1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a679e5dceaceba3a9373233e6b79bba1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a679e5dceaceba3a9373233e6b79bba1b"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>base64_Decode</b> (std::string const &amp;)</td></tr>
+<tr class="separator:a679e5dceaceba3a9373233e6b79bba1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01e2676427095bffb5315cd71ab2beb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab01e2676427095bffb5315cd71ab2beb"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>base58_Decode</b> (void *bin, size_t *binszp, const char *b58, size_t b58sz)</td></tr>
+<tr class="separator:ab01e2676427095bffb5315cd71ab2beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bbd554f2178f2566d2c5764b9abccc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67bbd554f2178f2566d2c5764b9abccc"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>base58_Encode</b> (char *b58, size_t *b58sz, const void *data, size_t binsz)</td></tr>
+<tr class="separator:a67bbd554f2178f2566d2c5764b9abccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Statische öffentliche Attribute</h2></td></tr>
+<tr class="memitem:a5fa4bf355e7d158cb8caffd8a1b71340"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fa4bf355e7d158cb8caffd8a1b71340"></a>
+static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_BLAKE2S_OUTBYTES</b> = 32</td></tr>
+<tr class="separator:a5fa4bf355e7d158cb8caffd8a1b71340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67cf7ad1aa88ca33fcbbd0cc7fb01331"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67cf7ad1aa88ca33fcbbd0cc7fb01331"></a>
+static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_BASE58_DECODED_SIZE</b> = 33</td></tr>
+<tr class="separator:a67cf7ad1aa88ca33fcbbd0cc7fb01331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a978672f063403a89fb8de70d87c0098a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a978672f063403a89fb8de70d87c0098a"></a>
+static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_PUBLICKEYBYTES</b> = 32</td></tr>
+<tr class="separator:a978672f063403a89fb8de70d87c0098a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b78ba33d66a667292e64208c9e4a484"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b78ba33d66a667292e64208c9e4a484"></a>
+static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_SECRETKEYBYTES</b> = 32</td></tr>
+<tr class="separator:a1b78ba33d66a667292e64208c9e4a484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad847c31cdc5b0162f2245389ca9d540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad847c31cdc5b0162f2245389ca9d540"></a>
+static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_ID_CHECKSUM_LEN</b> = 1</td></tr>
+<tr class="separator:aad847c31cdc5b0162f2245389ca9d540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
+<div class="textblock"><p>The <a class="el" href="classuCrypt_1_1uCryptLib.html" title="The uCryptLib class is part of a Cryptography Library that&#39;s built to make encryption and decryption ...">uCryptLib</a> class is part of a Cryptography Library that's built to make encryption and decryption as easy and fast as possible for third party tools. </p>
+
+<p>Definiert in Zeile <a class="el" href="uCryptLib_8h_source.html#l00109">109</a> der Datei <a class="el" href="uCryptLib_8h_source.html">uCryptLib.h</a>.</p>
+</div><h2 class="groupheader">Beschreibung der Konstruktoren und Destruktoren</h2>
+<a class="anchor" id="a87345999d9b68b3e116e091f5d5b1e80"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uCrypt::uCryptLib::uCryptLib </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>eMail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>passwd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classuCrypt_1_1uCryptLib.html" title="The uCryptLib class is part of a Cryptography Library that&#39;s built to make encryption and decryption ...">uCryptLib</a> Konstruktor mit Initialisierung. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eMail</td><td>E-Mail, welche zur Initialisierung verwendet wird. </td></tr>
+    <tr><td class="paramname">passwd</td><td>Password welches zur Initialisierung verwendet wird. Muss eine Bit Entropie von &gt; 100 haben. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentation der Elementfunktionen</h2>
+<a class="anchor" id="a868127bd1d2aa4edd62076663d801b66"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t uCrypt::uCryptLib::DecryptFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sourcePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>targetPath</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DecryptFile führt die Entschlüsselung der Datei durch. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>ist der Dateiname der zu entschlüsselnden Datei. </td></tr>
+    <tr><td class="paramname">sourcePath</td><td>ist der Pfad zu der Entschlüsselnden Datei. </td></tr>
+    <tr><td class="paramname">targetPath</td><td>ist der Speicherpfad der zu entschlüsselnden Datei. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>0, wenn alles i.O ist, ansonsten siehe Fehlertabelle. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a52da107c55f0d20b709022e1e12ee18e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t uCrypt::uCryptLib::EncryptFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sourcePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>recipientIDs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>numRecipients</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>targetPath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EncryptFile führt die Verschlüsselung der Datei durch. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>ist der Dateiname der zu verschlüsselnden Datei. </td></tr>
+    <tr><td class="paramname">sourcePath</td><td>enthält den Pfad zu der zu verschlüsselnden Datei. </td></tr>
+    <tr><td class="paramname">recipientIDs</td><td>enthält ein Array mit den Identifikationsnummern der Empfänger. </td></tr>
+    <tr><td class="paramname">numRecipients</td><td>enthält die Anzahl der Empfänger. </td></tr>
+    <tr><td class="paramname">targetPath</td><td>enthält den Speicherpfad zu der verschlüsselten Datei. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>0, wenn alles i.O ist, ansonsten siehe Fehlertabelle </dd></dl>
+
+</div>
+</div>
+<hr/>Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Datei:<ul>
+<li><a class="el" href="uCryptLib_8h_source.html">uCryptLib.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>uCrypt</b></li><li class="navelem"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCryptLib</a></li>
+    <li class="footer">Erzeugt von
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

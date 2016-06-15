@@ -1,0 +1,174 @@
+\hypertarget{classuCrypt_1_1uCryptLib}{}\subsection{u\+Crypt\+:\+:u\+Crypt\+Lib Klassenreferenz}
+\label{classuCrypt_1_1uCryptLib}\index{u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}}
+
+
+The \hyperlink{classuCrypt_1_1uCryptLib}{u\+Crypt\+Lib} class is part of a Cryptography Library that\textquotesingle{}s built to make encryption and decryption as easy and fast as possible for third party tools.  
+
+
+
+
+{\ttfamily \#include $<$u\+Crypt\+Lib.\+h$>$}
+
+
+
+Zusammengehörigkeiten von u\+Crypt\+:\+:u\+Crypt\+Lib\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classuCrypt_1_1uCryptLib__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Öffentliche Methoden}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_aab8ae866a5f5bb7728b76a217f7cabf0}{}\hyperlink{classuCrypt_1_1uCryptLib_aab8ae866a5f5bb7728b76a217f7cabf0}{u\+Crypt\+Lib} ()\label{classuCrypt_1_1uCryptLib_aab8ae866a5f5bb7728b76a217f7cabf0}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classuCrypt_1_1uCryptLib}{u\+Crypt\+Lib} Konstruktor ohne Initialisierung. \end{DoxyCompactList}\item 
+\hyperlink{classuCrypt_1_1uCryptLib_a87345999d9b68b3e116e091f5d5b1e80}{u\+Crypt\+Lib} (std\+::string e\+Mail, std\+::string passwd)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classuCrypt_1_1uCryptLib}{u\+Crypt\+Lib} Konstruktor mit Initialisierung. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classuCrypt_1_1uCryptLib_a868127bd1d2aa4edd62076663d801b66}{Decrypt\+File} (std\+::string file\+Name, std\+::string source\+Path, std\+::string target\+Path=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Decrypt\+File führt die Entschlüsselung der Datei durch. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classuCrypt_1_1uCryptLib_a52da107c55f0d20b709022e1e12ee18e}{Encrypt\+File} (std\+::string file\+Name, std\+::string source\+Path, std\+::string recipient\+I\+Ds\mbox{[}$\,$\mbox{]}, uint8\+\_\+t num\+Recipients, std\+::string target\+Path)
+\begin{DoxyCompactList}\small\item\em Encrypt\+File führt die Verschlüsselung der Datei durch. \end{DoxyCompactList}\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a6a659692c488ec460fa123ad81fa46f1}{}std\+::string {\bfseries get\+Identification\+Number} ()\label{classuCrypt_1_1uCryptLib_a6a659692c488ec460fa123ad81fa46f1}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a6d7c6328bb218876de708d43be91494d}{}void {\bfseries u\+Crypt\+Init} (std\+::string e\+Mail, std\+::string passwd)\label{classuCrypt_1_1uCryptLib_a6d7c6328bb218876de708d43be91494d}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Öffentliche, statische Methoden}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_af460e066f8c91c19d70306efdd7704b3}{}static double {\bfseries get\+Bit\+Entropy} (std\+::string s)\label{classuCrypt_1_1uCryptLib_af460e066f8c91c19d70306efdd7704b3}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a72b831c97eb1fc974ad32a63931de4d3}{}static int {\bfseries blake2s\+\_\+\+Hash} (uint8\+\_\+t $\ast$out, const void $\ast$in, const void $\ast$key, const uint8\+\_\+t outlen, const uint64\+\_\+t inlen, uint8\+\_\+t keylen)\label{classuCrypt_1_1uCryptLib_a72b831c97eb1fc974ad32a63931de4d3}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_ac29c8bc8acdae72a1a16b705af8f463b}{}static int {\bfseries scrypt} (const uint8\+\_\+t $\ast$, size\+\_\+t, const uint8\+\_\+t $\ast$, size\+\_\+t, uint64\+\_\+t, uint32\+\_\+t, uint32\+\_\+t, uint8\+\_\+t $\ast$, size\+\_\+t)\label{classuCrypt_1_1uCryptLib_ac29c8bc8acdae72a1a16b705af8f463b}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a33d0d507065deffd5d4f16973382f1db}{}static std\+::string {\bfseries base64\+\_\+\+Encode} (unsigned char const $\ast$, unsigned int)\label{classuCrypt_1_1uCryptLib_a33d0d507065deffd5d4f16973382f1db}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a679e5dceaceba3a9373233e6b79bba1b}{}static std\+::string {\bfseries base64\+\_\+\+Decode} (std\+::string const \&)\label{classuCrypt_1_1uCryptLib_a679e5dceaceba3a9373233e6b79bba1b}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_ab01e2676427095bffb5315cd71ab2beb}{}static bool {\bfseries base58\+\_\+\+Decode} (void $\ast$bin, size\+\_\+t $\ast$binszp, const char $\ast$b58, size\+\_\+t b58sz)\label{classuCrypt_1_1uCryptLib_ab01e2676427095bffb5315cd71ab2beb}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a67bbd554f2178f2566d2c5764b9abccc}{}static bool {\bfseries base58\+\_\+\+Encode} (char $\ast$b58, size\+\_\+t $\ast$b58sz, const void $\ast$data, size\+\_\+t binsz)\label{classuCrypt_1_1uCryptLib_a67bbd554f2178f2566d2c5764b9abccc}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Statische öffentliche Attribute}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a5fa4bf355e7d158cb8caffd8a1b71340}{}static const uint8\+\_\+t {\bfseries \+\_\+\+B\+L\+A\+K\+E2\+S\+\_\+\+O\+U\+T\+B\+Y\+T\+E\+S} = 32\label{classuCrypt_1_1uCryptLib_a5fa4bf355e7d158cb8caffd8a1b71340}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a67cf7ad1aa88ca33fcbbd0cc7fb01331}{}static const uint8\+\_\+t {\bfseries \+\_\+\+B\+A\+S\+E58\+\_\+\+D\+E\+C\+O\+D\+E\+D\+\_\+\+S\+I\+Z\+E} = 33\label{classuCrypt_1_1uCryptLib_a67cf7ad1aa88ca33fcbbd0cc7fb01331}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a978672f063403a89fb8de70d87c0098a}{}static const uint8\+\_\+t {\bfseries \+\_\+\+P\+U\+B\+L\+I\+C\+K\+E\+Y\+B\+Y\+T\+E\+S} = 32\label{classuCrypt_1_1uCryptLib_a978672f063403a89fb8de70d87c0098a}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_a1b78ba33d66a667292e64208c9e4a484}{}static const uint8\+\_\+t {\bfseries \+\_\+\+S\+E\+C\+R\+E\+T\+K\+E\+Y\+B\+Y\+T\+E\+S} = 32\label{classuCrypt_1_1uCryptLib_a1b78ba33d66a667292e64208c9e4a484}
+
+\item 
+\hypertarget{classuCrypt_1_1uCryptLib_aad847c31cdc5b0162f2245389ca9d540}{}static const uint8\+\_\+t {\bfseries \+\_\+\+I\+D\+\_\+\+C\+H\+E\+C\+K\+S\+U\+M\+\_\+\+L\+E\+N} = 1\label{classuCrypt_1_1uCryptLib_aad847c31cdc5b0162f2245389ca9d540}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Ausführliche Beschreibung}
+The \hyperlink{classuCrypt_1_1uCryptLib}{u\+Crypt\+Lib} class is part of a Cryptography Library that\textquotesingle{}s built to make encryption and decryption as easy and fast as possible for third party tools. 
+
+Definiert in Zeile \hyperlink{uCryptLib_8h_source_l00109}{109} der Datei \hyperlink{uCryptLib_8h_source}{u\+Crypt\+Lib.\+h}.
+
+
+
+\subsubsection{Beschreibung der Konstruktoren und Destruktoren}
+\hypertarget{classuCrypt_1_1uCryptLib_a87345999d9b68b3e116e091f5d5b1e80}{}\index{u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}!u\+Crypt\+Lib@{u\+Crypt\+Lib}}
+\index{u\+Crypt\+Lib@{u\+Crypt\+Lib}!u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}}
+\paragraph[{u\+Crypt\+Lib}]{\setlength{\rightskip}{0pt plus 5cm}u\+Crypt\+::u\+Crypt\+Lib\+::u\+Crypt\+Lib (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{e\+Mail, }
+\item[{std\+::string}]{passwd}
+\end{DoxyParamCaption}
+)}\label{classuCrypt_1_1uCryptLib_a87345999d9b68b3e116e091f5d5b1e80}
+
+
+\hyperlink{classuCrypt_1_1uCryptLib}{u\+Crypt\+Lib} Konstruktor mit Initialisierung. 
+
+
+\begin{DoxyParams}{Parameter}
+{\em e\+Mail} & E-\/\+Mail, welche zur Initialisierung verwendet wird. \\
+\hline
+{\em passwd} & Password welches zur Initialisierung verwendet wird. Muss eine Bit Entropie von $>$ 100 haben. \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Dokumentation der Elementfunktionen}
+\hypertarget{classuCrypt_1_1uCryptLib_a868127bd1d2aa4edd62076663d801b66}{}\index{u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}!Decrypt\+File@{Decrypt\+File}}
+\index{Decrypt\+File@{Decrypt\+File}!u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}}
+\paragraph[{Decrypt\+File}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t u\+Crypt\+::u\+Crypt\+Lib\+::\+Decrypt\+File (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{file\+Name, }
+\item[{std\+::string}]{source\+Path, }
+\item[{std\+::string}]{target\+Path = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}\label{classuCrypt_1_1uCryptLib_a868127bd1d2aa4edd62076663d801b66}
+
+
+Decrypt\+File führt die Entschlüsselung der Datei durch. 
+
+
+\begin{DoxyParams}{Parameter}
+{\em file\+Name} & ist der Dateiname der zu entschlüsselnden Datei. \\
+\hline
+{\em source\+Path} & ist der Pfad zu der Entschlüsselnden Datei. \\
+\hline
+{\em target\+Path} & ist der Speicherpfad der zu entschlüsselnden Datei. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Rückgabe}
+0, wenn alles i.\+O ist, ansonsten siehe Fehlertabelle. 
+\end{DoxyReturn}
+\hypertarget{classuCrypt_1_1uCryptLib_a52da107c55f0d20b709022e1e12ee18e}{}\index{u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}!Encrypt\+File@{Encrypt\+File}}
+\index{Encrypt\+File@{Encrypt\+File}!u\+Crypt\+::u\+Crypt\+Lib@{u\+Crypt\+::u\+Crypt\+Lib}}
+\paragraph[{Encrypt\+File}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t u\+Crypt\+::u\+Crypt\+Lib\+::\+Encrypt\+File (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{file\+Name, }
+\item[{std\+::string}]{source\+Path, }
+\item[{std\+::string}]{recipient\+I\+Ds\mbox{[}$\,$\mbox{]}, }
+\item[{uint8\+\_\+t}]{num\+Recipients, }
+\item[{std\+::string}]{target\+Path}
+\end{DoxyParamCaption}
+)}\label{classuCrypt_1_1uCryptLib_a52da107c55f0d20b709022e1e12ee18e}
+
+
+Encrypt\+File führt die Verschlüsselung der Datei durch. 
+
+
+\begin{DoxyParams}{Parameter}
+{\em file\+Name} & ist der Dateiname der zu verschlüsselnden Datei. \\
+\hline
+{\em source\+Path} & enthält den Pfad zu der zu verschlüsselnden Datei. \\
+\hline
+{\em recipient\+I\+Ds} & enthält ein Array mit den Identifikationsnummern der Empfänger. \\
+\hline
+{\em num\+Recipients} & enthält die Anzahl der Empfänger. \\
+\hline
+{\em target\+Path} & enthält den Speicherpfad zu der verschlüsselten Datei. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Rückgabe}
+0, wenn alles i.\+O ist, ansonsten siehe Fehlertabelle 
+\end{DoxyReturn}
+
+
+Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Datei\+:\begin{DoxyCompactItemize}
+\item 
+u\+Crypt\+Lib.\+h\end{DoxyCompactItemize}
