@@ -609,7 +609,7 @@ QFileInfo Window::returnSelectedPath() {
         return path;
     }
     return path;*/
-    return "";
+    return QFileInfo("");
 }
 
 void Window::copyDirectory(){
