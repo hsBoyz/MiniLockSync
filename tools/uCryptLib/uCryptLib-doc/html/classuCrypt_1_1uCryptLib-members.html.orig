@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>μCryptLib: Elementverzeichnis</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">μCryptLib
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Projektarbeit der Hochschule Esslingen</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Klassen</span></a></li>
+      <li><a href="files.html"><span>Dateien</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Auflistung&#160;der&#160;Klassen</span></a></li>
+      <li><a href="classes.html"><span>Klassen-Verzeichnis</span></a></li>
+      <li><a href="functions.html"><span>Klassen-Elemente</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classuCrypt_1_1uCryptLib.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">uCrypt::uCryptLib Elementverzeichnis</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Vollständige Aufstellung aller Elemente für <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a> einschließlich aller geerbten Elemente.</p>
+<table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_BASE58_DECODED_SIZE</b> (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>_BLAKE2S_OUTBYTES</b> (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_ID_CHECKSUM_LEN</b> (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>_PUBLICKEYBYTES</b> (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_SECRETKEYBYTES</b> (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>base58_Decode</b>(void *bin, size_t *binszp, const char *b58, size_t b58sz) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>base58_Encode</b>(char *b58, size_t *b58sz, const void *data, size_t binsz) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>base64_Decode</b>(std::string const &amp;) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>base64_Encode</b>(unsigned char const *, unsigned int) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>blake2s_Hash</b>(uint8_t *out, const void *in, const void *key, const uint8_t outlen, const uint64_t inlen, uint8_t keylen) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html#a868127bd1d2aa4edd62076663d801b66">DecryptFile</a>(std::string fileName, std::string sourcePath, std::string targetPath=&quot;&quot;)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html#a52da107c55f0d20b709022e1e12ee18e">EncryptFile</a>(std::string fileName, std::string sourcePath, std::string recipientIDs[], uint8_t numRecipients, std::string targetPath)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+<<<<<<< HEAD
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getBitEntropy</b>(std::string s) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getIdentificationNumber</b>() (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>scrypt</b>(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint32_t, uint32_t, uint8_t *, size_t) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>uCryptInit</b>(std::string eMail, std::string passwd) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+=======
+  <tr class="even"><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html#af460e066f8c91c19d70306efdd7704b3">getBitEntropy</a>(std::string s)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getIdentificationNumber</b>() (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>scrypt</b>(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint32_t, uint32_t, uint8_t *, size_t) (Definiert in <a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a>)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html#a6d7c6328bb218876de708d43be91494d">uCryptInit</a>(std::string eMail, std::string passwd)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+>>>>>>> linux-port
+  <tr class="even"><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html#aab8ae866a5f5bb7728b76a217f7cabf0">uCryptLib</a>()</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html#a87345999d9b68b3e116e091f5d5b1e80">uCryptLib</a>(std::string eMail, std::string passwd)</td><td class="entry"><a class="el" href="classuCrypt_1_1uCryptLib.html">uCrypt::uCryptLib</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Erzeugt von
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

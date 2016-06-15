@@ -1,7 +1,7 @@
 #include "worker.h"
 #include "mainwindow.h"
 #include "window.h"
-#include <Qdir>
+#include <QDir>
 #include <QThread>
 #include <QMessageBox>
 
