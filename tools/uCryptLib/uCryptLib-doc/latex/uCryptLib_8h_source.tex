@@ -1,0 +1,179 @@
+\hypertarget{uCryptLib_8h_source}{}\subsection{u\+Crypt\+Lib.\+h}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/*  This file is part of µCryptLib. A Cryptography Library that's}
+00002 \textcolor{comment}{ *  built to make encryption and decryption as easy and fast as}
+00003 \textcolor{comment}{ *  possible for third party tools.}
+00004 \textcolor{comment}{ *}
+00005 \textcolor{comment}{ *  This file was originally written by Michael Römer as part of an assignment.}
+00006 \textcolor{comment}{ *}
+00007 \textcolor{comment}{ *  This program is free software: you can redistribute it and/or modify}
+00008 \textcolor{comment}{ *  it under the terms of the GNU Affero General Public License as}
+00009 \textcolor{comment}{ *  published by the Free Software Foundation, either version 3 of the}
+00010 \textcolor{comment}{ *  License, or (at your option) any later version.}
+00011 \textcolor{comment}{ *}
+00012 \textcolor{comment}{ *  This program is distributed in the hope that it will be useful,}
+00013 \textcolor{comment}{ *  but WITHOUT ANY WARRANTY; without even the implied warranty of}
+00014 \textcolor{comment}{ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}
+00015 \textcolor{comment}{ *  GNU Affero General Public License for more details.}
+00016 \textcolor{comment}{ *}
+00017 \textcolor{comment}{ *  You should have received a copy of the GNU Affero General Public License}
+00018 \textcolor{comment}{ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.}
+00019 \textcolor{comment}{ */}
+00020 
+00021 \textcolor{preprocessor}{#ifndef UCRYPTOLIB\_H}
+00022 \textcolor{preprocessor}{#define UCRYPTOLIB\_H}
+00023 
+00024 \textcolor{comment}{/*}
+00025 \textcolor{comment}{#ifdef \_WIN32}
+00026 \textcolor{comment}{  #ifdef COMPILE\_UCRYPTOLIB}
+00027 \textcolor{comment}{    #define UCRYPTOLIB\_EXPORT \_\_declspec(dllexport)}
+00028 \textcolor{comment}{    #pragma message ("Export Symbols")}
+00029 \textcolor{comment}{  #else}
+00030 \textcolor{comment}{    #define UCRYPTOLIB\_EXPORT \_\_declspec(dllimport)}
+00031 \textcolor{comment}{    #pragma message ("Import Symbols")}
+00032 \textcolor{comment}{}
+00033 \textcolor{comment}{    #ifdef \_DEBUG}
+00034 \textcolor{comment}{      #pragma message ("Compiler Message: DEBUG")}
+00035 \textcolor{comment}{      #pragma comment (lib, "uCryptLib.Debug.lib")}
+00036 \textcolor{comment}{    #else}
+00037 \textcolor{comment}{      #pragma message ("Compiler Message: RELEASE")}
+00038 \textcolor{comment}{      #pragma comment (lib, "uCryptLib.Release.lib")}
+00039 \textcolor{comment}{    #endif // DEBUG}
+00040 \textcolor{comment}{  #endif // COMPILE\_UCRYPTOLIB}
+00041 \textcolor{comment}{#endif // \_WIN32}
+00042 \textcolor{comment}{}
+00043 \textcolor{comment}{#ifdef linux}
+00044 \textcolor{comment}{  #ifdef COMPILE\_UCRYPTOLIB}
+00045 \textcolor{comment}{    #define UCRYPTOLIB\_EXPORT}
+00046 \textcolor{comment}{    #pragma message ("Export Symbols linux")}
+00047 \textcolor{comment}{  #else}
+00048 \textcolor{comment}{    #define UCRYPTOLIB\_EXPORT}
+00049 \textcolor{comment}{    #pragma message ("Import Symbols linux")}
+00050 \textcolor{comment}{}
+00051 \textcolor{comment}{    #ifdef \_DEBUG}
+00052 \textcolor{comment}{      #pragma message ("Compiler Message: DEBUG")}
+00053 \textcolor{comment}{      #pragma comment (lib, "uCryptLib.Debug.lib")}
+00054 \textcolor{comment}{    #else}
+00055 \textcolor{comment}{      #pragma message ("Compiler Message: RELEASE")}
+00056 \textcolor{comment}{      #pragma comment (lib, "uCryptLib.Release.lib")}
+00057 \textcolor{comment}{    #endif // DEBUG}
+00058 \textcolor{comment}{#endif // COMPILE\_UCRYPTOLIB}
+00059 \textcolor{comment}{}
+00060 \textcolor{comment}{}
+00061 \textcolor{comment}{#endif */}
+00062 
+00063 \textcolor{preprocessor}{#if defined(\_UNICODE) || defined(UNICODE)}
+00064 \textcolor{preprocessor}{  #pragma message ("Compiler Message: Unicode will be defined")}
+00065 \textcolor{preprocessor}{#else}
+00066 \textcolor{preprocessor}{  #pragma message ("Compiler Message: Unicode not defined")}
+00067 \textcolor{preprocessor}{#endif}
+00068 
+00069 \textcolor{preprocessor}{#include <iostream>}
+00070 
+00071 \textcolor{preprocessor}{#include <stddef.h>}
+00072 \textcolor{comment}{//#include <stdint.h> also win only}
+00073 \textcolor{preprocessor}{#include <string.h>}
+00074 
+00075 \textcolor{comment}{/* // we have to check if this is really needed}
+00076 \textcolor{comment}{#ifdef \_WIN32}
+00077 \textcolor{comment}{  #include <BaseTsd.h> /// needed only for Windows}
+00078 \textcolor{comment}{#endif */}
+00079 
+00080 \textcolor{preprocessor}{#include <fstream>}
+00081 \textcolor{preprocessor}{#include <cstdint>}
+00082 \textcolor{preprocessor}{#include <vector>}
+00083 \textcolor{preprocessor}{#include <iterator>}
+00084 \textcolor{preprocessor}{#include <stdlib.h>}
+00085 \textcolor{preprocessor}{#include <string>}
+00086 \textcolor{preprocessor}{#include <map>}
+00087 \textcolor{preprocessor}{#include <iostream>}
+00088 \textcolor{preprocessor}{#include <algorithm>}
+00089 \textcolor{preprocessor}{#include <cmath>}
+00090 \textcolor{preprocessor}{#include <stddef.h>}
+00091 \textcolor{preprocessor}{#include <string>}
+00092 \textcolor{preprocessor}{#include <cstdint>}
+00093 \textcolor{preprocessor}{#include <unistd.h>} \textcolor{comment}{// SSIZE\_T}
+00094 
+00095 \textcolor{preprocessor}{#include "include/scrypt/crypto\_scrypt.h"}
+00096 \textcolor{preprocessor}{#include "include/libsodium/sodium.h"}
+00097 \textcolor{preprocessor}{#include "include/blake2/blake2.h"}
+00098 \textcolor{preprocessor}{#include "include/rapidjson/document.h"}
+00099 \textcolor{preprocessor}{#include "include/rapidjson/writer.h"}
+00100 \textcolor{preprocessor}{#include "include/rapidjson/stringbuffer.h"}
+00101 
+00102 \textcolor{keyword}{namespace }\hyperlink{namespaceuCrypt}{uCrypt}
+00103 \{
+\hypertarget{uCryptLib_8h_source_l00109}{}\hyperlink{classuCrypt_1_1uCryptLib}{00109}   \textcolor{comment}{/*UCRYPTOLIB\_EXPORT */}\textcolor{keyword}{class }\hyperlink{classuCrypt_1_1uCryptLib}{uCryptLib}
+00110   \{
+00111   \textcolor{keyword}{public}:
+00112     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t \_BLAKE2S\_OUTBYTES = 32;
+00113     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t \_BASE58\_DECODED\_SIZE = 33;
+00114     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t \_PUBLICKEYBYTES = 32;
+00115     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t \_SECRETKEYBYTES = 32;
+00116     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t \_ID\_CHECKSUM\_LEN = 1;
+00117 
+00121     \hyperlink{classuCrypt_1_1uCryptLib_aab8ae866a5f5bb7728b76a217f7cabf0}{uCryptLib}();
+00122 
+00128     \hyperlink{classuCrypt_1_1uCryptLib_aab8ae866a5f5bb7728b76a217f7cabf0}{uCryptLib}(std::string eMail, std::string passwd);
+00129 
+00137     uint8\_t \hyperlink{classuCrypt_1_1uCryptLib_a868127bd1d2aa4edd62076663d801b66}{DecryptFile}(std::string fileName, std::string sourcePath, std::string targetPath = \textcolor{stringliteral}{"
+      "});
+00138 
+00148     uint8\_t \hyperlink{classuCrypt_1_1uCryptLib_a52da107c55f0d20b709022e1e12ee18e}{EncryptFile}(std::string fileName, std::string sourcePath, std::string recipientIDs[]
+      , uint8\_t numRecipients, std::string targetPath);
+00149 
+00150 
+00151     std::string getIdentificationNumber();
+00152     \textcolor{keywordtype}{void} uCryptInit(std::string eMail, std::string passwd);
+00153 
+00154     \textcolor{keyword}{static} \textcolor{keywordtype}{double} getBitEntropy(std::string s);
+00155 
+00156     \textcolor{keyword}{static} \textcolor{keywordtype}{int}  blake2s\_Hash(uint8\_t *out, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *in, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key, \textcolor{keyword}{const} uint8\_t outlen, \textcolor{keyword}{const} 
+      uint64\_t inlen, uint8\_t keylen);
+00157     \textcolor{keyword}{static} \textcolor{keywordtype}{int}  scrypt(\textcolor{keyword}{const} uint8\_t *, \textcolor{keywordtype}{size\_t}, \textcolor{keyword}{const} uint8\_t *, \textcolor{keywordtype}{size\_t}, uint64\_t, uint32\_t, uint32\_t, 
+      uint8\_t *, \textcolor{keywordtype}{size\_t});
+00158     \textcolor{keyword}{static} std::string base64\_Encode(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \textcolor{keyword}{const} *, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int});
+00159     \textcolor{keyword}{static} std::string base64\_Decode(std::string \textcolor{keyword}{const} &);
+00160     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} base58\_Decode(\textcolor{keywordtype}{void} *bin, \textcolor{keywordtype}{size\_t} *binszp, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *b58, \textcolor{keywordtype}{size\_t} b58sz);
+00161     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} base58\_Encode(\textcolor{keywordtype}{char} *b58, \textcolor{keywordtype}{size\_t} *b58sz, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *data, \textcolor{keywordtype}{size\_t} binsz);
+00162 
+00163   \textcolor{keyword}{private}:
+00164     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t}   \_CHUNK\_SIZE = 1048576;
+00165     \textcolor{keyword}{static} \textcolor{keyword}{const} uint16\_t \_FILENAME\_LEN\_PADDED = 256;
+00166     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_FILEKEY\_LEN = 32;
+00167     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_FILENONCE\_LEN = 16;
+00168     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_FULLNONCE\_LEN = 24;
+00169     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_CHUNK\_NUM\_LEN = 8;
+00170     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_CHUNK\_LEN\_ARR\_LEN = 4;
+00171     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_MAGIC\_BYTES\_SIZE = 8;
+00172     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t  \_PADDING\_BYTES\_LEN = 16;
+00173 
+00174     \textcolor{keyword}{static} \textcolor{keyword}{const} uint64\_t \_SCRYPT\_N = 131072; \textcolor{comment}{// 2^17}
+00175     \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t \_SCRYPT\_r = 8;
+00176     \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t \_SCRYPT\_p = 1;
+00177 
+00178     \textcolor{keyword}{static} \textcolor{keyword}{const} int8\_t b58digits\_map[];
+00179     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} b58digits\_ordered[];
+00180 
+00181     \textcolor{keyword}{static} \textcolor{keyword}{const} std::string base64\_chars;
+00182     \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} is\_base64(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c)
+00183     \{
+00184       \textcolor{keywordflow}{return} (isalnum(c) || (c == \textcolor{charliteral}{'+'}) || (c == \textcolor{charliteral}{'/'}));
+00185     \}
+00186 
+00187     \textcolor{keywordtype}{bool} isInitialized;
+00188     uint8\_t \_secretKey[\_SECRETKEYBYTES];
+00189     uint8\_t \_publicKey[\_PUBLICKEYBYTES];
+00190     std::string \_identificationNumber;
+00191 
+00192     \textcolor{keyword}{static} \textcolor{keywordtype}{double} log2(\textcolor{keywordtype}{double} number);
+00193     \textcolor{keyword}{static} \textcolor{keywordtype}{void} incrementChunkCounter(uint8\_t *fullNonce);
+00194     \textcolor{keyword}{static} uint32\_t readChunkLength(uint8\_t *data, \textcolor{keywordtype}{size\_t} szData, \textcolor{keywordtype}{size\_t} offset);
+00195     \textcolor{keyword}{static} uint8\_t writeChunkLength(uint8\_t *data, \textcolor{keywordtype}{size\_t} szData, \textcolor{keywordtype}{size\_t} chunkLen);
+00196     \textcolor{keyword}{static} \textcolor{keywordtype}{void} setLastChunkFlag(uint8\_t *fullNonce);
+00197   \}; \textcolor{comment}{// class uCryptLib}
+00198 \} \textcolor{comment}{// namespace uCrypt}
+00199 
+00200 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}
